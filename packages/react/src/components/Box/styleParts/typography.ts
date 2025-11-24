@@ -69,13 +69,13 @@ const LINE_HEIGHTS = {
   `,
 } as const;
 
-type FontSize = keyof typeof FONT_SIZES;
+export type FontSize = keyof typeof FONT_SIZES;
 
-type FontFamily = keyof typeof FONT_FAMILIES;
+export type FontFamily = keyof typeof FONT_FAMILIES;
 
-type FontWeight = keyof typeof FONT_WEIGHTS;
+export type FontWeight = keyof typeof FONT_WEIGHTS;
 
-type LineHeight = keyof typeof LINE_HEIGHTS;
+export type LineHeight = keyof typeof LINE_HEIGHTS;
 
 export type TypographyProps = {
   fontSize?: FontSize;

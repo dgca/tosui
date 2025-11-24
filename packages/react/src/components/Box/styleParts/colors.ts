@@ -159,9 +159,9 @@ const BORDER_COLORS = {
   `,
 } as const;
 
-type Color = keyof typeof COLORS;
-type BackgroundColor = keyof typeof BACKGROUND_COLORS;
-type BorderColor = keyof typeof BORDER_COLORS;
+export type Color = keyof typeof COLORS;
+export type BackgroundColor = keyof typeof BACKGROUND_COLORS;
+export type BorderColor = keyof typeof BORDER_COLORS;
 
 export type ColorProps = {
   color?: Color;

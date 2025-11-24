@@ -72,7 +72,7 @@ import { type UserSelectProps, getUserSelect } from "./styleParts/userSelect";
 import { type TextAlignProps, getTextAlign } from "./styleParts/textAlign";
 import { type WhiteSpaceProps, getWhiteSpace } from "./styleParts/whiteSpace";
 
-type BoxOwnProps = SpacingProps &
+export type BoxOwnProps = SpacingProps &
   TypographyProps &
   RoundnessProps &
   ShadowProps &

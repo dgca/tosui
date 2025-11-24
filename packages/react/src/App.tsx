@@ -1,12 +1,69 @@
 import { Box } from "@/components/Box/Box";
+import { Text } from "@/components/Text/Text";
+import { Heading } from "@/components/Heading/Heading";
 
 function App() {
   return (
     <div style={{ padding: "2rem" }}>
-      <h1>TOSUI Component Playground</h1>
+      <Heading level={1} mb={6}>
+        TOSUI Component Playground
+      </Heading>
 
       <section>
-        <h2>Typography</h2>
+        <Heading level={2} mb={4}>
+          Text & Heading Components
+        </Heading>
+        <Box mb={4}>
+          <Text size="lg" weight="semibold" mb={2}>
+            Large semibold text
+          </Text>
+          <br />
+          <Text mb={2}>Default text (span, size md)</Text>
+          <br />
+          <Text size="sm" color="foreground-subtle" mb={2}>
+            Small muted text
+          </Text>
+          <br />
+          <Text size="md" truncate style={{ maxWidth: "300px" }} mb={2}>
+            This is a very long text that will be truncated with an ellipsis
+            when it exceeds the container width
+          </Text>
+          <br />
+          <Text italic>Italic text</Text>
+        </Box>
+
+        <Box mb={4}>
+          <Heading level={1} mb={2}>
+            Heading Level 1 (h1)
+          </Heading>
+          <Heading level={2} mb={2}>
+            Heading Level 2 (h2)
+          </Heading>
+          <Heading level={3} mb={2}>
+            Heading Level 3 (h3)
+          </Heading>
+          <Heading level={4} mb={2}>
+            Heading Level 4 (h4)
+          </Heading>
+          <Heading level={5} mb={2}>
+            Heading Level 5 (h5)
+          </Heading>
+          <Heading level={6} mb={2}>
+            Heading Level 6 (h6)
+          </Heading>
+          <Heading level={2} size="md" weight="medium" color="primary" mb={2}>
+            Custom h2 (size md, medium weight, primary color)
+          </Heading>
+          <Heading as="div" level={3} mb={2}>
+            Heading as div (polymorphic)
+          </Heading>
+        </Box>
+      </section>
+
+      <section>
+        <Heading level={2} mb={4}>
+          Box Typography
+        </Heading>
         <Box fontSize="xs" mb={2}>
           Extra small text (12px)
         </Box>
@@ -22,7 +79,9 @@ function App() {
       </section>
 
       <section style={{ marginTop: "2rem" }}>
-        <h2>Border Radius & Shadows</h2>
+        <Heading level={2} mb={4}>
+          Border Radius & Shadows
+        </Heading>
         <Box
           p={4}
           mb={3}
@@ -53,7 +112,9 @@ function App() {
       </section>
 
       <section style={{ marginTop: "2rem" }}>
-        <h2>Spacing</h2>
+        <Heading level={2} mb={4}>
+          Spacing
+        </Heading>
         <Box p={4} mb={3} style={{ backgroundColor: "#dbeafe" }}>
           Padding on all sides (p=4)
         </Box>
@@ -66,14 +127,10 @@ function App() {
       </section>
 
       <section style={{ marginTop: "2rem" }}>
-        <h2>Borders</h2>
-        <Box
-          p={4}
-          mb={3}
-          border="thin"
-          borderColor="border"
-          rounded="md"
-        >
+        <Heading level={2} mb={4}>
+          Borders
+        </Heading>
+        <Box p={4} mb={3} border="thin" borderColor="border" rounded="md">
           Thin border on all sides
         </Box>
         <Box
@@ -98,7 +155,9 @@ function App() {
       </section>
 
       <section style={{ marginTop: "2rem" }}>
-        <h2>Layout - Flexbox</h2>
+        <Heading level={2} mb={4}>
+          Layout - Flexbox
+        </Heading>
         <Box
           display="flex"
           gap={4}
@@ -138,7 +197,9 @@ function App() {
       </section>
 
       <section style={{ marginTop: "2rem" }}>
-        <h2>Layout - Grid</h2>
+        <Heading level={2} mb={4}>
+          Layout - Grid
+        </Heading>
         <Box
           display="grid"
           gridTemplateColumns="repeat(3, 1fr)"
@@ -194,7 +255,9 @@ function App() {
       </section>
 
       <section style={{ marginTop: "2rem" }}>
-        <h2>Positioning & Inset</h2>
+        <Heading level={2} mb={4}>
+          Positioning & Inset
+        </Heading>
         <Box
           position="relative"
           p={8}
@@ -246,7 +309,9 @@ function App() {
       </section>
 
       <section style={{ marginTop: "2rem" }}>
-        <h2>Sizing</h2>
+        <Heading level={2} mb={4}>
+          Sizing
+        </Heading>
         <Box mb={3}>
           <Box
             w="100%"
@@ -295,7 +360,9 @@ function App() {
       </section>
 
       <section style={{ marginTop: "2rem" }}>
-        <h2>Combined</h2>
+        <Heading level={2} mb={4}>
+          Combined
+        </Heading>
         <Box
           as="button"
           p={4}
