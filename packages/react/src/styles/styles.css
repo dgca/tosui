@@ -79,9 +79,10 @@
   --tosui-line-height-relaxed: 1.75;
 
   /* Font Families */
-  --tosui-font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI",
+  --tosui-font-family-heading: -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
-  --tosui-font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+  --tosui-font-family-body: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   --tosui-font-family-mono: "SF Mono", Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
 

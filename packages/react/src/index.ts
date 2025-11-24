@@ -1,5 +1,5 @@
 // Import base styles so they're included in the build
-import "./styles/styles.css";
+import "@/styles/styles.css";
 
-export { El, type ElProps } from "./components/El";
-export { Box, type BoxProps } from "./components/Box";
+export { Box, type BoxProps } from "@/components/Box/Box";
+export { type Polymorphic } from "@/types/Polymorphic";
