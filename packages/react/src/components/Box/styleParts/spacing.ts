@@ -1,24 +1,29 @@
 import { css } from "@linaria/core";
+import { getShorthandValue } from "./utils";
+
+export type SpacingValue = number | string;
 
 export type SpacingProps = {
-  p?: number;
-  pt?: number;
-  pr?: number;
-  pb?: number;
-  pl?: number;
-  px?: number;
-  py?: number;
-  m?: number;
-  mt?: number;
-  mr?: number;
-  mb?: number;
-  ml?: number;
-  mx?: number;
-  my?: number;
+  p?: SpacingValue;
+  pt?: SpacingValue;
+  pr?: SpacingValue;
+  pb?: SpacingValue;
+  pl?: SpacingValue;
+  px?: SpacingValue;
+  py?: SpacingValue;
+  m?: SpacingValue;
+  mt?: SpacingValue;
+  mr?: SpacingValue;
+  mb?: SpacingValue;
+  ml?: SpacingValue;
+  mx?: SpacingValue;
+  my?: SpacingValue;
 };
 
-function getSpacing(value?: number) {
-  return value ? `calc(var(--s)*${value})` : "0";
+export function getSpacing(value?: SpacingValue) {
+  if (value === undefined) return "0";
+  if (typeof value === "string") return value;
+  return `calc(var(--s)*${value})`;
 }
 
 export function getPadding(props: SpacingProps) {
@@ -26,7 +31,8 @@ export function getPadding(props: SpacingProps) {
   const right = getSpacing(props.pr ?? props.px ?? props.p);
   const bottom = getSpacing(props.pb ?? props.py ?? props.p);
   const left = getSpacing(props.pl ?? props.px ?? props.p);
-  return `${top} ${right} ${bottom} ${left}`;
+
+  return getShorthandValue(top, right, bottom, left);
 }
 
 export function getMargin(props: SpacingProps) {
@@ -34,7 +40,8 @@ export function getMargin(props: SpacingProps) {
   const right = getSpacing(props.mr ?? props.mx ?? props.m);
   const bottom = getSpacing(props.mb ?? props.my ?? props.m);
   const left = getSpacing(props.ml ?? props.mx ?? props.m);
-  return `${top} ${right} ${bottom} ${left}`;
+
+  return getShorthandValue(top, right, bottom, left);
 }
 
 export const spacingStyles = css`

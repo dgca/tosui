@@ -24,12 +24,73 @@ import {
   getBackgroundColor,
   getBorderColor,
 } from "./styleParts/colors";
+import {
+  type BorderProps,
+  getBorderWidths,
+  getBorderStyle,
+} from "./styleParts/borders";
+import { type DisplayProps, getDisplay } from "./styleParts/display";
+import {
+  type PositioningProps,
+  getPosition,
+  getInset,
+} from "./styleParts/positioning";
+import {
+  type FlexboxProps,
+  getFlexDirection,
+  getJustifyContent,
+  getAlignItems,
+  getAlignSelf,
+  getFlexWrap,
+  getFlex,
+  getGap,
+} from "./styleParts/flexbox";
+import {
+  type GridProps,
+  getJustifySelf,
+  getGridTemplateColumns,
+  getGridTemplateRows,
+} from "./styleParts/grid";
+import {
+  type SizeProps,
+  getWidth,
+  getHeight,
+  getMinWidth,
+  getMaxWidth,
+  getMinHeight,
+  getMaxHeight,
+} from "./styleParts/sizing";
+import { type OverflowProps, getOverflow } from "./styleParts/overflow";
+import { type ZIndexProps, getZIndex } from "./styleParts/zIndex";
+import { type OpacityProps, getOpacity } from "./styleParts/opacity";
+import { type CursorProps, getCursor } from "./styleParts/cursor";
+import {
+  type PointerEventsProps,
+  getPointerEvents,
+} from "./styleParts/pointerEvents";
+import { type UserSelectProps, getUserSelect } from "./styleParts/userSelect";
+import { type TextAlignProps, getTextAlign } from "./styleParts/textAlign";
+import { type WhiteSpaceProps, getWhiteSpace } from "./styleParts/whiteSpace";
 
 type BoxOwnProps = SpacingProps &
   TypographyProps &
   RoundnessProps &
   ShadowProps &
-  ColorProps & {
+  ColorProps &
+  BorderProps &
+  DisplayProps &
+  PositioningProps &
+  FlexboxProps &
+  GridProps &
+  SizeProps &
+  OverflowProps &
+  ZIndexProps &
+  OpacityProps &
+  CursorProps &
+  PointerEventsProps &
+  UserSelectProps &
+  TextAlignProps &
+  WhiteSpaceProps & {
     className?: string;
     children?: ReactNode;
   };
@@ -44,6 +105,24 @@ const StyledBox = styled.div<BoxOwnProps>`
   padding: ${(props) => getPadding(props)};
   /* Margin with cascading specificity: m -> mx/my -> mt/mr/mb/ml */
   margin: ${(props) => getMargin(props)};
+  /* Layout - gap with cascading specificity: gap -> gapRow/gapColumn */
+  gap: ${(props) => getGap(props)};
+  /* Flex shorthand with cascading: flex -> flexGrow/flexShrink/flexBasis */
+  flex: ${(props) => getFlex(props)};
+  /* Grid template columns */
+  grid-template-columns: ${(props) =>
+    getGridTemplateColumns(props.gridTemplateColumns)};
+  /* Grid template rows */
+  grid-template-rows: ${(props) => getGridTemplateRows(props.gridTemplateRows)};
+  /* Inset with cascading specificity: inset -> insetX/insetY -> top/right/bottom/left */
+  inset: ${(props) => getInset(props)};
+  /* Size properties */
+  width: ${(props) => getWidth(props.w)};
+  height: ${(props) => getHeight(props.h)};
+  min-width: ${(props) => getMinWidth(props.minW)};
+  max-width: ${(props) => getMaxWidth(props.maxW)};
+  min-height: ${(props) => getMinHeight(props.minH)};
+  max-height: ${(props) => getMaxHeight(props.maxH)};
 `;
 
 /**
@@ -54,28 +133,28 @@ const StyledBox = styled.div<BoxOwnProps>`
  * - Spacing props (margin and padding) with cascading specificity
  * - Typography props (fontSize, fontFamily, fontWeight, lineHeight)
  * - Border radius props (rounded) with cascading specificity
+ * - Border width props (border, borderX/borderY, borderTop/borderRight/borderBottom/borderLeft) with cascading specificity
+ * - Border style prop (borderStyle)
  * - Shadow prop (shadow)
  * - Color props (color, bg, borderColor)
+ * - Layout props (display, flexbox, grid, position)
+ * - Inset props (positioning offsets) with cascading specificity
+ * - Size props (width, height, min/max variants)
  * - Ability to render as any HTML element via the `as` prop
  * - Type-safe props based on the element type
  *
  * Spacing follows cascading specificity:
  * - Directional (pt, pr, pb, pl) overrides axis (px, py) overrides all (p)
  * - Same pattern for margin (mt, mr, mb, ml -> mx, my -> m)
+ * - Same pattern for gap (gapRow, gapColumn -> gap)
+ * - Same pattern for flex (flexGrow, flexShrink, flexBasis -> flex)
+ * - Same pattern for inset (top, right, bottom, left -> insetX, insetY -> inset)
  *
  * Border radius follows cascading specificity:
  * - Corner-specific (roundedTopLeft) overrides side (roundedTop/roundedLeft) overrides all (rounded)
  *
- * @example
- * <Box p={4}>Box with 16px padding on all sides</Box>
- * <Box p={4} pt={8}>Box with 16px padding, but 32px on top</Box>
- * <Box as="a" href="#" m={2}>Renders as an <a> element with proper types</Box>
- * <Box fontSize="xl" fontWeight="bold">Large bold text</Box>
- * <Box fontFamily="mono" fontSize="sm">Code snippet</Box>
- * <Box p={4} rounded="lg" shadow="md">Card with shadow</Box>
- * <Box rounded="lg" roundedTopLeft="none">Card with sharp top-left corner</Box>
- * <Box roundedTop="lg">Element with rounded top corners only</Box>
- * <Box color="primary" bg="primary-subtle" p={4}>Colored box</Box>
+ * Border width follows cascading specificity:
+ * - Directional (borderTop, borderRight, borderBottom, borderLeft) overrides axis (borderX, borderY) overrides all (border)
  */
 export function Box<T extends ElementType = "div">({
   className,
@@ -87,6 +166,25 @@ export function Box<T extends ElementType = "div">({
   color,
   bg,
   borderColor,
+  borderStyle,
+  display,
+  position,
+  flexDirection,
+  justifyContent,
+  alignItems,
+  alignSelf,
+  justifySelf,
+  flexWrap,
+  overflow,
+  overflowX,
+  overflowY,
+  zIndex,
+  opacity,
+  cursor,
+  pointerEvents,
+  userSelect,
+  textAlign,
+  whiteSpace,
   ...rest
 }: BoxProps<T>) {
   return (
@@ -102,7 +200,25 @@ export function Box<T extends ElementType = "div">({
         getColor(color),
         getBackgroundColor(bg),
         getBorderColor(borderColor),
+        getBorderStyle(borderStyle),
+        getBorderWidths(rest),
         getRoundness(rest),
+        getDisplay(display),
+        getPosition(position),
+        getFlexDirection(flexDirection),
+        getJustifyContent(justifyContent),
+        getAlignItems(alignItems),
+        getAlignSelf(alignSelf),
+        getJustifySelf(justifySelf),
+        getFlexWrap(flexWrap),
+        getOverflow({ overflow, overflowX, overflowY }),
+        getZIndex(zIndex),
+        getOpacity(opacity),
+        getCursor(cursor),
+        getPointerEvents(pointerEvents),
+        getUserSelect(userSelect),
+        getTextAlign(textAlign),
+        getWhiteSpace(whiteSpace),
         className
       )}
       {...rest}

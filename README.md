@@ -317,9 +317,9 @@ Semantic text variants that combine size, weight, line height, and color for com
 
 ### Border Radius
 
-Border radius values control the roundness of component corners. TOSUI provides both named values for common cases and accepts spacing multipliers for flexibility.
+Border radius values control the roundness of component corners.
 
-#### Named Values
+#### Values
 
 - `none` - 0px - Sharp corners (tables, strict layouts)
 - `sm` - 4px - Subtle roundness (inputs, small buttons, badges)
@@ -327,37 +327,47 @@ Border radius values control the roundness of component corners. TOSUI provides 
 - `lg` - 12px - Pronounced roundness (larger cards, modals)
 - `full` - 9999px - Fully rounded (circular avatars, pill buttons)
 
-#### Spacing Multipliers
+#### Usage
 
-Border radius also accepts any spacing multiplier (0-32) from the spacing scale:
+```jsx
+<Button rounded="md">Standard button</Button>
+<Card rounded="lg">Rounded card</Card>
+<Avatar rounded="full">JD</Avatar>
 
-- `borderRadius={1}` - 4px
-- `borderRadius={2}` - 8px
-- `borderRadius={3}` - 12px
-- `borderRadius={4}` - 16px
-- etc.
+{/* Directional control with cascading specificity */}
+<Box rounded="lg" roundedTopLeft="none">Sharp top-left corner</Box>
+<Box roundedTop="lg">Only top corners rounded</Box>
+```
 
-This allows precise control while staying on the spacing grid.
+**Rationale:** Five values cover all practical use cases. Most components use `md` by default.
+
+### Border Styles
+
+Border width and style properties for adding borders to components.
+
+#### Border Widths
+
+- `none` - 0px - No border
+- `thin` - 1px - Default borders (most common)
+- `medium` - 2px - Emphasized borders
+- `thick` - 4px - Strong visual weight
+
+#### Border Styles
+
+- `solid` - Solid line (default)
+- `dashed` - Dashed line
+- `dotted` - Dotted line
+- `none` - No border
 
 #### Usage
 
 ```jsx
-{/* Named values for common patterns */}
-<Button borderRadius="md">Standard button</Button>
-<Card borderRadius="lg">Rounded card</Card>
-<Avatar borderRadius="full">JD</Avatar>
-
-{/* Spacing multipliers for precise control */}
-<Box borderRadius={2}>8px corners</Box>
-<Box borderRadius={6}>24px corners</Box>
-
-{/* Mix and match for different corners */}
-<Box borderTopLeftRadius="lg" borderTopRightRadius="lg" borderBottomRadius="none">
-  Rounded top, sharp bottom
-</Box>
+<Box border="thin" borderColor="border">Thin border on all sides</Box>
+<Box borderY="medium" borderStyle="dashed">Dashed top and bottom borders</Box>
+<Box borderLeft="thick" borderColor="accent">Thick left accent border</Box>
 ```
 
-**Rationale:** Named values guide consistency for common use cases (most components use `md`). Spacing multipliers provide flexibility when needed without breaking the spacing grid. This hybrid approach balances constraint with practicality.
+**Rationale:** Four width values cover all practical cases. Most borders are 1px (`thin`). Width, style, and color are separate concerns for maximum flexibility with cascading specificity support.
 
 ### Shadows
 
