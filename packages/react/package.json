@@ -47,6 +47,7 @@
     "vite-plugin-dts": "^4.5.4"
   },
   "dependencies": {
-    "clsx": "^2.1.1"
+    "clsx": "^2.1.1",
+    "usehooks-ts": "^3.1.1"
   }
 }
