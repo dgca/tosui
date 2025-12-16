@@ -5,6 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "f:lib": "pnpm -F @tosui/react",
+    "f:docs": "pnpm -F react-docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

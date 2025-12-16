@@ -1,87 +1,163 @@
-import { css } from "@linaria/core";
+import * as stylex from "@stylexjs/stylex";
+import {
+  breakpoints,
+  type ResponsiveValue,
+  type FullResponsiveObject,
+  toFullResponsiveObject,
+} from "../../../utils/breakpoints.stylex";
 
-// Border widths for top edge
-const BORDER_TOP_WIDTH = {
-  none: css`
-    border-top-width: var(--tosui-border-width-none);
-  `,
-  thin: css`
-    border-top-width: var(--tosui-border-width-thin);
-  `,
-  medium: css`
-    border-top-width: var(--tosui-border-width-medium);
-  `,
-  thick: css`
-    border-top-width: var(--tosui-border-width-thick);
-  `,
+type BorderWidthValues = keyof typeof borderTopWidthStyles;
+type BorderStyleValues = keyof typeof borderStyleStyles;
+
+const BORDER_WIDTH_VALUES = {
+  medium: "var(--tosui-border-width-medium)",
+  none: "var(--tosui-border-width-none)",
+  thick: "var(--tosui-border-width-thick)",
+  thin: "var(--tosui-border-width-thin)",
 } as const;
 
-// Border widths for right edge
-const BORDER_RIGHT_WIDTH = {
-  none: css`
-    border-right-width: var(--tosui-border-width-none);
-  `,
-  thin: css`
-    border-right-width: var(--tosui-border-width-thin);
-  `,
-  medium: css`
-    border-right-width: var(--tosui-border-width-medium);
-  `,
-  thick: css`
-    border-right-width: var(--tosui-border-width-thick);
-  `,
-} as const;
+const borderTopWidthStyles = stylex.create({
+  medium: {
+    borderTopWidth: BORDER_WIDTH_VALUES.medium,
+  },
+  none: {
+    borderTopWidth: BORDER_WIDTH_VALUES.none,
+  },
+  thick: {
+    borderTopWidth: BORDER_WIDTH_VALUES.thick,
+  },
+  thin: {
+    borderTopWidth: BORDER_WIDTH_VALUES.thin,
+  },
+});
 
-// Border widths for bottom edge
-const BORDER_BOTTOM_WIDTH = {
-  none: css`
-    border-bottom-width: var(--tosui-border-width-none);
-  `,
-  thin: css`
-    border-bottom-width: var(--tosui-border-width-thin);
-  `,
-  medium: css`
-    border-bottom-width: var(--tosui-border-width-medium);
-  `,
-  thick: css`
-    border-bottom-width: var(--tosui-border-width-thick);
-  `,
-} as const;
+const borderTopWidthStylesResponsive = stylex.create({
+  responsive: (value: FullResponsiveObject<BorderWidthValues>) => ({
+    borderTopWidth: {
+      default: BORDER_WIDTH_VALUES[value.base],
+      [breakpoints.sm]: BORDER_WIDTH_VALUES[value.sm],
+      [breakpoints.md]: BORDER_WIDTH_VALUES[value.md],
+      [breakpoints.lg]: BORDER_WIDTH_VALUES[value.lg],
+      [breakpoints.xl]: BORDER_WIDTH_VALUES[value.xl],
+      [breakpoints["2xl"]]: BORDER_WIDTH_VALUES[value["2xl"]],
+    },
+  }),
+});
 
-// Border widths for left edge
-const BORDER_LEFT_WIDTH = {
-  none: css`
-    border-left-width: var(--tosui-border-width-none);
-  `,
-  thin: css`
-    border-left-width: var(--tosui-border-width-thin);
-  `,
-  medium: css`
-    border-left-width: var(--tosui-border-width-medium);
-  `,
-  thick: css`
-    border-left-width: var(--tosui-border-width-thick);
-  `,
-} as const;
+const borderRightWidthStyles = stylex.create({
+  medium: {
+    borderRightWidth: BORDER_WIDTH_VALUES.medium,
+  },
+  none: {
+    borderRightWidth: BORDER_WIDTH_VALUES.none,
+  },
+  thick: {
+    borderRightWidth: BORDER_WIDTH_VALUES.thick,
+  },
+  thin: {
+    borderRightWidth: BORDER_WIDTH_VALUES.thin,
+  },
+});
 
-// Border styles
-const BORDER_STYLES = {
-  solid: css`
-    border-style: solid;
-  `,
-  dashed: css`
-    border-style: dashed;
-  `,
-  dotted: css`
-    border-style: dotted;
-  `,
-  none: css`
-    border-style: none;
-  `,
-} as const;
+const borderRightWidthStylesResponsive = stylex.create({
+  responsive: (value: FullResponsiveObject<BorderWidthValues>) => ({
+    borderRightWidth: {
+      default: BORDER_WIDTH_VALUES[value.base],
+      [breakpoints.sm]: BORDER_WIDTH_VALUES[value.sm],
+      [breakpoints.md]: BORDER_WIDTH_VALUES[value.md],
+      [breakpoints.lg]: BORDER_WIDTH_VALUES[value.lg],
+      [breakpoints.xl]: BORDER_WIDTH_VALUES[value.xl],
+      [breakpoints["2xl"]]: BORDER_WIDTH_VALUES[value["2xl"]],
+    },
+  }),
+});
 
-type BorderWidth = keyof typeof BORDER_TOP_WIDTH;
-type BorderStyle = keyof typeof BORDER_STYLES;
+const borderBottomWidthStyles = stylex.create({
+  medium: {
+    borderBottomWidth: BORDER_WIDTH_VALUES.medium,
+  },
+  none: {
+    borderBottomWidth: BORDER_WIDTH_VALUES.none,
+  },
+  thick: {
+    borderBottomWidth: BORDER_WIDTH_VALUES.thick,
+  },
+  thin: {
+    borderBottomWidth: BORDER_WIDTH_VALUES.thin,
+  },
+});
+
+const borderBottomWidthStylesResponsive = stylex.create({
+  responsive: (value: FullResponsiveObject<BorderWidthValues>) => ({
+    borderBottomWidth: {
+      default: BORDER_WIDTH_VALUES[value.base],
+      [breakpoints.sm]: BORDER_WIDTH_VALUES[value.sm],
+      [breakpoints.md]: BORDER_WIDTH_VALUES[value.md],
+      [breakpoints.lg]: BORDER_WIDTH_VALUES[value.lg],
+      [breakpoints.xl]: BORDER_WIDTH_VALUES[value.xl],
+      [breakpoints["2xl"]]: BORDER_WIDTH_VALUES[value["2xl"]],
+    },
+  }),
+});
+
+const borderLeftWidthStyles = stylex.create({
+  medium: {
+    borderLeftWidth: BORDER_WIDTH_VALUES.medium,
+  },
+  none: {
+    borderLeftWidth: BORDER_WIDTH_VALUES.none,
+  },
+  thick: {
+    borderLeftWidth: BORDER_WIDTH_VALUES.thick,
+  },
+  thin: {
+    borderLeftWidth: BORDER_WIDTH_VALUES.thin,
+  },
+});
+
+const borderLeftWidthStylesResponsive = stylex.create({
+  responsive: (value: FullResponsiveObject<BorderWidthValues>) => ({
+    borderLeftWidth: {
+      default: BORDER_WIDTH_VALUES[value.base],
+      [breakpoints.sm]: BORDER_WIDTH_VALUES[value.sm],
+      [breakpoints.md]: BORDER_WIDTH_VALUES[value.md],
+      [breakpoints.lg]: BORDER_WIDTH_VALUES[value.lg],
+      [breakpoints.xl]: BORDER_WIDTH_VALUES[value.xl],
+      [breakpoints["2xl"]]: BORDER_WIDTH_VALUES[value["2xl"]],
+    },
+  }),
+});
+
+const borderStyleStyles = stylex.create({
+  dashed: {
+    borderStyle: "dashed",
+  },
+  dotted: {
+    borderStyle: "dotted",
+  },
+  none: {
+    borderStyle: "none",
+  },
+  solid: {
+    borderStyle: "solid",
+  },
+});
+
+const borderStyleStylesResponsive = stylex.create({
+  responsive: (value: FullResponsiveObject<BorderStyleValues>) => ({
+    borderStyle: {
+      default: value.base,
+      [breakpoints.sm]: value.sm,
+      [breakpoints.md]: value.md,
+      [breakpoints.lg]: value.lg,
+      [breakpoints.xl]: value.xl,
+      [breakpoints["2xl"]]: value["2xl"],
+    },
+  }),
+});
+
+type BorderWidth = ResponsiveValue<BorderWidthValues>;
+type BorderStyle = ResponsiveValue<BorderStyleValues>;
 
 export type BorderProps = {
   border?: BorderWidth;
@@ -94,35 +170,76 @@ export type BorderProps = {
   borderStyle?: BorderStyle;
 };
 
-function getBorderTopWidth(props: BorderProps) {
-  const value = props.borderTop ?? props.borderY ?? props.border ?? "none";
-  return BORDER_TOP_WIDTH[value];
-}
+export function getBorderStyles(props: BorderProps) {
+  const {
+    border,
+    borderX,
+    borderY,
+    borderTop,
+    borderRight,
+    borderBottom,
+    borderLeft,
+    borderStyle,
+  } = props;
 
-function getBorderRightWidth(props: BorderProps) {
-  const value = props.borderRight ?? props.borderX ?? props.border ?? "none";
-  return BORDER_RIGHT_WIDTH[value];
-}
+  const styles = [];
 
-function getBorderBottomWidth(props: BorderProps) {
-  const value = props.borderBottom ?? props.borderY ?? props.border ?? "none";
-  return BORDER_BOTTOM_WIDTH[value];
-}
+  const topWidth = borderTop ?? borderY ?? border;
+  const rightWidth = borderRight ?? borderX ?? border;
+  const bottomWidth = borderBottom ?? borderY ?? border;
+  const leftWidth = borderLeft ?? borderX ?? border;
 
-function getBorderLeftWidth(props: BorderProps) {
-  const value = props.borderLeft ?? props.borderX ?? props.border ?? "none";
-  return BORDER_LEFT_WIDTH[value];
-}
+  if (topWidth !== undefined) {
+    styles.push(
+      typeof topWidth !== "object"
+        ? borderTopWidthStyles[topWidth]
+        : borderTopWidthStylesResponsive.responsive(
+            toFullResponsiveObject(topWidth, "none")
+          )
+    );
+  }
 
-export function getBorderStyle(borderStyle?: BorderStyle) {
-  return BORDER_STYLES[borderStyle ?? "solid"];
-}
+  if (rightWidth !== undefined) {
+    styles.push(
+      typeof rightWidth !== "object"
+        ? borderRightWidthStyles[rightWidth]
+        : borderRightWidthStylesResponsive.responsive(
+            toFullResponsiveObject(rightWidth, "none")
+          )
+    );
+  }
 
-export function getBorderWidths(props: BorderProps) {
-  return [
-    getBorderTopWidth(props),
-    getBorderRightWidth(props),
-    getBorderBottomWidth(props),
-    getBorderLeftWidth(props),
-  ];
+  if (bottomWidth !== undefined) {
+    styles.push(
+      typeof bottomWidth !== "object"
+        ? borderBottomWidthStyles[bottomWidth]
+        : borderBottomWidthStylesResponsive.responsive(
+            toFullResponsiveObject(bottomWidth, "none")
+          )
+    );
+  }
+
+  if (leftWidth !== undefined) {
+    styles.push(
+      typeof leftWidth !== "object"
+        ? borderLeftWidthStyles[leftWidth]
+        : borderLeftWidthStylesResponsive.responsive(
+            toFullResponsiveObject(leftWidth, "none")
+          )
+    );
+  }
+
+  if (borderStyle !== undefined) {
+    styles.push(
+      typeof borderStyle !== "object"
+        ? borderStyleStyles[borderStyle]
+        : borderStyleStylesResponsive.responsive(
+            toFullResponsiveObject(borderStyle, "solid")
+          )
+    );
+  } else if (topWidth || rightWidth || bottomWidth || leftWidth) {
+    styles.push(borderStyleStyles.solid);
+  }
+
+  return styles;
 }

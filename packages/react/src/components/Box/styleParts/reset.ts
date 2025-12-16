@@ -1,28 +1,29 @@
-import { css } from "@linaria/core";
+import * as stylex from "@stylexjs/stylex";
 
-export const resetStyles = css`
-  &,
-  &::before,
-  &::after {
-    box-sizing: border-box;
-  }
+export const resetStyles = stylex.create({
+  base: {
+    WebkitTapHighlightColor: "transparent",
+    margin: 0,
+    padding: 0,
+    borderStyle: "solid",
+    borderWidth: 0,
+    textDecoration: "none",
+    appearance: "none",
+    backgroundColor: "transparent",
+    boxSizing: "border-box",
+    color: "inherit",
+    fontFamily: "var(--tosui-font-family-body)",
+    fontSize: "var(--tosui-font-size-md)",
+    fontWeight: "var(--tosui-font-weight-normal)",
+    lineHeight: "var(--tosui-line-height-normal)",
+  },
 
-  border: 0;
-  background: none;
-  color: inherit;
-  appearance: none;
-  text-decoration: none;
-  font-family: var(--tosui-font-family-body);
-  font-size: var(--tosui-font-size-md);
-  font-weight: var(--tosui-font-weight-normal);
-  line-height: var(--tosui-line-height-normal);
-  -webkit-tap-highlight-color: transparent;
-
-  @media (prefers-reduced-motion: reduce) {
-    &,
-    & * {
-      animation-duration: 0.01ms !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-`;
+  reducedMotion: {
+    animationDuration: {
+      "@media (prefers-reduced-motion: reduce)": "0.01ms !important",
+    },
+    transitionDuration: {
+      "@media (prefers-reduced-motion: reduce)": "0.01ms !important",
+    },
+  },
+});

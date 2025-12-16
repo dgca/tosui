@@ -1,22 +1,41 @@
 import { type ElementType } from "react";
-import { css } from "@linaria/core";
+import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { Box, type BoxOwnProps } from "../Box/Box";
 import { type Polymorphic } from "@/types/Polymorphic";
-import { type FontSize } from "../Box/styleParts/typography";
-import { type FontWeight } from "../Box/styleParts/typography";
-import { type TextAlign } from "../Box/styleParts/textAlign";
-import { type Color } from "../Box/styleParts/colors";
 
-const truncateStyles = css`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
+// Import types from Box styleParts
+type FontSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
+type FontWeight = "normal" | "medium" | "semibold" | "bold";
+type TextAlign = "left" | "center" | "right" | "justify";
+type Color =
+  | "foreground"
+  | "foreground-muted"
+  | "foreground-subtle"
+  | "accent"
+  | "accent-emphasis"
+  | "primary"
+  | "primary-emphasis"
+  | "success"
+  | "success-emphasis"
+  | "warning"
+  | "warning-emphasis"
+  | "error"
+  | "error-emphasis";
 
-const italicStyles = css`
-  font-style: italic;
-`;
+const truncateStyles = stylex.create({
+  truncate: {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  },
+});
+
+const italicStyles = stylex.create({
+  italic: {
+    fontStyle: "italic",
+  },
+});
 
 export type TextOwnProps = Omit<
   BoxOwnProps,
@@ -55,6 +74,11 @@ export function Text<T extends ElementType = "span">({
   className,
   ...rest
 }: TextProps<T>) {
+  const { className: stylexClassName } = stylex.props(
+    truncate && truncateStyles.truncate,
+    italic && italicStyles.italic
+  );
+
   return (
     // @ts-expect-error - Polymorphic component prop forwarding
     <Box
@@ -63,11 +87,7 @@ export function Text<T extends ElementType = "span">({
       fontWeight={weight}
       textAlign={align}
       color={color}
-      className={clsx(
-        truncate && truncateStyles,
-        italic && italicStyles,
-        className
-      )}
+      className={clsx(stylexClassName, className)}
       {...rest}
     />
   );

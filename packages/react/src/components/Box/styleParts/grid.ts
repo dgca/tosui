@@ -1,40 +1,115 @@
-import { css } from "@linaria/core";
+import * as stylex from "@stylexjs/stylex";
+import {
+  breakpoints,
+  type ResponsiveValue,
+  type ResponsiveObject,
+  type FullResponsiveObject,
+  toFullResponsiveObject,
+} from "../../../utils/breakpoints.stylex";
 
-const JUSTIFY_SELF = {
-  auto: css`
-    justify-self: auto;
-  `,
-  start: css`
-    justify-self: start;
-  `,
-  center: css`
-    justify-self: center;
-  `,
-  end: css`
-    justify-self: end;
-  `,
-  stretch: css`
-    justify-self: stretch;
-  `,
-} as const;
+type JustifySelfValues = keyof typeof justifySelfStyles;
 
-type JustifySelf = keyof typeof JUSTIFY_SELF;
+const justifySelfStyles = stylex.create({
+  auto: {
+    justifySelf: "auto",
+  },
+  center: {
+    justifySelf: "center",
+  },
+  end: {
+    justifySelf: "end",
+  },
+  start: {
+    justifySelf: "start",
+  },
+  stretch: {
+    justifySelf: "stretch",
+  },
+});
+
+const justifySelfStylesResponsive = stylex.create({
+  responsive: (value: FullResponsiveObject<JustifySelfValues>) => ({
+    justifySelf: {
+      // eslint-disable-next-line @stylexjs/valid-styles
+      default: value.base,
+      [breakpoints.sm]: value.sm,
+      [breakpoints.md]: value.md,
+      [breakpoints.lg]: value.lg,
+      [breakpoints.xl]: value.xl,
+      [breakpoints["2xl"]]: value["2xl"],
+    },
+  }),
+});
+
+const dynamicGridStyles = stylex.create({
+  gridTemplateColumns: (value: string) => ({ gridTemplateColumns: value }),
+  gridTemplateColumnsResponsive: (value: ResponsiveObject<string>) => ({
+    gridTemplateColumns: {
+      // eslint-disable-next-line @stylexjs/valid-styles
+      default: value.base,
+      [breakpoints.sm]: value.sm,
+      [breakpoints.md]: value.md,
+      [breakpoints.lg]: value.lg,
+      [breakpoints.xl]: value.xl,
+      [breakpoints["2xl"]]: value["2xl"],
+    },
+  }),
+  gridTemplateRows: (value: string) => ({ gridTemplateRows: value }),
+  gridTemplateRowsResponsive: (value: ResponsiveObject<string>) => ({
+    gridTemplateRows: {
+      // eslint-disable-next-line @stylexjs/valid-styles
+      default: value.base,
+      [breakpoints.sm]: value.sm,
+      [breakpoints.md]: value.md,
+      [breakpoints.lg]: value.lg,
+      [breakpoints.xl]: value.xl,
+      [breakpoints["2xl"]]: value["2xl"],
+    },
+  }),
+});
+
+export type JustifySelf = ResponsiveValue<JustifySelfValues>;
 
 export type GridProps = {
   justifySelf?: JustifySelf;
-  gridTemplateColumns?: string;
-  gridTemplateRows?: string;
+  gridTemplateColumns?: ResponsiveValue<string>;
+  gridTemplateRows?: ResponsiveValue<string>;
 };
 
-export function getJustifySelf(justifySelf?: JustifySelf) {
-  if (!justifySelf) return "";
-  return JUSTIFY_SELF[justifySelf];
-}
+export function getGridStyles(props: GridProps) {
+  const { justifySelf, gridTemplateColumns, gridTemplateRows } = props;
 
-export function getGridTemplateColumns(gridTemplateColumns?: string) {
-  return gridTemplateColumns ?? "none";
-}
+  const styles = [];
 
-export function getGridTemplateRows(gridTemplateRows?: string) {
-  return gridTemplateRows ?? "none";
+  if (justifySelf !== undefined) {
+    styles.push(
+      typeof justifySelf !== "object"
+        ? justifySelfStyles[justifySelf]
+        : justifySelfStylesResponsive.responsive(
+            toFullResponsiveObject(justifySelf, "auto")
+          )
+    );
+  }
+
+  if (gridTemplateColumns !== undefined) {
+    styles.push(
+      typeof gridTemplateColumns !== "object"
+        ? dynamicGridStyles.gridTemplateColumns(gridTemplateColumns)
+        : dynamicGridStyles.gridTemplateColumnsResponsive(
+            toFullResponsiveObject(gridTemplateColumns, "none")
+          )
+    );
+  }
+
+  if (gridTemplateRows !== undefined) {
+    styles.push(
+      typeof gridTemplateRows !== "object"
+        ? dynamicGridStyles.gridTemplateRows(gridTemplateRows)
+        : dynamicGridStyles.gridTemplateRowsResponsive(
+            toFullResponsiveObject(gridTemplateRows, "none")
+          )
+    );
+  }
+
+  return styles;
 }

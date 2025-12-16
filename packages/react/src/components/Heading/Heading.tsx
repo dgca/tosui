@@ -1,9 +1,24 @@
 import { type ElementType } from "react";
 import { Text, type TextOwnProps } from "../Text/Text";
 import { type Polymorphic } from "@/types/Polymorphic";
-import { type FontSize } from "../Box/styleParts/typography";
-import { type FontWeight } from "../Box/styleParts/typography";
-import { type Color } from "../Box/styleParts/colors";
+
+// Import types from Box styleParts
+type FontSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
+type FontWeight = "normal" | "medium" | "semibold" | "bold";
+type Color =
+  | "foreground"
+  | "foreground-muted"
+  | "foreground-subtle"
+  | "accent"
+  | "accent-emphasis"
+  | "primary"
+  | "primary-emphasis"
+  | "success"
+  | "success-emphasis"
+  | "warning"
+  | "warning-emphasis"
+  | "error"
+  | "error-emphasis";
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
