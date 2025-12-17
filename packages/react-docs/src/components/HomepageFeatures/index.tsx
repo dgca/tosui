@@ -11,32 +11,32 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Fewer, Better Choices',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        TOSUI limits options to what's actually needed. Every design token earns its place,
+        reducing decision fatigue and improving consistency across your design system.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Composition Over Configuration',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Build complex interfaces from simple, powerful primitives like Box, Stack, and Grid.
+        The system makes the right thing easy and the custom thing possible.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Theme-Aware by Default',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Semantic design values adapt automatically to light/dark modes. Customize through
+        theming without changing component code. Constraints guide good design.
       </>
     ),
   },

@@ -1,0 +1,275 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Heading, Box, Text } from "@tosui/react";
+
+# Heading
+
+The Heading component is a semantic heading component built on top of Text, designed specifically for headings with sensible defaults for each heading level.
+
+## Import
+
+```tsx
+import { Heading } from "@tosui/react";
+```
+
+## Basic Usage
+
+```tsx
+<Heading>Default h1 heading</Heading>
+```
+
+## Key Features
+
+- **Default element**: `<h1>`
+- **Semantic levels**: Use `level` prop to control heading hierarchy (h1-h6)
+- **Smart sizing**: Each level has appropriate default font size
+- **Bold by default**: Headings use bold weight unless overridden
+- **Polymorphic**: Can render as any element via `as` prop
+- **Inherits from Text**: Access to all Text and Box capabilities
+
+## Heading Levels
+
+The `level` prop controls both the HTML element and default font size:
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Heading level={1}>Heading 1 (30px, 3xl)</Heading>
+    <Heading level={2}>Heading 2 (24px, 2xl)</Heading>
+    <Heading level={3}>Heading 3 (20px, xl)</Heading>
+    <Heading level={4}>Heading 4 (18px, lg)</Heading>
+    <Heading level={5}>Heading 5 (16px, md)</Heading>
+    <Heading level={6}>Heading 6 (14px, sm)</Heading>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Heading level={1}>Heading 1 (30px, 3xl)</Heading>
+    <Heading level={2}>Heading 2 (24px, 2xl)</Heading>
+    <Heading level={3}>Heading 3 (20px, xl)</Heading>
+    <Heading level={4}>Heading 4 (18px, lg)</Heading>
+    <Heading level={5}>Heading 5 (16px, md)</Heading>
+    <Heading level={6}>Heading 6 (14px, sm)</Heading>
+  </TabItem>
+</Tabs>
+
+### Default Size Mapping
+
+| Level | Element | Default Size | Pixel Size |
+|-------|---------|--------------|------------|
+| 1     | `<h1>`  | `3xl`        | 30px       |
+| 2     | `<h2>`  | `2xl`        | 24px       |
+| 3     | `<h3>`  | `xl`         | 20px       |
+| 4     | `<h4>`  | `lg`         | 18px       |
+| 5     | `<h5>`  | `md`         | 16px       |
+| 6     | `<h6>`  | `sm`         | 14px       |
+
+## Overriding Size
+
+You can override the default size for any heading level:
+
+```tsx
+<Heading level={2} size="4xl">
+  Larger than normal h2
+</Heading>
+
+<Heading level={1} size="2xl">
+  Smaller than normal h1
+</Heading>
+```
+
+## Weight
+
+Headings default to `bold` weight, but can be customized:
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Heading weight="bold">Bold heading (default)</Heading>
+    <Heading weight="semibold">Semibold heading</Heading>
+    <Heading weight="medium">Medium heading</Heading>
+    <Heading weight="normal">Normal weight heading</Heading>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Heading weight="bold">Bold heading (default)</Heading>
+    <Heading weight="semibold">Semibold heading</Heading>
+    <Heading weight="medium">Medium heading</Heading>
+    <Heading weight="normal">Normal weight heading</Heading>
+  </TabItem>
+</Tabs>
+
+Available weights: `normal` | `medium` | `semibold` | `bold`
+
+## Color
+
+Use semantic color tokens:
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Heading color="foreground">Default foreground</Heading>
+    <Heading color="primary">Primary brand color</Heading>
+    <Heading color="accent">Accent color</Heading>
+    <Heading color="foreground-muted">Muted heading</Heading>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Heading color="foreground">Default foreground</Heading>
+    <Heading color="primary">Primary brand color</Heading>
+    <Heading color="accent">Accent color</Heading>
+    <Heading color="foreground-muted">Muted heading</Heading>
+  </TabItem>
+</Tabs>
+
+Available colors: `foreground` | `foreground-muted` | `foreground-subtle` | `primary` | `primary-emphasis` | `accent` | `accent-emphasis` | `success` | `warning` | `error`
+
+## Polymorphic Rendering
+
+Separate semantic meaning from visual styling:
+
+```tsx
+{/* Visually h3, semantically h1 */}
+<Heading level={1} size="xl">
+  Page Title
+</Heading>
+
+{/* Render as div but styled as heading */}
+<Heading as="div" level={2}>
+  Non-semantic heading
+</Heading>
+```
+
+## Common Patterns
+
+### Page Title
+
+```tsx
+<Heading level={1} size="4xl" weight="bold">
+  Dashboard
+</Heading>
+```
+
+### Section Heading
+
+```tsx
+<Heading level={2} size="2xl" weight="semibold">
+  Recent Activity
+</Heading>
+```
+
+### Subsection Heading
+
+```tsx
+<Heading level={3} size="xl" color="foreground-muted">
+  User Details
+</Heading>
+```
+
+### Card Title
+
+```tsx
+<Heading level={4} size="lg" weight="semibold">
+  Card Title
+</Heading>
+```
+
+### Small Heading
+
+```tsx
+<Heading level={6} size="sm" weight="medium" color="foreground-muted">
+  Metadata Section
+</Heading>
+```
+
+## Combining with Box Props
+
+Since Heading is built on Text (which is built on Box), you can use any Box prop:
+
+```tsx
+<Heading
+  level={2}
+  mb={4}
+  pb={3}
+  borderBottom="thin"
+  borderColor="border"
+>
+  Section with Border
+</Heading>
+```
+
+## Layout Example
+
+```tsx
+<Box display="flex" flexDirection="column" gap={6}>
+  <Box>
+    <Heading level={1} size="4xl" mb={2}>
+      Main Page Title
+    </Heading>
+    <Text size="lg" color="foreground-muted">
+      Subtitle or description
+    </Text>
+  </Box>
+
+  <Box>
+    <Heading level={2} size="2xl" mb={3}>
+      Section Heading
+    </Heading>
+    <Text>Section content goes here...</Text>
+  </Box>
+
+  <Box>
+    <Heading level={3} size="xl" mb={2}>
+      Subsection
+    </Heading>
+    <Text>Subsection content...</Text>
+  </Box>
+</Box>
+```
+
+## Accessibility
+
+The `level` prop ensures proper heading hierarchy for screen readers:
+
+```tsx
+{/* ✅ Good: Proper hierarchy */}
+<Heading level={1}>Page Title</Heading>
+<Heading level={2}>Section</Heading>
+<Heading level={3}>Subsection</Heading>
+
+{/* ❌ Avoid: Skipping levels */}
+<Heading level={1}>Page Title</Heading>
+<Heading level={3}>Section</Heading> {/* Skipped h2 */}
+```
+
+If you need different visual sizing without breaking hierarchy:
+
+```tsx
+{/* ✅ Correct semantic hierarchy with custom sizing */}
+<Heading level={1} size="3xl">Main Title</Heading>
+<Heading level={2} size="4xl">Visually Larger Section</Heading>
+<Heading level={3} size="xl">Subsection</Heading>
+```
+
+## Props Reference
+
+### Heading-Specific Props
+
+- `level`: Heading level (1-6), controls both HTML element and default size
+  - Default: `1`
+- `size`: Override default font size (`xs` | `sm` | `md` | `lg` | `xl` | `2xl` | `3xl` | `4xl` | `5xl`)
+- `weight`: Font weight (`normal` | `medium` | `semibold` | `bold`)
+  - Default: `bold`
+- `color`: Semantic color token
+
+### Inherited from Text
+
+Heading inherits all props from Text, which includes:
+
+- Text utilities (truncate, italic, align)
+- All Box props (spacing, layout, borders, etc.)
+
+See the [Text component documentation](/docs/components/text) and [Box component documentation](/docs/components/box) for the full list.
+
+## TypeScript
+
+Heading is fully typed and provides autocomplete for all props. When using the `as` prop, TypeScript will correctly infer the allowed HTML attributes for that element type.

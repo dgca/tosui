@@ -1,0 +1,83 @@
+:root {
+  /* === LIGHT MODE === */
+
+  /* Surface & Text Colors */
+  --t-light-foreground: #000000;
+  --t-light-foreground-muted: #374151;
+  --t-light-foreground-subtle: #6b7280;
+  --t-light-border: #d1d5db;
+  --t-light-border-muted: #e5e7eb;
+  --t-light-background: #ffffff;
+  --t-light-surface: #f9fafb;
+
+  /* Brand Colors - Primary */
+  --t-light-primary-default: #2563eb;
+  --t-light-primary-emphasis: #1d4ed8;
+  --t-light-primary-subtle: #dbeafe;
+
+  /* Brand Colors - Accent */
+  --t-light-accent-default: #7c3aed;
+  --t-light-accent-emphasis: #6d28d9;
+  --t-light-accent-subtle: #ede9fe;
+
+  /* Semantic/Feedback - Success */
+  --t-light-success-default: #16a34a;
+  --t-light-success-emphasis: #15803d;
+  --t-light-success-subtle: #dcfce7;
+
+  /* Semantic/Feedback - Warning */
+  --t-light-warning-default: #f59e0b;
+  --t-light-warning-emphasis: #d97706;
+  --t-light-warning-subtle: #fef3c7;
+
+  /* Semantic/Feedback - Error */
+  --t-light-error-default: #dc2626;
+  --t-light-error-emphasis: #b91c1c;
+  --t-light-error-subtle: #fee2e2;
+
+  /* Semantic/Feedback - Info */
+  --t-light-info-default: #0891b2;
+  --t-light-info-emphasis: #0e7490;
+  --t-light-info-subtle: #cffafe;
+
+  /* === DARK MODE === */
+
+  /* Surface & Text Colors */
+  --t-dark-foreground: #ffffff;
+  --t-dark-foreground-muted: #d1d5db;
+  --t-dark-foreground-subtle: #6b7280;
+  --t-dark-border: #374151;
+  --t-dark-border-muted: #1f2937;
+  --t-dark-background: #0f172a;
+  --t-dark-surface: #1e293b;
+
+  /* Brand Colors - Primary */
+  --t-dark-primary-default: #60a5fa;
+  --t-dark-primary-emphasis: #3b82f6;
+  --t-dark-primary-subtle: #1e3a8a;
+
+  /* Brand Colors - Accent */
+  --t-dark-accent-default: #a78bfa;
+  --t-dark-accent-emphasis: #8b5cf6;
+  --t-dark-accent-subtle: #4c1d95;
+
+  /* Semantic/Feedback - Success */
+  --t-dark-success-default: #4ade80;
+  --t-dark-success-emphasis: #22c55e;
+  --t-dark-success-subtle: #14532d;
+
+  /* Semantic/Feedback - Warning */
+  --t-dark-warning-default: #fbbf24;
+  --t-dark-warning-emphasis: #f59e0b;
+  --t-dark-warning-subtle: #78350f;
+
+  /* Semantic/Feedback - Error */
+  --t-dark-error-default: #f87171;
+  --t-dark-error-emphasis: #ef4444;
+  --t-dark-error-subtle: #7f1d1d;
+
+  /* Semantic/Feedback - Info */
+  --t-dark-info-default: #22d3ee;
+  --t-dark-info-emphasis: #06b6d4;
+  --t-dark-info-subtle: #164e63;
+}

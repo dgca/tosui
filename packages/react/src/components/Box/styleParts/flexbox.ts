@@ -222,7 +222,7 @@ function getSpacingValue(value?: SpacingValue): string {
   if (value === undefined) return "normal";
   if (typeof value === "string") return value;
   if (value === 0) return "0";
-  return `calc(var(--tosui-spacing-unit) * ${value})`;
+  return `calc(var(--t-spacing-unit) * ${value})`;
 }
 
 function getGapValue(

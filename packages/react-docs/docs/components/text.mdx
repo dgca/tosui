@@ -1,0 +1,267 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Text, Box } from "@tosui/react";
+
+# Text
+
+The Text component is a semantic text component built on top of Box, designed for body copy, labels, captions, and other inline text content.
+
+## Import
+
+```tsx
+import { Text } from "@tosui/react";
+```
+
+## Basic Usage
+
+```tsx
+<Text>Default text content</Text>
+```
+
+## Key Features
+
+- **Default element**: `<span>` (inline)
+- **Polymorphic**: Can render as any element via `as` prop
+- **Shorthand props**: Convenient aliases for common text styling
+- **Utility props**: Built-in support for truncation and italics
+- **Inherits from Box**: Access to all Box styling capabilities
+
+## Size
+
+Text uses Tosui's font size scale:
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Text size="5xl">5XL (48px)</Text>
+    <Text size="4xl">4XL (36px)</Text>
+    <Text size="3xl">3XL (30px)</Text>
+    <Text size="2xl">2XL (24px)</Text>
+    <Text size="xl">Extra large (20px)</Text>
+    <Text size="lg">Large text (18px)</Text>
+    <Text size="md">Default text (16px)</Text>
+    <Text size="sm">Small text (14px)</Text>
+    <Text size="xs">Extra small text (12px)</Text>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Text size="5xl">5XL (48px)</Text>
+    <Text size="4xl">4XL (36px)</Text>
+    <Text size="3xl">3XL (30px)</Text>
+    <Text size="2xl">2XL (24px)</Text>
+    <Text size="xl">Extra large (20px)</Text>
+    <Text size="lg">Large text (18px)</Text>
+    <Text size="md">Default text (16px)</Text>
+    <Text size="sm">Small text (14px)</Text>
+    <Text size="xs">Extra small text (12px)</Text>
+  </TabItem>
+</Tabs>
+
+Default: `md`
+
+## Weight
+
+Font weight options:
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Text weight="normal">Normal weight (400)</Text>
+    <Text weight="medium">Medium weight (500)</Text>
+    <Text weight="semibold">Semibold weight (600)</Text>
+    <Text weight="bold">Bold weight (700)</Text>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Text weight="normal">Normal weight (400)</Text>
+    <br />
+    <Text weight="medium">Medium weight (500)</Text>
+    <br />
+    <Text weight="semibold">Semibold weight (600)</Text>
+    <br />
+    <Text weight="bold">Bold weight (700)</Text>
+  </TabItem>
+</Tabs>
+
+Default: `normal`
+
+## Alignment
+
+```tsx
+<Text align="left">Left aligned</Text>
+<Text align="center">Center aligned</Text>
+<Text align="right">Right aligned</Text>
+<Text align="justify">Justified text</Text>
+```
+
+## Color
+
+Text supports Tosui's semantic color tokens:
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Text color="foreground">Primary text color</Text>
+    <Text color="foreground-muted">Secondary/muted text</Text>
+    <Text color="foreground-subtle">Tertiary/subtle text</Text>
+    <Text color="primary">Primary brand color</Text>
+    <Text color="primary-emphasis">Primary emphasis</Text>
+    <Text color="accent">Accent color</Text>
+    <Text color="accent-emphasis">Accent emphasis</Text>
+    <Text color="success">Success color</Text>
+    <Text color="warning">Warning color</Text>
+    <Text color="error">Error color</Text>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Text color="foreground">Primary text color</Text>
+    <br />
+    <Text color="foreground-muted">Secondary/muted text</Text>
+    <br />
+    <Text color="foreground-subtle">Tertiary/subtle text</Text>
+    <br />
+    <Text color="primary">Primary brand color</Text>
+    <br />
+    <Text color="primary-emphasis">Primary emphasis</Text>
+    <br />
+    <Text color="accent">Accent color</Text>
+    <br />
+    <Text color="accent-emphasis">Accent emphasis</Text>
+    <br />
+    <Text color="success">Success color</Text>
+    <br />
+    <Text color="warning">Warning color</Text>
+    <br />
+    <Text color="error">Error color</Text>
+  </TabItem>
+</Tabs>
+
+## Truncate
+
+Automatically truncates text with an ellipsis:
+
+```tsx
+<Text truncate>
+  This is a very long piece of text that will be truncated with an ellipsis when
+  it overflows its container
+</Text>
+```
+
+This applies:
+
+- `overflow: hidden`
+- `text-overflow: ellipsis`
+- `white-space: nowrap`
+
+## Italic
+
+```tsx
+<Text italic>Italic text</Text>
+```
+
+## Polymorphic Rendering
+
+Render as different elements while maintaining Text styling:
+
+```tsx
+<Text as="p">Paragraph element</Text>
+<Text as="label">Label element</Text>
+<Text as="span">Span element (default)</Text>
+<Text as="div">Block-level div</Text>
+```
+
+## Common Patterns
+
+### Label Text
+
+```tsx
+<Text as="label" size="sm" weight="medium">
+  Email Address
+</Text>
+```
+
+### Caption Text
+
+```tsx
+<Text size="sm" color="foreground-muted">
+  Last updated 2 hours ago
+</Text>
+```
+
+### Error Message
+
+```tsx
+<Text size="sm" color="error">
+  This field is required
+</Text>
+```
+
+### Muted Helper Text
+
+```tsx
+<Text size="sm" color="foreground-subtle">
+  We'll never share your email address
+</Text>
+```
+
+### Emphasized Text
+
+```tsx
+<Text weight="semibold" color="primary">
+  Important information
+</Text>
+```
+
+## Combining with Box Props
+
+Since Text is built on Box, you can use any Box prop:
+
+```tsx
+<Text size="lg" weight="medium" p={4} bg="surface" rounded="md">
+  Text with background and padding
+</Text>
+```
+
+## Layout Example
+
+```tsx
+<Box display="flex" flexDirection="column" gap={2}>
+  <Text size="lg" weight="semibold">
+    Section Title
+  </Text>
+  <Text color="foreground-muted">
+    Section description goes here with muted color
+  </Text>
+  <Text size="sm" color="foreground-subtle">
+    Additional context or metadata
+  </Text>
+</Box>
+```
+
+## Props Reference
+
+### Text-Specific Props
+
+- `size`: Font size (`xs` | `sm` | `md` | `lg` | `xl` | `2xl` | `3xl` | `4xl` | `5xl`)
+- `weight`: Font weight (`normal` | `medium` | `semibold` | `bold`)
+- `align`: Text alignment (`left` | `center` | `right` | `justify`)
+- `color`: Semantic color token (see Color section above)
+- `truncate`: Enable text truncation with ellipsis
+- `italic`: Enable italic styling
+
+### Inherited from Box
+
+Text inherits all props from Box except `fontSize`, `fontWeight`, `textAlign`, and `color` (which are replaced by the shorthand props above). This includes:
+
+- Spacing (margin, padding)
+- Layout (display, position)
+- Size (width, height)
+- Flexbox and Grid
+- Borders, roundness, shadows
+- And more
+
+See the [Box component documentation](/docs/components/box) for the full list.
+
+## TypeScript
+
+Text is fully typed and provides autocomplete for all props. When using the `as` prop, TypeScript will correctly infer the allowed HTML attributes for that element type.

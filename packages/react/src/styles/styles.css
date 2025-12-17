@@ -1,3 +1,5 @@
+@import "./_colors.css";
+
 /**
  * TOSUI Base Styles
  *
@@ -7,134 +9,195 @@
 
 /* === DESIGN TOKENS === */
 :root {
-  /* Raw Neutrals */
-  --tosui-black: #000000;
-  --tosui-gray-dark: #374151;
-  --tosui-gray: #6b7280;
-  --tosui-gray-light: #d1d5db;
-  --tosui-white: #ffffff;
-
-  /* Semantic Surface & Text Colors (Light Mode) */
-  --tosui-foreground: var(--tosui-black);
-  --tosui-foreground-muted: var(--tosui-gray-dark);
-  --tosui-foreground-subtle: var(--tosui-gray);
-  --tosui-border: var(--tosui-gray-light);
-  --tosui-border-muted: #e5e7eb;
-  --tosui-background: var(--tosui-white);
-  --tosui-surface: #f9fafb;
+  /* Surface & Text Colors (Light Mode) */
+  --t-color-foreground: var(--t-light-foreground);
+  --t-color-foreground-muted: var(--t-light-foreground-muted);
+  --t-color-foreground-subtle: var(--t-light-foreground-subtle);
+  --t-color-border: var(--t-light-border);
+  --t-color-border-muted: var(--t-light-border-muted);
+  --t-color-background: var(--t-light-background);
+  --t-color-surface: var(--t-light-surface);
 
   /* Brand Colors - Primary */
-  --tosui-primary-default: #2563eb;
-  --tosui-primary-emphasis: #1d4ed8;
-  --tosui-primary-subtle: #dbeafe;
+  --t-color-primary-default: var(--t-light-primary-default);
+  --t-color-primary-emphasis: var(--t-light-primary-emphasis);
+  --t-color-primary-subtle: var(--t-light-primary-subtle);
 
   /* Brand Colors - Accent */
-  --tosui-accent-default: #7c3aed;
-  --tosui-accent-emphasis: #6d28d9;
-  --tosui-accent-subtle: #ede9fe;
+  --t-color-accent-default: var(--t-light-accent-default);
+  --t-color-accent-emphasis: var(--t-light-accent-emphasis);
+  --t-color-accent-subtle: var(--t-light-accent-subtle);
 
   /* Semantic/Feedback - Success */
-  --tosui-success-default: #16a34a;
-  --tosui-success-emphasis: #15803d;
-  --tosui-success-subtle: #dcfce7;
+  --t-color-success-default: var(--t-light-success-default);
+  --t-color-success-emphasis: var(--t-light-success-emphasis);
+  --t-color-success-subtle: var(--t-light-success-subtle);
 
   /* Semantic/Feedback - Warning */
-  --tosui-warning-default: #f59e0b;
-  --tosui-warning-emphasis: #d97706;
-  --tosui-warning-subtle: #fef3c7;
+  --t-color-warning-default: var(--t-light-warning-default);
+  --t-color-warning-emphasis: var(--t-light-warning-emphasis);
+  --t-color-warning-subtle: var(--t-light-warning-subtle);
 
   /* Semantic/Feedback - Error */
-  --tosui-error-default: #dc2626;
-  --tosui-error-emphasis: #b91c1c;
-  --tosui-error-subtle: #fee2e2;
+  --t-color-error-default: var(--t-light-error-default);
+  --t-color-error-emphasis: var(--t-light-error-emphasis);
+  --t-color-error-subtle: var(--t-light-error-subtle);
 
   /* Semantic/Feedback - Info */
-  --tosui-info-default: #0891b2;
-  --tosui-info-emphasis: #0e7490;
-  --tosui-info-subtle: #cffafe;
+  --t-color-info-default: var(--t-light-info-default);
+  --t-color-info-emphasis: var(--t-light-info-emphasis);
+  --t-color-info-subtle: var(--t-light-info-subtle);
 
   /* Spacing (customizable base unit, multipliers 0-32) */
-  --tosui-spacing-unit: 4px;
+  --t-spacing-unit: 4px;
 
   /* Font Sizes */
-  --tosui-font-size-xs: 12px;
-  --tosui-font-size-sm: 14px;
-  --tosui-font-size-md: 16px;
-  --tosui-font-size-lg: 18px;
-  --tosui-font-size-xl: 20px;
-  --tosui-font-size-2xl: 24px;
-  --tosui-font-size-3xl: 30px;
-  --tosui-font-size-4xl: 36px;
-  --tosui-font-size-5xl: 48px;
+  --t-font-size-xs: 12px;
+  --t-font-size-sm: 14px;
+  --t-font-size-md: 16px;
+  --t-font-size-lg: 18px;
+  --t-font-size-xl: 20px;
+  --t-font-size-2xl: 24px;
+  --t-font-size-3xl: 30px;
+  --t-font-size-4xl: 36px;
+  --t-font-size-5xl: 48px;
 
   /* Font Weights */
-  --tosui-font-weight-normal: 400;
-  --tosui-font-weight-medium: 500;
-  --tosui-font-weight-semibold: 600;
-  --tosui-font-weight-bold: 700;
+  --t-font-weight-normal: 400;
+  --t-font-weight-medium: 500;
+  --t-font-weight-semibold: 600;
+  --t-font-weight-bold: 700;
 
   /* Line Heights */
-  --tosui-line-height-tight: 1.25;
-  --tosui-line-height-normal: 1.5;
-  --tosui-line-height-relaxed: 1.75;
+  --t-line-height-tight: 1.25;
+  --t-line-height-normal: 1.5;
+  --t-line-height-relaxed: 1.75;
 
   /* Font Families */
-  --tosui-font-family-heading: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
-  --tosui-font-family-body: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
-  --tosui-font-family-mono: "SF Mono", Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  --t-font-family-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --t-font-family-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --t-font-family-mono: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
 
   /* Border Radius */
-  --tosui-radius-none: 0px;
-  --tosui-radius-sm: 4px;
-  --tosui-radius-md: 8px;
-  --tosui-radius-lg: 12px;
-  --tosui-radius-full: 9999px;
+  --t-radius-none: 0px;
+  --t-radius-sm: 4px;
+  --t-radius-md: 8px;
+  --t-radius-lg: 12px;
+  --t-radius-full: 9999px;
 
   /* Border Width */
-  --tosui-border-width-none: 0px;
-  --tosui-border-width-thin: 1px;
-  --tosui-border-width-medium: 2px;
-  --tosui-border-width-thick: 4px;
+  --t-border-width-none: 0px;
+  --t-border-width-thin: 1px;
+  --t-border-width-medium: 2px;
+  --t-border-width-thick: 4px;
 
   /* Shadows (Light Mode) */
-  --tosui-shadow-none: none;
-  --tosui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --tosui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  --t-shadow-none: none;
+  --t-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --t-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --tosui-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  --t-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
   /* Transitions */
-  --tosui-transition-fast: 150ms;
-  --tosui-transition-normal: 250ms;
-  --tosui-transition-slow: 350ms;
-  --tosui-transition-easing: ease-in-out;
+  --t-transition-fast: 150ms;
+  --t-transition-normal: 250ms;
+  --t-transition-slow: 350ms;
+  --t-transition-easing: ease-in-out;
 
   /* Breakpoints (for reference - use in media queries) */
-  --tosui-breakpoint-xs: 639px;
-  --tosui-breakpoint-sm: 767px;
-  --tosui-breakpoint-md: 1023px;
-  --tosui-breakpoint-lg: 1279px;
-  --tosui-breakpoint-xl: 1535px;
+  --t-breakpoint-xs: 639px;
+  --t-breakpoint-sm: 767px;
+  --t-breakpoint-md: 1023px;
+  --t-breakpoint-lg: 1279px;
+  --t-breakpoint-xl: 1535px;
 }
 
 /* === DARK MODE === */
-/* TODO: Implement dark mode */
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --tosui-foreground: var(--tosui-white);
-    --tosui-foreground-muted: var(--tosui-gray-light);
-    --tosui-foreground-subtle: var(--tosui-gray);
-    --tosui-border: #374151;
-    --tosui-border-muted: #1f2937;
-    --tosui-background: #0f172a;
-    --tosui-surface: #1e293b;
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]),
+  html[data-theme="auto"] {
+    /* Surface & Text Colors (Light Mode) */
+    --t-color-foreground: var(--t-dark-foreground);
+    --t-color-foreground-muted: var(--t-dark-foreground-muted);
+    --t-color-foreground-subtle: var(--t-dark-foreground-subtle);
+    --t-color-border: var(--t-dark-border);
+    --t-color-border-muted: var(--t-dark-border-muted);
+    --t-color-background: var(--t-dark-background);
+    --t-color-surface: var(--t-dark-surface);
 
-    --tosui-shadow-sm: 0 0 0 1px rgba(255, 255, 255, 0.1);
-    --tosui-shadow-md: 0 0 0 1px rgba(255, 255, 255, 0.15), 0 4px 6px rgba(0, 0, 0, 0.3);
-    --tosui-shadow-lg: 0 0 0 1px rgba(255, 255, 255, 0.2), 0 10px 15px rgba(0, 0, 0, 0.4);
+    /* Brand Colors - Primary */
+    --t-color-primary-default: var(--t-dark-primary-default);
+    --t-color-primary-emphasis: var(--t-dark-primary-emphasis);
+    --t-color-primary-subtle: var(--t-dark-primary-subtle);
+
+    /* Brand Colors - Accent */
+    --t-color-accent-default: var(--t-dark-accent-default);
+    --t-color-accent-emphasis: var(--t-dark-accent-emphasis);
+    --t-color-accent-subtle: var(--t-dark-accent-subtle);
+
+    /* Semantic/Feedback - Success */
+    --t-color-success-default: var(--t-dark-success-default);
+    --t-color-success-emphasis: var(--t-dark-success-emphasis);
+    --t-color-success-subtle: var(--t-dark-success-subtle);
+
+    /* Semantic/Feedback - Warning */
+    --t-color-warning-default: var(--t-dark-warning-default);
+    --t-color-warning-emphasis: var(--t-dark-warning-emphasis);
+    --t-color-warning-subtle: var(--t-dark-warning-subtle);
+
+    /* Semantic/Feedback - Error */
+    --t-color-error-default: var(--t-dark-error-default);
+    --t-color-error-emphasis: var(--t-dark-error-emphasis);
+    --t-color-error-subtle: var(--t-dark-error-subtle);
+
+    /* Semantic/Feedback - Info */
+    --t-color-info-default: var(--t-dark-info-default);
+    --t-color-info-emphasis: var(--t-dark-info-emphasis);
+    --t-color-info-subtle: var(--t-dark-info-subtle);
   }
-} */
+}
+
+:root[data-theme="dark"] {
+  /* Surface & Text Colors (Light Mode) */
+  --t-color-foreground: var(--t-dark-foreground);
+  --t-color-foreground-muted: var(--t-dark-foreground-muted);
+  --t-color-foreground-subtle: var(--t-dark-foreground-subtle);
+  --t-color-border: var(--t-dark-border);
+  --t-color-border-muted: var(--t-dark-border-muted);
+  --t-color-background: var(--t-dark-background);
+  --t-color-surface: var(--t-dark-surface);
+
+  /* Brand Colors - Primary */
+  --t-color-primary-default: var(--t-dark-primary-default);
+  --t-color-primary-emphasis: var(--t-dark-primary-emphasis);
+  --t-color-primary-subtle: var(--t-dark-primary-subtle);
+
+  /* Brand Colors - Accent */
+  --t-color-accent-default: var(--t-dark-accent-default);
+  --t-color-accent-emphasis: var(--t-dark-accent-emphasis);
+  --t-color-accent-subtle: var(--t-dark-accent-subtle);
+
+  /* Semantic/Feedback - Success */
+  --t-color-success-default: var(--t-dark-success-default);
+  --t-color-success-emphasis: var(--t-dark-success-emphasis);
+  --t-color-success-subtle: var(--t-dark-success-subtle);
+
+  /* Semantic/Feedback - Warning */
+  --t-color-warning-default: var(--t-dark-warning-default);
+  --t-color-warning-emphasis: var(--t-dark-warning-emphasis);
+  --t-color-warning-subtle: var(--t-dark-warning-subtle);
+
+  /* Semantic/Feedback - Error */
+  --t-color-error-default: var(--t-dark-error-default);
+  --t-color-error-emphasis: var(--t-dark-error-emphasis);
+  --t-color-error-subtle: var(--t-dark-error-subtle);
+
+  /* Semantic/Feedback - Info */
+  --t-color-info-default: var(--t-dark-info-default);
+  --t-color-info-emphasis: var(--t-dark-info-emphasis);
+  --t-color-info-subtle: var(--t-dark-info-subtle);
+}

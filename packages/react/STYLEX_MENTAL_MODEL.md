@@ -12,10 +12,7 @@ If you apply multiple styles that target the same CSS property (e.g., `paddingTo
 
 ```tsx
 // ❌ WRONG - lg will overwrite sm
-stylex.props(
-  styles.paddingTop_sm(value1),
-  styles.paddingTop_lg(value2),
-)
+stylex.props(styles.paddingTop_sm(value1), styles.paddingTop_lg(value2));
 
 // ✅ CORRECT - all breakpoints in one object
 const styles = stylex.create({
@@ -42,12 +39,13 @@ StyleX is **zero-runtime**. All styles are compiled to atomic CSS at build time.
 const styles = stylex.create({
   box: {
     padding: 16,
-    backgroundColor: 'red',
+    backgroundColor: "red",
   },
 });
 ```
 
 At build time, this becomes:
+
 - Static CSS file with atomic classes like `.p-16 { padding: 16px; }`
 - The `styles.box` reference becomes a reference to those class names
 
@@ -67,30 +65,32 @@ The `stylex.props()` function converts style references into `className` and `st
 Pass multiple styles to `stylex.props()` - **later styles override earlier ones**:
 
 ```tsx
-stylex.props(styles.base, styles.variant, conditionalStyle)
+stylex.props(styles.base, styles.variant, conditionalStyle);
 //           ↑ applied first (lowest priority)
 //                           ↑ applied second
 //                                     ↑ applied last (highest priority)
 ```
 
 **Falsy values are automatically ignored:**
+
 ```tsx
 stylex.props(
   styles.base,
-  isActive && styles.active,  // If false, ignored
-  null,                        // Ignored
-  undefined,                   // Ignored
-)
+  isActive && styles.active, // If false, ignored
+  null, // Ignored
+  undefined // Ignored
+);
 ```
 
 ### 4. Static vs Dynamic Values
 
 #### Static Values (Compile-Time)
+
 ```tsx
 const styles = stylex.create({
   box: {
-    padding: 16,              // ✅ Static - becomes atomic CSS
-    backgroundColor: 'red',    // ✅ Static - becomes atomic CSS
+    padding: 16, // ✅ Static - becomes atomic CSS
+    backgroundColor: "red", // ✅ Static - becomes atomic CSS
   },
 });
 ```
@@ -102,24 +102,27 @@ const styles = stylex.create({
 ```tsx
 const styles = stylex.create({
   box: (padding) => ({
-    padding,  // ✅ Dynamic - uses CSS variable at runtime
+    padding, // ✅ Dynamic - uses CSS variable at runtime
   }),
 });
 
 // Usage
-<div {...stylex.props(styles.box(someValue))} />
+<div {...stylex.props(styles.box(someValue))} />;
 ```
 
 **How it works:**
+
 - StyleX generates: `.box { padding: var(--padding-xyz); }`
 - At runtime, it sets: `style={{ '--padding-xyz': someValue }}`
 
 **Limitations:**
+
 - Function body **must be an object literal** (no function calls, imports, or spreads)
 - Parameters **must be simple identifiers** (no destructuring or defaults)
 - Can only use the parameter value directly
 
 **When to use:**
+
 - ✅ Truly arbitrary values (user input, calculated dimensions)
 - ✅ Values that can't be pre-generated
 - ❌ Design system tokens (use conditional styles instead)
@@ -133,8 +136,8 @@ const styles = stylex.create({
   box: {
     padding: {
       default: 16,
-      '@media (min-width: 768px)': 24,
-      '@media (min-width: 1024px)': 32,
+      "@media (min-width: 768px)": 24,
+      "@media (min-width: 1024px)": 32,
     },
   },
 });
@@ -151,9 +154,9 @@ This means if you try to apply responsive styles separately:
 ```tsx
 // ❌ WRONG - sm styles will be completely dropped!
 stylex.props(
-  styles.paddingTop_sm(value1),  // Applied first
-  styles.paddingTop_lg(value2),  // Applied second - OVERWRITES sm entirely
-)
+  styles.paddingTop_sm(value1), // Applied first
+  styles.paddingTop_lg(value2) // Applied second - OVERWRITES sm entirely
+);
 ```
 
 Even though these target different media queries, StyleX sees them as the same property (`paddingTop`) and drops the first one.
@@ -164,7 +167,7 @@ Even though these target different media queries, StyleX sees them as the same p
 const styles = stylex.create({
   // Non-responsive (single value)
   paddingTop: (value: string) => ({
-    paddingTop: value
+    paddingTop: value,
   }),
 
   // Responsive (all breakpoints in one object)
@@ -211,11 +214,11 @@ function toFullResponsiveObject<T>(
   defaultValue: T
 ): Required<ResponsiveObject<T>> {
   const base = partial.base ?? defaultValue;
-  const sm = partial.sm ?? base;      // cascade from base
-  const md = partial.md ?? sm;        // cascade from sm
-  const lg = partial.lg ?? md;        // cascade from md
-  const xl = partial.xl ?? lg;        // cascade from lg
-  const _2xl = partial["2xl"] ?? xl;  // cascade from xl
+  const sm = partial.sm ?? base; // cascade from base
+  const md = partial.md ?? sm; // cascade from sm
+  const lg = partial.lg ?? md; // cascade from md
+  const xl = partial.xl ?? lg; // cascade from lg
+  const _2xl = partial["2xl"] ?? xl; // cascade from xl
 
   return { base, sm, md, lg, xl, "2xl": _2xl };
 }
@@ -231,9 +234,9 @@ StyleX enforces atomic CSS by **rejecting shorthands**:
 // ❌ WRONG
 const styles = stylex.create({
   box: {
-    border: '1px solid black',    // Error!
-    background: 'red',             // Error!
-    padding: '10px 20px',          // Error!
+    border: "1px solid black", // Error!
+    background: "red", // Error!
+    padding: "10px 20px", // Error!
   },
 });
 
@@ -241,9 +244,9 @@ const styles = stylex.create({
 const styles = stylex.create({
   box: {
     borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: 'black',
-    backgroundColor: 'red',
+    borderStyle: "solid",
+    borderColor: "black",
+    backgroundColor: "red",
     paddingTop: 10,
     paddingRight: 20,
     paddingBottom: 10,
@@ -260,16 +263,18 @@ For component libraries, accept styles as props and merge them **after** local s
 
 ```tsx
 type BoxProps = {
-  style?: StyleXStyles;  // User-provided styles
+  style?: StyleXStyles; // User-provided styles
   children: ReactNode;
 };
 
 function Box({ style, children }: BoxProps) {
   return (
-    <div {...stylex.props(
-      localStyles.base,      // Local styles first
-      style                   // User styles last (can override)
-    )}>
+    <div
+      {...stylex.props(
+        localStyles.base, // Local styles first
+        style // User styles last (can override)
+      )}
+    >
       {children}
     </div>
   );
@@ -282,11 +287,11 @@ Use object lookup for variants:
 
 ```tsx
 const styles = stylex.create({
-  primary: { backgroundColor: 'blue' },
-  secondary: { backgroundColor: 'gray' },
+  primary: { backgroundColor: "blue" },
+  secondary: { backgroundColor: "gray" },
 });
 
-function Button({ variant }: { variant: 'primary' | 'secondary' }) {
+function Button({ variant }: { variant: "primary" | "secondary" }) {
   return <button {...stylex.props(styles[variant])} />;
 }
 ```
@@ -298,7 +303,7 @@ Set properties to `null` to remove inherited/previous styles without generating 
 ```tsx
 const styles = stylex.create({
   noColor: {
-    color: null,  // Removes color property
+    color: null, // Removes color property
   },
 });
 ```
@@ -306,13 +311,14 @@ const styles = stylex.create({
 ## Our Implementation Strategy
 
 ### For Static Styles (Reset, Defaults)
+
 Use `stylex.create()` with static values:
 
 ```tsx
 // styleParts/reset.ts
 export const resetStyles = stylex.create({
   base: {
-    boxSizing: 'border-box',
+    boxSizing: "border-box",
     borderWidth: 0,
     // ...
   },
@@ -328,7 +334,7 @@ Use **dynamic functions** with separate keys for responsive vs non-responsive:
 const paddingStyles = stylex.create({
   // Non-responsive - simple value
   paddingTop: (value: string) => ({
-    paddingTop: value
+    paddingTop: value,
   }),
 
   // Responsive - all breakpoints in single object
@@ -365,16 +371,17 @@ function getSpacingProps(
         xl: getRawValue(value.xl),
         "2xl": getRawValue(value["2xl"]),
       },
-      "0"  // default value for missing breakpoints
+      "0" // default value for missing breakpoints
     )
   );
 }
 ```
 
 **Key insights:**
+
 - Separate keys prevent StyleX from dropping breakpoints during merging
 - All breakpoints must have values to ensure proper cascading
-- Use CSS variables (`calc(var(--tosui-spacing-unit) * ${value})`) for dynamic values
+- Use CSS variables (`calc(var(--t-spacing-unit) * ${value})`) for dynamic values
 
 ### Complete Example: Padding with Responsive Support
 
@@ -424,41 +431,44 @@ const paddingStyles = stylex.create({
 
 ## Key Differences from Linaria
 
-| Aspect | Linaria | StyleX |
-|--------|---------|--------|
-| **Shorthands** | Allowed | ❌ Forbidden (enforces atomic CSS) |
-| **Dynamic values** | `styled.div` with interpolation | CSS variables via inline styles |
-| **Merging** | `clsx(class1, class2)` | `stylex.props(style1, style2)` |
-| **Media queries** | ✅ In `css` template | ✅ Nested in style object |
-| **Runtime cost** | Some (for `styled.div`) | Zero (pure CSS) |
+| Aspect             | Linaria                         | StyleX                             |
+| ------------------ | ------------------------------- | ---------------------------------- |
+| **Shorthands**     | Allowed                         | ❌ Forbidden (enforces atomic CSS) |
+| **Dynamic values** | `styled.div` with interpolation | CSS variables via inline styles    |
+| **Merging**        | `clsx(class1, class2)`          | `stylex.props(style1, style2)`     |
+| **Media queries**  | ✅ In `css` template            | ✅ Nested in style object          |
+| **Runtime cost**   | Some (for `styled.div`)         | Zero (pure CSS)                    |
 
 ## Advanced Features
 
 ### Variables & Theming
 
 **Defining Variables:**
+
 ```tsx
 // tokens.stylex.ts (must use .stylex.ts extension!)
 export const colors = stylex.defineVars({
-  primary: 'blue',
-  background: 'white',
+  primary: "blue",
+  background: "white",
   // Can include media queries
   text: {
-    default: 'black',
-    '@media (prefers-color-scheme: dark)': 'white',
+    default: "black",
+    "@media (prefers-color-scheme: dark)": "white",
   },
 });
 ```
 
 **Important constraints:**
+
 - Must be in `.stylex.ts` (or `.stylex.js`) files
 - Must be named exports only
 - File can ONLY contain variable definitions
 - Variables are CSS identifiers, can't be used in JavaScript logic
 
 **Using Variables:**
+
 ```tsx
-import { colors } from './tokens.stylex';
+import { colors } from "./tokens.stylex";
 
 const styles = stylex.create({
   box: {
@@ -469,15 +479,16 @@ const styles = stylex.create({
 ```
 
 **Creating Themes:**
+
 ```tsx
 const darkTheme = stylex.createTheme(colors, {
-  primary: 'lightblue',
-  background: 'black',
+  primary: "lightblue",
+  background: "black",
   // Unspecified vars revert to defaults
 });
 
 // Apply to element
-<div {...stylex.props(darkTheme, styles.box)} />
+<div {...stylex.props(darkTheme, styles.box)} />;
 ```
 
 ### Variants Pattern
@@ -486,8 +497,8 @@ Instead of a variants API, use separate style objects + bracket notation:
 
 ```tsx
 const colorVariants = stylex.create({
-  primary: { backgroundColor: 'blue' },
-  secondary: { backgroundColor: 'gray' },
+  primary: { backgroundColor: "blue" },
+  secondary: { backgroundColor: "gray" },
 });
 
 const sizeVariants = stylex.create({
@@ -497,16 +508,19 @@ const sizeVariants = stylex.create({
 
 function Button({ color, size }: ButtonProps) {
   return (
-    <button {...stylex.props(
-      baseStyles.button,
-      colorVariants[color],
-      sizeVariants[size],
-    )} />
+    <button
+      {...stylex.props(
+        baseStyles.button,
+        colorVariants[color],
+        sizeVariants[size]
+      )}
+    />
   );
 }
 ```
 
 **For compound variants:**
+
 - Use conditional styles: `disabled && styles.disabled`
 - Or separate style objects: `colorVariantsDisabled[color]`
 
@@ -529,6 +543,7 @@ function Button({ color, size }: ButtonProps) {
 After discovering the combinatorial explosion problem with pre-generating static responsive variants, TOSUI uses a **unified approach for all responsive props**:
 
 **Both dynamic AND enumerated props use the same pattern:**
+
 - Static keys for non-responsive values
 - Dynamic `responsive` function key for responsive values
 
@@ -570,7 +585,11 @@ const overflowStylesResponsive = {
 };
 
 // Usage function
-function getOverflowStyles({ overflow }: { overflow?: ResponsiveValue<OverflowValues> }) {
+function getOverflowStyles({
+  overflow,
+}: {
+  overflow?: ResponsiveValue<OverflowValues>;
+}) {
   if (!overflow) return [];
 
   if (typeof overflow !== "object") {
@@ -579,13 +598,16 @@ function getOverflowStyles({ overflow }: { overflow?: ResponsiveValue<OverflowVa
   }
 
   // Responsive object - fill all breakpoints and use responsive function
-  return [overflowStylesResponsive.responsive(
-    toFullResponsiveObject(overflow, "visible")
-  )];
+  return [
+    overflowStylesResponsive.responsive(
+      toFullResponsiveObject(overflow, "visible")
+    ),
+  ];
 }
 ```
 
 **Benefits:**
+
 - ✅ **Small bundle**: Only 4 static + 1 dynamic function (vs 531,441 variants!)
 - ✅ **Supports all combinations**: Users can use any responsive pattern
 - ✅ **Type-safe**: `FullResponsiveObject` ensures all breakpoints are provided
@@ -593,6 +615,7 @@ function getOverflowStyles({ overflow }: { overflow?: ResponsiveValue<OverflowVa
 - ✅ **Consistent pattern**: Same approach for all prop types (dynamic and enumerated)
 
 **Tradeoff:**
+
 - Uses CSS variables for enumerated responsive values (minimal runtime cost)
 - But this is negligible compared to generating thousands of static variants
 - For non-responsive enumerated values, still uses pure static CSS (no variables)
@@ -621,6 +644,7 @@ This pattern works for **both dynamic props** (padding, margin, width) **and enu
 #### 1. Create Style Keys
 
 For **dynamic props** (arbitrary values):
+
 ```tsx
 // padding.ts - accepts any number or string
 const paddingStyles = stylex.create({
@@ -639,6 +663,7 @@ const paddingStyles = stylex.create({
 ```
 
 For **enumerated props** (predefined values):
+
 ```tsx
 // overflow.ts - fixed set of values
 const overflowStyles = stylex.create({
@@ -686,18 +711,24 @@ This creates a mobile-first cascade where each breakpoint inherits from the prev
 #### 3. Choose Style Based on Input Type
 
 ```tsx
-function getOverflowStyles({ overflow }: { overflow?: ResponsiveValue<OverflowValues> }) {
+function getOverflowStyles({
+  overflow,
+}: {
+  overflow?: ResponsiveValue<OverflowValues>;
+}) {
   if (!overflow) return [];
 
   if (typeof overflow !== "object") {
     // Simple value - use static/dynamic non-responsive style
-    return [overflowStyles[overflow]];  // or paddingStyles.paddingTop(value)
+    return [overflowStyles[overflow]]; // or paddingStyles.paddingTop(value)
   }
 
   // Responsive object - fill all breakpoints and use responsive function
-  return [overflowStylesResponsive.responsive(
-    toFullResponsiveObject(overflow, "visible")
-  )];
+  return [
+    overflowStylesResponsive.responsive(
+      toFullResponsiveObject(overflow, "visible")
+    ),
+  ];
 }
 ```
 

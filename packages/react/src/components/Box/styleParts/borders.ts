@@ -10,10 +10,10 @@ type BorderWidthValues = keyof typeof borderTopWidthStyles;
 type BorderStyleValues = keyof typeof borderStyleStyles;
 
 const BORDER_WIDTH_VALUES = {
-  medium: "var(--tosui-border-width-medium)",
-  none: "var(--tosui-border-width-none)",
-  thick: "var(--tosui-border-width-thick)",
-  thin: "var(--tosui-border-width-thin)",
+  medium: "var(--t-border-width-medium)",
+  none: "var(--t-border-width-none)",
+  thick: "var(--t-border-width-thick)",
+  thin: "var(--t-border-width-thin)",
 } as const;
 
 const borderTopWidthStyles = stylex.create({

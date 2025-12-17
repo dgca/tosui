@@ -9,12 +9,14 @@ When working in this codebase, follow these principles:
 1. **Investigate before implementing** - Always understand the problem fully before jumping to solutions. If you're unsure why something is happening, investigate and explain your findings before proposing changes.
 
 2. **Plan non-trivial changes** - For any non-trivial task, create a plan of what you will implement and ask for review before starting. A "non-trivial task" is anything that:
+
    - Touches multiple files or systems
    - Changes architecture or patterns
    - Could be approached in multiple ways
    - Has unclear requirements
 
 3. **Keep documentation in sync** - If you make a change that makes documentation incorrect, update the documentation in the same session. This includes:
+
    - README.md (design tokens, usage examples)
    - STYLEX_MENTAL_MODEL.md (implementation patterns)
    - CLAUDE.md (this file)
@@ -82,6 +84,7 @@ pnpm build:docs  # (from root)
 TOSUI uses **StyleX** (not Linaria, not Tailwind) for zero-runtime atomic CSS generation. This is critical to understand:
 
 **Key StyleX concepts:**
+
 - All styles compile to atomic CSS at build time (zero runtime cost)
 - No CSS-in-JS shorthands allowed (e.g., `padding: "10px 20px"` is forbidden)
 - Must use longhand properties: `paddingTop`, `paddingRight`, etc.
@@ -121,6 +124,7 @@ const overflowStylesResponsive = stylex.create({
 ```
 
 **Why this pattern?**
+
 - Prevents StyleX from dropping breakpoints during style merging
 - Avoids generating 531,441 static variants for enumerated responsive props
 - Works for both dynamic props (padding, margin) and enumerated props (overflow, display)
@@ -129,11 +133,13 @@ const overflowStylesResponsive = stylex.create({
 ### Component Architecture
 
 **Primitive components:**
+
 - `Box` - Core layout primitive with all style props
 - `Text` - Text primitive with typography props
 - `Heading` - Heading primitive that wraps Text
 
 **Box is the foundation:** All components either use Box internally or follow its patterns. Box accepts:
+
 - Layout props: `display`, `position`, `overflow`, `zIndex`
 - Spacing: `p`, `pt`, `pr`, `pb`, `pl`, `px`, `py`, `m`, `mt`, `mr`, `mb`, `ml`, `mx`, `my` (supports 0-32 multipliers of 4px base)
 - Sizing: `w`, `h`, `minW`, `maxW`, `minH`, `maxH`
@@ -148,6 +154,7 @@ const overflowStylesResponsive = stylex.create({
 - Text: `textAlign`, `whiteSpace`
 
 **Responsive support:** Most props accept either a simple value OR a responsive object:
+
 ```tsx
 <Box p={4} />                              // Simple: 16px padding
 <Box p={{ base: 2, md: 4, lg: 6 }} />    // Responsive: 8px → 16px → 24px
@@ -166,6 +173,7 @@ Component styling is split into modular "style parts" in `packages/react/src/com
 - `interactions.ts`, `text.ts`, `opacity.ts` - Behavior
 
 Each style part exports:
+
 1. Type definitions for props (e.g., `PaddingProps`)
 2. StyleX style objects
 3. Getter function (e.g., `getPaddingStyles()`) that returns appropriate styles based on prop values
@@ -173,6 +181,7 @@ Each style part exports:
 ### Build Configuration
 
 **Library build (`packages/react/vite.config.ts`):**
+
 - ES module output only (`formats: ["es"]`)
 - Externalized dependencies: `react`, `react-dom`, `react/jsx-runtime`
 - TypeScript declarations via `vite-plugin-dts` using `tsconfig.build.json`
@@ -182,6 +191,7 @@ Each style part exports:
 - Empty dist on rebuild
 
 **Key files:**
+
 - `src/index.tsx` - Entry point, imports `styles.css` and dynamically imports `fonts.css`
 - `dist/index.js` - Bundled JavaScript
 - `dist/index.css` - Main CSS bundle (design tokens + StyleX atomic CSS)
@@ -189,6 +199,7 @@ Each style part exports:
 - `dist/index.d.ts` - TypeScript declarations (with full type tree)
 
 **Path aliases:**
+
 - `@/*` resolves to `src/*` in both vite.config and tsconfig
 - Works during development AND compiles correctly in build output
 - Used throughout component files (e.g., `import { Polymorphic } from "@/types/Polymorphic"`)
@@ -209,10 +220,11 @@ Each style part exports:
 ```
 
 Consumers import:
+
 ```tsx
 import { Box, Text, Heading } from "@tosui/react";
-import "@tosui/react/styles.css";       // Required
-import "@tosui/react/fonts.css";        // Optional (IBM Plex)
+import "@tosui/react/styles.css"; // Required
+import "@tosui/react/fonts.css"; // Optional (IBM Plex)
 ```
 
 ### Design Tokens
@@ -220,16 +232,19 @@ import "@tosui/react/fonts.css";        // Optional (IBM Plex)
 All tokens are defined in `packages/react/src/styles/styles.css` as CSS variables:
 
 **Colors:** Minimal set with semantic naming
+
 - Raw neutrals: `black`, `gray-dark`, `gray`, `gray-light`, `white`
 - Semantic: `foreground`, `foreground-muted`, `foreground-subtle`, `border`, `border-muted`, `background`, `surface`
 - Brand: `primary-*`, `accent-*` (default, emphasis, subtle variants)
 - Feedback: `success-*`, `warning-*`, `error-*`, `info-*` (default, emphasis, subtle variants)
 
 **Spacing:** 4px base unit, multipliers 0-32
-- `--tosui-spacing-unit: 4px`
+
+- `--t-spacing-unit: 4px`
 - Usage: `p={4}` = 16px padding
 
 **Typography:**
+
 - Font sizes: `xs` (12px) through `5xl` (48px) - 9 sizes
 - Font weights: `normal`, `medium`, `semibold`, `bold` - 4 weights
 - Line heights: `tight`, `normal`, `relaxed` - 3 values
@@ -240,6 +255,7 @@ All tokens are defined in `packages/react/src/styles/styles.css` as CSS variable
 **Shadows:** `none`, `sm`, `md`, `lg` - 4 elevation levels
 
 **Breakpoints (mobile-first):**
+
 - `sm`: 640px, `md`: 768px, `lg`: 1024px, `xl`: 1280px, `2xl`: 1536px
 
 See `README.md` for complete token documentation.
@@ -247,6 +263,7 @@ See `README.md` for complete token documentation.
 ## TypeScript Configuration
 
 **Three tsconfig files:**
+
 - `tsconfig.json` - Root config with project references
 - `tsconfig.app.json` - Main source code config
 - `tsconfig.build.json` - Library build config (extends app, enables declaration output)
@@ -281,6 +298,7 @@ Props follow cascading specificity rules (more specific overrides less specific)
 ### Responsive Values
 
 Use `ResponsiveValue<T>` type for props that support responsive objects:
+
 ```tsx
 type ResponsiveValue<T> = T | ResponsiveObject<T>;
 type ResponsiveObject<T> = {

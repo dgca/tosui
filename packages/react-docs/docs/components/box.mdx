@@ -1,0 +1,395 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Box } from "@tosui/react";
+
+# Box
+
+The Box component is Tosui's foundational primitive for layout and styling. It's a polymorphic component that can render as any HTML element while providing a comprehensive set of styling props.
+
+## Import
+
+```tsx
+import { Box } from "@tosui/react";
+```
+
+## Basic Usage
+
+```tsx
+<Box p={4} bg="surface" rounded="md">
+  Content goes here
+</Box>
+```
+
+## Polymorphic Rendering
+
+Box can render as any HTML element using the `as` prop:
+
+```tsx
+<Box as="section" p={6}>
+  Section content
+</Box>
+
+<Box as="article" bg="surface">
+  Article content
+</Box>
+
+<Box as="nav">
+  Navigation items
+</Box>
+```
+
+## Spacing
+
+Box supports Tosui's multiplier-based spacing system (4px base unit):
+
+### Padding
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Box p={4} bg="surface" border="thin" borderColor="border">
+      All sides: 16px
+    </Box>
+    <Box px={6} py={3} bg="surface" border="thin" borderColor="border">
+      Horizontal: 24px, Vertical: 12px
+    </Box>
+    <Box pt={2} pb={4} bg="surface" border="thin" borderColor="border">
+      Top: 8px, Bottom: 16px
+    </Box>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Box p={4} bg="surface" border="thin" borderColor="border" mb={2}>
+      <span>All sides: 16px</span>
+    </Box>
+    <Box px={6} py={3} bg="surface" border="thin" borderColor="border" mb={2}>
+      Horizontal: 24px, Vertical: 12px
+    </Box>
+    <Box pt={2} pb={4} bg="surface" border="thin" borderColor="border">
+      Top: 8px, Bottom: 16px
+    </Box>
+  </TabItem>
+</Tabs>
+
+Padding props: `p`, `px`, `py`, `pt`, `pr`, `pb`, `pl`
+
+### Margin
+
+```tsx
+<Box m={4}>All sides: 16px</Box>
+<Box mx={6} my={3}>Horizontal: 24px, Vertical: 12px</Box>
+<Box mt={2} mb={4}>Top: 8px, Bottom: 16px</Box>
+```
+
+Margin props: `m`, `mx`, `my`, `mt`, `mr`, `mb`, `ml`
+
+## Layout
+
+### Display
+
+```tsx
+<Box display="flex">Flexbox container</Box>
+<Box display="grid">Grid container</Box>
+<Box display="block">Block element</Box>
+<Box display="inline">Inline element</Box>
+```
+
+### Position
+
+```tsx
+<Box position="relative">Relative positioning</Box>
+<Box position="absolute" top={0} left={0}>Absolute positioning</Box>
+<Box position="fixed" bottom={4} right={4}>Fixed positioning</Box>
+```
+
+### Sizing
+
+```tsx
+<Box w="100%">Full width</Box>
+<Box h="200px">Fixed height</Box>
+<Box minW="300px" maxW="600px">Constrained width</Box>
+```
+
+Size props: `w`, `h`, `minW`, `maxW`, `minH`, `maxH`
+
+## Flexbox
+
+Box provides comprehensive flexbox support:
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Box display="flex" flexDirection="column" gap={4} p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Item 1</Box>
+      <Box p={2} bg="accent-subtle">Item 2</Box>
+    </Box>
+
+    <Box display="flex" justifyContent="space-between" alignItems="center" p={4} bg="surface" border="thin" borderColor="border">
+      <Box>Left</Box>
+      <Box>Right</Box>
+    </Box>
+    ```
+
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Box display="flex" flexDirection="column" gap={4} p={4} bg="surface" border="thin" borderColor="border" mb={2}>
+      <Box p={2} bg="primary-subtle">Item 1</Box>
+      <Box p={2} bg="accent-subtle">Item 2</Box>
+    </Box>
+
+    <Box display="flex" justifyContent="space-between" alignItems="center" p={4} bg="surface" border="thin" borderColor="border">
+      <Box>Left</Box>
+      <Box>Right</Box>
+    </Box>
+
+  </TabItem>
+</Tabs>
+
+Flexbox props: `flexDirection`, `justifyContent`, `alignItems`, `alignSelf`, `flexWrap`, `gap`, `gapRow`, `gapColumn`, `flex`, `flexGrow`, `flexShrink`, `flexBasis`
+
+## Grid
+
+```tsx
+<Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={4}>
+  <Box>Column 1</Box>
+  <Box>Column 2</Box>
+  <Box>Column 3</Box>
+</Box>
+```
+
+Grid props: `gridTemplateColumns`, `gridTemplateRows`, `justifySelf`
+
+## Colors
+
+Tosui uses semantic color tokens that adapt to light/dark themes:
+
+```tsx
+<Box bg="surface" color="foreground">
+  Default text on surface background
+</Box>
+
+<Box bg="primary-default" color="white">
+  Primary colored box
+</Box>
+
+<Box borderColor="border" border="thin">
+  Box with border
+</Box>
+```
+
+Color props: `color`, `bg`, `borderColor`
+
+## Borders
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Box border="thin" borderColor="border" p={4}>
+      All borders
+    </Box>
+
+    <Box borderLeft="medium" borderColor="primary-default" p={4}>
+      Left border accent
+    </Box>
+
+    <Box borderY="thin" borderStyle="dashed" borderColor="border" p={4}>
+      Dashed top and bottom borders
+    </Box>
+    ```
+
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Box border="thin" borderColor="border" p={4} mb={2}>
+      All borders
+    </Box>
+
+    <Box borderLeft="medium" borderColor="primary-default" p={4} mb={2}>
+      Left border accent
+    </Box>
+
+    <Box borderY="thin" borderStyle="dashed" borderColor="border" p={4}>
+      Dashed top and bottom borders
+    </Box>
+
+  </TabItem>
+</Tabs>
+
+Border props: `border`, `borderX`, `borderY`, `borderTop`, `borderRight`, `borderBottom`, `borderLeft`, `borderStyle`
+
+Border widths: `none`, `thin` (1px), `medium` (2px), `thick` (4px)
+
+## Roundness
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Box rounded="md" p={4} bg="surface" border="thin" borderColor="border">
+      Standard rounded corners
+    </Box>
+
+    <Box rounded="lg" roundedTopLeft="none" p={4} bg="surface" border="thin" borderColor="border">
+      Sharp top-left corner
+    </Box>
+
+    <Box rounded="full" px={6} py={2} bg="primary-default" color="white">
+      Fully rounded (pill shape)
+    </Box>
+    ```
+
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Box rounded="md" p={4} bg="surface" border="thin" borderColor="border" mb={2}>
+      Standard rounded corners
+    </Box>
+
+    <Box rounded="lg" roundedTopLeft="none" p={4} bg="surface" border="thin" borderColor="border" mb={2}>
+      Sharp top-left corner
+    </Box>
+
+    <Box rounded="full" px={6} py={2} bg="primary-default" color="white" display="inline-block">
+      Fully rounded (pill shape)
+    </Box>
+
+  </TabItem>
+</Tabs>
+
+Roundness props: `rounded`, `roundedTop`, `roundedBottom`, `roundedLeft`, `roundedRight`, `roundedTopLeft`, `roundedTopRight`, `roundedBottomLeft`, `roundedBottomRight`
+
+Values: `none`, `sm`, `md`, `lg`, `full`
+
+## Shadows
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Box shadow="sm" p={4} bg="surface" rounded="md">
+      Subtle elevation
+    </Box>
+
+    <Box shadow="md" p={4} bg="surface" rounded="md">
+      Card with medium elevation
+    </Box>
+
+    <Box shadow="lg" p={4} bg="surface" rounded="md">
+      Modal with high elevation
+    </Box>
+    ```
+
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Box shadow="sm" p={4} bg="surface" rounded="md" mb={3}>
+      Subtle elevation
+    </Box>
+
+    <Box shadow="md" p={4} bg="surface" rounded="md" mb={3}>
+      Card with medium elevation
+    </Box>
+
+    <Box shadow="lg" p={4} bg="surface" rounded="md">
+      Modal with high elevation
+    </Box>
+
+  </TabItem>
+</Tabs>
+
+Shadow props: `shadow`
+
+Values: `none`, `sm`, `md`, `lg`
+
+## Typography
+
+While Box supports typography props, consider using the [Text](/docs/components/text) or [Heading](/docs/components/heading) components for text content:
+
+```tsx
+<Box fontSize="lg" fontWeight="semibold">
+  Large semibold text
+</Box>
+```
+
+Typography props: `fontSize`, `fontFamily`, `fontWeight`, `lineHeight`, `textAlign`, `whiteSpace`
+
+## Interactions
+
+```tsx
+<Box cursor="pointer" userSelect="none">
+  Clickable element
+</Box>
+
+<Box pointerEvents="none">
+  Non-interactive overlay
+</Box>
+```
+
+Interaction props: `cursor`, `pointerEvents`, `userSelect`
+
+## Overflow
+
+```tsx
+<Box overflow="hidden">
+  Clipped content
+</Box>
+
+<Box overflowY="scroll" maxH="300px">
+  Scrollable content
+</Box>
+```
+
+Overflow props: `overflow`, `overflowX`, `overflowY`
+
+## Opacity
+
+```tsx
+<Box opacity={0.5}>
+  Semi-transparent box
+</Box>
+
+<Box opacity={0.8}>
+  Slightly transparent
+</Box>
+```
+
+## Advanced Example
+
+Combining multiple props to create a card component:
+
+```tsx
+<Box
+  as="article"
+  bg="surface"
+  p={6}
+  rounded="lg"
+  shadow="md"
+  border="thin"
+  borderColor="border"
+  display="flex"
+  flexDirection="column"
+  gap={4}
+>
+  <Box as="h2" fontSize="2xl" fontWeight="semibold">
+    Card Title
+  </Box>
+  <Box color="foregroundMuted">Card content with muted text color</Box>
+</Box>
+```
+
+## Props Reference
+
+Box accepts all props from its constituent style parts:
+
+- **Spacing**: Margin and padding with multiplier values (0-32)
+- **Layout**: Display, position, overflow, z-index
+- **Size**: Width, height, and their min/max variants
+- **Flexbox**: All flexbox layout properties
+- **Grid**: Grid template and positioning
+- **Inset**: Positioning offsets (top, right, bottom, left)
+- **Typography**: Font properties and text styling
+- **Colors**: Semantic color tokens
+- **Borders**: Border width, style, and directional control
+- **Roundness**: Border radius with directional control
+- **Shadows**: Elevation levels
+- **Interactions**: Cursor, pointer events, user selection
+- **Opacity**: Transparency control
+
+## TypeScript
+
+Box is fully typed and provides autocomplete for all props. When using the `as` prop, TypeScript will correctly infer the allowed HTML attributes for that element type.

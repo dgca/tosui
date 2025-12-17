@@ -9,10 +9,10 @@ import {
 type ShadowValues = keyof typeof shadowStyles;
 
 const SHADOW_VALUES = {
-  lg: "var(--tosui-shadow-lg)",
-  md: "var(--tosui-shadow-md)",
-  none: "var(--tosui-shadow-none)",
-  sm: "var(--tosui-shadow-sm)",
+  lg: "var(--t-shadow-lg)",
+  md: "var(--t-shadow-md)",
+  none: "var(--t-shadow-none)",
+  sm: "var(--t-shadow-sm)",
 } as const;
 
 const shadowStyles = stylex.create({

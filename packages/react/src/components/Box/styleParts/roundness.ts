@@ -9,11 +9,11 @@ import {
 type RoundedValues = keyof typeof roundedTopLeftStyles;
 
 const ROUNDED_VALUES = {
-  full: "var(--tosui-radius-full)",
-  lg: "var(--tosui-radius-lg)",
-  md: "var(--tosui-radius-md)",
-  none: "var(--tosui-radius-none)",
-  sm: "var(--tosui-radius-sm)",
+  full: "var(--t-radius-full)",
+  lg: "var(--t-radius-lg)",
+  md: "var(--t-radius-md)",
+  none: "var(--t-radius-none)",
+  sm: "var(--t-radius-sm)",
 } as const;
 
 const roundedTopLeftStyles = stylex.create({
@@ -203,7 +203,8 @@ export function getRoundnessStyles(props: RoundnessProps) {
     );
   }
 
-  const bottomLeft = roundedBottomLeft ?? roundedBottom ?? roundedLeft ?? rounded;
+  const bottomLeft =
+    roundedBottomLeft ?? roundedBottom ?? roundedLeft ?? rounded;
   if (bottomLeft !== undefined) {
     styles.push(
       typeof bottomLeft !== "object"

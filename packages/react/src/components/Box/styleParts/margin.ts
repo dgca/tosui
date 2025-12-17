@@ -68,7 +68,7 @@ function getRawValue(value?: SpacingValue): string | undefined {
   if (value === undefined) return undefined;
   if (typeof value === "string") return value;
   if (value === 0) return "0";
-  return `calc(var(--tosui-spacing-unit) * ${value})`;
+  return `calc(var(--t-spacing-unit) * ${value})`;
 }
 
 function getSpacingProps(

@@ -12,10 +12,10 @@ export const resetStyles = stylex.create({
     backgroundColor: "transparent",
     boxSizing: "border-box",
     color: "inherit",
-    fontFamily: "var(--tosui-font-family-body)",
-    fontSize: "var(--tosui-font-size-md)",
-    fontWeight: "var(--tosui-font-weight-normal)",
-    lineHeight: "var(--tosui-line-height-normal)",
+    fontFamily: "var(--t-font-family-body)",
+    fontSize: "var(--t-font-size-md)",
+    fontWeight: "var(--t-font-weight-normal)",
+    lineHeight: "var(--t-line-height-normal)",
   },
 
   reducedMotion: {
