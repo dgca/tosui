@@ -8,6 +8,46 @@ importers:
 
   .: {}
 
+  packages/docs:
+    dependencies:
+      '@docusaurus/core':
+        specifier: 3.9.2
+        version: 3.9.2(@mdx-js/react@3.1.1(@types/react@19.2.6)(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.6.3)
+      '@docusaurus/preset-classic':
+        specifier: 3.9.2
+        version: 3.9.2(@algolia/client-search@5.46.0)(@mdx-js/react@3.1.1(@types/react@19.2.6)(react@19.2.0))(@types/react@19.2.6)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(search-insights@2.17.3)(typescript@5.6.3)
+      '@mdx-js/react':
+        specifier: ^3.0.0
+        version: 3.1.1(@types/react@19.2.6)(react@19.2.0)
+      '@tosui/react':
+        specifier: workspace:*
+        version: link:../react
+      clsx:
+        specifier: ^2.0.0
+        version: 2.1.1
+      prism-react-renderer:
+        specifier: ^2.3.0
+        version: 2.4.1(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+    devDependencies:
+      '@docusaurus/module-type-aliases':
+        specifier: 3.9.2
+        version: 3.9.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@docusaurus/tsconfig':
+        specifier: 3.9.2
+        version: 3.9.2
+      '@docusaurus/types':
+        specifier: 3.9.2
+        version: 3.9.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      typescript:
+        specifier: ~5.6.2
+        version: 5.6.3
+
   packages/react:
     dependencies:
       '@stylexjs/stylex':
@@ -77,46 +117,6 @@ importers:
       vite-plugin-dts:
         specifier: ^4.5.4
         version: 4.5.4(@types/node@24.10.1)(rollup@4.53.2)(typescript@5.9.3)(vite@7.2.7(@types/node@24.10.1)(jiti@1.21.7)(lightningcss@1.30.2)(terser@5.44.1))
-
-  packages/react-docs:
-    dependencies:
-      '@docusaurus/core':
-        specifier: 3.9.2
-        version: 3.9.2(@mdx-js/react@3.1.1(@types/react@19.2.6)(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.6.3)
-      '@docusaurus/preset-classic':
-        specifier: 3.9.2
-        version: 3.9.2(@algolia/client-search@5.46.0)(@mdx-js/react@3.1.1(@types/react@19.2.6)(react@19.2.0))(@types/react@19.2.6)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(search-insights@2.17.3)(typescript@5.6.3)
-      '@mdx-js/react':
-        specifier: ^3.0.0
-        version: 3.1.1(@types/react@19.2.6)(react@19.2.0)
-      '@tosui/react':
-        specifier: workspace:*
-        version: link:../react
-      clsx:
-        specifier: ^2.0.0
-        version: 2.1.1
-      prism-react-renderer:
-        specifier: ^2.3.0
-        version: 2.4.1(react@19.2.0)
-      react:
-        specifier: ^19.0.0
-        version: 19.2.0
-      react-dom:
-        specifier: ^19.0.0
-        version: 19.2.0(react@19.2.0)
-    devDependencies:
-      '@docusaurus/module-type-aliases':
-        specifier: 3.9.2
-        version: 3.9.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      '@docusaurus/tsconfig':
-        specifier: 3.9.2
-        version: 3.9.2
-      '@docusaurus/types':
-        specifier: 3.9.2
-        version: 3.9.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      typescript:
-        specifier: ~5.6.2
-        version: 5.6.3
 
 packages:
 
@@ -9436,8 +9436,8 @@ snapshots:
 
   caniuse-api@3.0.0:
     dependencies:
-      browserslist: 4.28.0
-      caniuse-lite: 1.0.30001756
+      browserslist: 4.28.1
+      caniuse-lite: 1.0.30001760
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
 
@@ -9616,7 +9616,7 @@ snapshots:
 
   core-js-compat@3.47.0:
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.28.1
 
   core-js-pure@3.47.0: {}
 
@@ -9742,7 +9742,7 @@ snapshots:
   cssnano-preset-advanced@6.1.2(postcss@8.5.6):
     dependencies:
       autoprefixer: 10.4.23(postcss@8.5.6)
-      browserslist: 4.28.0
+      browserslist: 4.28.1
       cssnano-preset-default: 6.1.2(postcss@8.5.6)
       postcss: 8.5.6
       postcss-discard-unused: 6.0.5(postcss@8.5.6)
@@ -9752,7 +9752,7 @@ snapshots:
 
   cssnano-preset-default@6.1.2(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.28.1
       css-declaration-sorter: 7.3.0(postcss@8.5.6)
       cssnano-utils: 4.0.2(postcss@8.5.6)
       postcss: 8.5.6
@@ -11898,7 +11898,7 @@ snapshots:
 
   postcss-colormin@6.1.0(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.28.1
       caniuse-api: 3.0.0
       colord: 2.9.3
       postcss: 8.5.6
@@ -11906,7 +11906,7 @@ snapshots:
 
   postcss-convert-values@6.1.0(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.28.1
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
 
@@ -12030,7 +12030,7 @@ snapshots:
 
   postcss-merge-rules@6.1.1(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.28.1
       caniuse-api: 3.0.0
       cssnano-utils: 4.0.2(postcss@8.5.6)
       postcss: 8.5.6
@@ -12050,7 +12050,7 @@ snapshots:
 
   postcss-minify-params@6.1.0(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.28.1
       cssnano-utils: 4.0.2(postcss@8.5.6)
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
@@ -12119,7 +12119,7 @@ snapshots:
 
   postcss-normalize-unicode@6.1.0(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.28.1
       postcss: 8.5.6
       postcss-value-parser: 4.2.0
 
@@ -12198,7 +12198,7 @@ snapshots:
       '@csstools/postcss-trigonometric-functions': 4.0.9(postcss@8.5.6)
       '@csstools/postcss-unset-value': 4.0.0(postcss@8.5.6)
       autoprefixer: 10.4.23(postcss@8.5.6)
-      browserslist: 4.28.0
+      browserslist: 4.28.1
       css-blank-pseudo: 7.0.1(postcss@8.5.6)
       css-has-pseudo: 7.0.3(postcss@8.5.6)
       css-prefers-color-scheme: 10.0.0(postcss@8.5.6)
@@ -12242,7 +12242,7 @@ snapshots:
 
   postcss-reduce-initial@6.1.0(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.28.1
       caniuse-api: 3.0.0
       postcss: 8.5.6
 
@@ -12972,7 +12972,7 @@ snapshots:
 
   stylehacks@6.1.1(postcss@8.5.6):
     dependencies:
-      browserslist: 4.28.0
+      browserslist: 4.28.1
       postcss: 8.5.6
       postcss-selector-parser: 6.1.2
 
@@ -13385,7 +13385,7 @@ snapshots:
       '@webassemblyjs/wasm-parser': 1.14.1
       acorn: 8.15.0
       acorn-import-phases: 1.0.4(acorn@8.15.0)
-      browserslist: 4.28.0
+      browserslist: 4.28.1
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.18.4
       es-module-lexer: 1.7.0
