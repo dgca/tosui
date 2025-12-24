@@ -97,7 +97,7 @@ const config: Config = {
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/tosui/tosui",
+              href: "https://github.com/dgca/tosui",
             },
           ],
         },
