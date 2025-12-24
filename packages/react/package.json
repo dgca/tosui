@@ -1,9 +1,24 @@
 {
   "name": "@tosui/react",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "A themable, orderly, simple UI component library for React",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "author": "Dan Cortes",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dgca/tosui.git",
+    "directory": "packages/react"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "design-system",
+    "stylex"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

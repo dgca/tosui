@@ -70,7 +70,7 @@ const config: Config = {
           label: "Docs",
         },
         {
-          href: "https://github.com/tosui/tosui",
+          href: "https://github.com/dgca/tosui",
           label: "GitHub",
           position: "right",
         },
