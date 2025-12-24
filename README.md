@@ -1,10 +1,10 @@
-# TOSUI
+# @tosui/react
 
-TOSUI is a themable, orderly, simple UI system — a foundation for building component libraries.
+Tosui is a themable, orderly, simple UI system — a foundation for building component libraries.
 
 ## Philosophy
 
-TOSUI is built on **constraint-driven simplicity**. By intentionally limiting options, we reduce decision fatigue, improve consistency, and make design systems easier to learn, implement, and maintain.
+Tosui is built on **constraint-driven simplicity**. By intentionally limiting options, we reduce decision fatigue, improve consistency, and make design systems easier to learn, implement, and maintain.
 
 ### Core Principles
 
@@ -40,7 +40,7 @@ TOSUI is built on **constraint-driven simplicity**. By intentionally limiting op
 
 ### Theming Approach
 
-TOSUI is built for multi-theme support from the ground up:
+Tosui is built for multi-theme support from the ground up:
 
 - **Semantic values** adapt to light/dark modes automatically
 - **Theme structure** is consistent across modes
@@ -50,7 +50,7 @@ TOSUI is built for multi-theme support from the ground up:
 
 ### Colors
 
-TOSUI's color system is intentionally minimal, providing just enough variants to build full-featured interfaces without overwhelming choice.
+Tosui's color system is intentionally minimal, providing just enough variants to build full-featured interfaces without overwhelming choice.
 
 #### Raw Neutrals
 
@@ -134,7 +134,7 @@ Four feedback colors with three variants each:
 
 ### Spacing
 
-TOSUI uses a multiplier-based spacing system built on a **4px base unit**. Instead of named sizes like "small" or "large", you specify numeric multiples for precise, consistent spacing.
+Tosui uses a multiplier-based spacing system built on a **4px base unit**. Instead of named sizes like "small" or "large", you specify numeric multiples for precise, consistent spacing.
 
 #### Scale
 
@@ -202,6 +202,7 @@ Nine sizes that span from small UI text to large hero headings:
 - `5xl` - 48px - Hero headings (h1), display text
 
 **Usage:**
+
 ```jsx
 <Text fontSize="md">Default body text</Text>
 <Heading fontSize="3xl">Section heading</Heading>
@@ -217,6 +218,7 @@ Four weights covering all common use cases:
 - `bold` - 700 - Very strong emphasis, alerts
 
 **Usage:**
+
 ```jsx
 <Text fontWeight="normal">Regular text</Text>
 <Button fontWeight="medium">Click me</Button>
@@ -232,6 +234,7 @@ Three line heights optimized for readability:
 - `relaxed` - 1.75 - Long-form content, comfortable reading
 
 **Usage:**
+
 ```jsx
 <Heading lineHeight="tight">Compact Headline</Heading>
 <Text lineHeight="normal">Body text with good readability</Text>
@@ -247,6 +250,7 @@ Three font stacks for different content types:
 - `mono` - System monospace stack (code, technical content)
 
 **Default stacks:**
+
 ```css
 sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
 serif: Georgia, Cambria, "Times New Roman", Times, serif
@@ -254,6 +258,7 @@ mono: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", mono
 ```
 
 **Usage:**
+
 ```jsx
 <Text fontFamily="sans">UI text</Text>
 <Text fontFamily="serif">Article content</Text>
@@ -269,12 +274,15 @@ Semantic text variants that combine size, weight, line height, and color for com
 **Display/Heading Variants:**
 
 - `display` - fontSize: `5xl`, fontWeight: `bold`, lineHeight: `tight`
+
   - Hero sections, marketing headlines
 
 - `title` - fontSize: `4xl`, fontWeight: `semibold`, lineHeight: `tight`
+
   - Page titles, major landmarks
 
 - `heading` - fontSize: `3xl`, fontWeight: `semibold`, lineHeight: `tight`
+
   - Primary section headings
 
 - `subheading` - fontSize: `2xl`, fontWeight: `semibold`, lineHeight: `tight`
@@ -283,6 +291,7 @@ Semantic text variants that combine size, weight, line height, and color for com
 **Body Variants:**
 
 - `body` - fontSize: `md`, fontWeight: `normal`, lineHeight: `normal`
+
   - Default body text (most common)
 
 - `lead` - fontSize: `lg`, fontWeight: `normal`, lineHeight: `normal`
@@ -291,15 +300,18 @@ Semantic text variants that combine size, weight, line height, and color for com
 **UI/Supporting Variants:**
 
 - `label` - fontSize: `sm`, fontWeight: `medium`, lineHeight: `normal`
+
   - Form labels, UI labels
 
 - `caption` - fontSize: `sm`, fontWeight: `normal`, lineHeight: `normal`
+
   - Helper text, descriptions, metadata
 
 - `legal` - fontSize: `xs`, fontWeight: `normal`, lineHeight: `relaxed`, color: `foregroundSubtle`
   - Disclaimers, terms, fine print
 
 **Usage:**
+
 ```jsx
 <Text variant="display">Welcome to Our App</Text>
 <Text variant="title">Dashboard</Text>
@@ -311,8 +323,11 @@ Semantic text variants that combine size, weight, line height, and color for com
 ```
 
 **Note:** Variants can be overridden with individual props when needed:
+
 ```jsx
-<Text variant="heading" fontSize="2xl">Smaller heading</Text>
+<Text variant="heading" fontSize="2xl">
+  Smaller heading
+</Text>
 ```
 
 ### Border Radius
@@ -371,7 +386,7 @@ Border width and style properties for adding borders to components.
 
 ### Shadows
 
-Shadows create elevation and depth in the interface. TOSUI provides just four elevation levels - far fewer than the 24+ levels found in some design systems.
+Shadows create elevation and depth in the interface. Tosui provides just four elevation levels - far fewer than the 24+ levels found in some design systems.
 
 #### Elevation Levels
 
@@ -415,7 +430,7 @@ Alternatively, elevated surfaces in dark mode can use slightly lighter backgroun
 
 ### Transitions
 
-Smooth, subtle animations enhance user experience without being distracting. TOSUI provides minimal transition tokens focused on common interaction patterns.
+Smooth, subtle animations enhance user experience without being distracting. Tosui provides minimal transition tokens focused on common interaction patterns.
 
 #### Duration Values
 
@@ -458,7 +473,7 @@ This provides natural-feeling motion without the complexity of managing multiple
 
 ### Breakpoints
 
-TOSUI uses a **desktop-first** responsive approach. Base styles target large screens, then progressively adapt for smaller devices using max-width media queries.
+Tosui uses a **desktop-first** responsive approach. Base styles target large screens, then progressively adapt for smaller devices using max-width media queries.
 
 #### Breakpoint Values
 
@@ -475,12 +490,12 @@ Six breakpoints covering all common screen sizes:
 
 ```jsx
 <Box
-  width="1200px"           // Large desktop (default)
+  width="1200px" // Large desktop (default)
   xl={{ width: "1000px" }} // Desktop
-  lg={{ width: "900px" }}  // Laptop
-  md={{ width: "100%" }}   // Tablet and below
-  sm={{ padding: 4 }}      // Large mobile
-  xs={{ fontSize: "sm" }}  // Small mobile
+  lg={{ width: "900px" }} // Laptop
+  md={{ width: "100%" }} // Tablet and below
+  sm={{ padding: 4 }} // Large mobile
+  xs={{ fontSize: "sm" }} // Small mobile
 >
   Content
 </Box>

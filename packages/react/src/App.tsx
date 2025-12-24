@@ -6,7 +6,7 @@ import { Heading } from "@/components/Heading/Heading";
 function App() {
   return (
     <Box p={8}>
-      <h1>TOSUI StyleX Component Playground</h1>
+      <h1>Tosui StyleX Component Playground</h1>
 
       {/* Spacing Tests */}
       <section>

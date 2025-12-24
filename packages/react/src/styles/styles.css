@@ -1,9 +1,9 @@
-@import "./_colors.css";
+@import "./_color-scheme.css";
 
 /**
- * TOSUI Base Styles
+ * Tosui Base Styles
  *
- * Import this file to enable TOSUI design token CSS variables.
+ * Import this file to enable Tosui design token CSS variables.
  * Components use StyleX for scoped styling and consistent resets.
  */
 
@@ -13,6 +13,11 @@
   --t-color-foreground: var(--t-light-foreground);
   --t-color-foreground-muted: var(--t-light-foreground-muted);
   --t-color-foreground-subtle: var(--t-light-foreground-subtle);
+  --t-color-foreground-inverted: var(--t-light-foreground-inverted);
+  --t-color-foreground-inverted-muted: var(--t-light-foreground-inverted-muted);
+  --t-color-foreground-inverted-subtle: var(
+    --t-light-foreground-inverted-subtle
+  );
   --t-color-border: var(--t-light-border);
   --t-color-border-muted: var(--t-light-border-muted);
   --t-color-background: var(--t-light-background);
@@ -94,13 +99,11 @@
   --t-border-width-medium: 2px;
   --t-border-width-thick: 4px;
 
-  /* Shadows (Light Mode) */
+  /* Shadows */
   --t-shadow-none: none;
-  --t-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --t-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --t-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --t-shadow-sm: var(--t-light-shadow-sm);
+  --t-shadow-md: var(--t-light-shadow-md);
+  --t-shadow-lg: var(--t-light-shadow-lg);
 
   /* Transitions */
   --t-transition-fast: 150ms;
@@ -124,6 +127,13 @@
     --t-color-foreground: var(--t-dark-foreground);
     --t-color-foreground-muted: var(--t-dark-foreground-muted);
     --t-color-foreground-subtle: var(--t-dark-foreground-subtle);
+    --t-color-foreground-inverted: var(--t-dark-foreground-inverted);
+    --t-color-foreground-inverted-muted: var(
+      --t-dark-foreground-inverted-muted
+    );
+    --t-color-foreground-inverted-subtle: var(
+      --t-dark-foreground-inverted-subtle
+    );
     --t-color-border: var(--t-dark-border);
     --t-color-border-muted: var(--t-dark-border-muted);
     --t-color-background: var(--t-dark-background);
@@ -158,6 +168,11 @@
     --t-color-info-default: var(--t-dark-info-default);
     --t-color-info-emphasis: var(--t-dark-info-emphasis);
     --t-color-info-subtle: var(--t-dark-info-subtle);
+
+    /* Shadows */
+    --t-shadow-sm: var(--t-dark-shadow-sm);
+    --t-shadow-md: var(--t-dark-shadow-md);
+    --t-shadow-lg: var(--t-dark-shadow-lg);
   }
 }
 
@@ -166,6 +181,11 @@
   --t-color-foreground: var(--t-dark-foreground);
   --t-color-foreground-muted: var(--t-dark-foreground-muted);
   --t-color-foreground-subtle: var(--t-dark-foreground-subtle);
+  --t-color-foreground-inverted: var(--t-dark-foreground-inverted);
+  --t-color-foreground-inverted-muted: var(--t-dark-foreground-inverted-muted);
+  --t-color-foreground-inverted-subtle: var(
+    --t-dark-foreground-inverted-subtle
+  );
   --t-color-border: var(--t-dark-border);
   --t-color-border-muted: var(--t-dark-border-muted);
   --t-color-background: var(--t-dark-background);
@@ -200,4 +220,9 @@
   --t-color-info-default: var(--t-dark-info-default);
   --t-color-info-emphasis: var(--t-dark-info-emphasis);
   --t-color-info-subtle: var(--t-dark-info-subtle);
+
+  /* Shadows */
+  --t-shadow-sm: var(--t-dark-shadow-sm);
+  --t-shadow-md: var(--t-dark-shadow-md);
+  --t-shadow-lg: var(--t-dark-shadow-lg);
 }

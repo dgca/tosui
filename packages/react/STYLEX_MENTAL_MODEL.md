@@ -1,6 +1,6 @@
 # StyleX Mental Model
 
-This document explains how StyleX works and how we're using it in the TOSUI design system.
+This document explains how StyleX works and how we're using it in the Tosui design system.
 
 ## ⚠️ Critical Gotcha: Responsive Style Merging
 
@@ -385,7 +385,7 @@ function getSpacingProps(
 
 ### Complete Example: Padding with Responsive Support
 
-Here's how padding and margin are implemented in TOSUI:
+Here's how padding and margin are implemented in Tosui:
 
 ```tsx
 // utils/breakpoints.stylex.ts
@@ -536,11 +536,11 @@ function Button({ color, size }: ButtonProps) {
 8. **Use variables for design tokens** - Better than inline strings
 9. **Variants over props** - Use style objects + bracket notation instead of complex prop logic
 
-## Implementation Strategy for TOSUI
+## Implementation Strategy for Tosui
 
 ### Unified Responsive Strategy
 
-After discovering the combinatorial explosion problem with pre-generating static responsive variants, TOSUI uses a **unified approach for all responsive props**:
+After discovering the combinatorial explosion problem with pre-generating static responsive variants, Tosui uses a **unified approach for all responsive props**:
 
 **Both dynamic AND enumerated props use the same pattern:**
 

@@ -16,6 +16,9 @@ const COLOR_VALUES = {
   accent: "var(--t-color-accent-default)",
   "error-emphasis": "var(--t-color-error-emphasis)",
   error: "var(--t-color-error-default)",
+  "foreground-inverted-muted": "var(--t-color-foreground-inverted-muted)",
+  "foreground-inverted-subtle": "var(--t-color-foreground-inverted-subtle)",
+  "foreground-inverted": "var(--t-color-foreground-inverted)",
   "foreground-muted": "var(--t-color-foreground-muted)",
   "foreground-subtle": "var(--t-color-foreground-subtle)",
   foreground: "var(--t-color-foreground)",
@@ -81,6 +84,15 @@ const colorStyles = stylex.create({
   },
   error: {
     color: COLOR_VALUES.error,
+  },
+  "foreground-inverted-muted": {
+    color: COLOR_VALUES["foreground-inverted-muted"],
+  },
+  "foreground-inverted-subtle": {
+    color: COLOR_VALUES["foreground-inverted-subtle"],
+  },
+  "foreground-inverted": {
+    color: COLOR_VALUES["foreground-inverted"],
   },
   "foreground-muted": {
     color: COLOR_VALUES["foreground-muted"],

@@ -26,7 +26,7 @@ When working in this codebase, follow these principles:
 
 ## Project Overview
 
-TOSUI is a themable, orderly, simple UI component library built on **constraint-driven simplicity**. It's a foundation for building design systems with intentionally limited options to reduce decision fatigue and improve consistency.
+Tosui is a themable, orderly, simple UI component library built on **constraint-driven simplicity**. It's a foundation for building design systems with intentionally limited options to reduce decision fatigue and improve consistency.
 
 **Core philosophy**: Fewer, better choices. Composition over configuration. Semantic tokens, not prescriptive values.
 
@@ -81,7 +81,7 @@ pnpm build:docs  # (from root)
 
 ### StyleX-Based Styling System
 
-TOSUI uses **StyleX** (not Linaria, not Tailwind) for zero-runtime atomic CSS generation. This is critical to understand:
+Tosui uses **StyleX** (not Linaria, not Tailwind) for zero-runtime atomic CSS generation. This is critical to understand:
 
 **Key StyleX concepts:**
 

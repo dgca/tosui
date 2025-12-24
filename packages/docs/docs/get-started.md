@@ -1,7 +1,5 @@
 # Get Started
 
-Tosui is a themable, orderly, simple UI system built on constraint-driven simplicity. This guide will help you install and start using Tosui in your React project.
-
 ## Installation
 
 Install Tosui using your preferred package manager:

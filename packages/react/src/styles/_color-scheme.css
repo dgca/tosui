@@ -5,6 +5,9 @@
   --t-light-foreground: #000000;
   --t-light-foreground-muted: #374151;
   --t-light-foreground-subtle: #6b7280;
+  --t-light-foreground-inverted: #ffffff;
+  --t-light-foreground-inverted-muted: #d1d5db;
+  --t-light-foreground-inverted-subtle: #9ca3af;
   --t-light-border: #d1d5db;
   --t-light-border-muted: #e5e7eb;
   --t-light-background: #ffffff;
@@ -40,12 +43,22 @@
   --t-light-info-emphasis: #0e7490;
   --t-light-info-subtle: #cffafe;
 
+  /* Shadows */
+  --t-light-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --t-light-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --t-light-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
   /* === DARK MODE === */
 
   /* Surface & Text Colors */
   --t-dark-foreground: #ffffff;
   --t-dark-foreground-muted: #d1d5db;
   --t-dark-foreground-subtle: #6b7280;
+  --t-dark-foreground-inverted: #000000;
+  --t-dark-foreground-inverted-muted: #374151;
+  --t-dark-foreground-inverted-subtle: #6b7280;
   --t-dark-border: #374151;
   --t-dark-border-muted: #1f2937;
   --t-dark-background: #0f172a;
@@ -80,4 +93,11 @@
   --t-dark-info-default: #22d3ee;
   --t-dark-info-emphasis: #06b6d4;
   --t-dark-info-subtle: #164e63;
+
+  /* Shadows */
+  --t-dark-shadow-sm: 0 0 0 1px rgba(255, 255, 255, 0.1);
+  --t-dark-shadow-md: 0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 4px 6px rgba(0, 0, 0, 0.3);
+  --t-dark-shadow-lg: 0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 10px 15px rgba(0, 0, 0, 0.4);
 }
