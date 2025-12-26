@@ -12,6 +12,9 @@ type Color =
   | "foreground"
   | "foreground-muted"
   | "foreground-subtle"
+  | "foreground-inverted"
+  | "foreground-inverted-muted"
+  | "foreground-inverted-subtle"
   | "accent"
   | "accent-emphasis"
   | "primary"
@@ -21,7 +24,9 @@ type Color =
   | "warning"
   | "warning-emphasis"
   | "error"
-  | "error-emphasis";
+  | "error-emphasis"
+  | "info"
+  | "info-emphasis";
 
 const truncateStyles = stylex.create({
   truncate: {

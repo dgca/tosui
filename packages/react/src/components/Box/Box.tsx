@@ -162,6 +162,7 @@ export function Box<T extends ElementType = "div">({
   // Text props
   textAlign,
   whiteSpace,
+  textDecoration,
   // Opacity props
   opacity,
   ...rest
@@ -260,7 +261,7 @@ export function Box<T extends ElementType = "div">({
       pointerEvents,
       userSelect,
     }),
-    getTextStyles({ textAlign, whiteSpace }),
+    getTextStyles({ textAlign, whiteSpace, textDecoration }),
     getOpacityStyles({ opacity })
   );
 

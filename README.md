@@ -52,18 +52,6 @@ Tosui is built for multi-theme support from the ground up:
 
 Tosui's color system is intentionally minimal, providing just enough variants to build full-featured interfaces without overwhelming choice.
 
-#### Raw Neutrals
-
-The foundation grayscale palette:
-
-- `black`
-- `grayDark`
-- `gray`
-- `grayLight`
-- `white`
-
-These are the actual gray values that semantic tokens map to. Use these directly only when you need specific grays that shouldn't change between themes.
-
 #### Semantic Surface & Text Colors
 
 Theme-aware tokens that adapt to light/dark modes:
@@ -71,20 +59,42 @@ Theme-aware tokens that adapt to light/dark modes:
 **Foreground (text)**
 
 - `foreground` - Primary text color
-- `foregroundMuted` - Secondary text, labels
-- `foregroundSubtle` - Tertiary text, captions, legal copy
+- `foreground-muted` - Secondary text, labels
+- `foreground-subtle` - Tertiary text, captions, legal copy
+- `foreground-inverted` - Text color for dark backgrounds (inverts in dark mode)
+- `foreground-inverted-muted` - Muted text on dark backgrounds
+- `foreground-inverted-subtle` - Subtle text on dark backgrounds
 
 **Borders**
 
 - `border` - Default border color
-- `borderMuted` - Subtle borders, dividers
+- `border-muted` - Subtle borders, dividers
 
 **Backgrounds**
 
 - `background` - Main page background
 - `surface` - Card, panel, and elevated surface backgrounds
+- `foreground` - Inverted background (for dark cards in light mode, light cards in dark mode)
+- `transparent` - Explicitly transparent background (useful for overriding component defaults)
 
-In light mode, these map to neutrals (e.g., `foreground` → `black`, `background` → `white`). In dark mode, they flip automatically.
+**Usage:**
+
+```jsx
+{/* Standard text - adapts to theme */}
+<Text color="foreground">Primary text</Text>
+<Text color="foreground-muted">Secondary text</Text>
+
+{/* Inverted card - works in both themes */}
+<Box bg="foreground" p={4} rounded="md">
+  <Text color="foreground-inverted">White text in light mode, black in dark mode</Text>
+  <Text color="foreground-inverted-muted">Muted inverted text</Text>
+</Box>
+
+{/* Override component default background */}
+<Button bg="transparent">Ghost button</Button>
+```
+
+In light mode, `foreground` is black and `foreground-inverted` is white. In dark mode, they swap automatically.
 
 #### Brand Colors
 
@@ -92,17 +102,24 @@ Two brand colors with three variants each:
 
 **Primary**
 
-- `primary.default` - Normal state (buttons, links)
-- `primary.emphasis` - Hover, active, and focus states
-- `primary.subtle` - Backgrounds, badges, low-emphasis uses
+- `primary` / `primary-default` - Normal state (buttons, links)
+- `primary-emphasis` - Hover, active, and focus states
+- `primary-subtle` - Backgrounds, badges, low-emphasis uses
 
 **Accent**
 
-- `accent.default` - Normal state
-- `accent.emphasis` - Hover, active, and focus states
-- `accent.subtle` - Backgrounds, badges, low-emphasis uses
+- `accent` / `accent-default` - Normal state
+- `accent-emphasis` - Hover, active, and focus states
+- `accent-subtle` - Backgrounds, badges, low-emphasis uses
 
-**Disabled states:** Apply opacity (e.g., `0.4`) to the `default` variant rather than defining separate disabled colors.
+**Usage:**
+
+```jsx
+<Button bg="primary-default" color="foreground-inverted">Primary button</Button>
+<Badge bg="accent-subtle" color="accent-emphasis">New</Badge>
+```
+
+**Disabled states:** Apply opacity (e.g., `0.4`) to the default variant rather than defining separate disabled colors.
 
 #### Semantic/Feedback Colors
 
@@ -110,27 +127,35 @@ Four feedback colors with three variants each:
 
 **Success**
 
-- `success.default` - Normal state (buttons, alerts)
-- `success.emphasis` - Hover, active, and focus states
-- `success.subtle` - Backgrounds, badges
+- `success` / `success-default` - Normal state (buttons, alerts)
+- `success-emphasis` - Hover, active, and focus states
+- `success-subtle` - Backgrounds, badges
 
 **Warning**
 
-- `warning.default` - Normal state (buttons, alerts)
-- `warning.emphasis` - Hover, active, and focus states
-- `warning.subtle` - Backgrounds, badges
+- `warning` / `warning-default` - Normal state (buttons, alerts)
+- `warning-emphasis` - Hover, active, and focus states
+- `warning-subtle` - Backgrounds, badges
 
 **Error**
 
-- `error.default` - Normal state (buttons, alerts)
-- `error.emphasis` - Hover, active, and focus states
-- `error.subtle` - Backgrounds, badges
+- `error` / `error-default` - Normal state (buttons, alerts)
+- `error-emphasis` - Hover, active, and focus states
+- `error-subtle` - Backgrounds, badges
 
 **Info**
 
-- `info.default` - Normal state (buttons, alerts)
-- `info.emphasis` - Hover, active, and focus states
-- `info.subtle` - Backgrounds, badges
+- `info` / `info-default` - Normal state (buttons, alerts)
+- `info-emphasis` - Hover, active, and focus states
+- `info-subtle` - Backgrounds, badges
+
+**Usage:**
+
+```jsx
+<Alert bg="success-subtle" borderLeft="thick" borderColor="success">
+  <Text color="success-emphasis">Success! Your changes have been saved.</Text>
+</Alert>
+```
 
 ### Spacing
 

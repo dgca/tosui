@@ -40,6 +40,7 @@ const BG_VALUES = {
   "error-default": "var(--t-color-error-default)",
   "error-emphasis": "var(--t-color-error-emphasis)",
   "error-subtle": "var(--t-color-error-subtle)",
+  foreground: "var(--t-color-foreground)",
   "info-default": "var(--t-color-info-default)",
   "info-emphasis": "var(--t-color-info-emphasis)",
   "info-subtle": "var(--t-color-info-subtle)",
@@ -50,6 +51,7 @@ const BG_VALUES = {
   "success-emphasis": "var(--t-color-success-emphasis)",
   "success-subtle": "var(--t-color-success-subtle)",
   surface: "var(--t-color-surface)",
+  transparent: "transparent",
   "warning-default": "var(--t-color-warning-default)",
   "warning-emphasis": "var(--t-color-warning-emphasis)",
   "warning-subtle": "var(--t-color-warning-subtle)",
@@ -164,6 +166,9 @@ const bgStyles = stylex.create({
   "error-subtle": {
     backgroundColor: BG_VALUES["error-subtle"],
   },
+  foreground: {
+    backgroundColor: BG_VALUES.foreground,
+  },
   "info-default": {
     backgroundColor: BG_VALUES["info-default"],
   },
@@ -193,6 +198,9 @@ const bgStyles = stylex.create({
   },
   surface: {
     backgroundColor: BG_VALUES.surface,
+  },
+  transparent: {
+    backgroundColor: BG_VALUES.transparent,
   },
   "warning-default": {
     backgroundColor: BG_VALUES["warning-default"],
