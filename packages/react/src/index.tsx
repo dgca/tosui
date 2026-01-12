@@ -13,3 +13,6 @@ export {
   type ButtonProps,
 } from "./components/Button";
 export { Spinner } from "./components/Spinner";
+export { Stack, type StackProps, type StackOwnProps } from "./components/Stack";
+export { HStack, type HStackProps, type HStackOwnProps } from "./components/HStack";
+export { VStack, type VStackProps, type VStackOwnProps } from "./components/VStack";
