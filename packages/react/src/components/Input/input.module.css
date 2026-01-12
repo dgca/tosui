@@ -1,0 +1,29 @@
+.input {
+  transition-duration: 150ms;
+  transition-property: border-color, background-color, box-shadow;
+  transition-timing-function: ease-in-out;
+}
+
+.input::placeholder {
+  color: var(--t-color-foreground-subtle);
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--t-color-primary-default);
+  box-shadow: 0 0 0 3px var(--t-color-primary-subtle);
+}
+
+.input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.input.invalid {
+  border-color: var(--t-color-error-default);
+}
+
+.input.invalid:focus-visible {
+  border-color: var(--t-color-error-default);
+  box-shadow: 0 0 0 3px var(--t-color-error-subtle);
+}
