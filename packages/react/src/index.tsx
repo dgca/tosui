@@ -18,3 +18,9 @@ export { HStack, type HStackProps, type HStackOwnProps } from "./components/HSta
 export { VStack, type VStackProps, type VStackOwnProps } from "./components/VStack";
 export { Flex, type FlexProps, type FlexOwnProps } from "./components/Flex";
 export { Grid, type GridProps, type GridOwnProps } from "./components/Grid";
+export {
+  Container,
+  type ContainerSize,
+  type ContainerProps,
+  type ContainerOwnProps,
+} from "./components/Container";
