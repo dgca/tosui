@@ -75,3 +75,10 @@ export {
   type IconButtonProps,
 } from "./components/IconButton";
 export { Alert, type AlertStatus, type AlertProps } from "./components/Alert";
+export {
+  Badge,
+  type BadgeColorScheme,
+  type BadgeVariant,
+  type BadgeSize,
+  type BadgeProps,
+} from "./components/Badge";
