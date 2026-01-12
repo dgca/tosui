@@ -14,7 +14,7 @@ None
 - Integer phases (1, 2, 3): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 1: Layout Primitives** — Stack, Flex, Grid, Container, Divider, Spacer (1/4 plans)
+- [ ] **Phase 1: Layout Primitives** — Stack, Flex, Grid, Container, Divider, Spacer (3/4 plans)
 - [ ] **Phase 2: Typography & Text Inputs** — Code, Input, Textarea, Label
 - [ ] **Phase 3: Selection Controls** — Select, Checkbox, Radio, Switch, FormField
 - [ ] **Phase 4: Buttons & Feedback** — IconButton, Alert, Badge, Progress, Skeleton
@@ -124,7 +124,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Layout Primitives | 2/4 | In progress | - |
+| 1. Layout Primitives | 3/4 | In progress | - |
 | 2. Typography & Text Inputs | 0/TBD | Not started | - |
 | 3. Selection Controls | 0/TBD | Not started | - |
 | 4. Buttons & Feedback | 0/TBD | Not started | - |
