@@ -53,3 +53,9 @@ export {
   type TextareaProps,
   type TextareaOwnProps,
 } from "./components/Textarea";
+export {
+  Select,
+  type SelectSize,
+  type SelectVariant,
+  type SelectProps,
+} from "./components/Select";
