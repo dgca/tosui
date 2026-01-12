@@ -82,3 +82,9 @@ export {
   type BadgeSize,
   type BadgeProps,
 } from "./components/Badge";
+export {
+  Progress,
+  type ProgressColorScheme,
+  type ProgressSize,
+  type ProgressProps,
+} from "./components/Progress";
