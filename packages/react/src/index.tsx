@@ -67,3 +67,10 @@ export {
 export { Radio, type RadioSize, type RadioProps } from "./components/Radio";
 export { Switch, type SwitchSize, type SwitchProps } from "./components/Switch";
 export { FormField, type FormFieldProps } from "./components/FormField";
+export {
+  IconButton,
+  type IconButtonVariant,
+  type IconButtonSize,
+  type IconButtonColorScheme,
+  type IconButtonProps,
+} from "./components/IconButton";

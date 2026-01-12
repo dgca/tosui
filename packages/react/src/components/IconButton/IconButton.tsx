@@ -1,4 +1,4 @@
-import React, { forwardRef, type ReactNode } from "react";
+import { forwardRef, type CSSProperties, type ReactNode } from "react";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
 import { Spinner } from "@/components/Spinner/Spinner";
@@ -158,7 +158,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         // CSS module styles
         className={clsx(styles.iconButton, styles[variant], className)}
         // Hover color via CSS variable
-        style={{ "--iconbutton-hover-bg": colorConfig.hoverBg } as React.CSSProperties}
+        style={{ "--iconbutton-hover-bg": colorConfig.hoverBg } as CSSProperties}
         // Accessibility
         aria-label={ariaLabel}
         disabled={isDisabled}
