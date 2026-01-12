@@ -1,0 +1,23 @@
+.reset {
+  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+  border-style: solid;
+  border-width: 0;
+  text-decoration: none;
+  appearance: none;
+  background-color: transparent;
+  box-sizing: border-box;
+  color: inherit;
+  font-family: var(--t-font-family-body);
+  font-size: var(--t-font-size-md);
+  font-weight: var(--t-font-weight-normal);
+  line-height: var(--t-line-height-normal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reset {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

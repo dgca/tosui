@@ -1,0 +1,19 @@
+/* justifySelf */
+.justify-self-auto { justify-self: auto; }
+.justify-self-auto\:h:hover { justify-self: auto; }
+.justify-self-start { justify-self: start; }
+.justify-self-start\:h:hover { justify-self: start; }
+.justify-self-end { justify-self: end; }
+.justify-self-end\:h:hover { justify-self: end; }
+.justify-self-center { justify-self: center; }
+.justify-self-center\:h:hover { justify-self: center; }
+.justify-self-stretch { justify-self: stretch; }
+.justify-self-stretch\:h:hover { justify-self: stretch; }
+
+/* gridTemplateColumns (variable-based) */
+.grid-cols { grid-template-columns: var(--t-grid-cols); }
+.grid-cols\:h:hover { grid-template-columns: var(--t-grid-cols-h); }
+
+/* gridTemplateRows (variable-based) */
+.grid-rows { grid-template-rows: var(--t-grid-rows); }
+.grid-rows\:h:hover { grid-template-rows: var(--t-grid-rows-h); }

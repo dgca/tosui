@@ -1,0 +1,43 @@
+/* cursor values */
+.cursor-auto { cursor: auto; }
+.cursor-auto\:h:hover { cursor: auto; }
+.cursor-pointer { cursor: pointer; }
+.cursor-pointer\:h:hover { cursor: pointer; }
+.cursor-wait { cursor: wait; }
+.cursor-wait\:h:hover { cursor: wait; }
+.cursor-text { cursor: text; }
+.cursor-text\:h:hover { cursor: text; }
+.cursor-move { cursor: move; }
+.cursor-move\:h:hover { cursor: move; }
+.cursor-not-allowed { cursor: not-allowed; }
+.cursor-not-allowed\:h:hover { cursor: not-allowed; }
+.cursor-grab { cursor: grab; }
+.cursor-grab\:h:hover { cursor: grab; }
+.cursor-grabbing { cursor: grabbing; }
+.cursor-grabbing\:h:hover { cursor: grabbing; }
+.cursor-zoom-in { cursor: zoom-in; }
+.cursor-zoom-in\:h:hover { cursor: zoom-in; }
+.cursor-zoom-out { cursor: zoom-out; }
+.cursor-zoom-out\:h:hover { cursor: zoom-out; }
+.cursor-crosshair { cursor: crosshair; }
+.cursor-crosshair\:h:hover { cursor: crosshair; }
+.cursor-default { cursor: default; }
+.cursor-default\:h:hover { cursor: default; }
+
+/* pointerEvents values */
+.pointer-auto { pointer-events: auto; }
+.pointer-auto\:h:hover { pointer-events: auto; }
+.pointer-none { pointer-events: none; }
+.pointer-none\:h:hover { pointer-events: none; }
+.pointer-all { pointer-events: all; }
+.pointer-all\:h:hover { pointer-events: all; }
+
+/* userSelect values */
+.select-auto { user-select: auto; }
+.select-auto\:h:hover { user-select: auto; }
+.select-none { user-select: none; }
+.select-none\:h:hover { user-select: none; }
+.select-text { user-select: text; }
+.select-text\:h:hover { user-select: text; }
+.select-all { user-select: all; }
+.select-all\:h:hover { user-select: all; }

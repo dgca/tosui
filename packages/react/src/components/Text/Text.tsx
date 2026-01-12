@@ -1,8 +1,8 @@
 import { type ElementType } from "react";
-import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { Box, type BoxOwnProps } from "../Box/Box";
 import { type Polymorphic } from "@/types/Polymorphic";
+import styles from "./text.module.css";
 
 // Import types from Box styleParts
 type FontSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
@@ -27,20 +27,6 @@ type Color =
   | "error-emphasis"
   | "info"
   | "info-emphasis";
-
-const truncateStyles = stylex.create({
-  truncate: {
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-  },
-});
-
-const italicStyles = stylex.create({
-  italic: {
-    fontStyle: "italic",
-  },
-});
 
 export type TextOwnProps = Omit<
   BoxOwnProps,
@@ -79,11 +65,6 @@ export function Text<T extends ElementType = "span">({
   className,
   ...rest
 }: TextProps<T>) {
-  const { className: stylexClassName } = stylex.props(
-    truncate && truncateStyles.truncate,
-    italic && italicStyles.italic
-  );
-
   return (
     // @ts-expect-error - Polymorphic component prop forwarding
     <Box
@@ -92,7 +73,11 @@ export function Text<T extends ElementType = "span">({
       fontWeight={weight}
       textAlign={align}
       color={color}
-      className={clsx(stylexClassName, className)}
+      className={clsx(
+        truncate && styles.truncate,
+        italic && styles.italic,
+        className
+      )}
       {...rest}
     />
   );

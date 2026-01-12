@@ -1,0 +1,47 @@
+/* borderTopLeftRadius */
+.rounded-tl-none { border-top-left-radius: var(--t-radius-none); }
+.rounded-tl-none\:h:hover { border-top-left-radius: var(--t-radius-none); }
+.rounded-tl-sm { border-top-left-radius: var(--t-radius-sm); }
+.rounded-tl-sm\:h:hover { border-top-left-radius: var(--t-radius-sm); }
+.rounded-tl-md { border-top-left-radius: var(--t-radius-md); }
+.rounded-tl-md\:h:hover { border-top-left-radius: var(--t-radius-md); }
+.rounded-tl-lg { border-top-left-radius: var(--t-radius-lg); }
+.rounded-tl-lg\:h:hover { border-top-left-radius: var(--t-radius-lg); }
+.rounded-tl-full { border-top-left-radius: var(--t-radius-full); }
+.rounded-tl-full\:h:hover { border-top-left-radius: var(--t-radius-full); }
+
+/* borderTopRightRadius */
+.rounded-tr-none { border-top-right-radius: var(--t-radius-none); }
+.rounded-tr-none\:h:hover { border-top-right-radius: var(--t-radius-none); }
+.rounded-tr-sm { border-top-right-radius: var(--t-radius-sm); }
+.rounded-tr-sm\:h:hover { border-top-right-radius: var(--t-radius-sm); }
+.rounded-tr-md { border-top-right-radius: var(--t-radius-md); }
+.rounded-tr-md\:h:hover { border-top-right-radius: var(--t-radius-md); }
+.rounded-tr-lg { border-top-right-radius: var(--t-radius-lg); }
+.rounded-tr-lg\:h:hover { border-top-right-radius: var(--t-radius-lg); }
+.rounded-tr-full { border-top-right-radius: var(--t-radius-full); }
+.rounded-tr-full\:h:hover { border-top-right-radius: var(--t-radius-full); }
+
+/* borderBottomRightRadius */
+.rounded-br-none { border-bottom-right-radius: var(--t-radius-none); }
+.rounded-br-none\:h:hover { border-bottom-right-radius: var(--t-radius-none); }
+.rounded-br-sm { border-bottom-right-radius: var(--t-radius-sm); }
+.rounded-br-sm\:h:hover { border-bottom-right-radius: var(--t-radius-sm); }
+.rounded-br-md { border-bottom-right-radius: var(--t-radius-md); }
+.rounded-br-md\:h:hover { border-bottom-right-radius: var(--t-radius-md); }
+.rounded-br-lg { border-bottom-right-radius: var(--t-radius-lg); }
+.rounded-br-lg\:h:hover { border-bottom-right-radius: var(--t-radius-lg); }
+.rounded-br-full { border-bottom-right-radius: var(--t-radius-full); }
+.rounded-br-full\:h:hover { border-bottom-right-radius: var(--t-radius-full); }
+
+/* borderBottomLeftRadius */
+.rounded-bl-none { border-bottom-left-radius: var(--t-radius-none); }
+.rounded-bl-none\:h:hover { border-bottom-left-radius: var(--t-radius-none); }
+.rounded-bl-sm { border-bottom-left-radius: var(--t-radius-sm); }
+.rounded-bl-sm\:h:hover { border-bottom-left-radius: var(--t-radius-sm); }
+.rounded-bl-md { border-bottom-left-radius: var(--t-radius-md); }
+.rounded-bl-md\:h:hover { border-bottom-left-radius: var(--t-radius-md); }
+.rounded-bl-lg { border-bottom-left-radius: var(--t-radius-lg); }
+.rounded-bl-lg\:h:hover { border-bottom-left-radius: var(--t-radius-lg); }
+.rounded-bl-full { border-bottom-left-radius: var(--t-radius-full); }
+.rounded-bl-full\:h:hover { border-bottom-left-radius: var(--t-radius-full); }

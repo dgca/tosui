@@ -1,0 +1,29 @@
+/* textAlign */
+.text-left { text-align: left; }
+.text-left\:h:hover { text-align: left; }
+.text-center { text-align: center; }
+.text-center\:h:hover { text-align: center; }
+.text-right { text-align: right; }
+.text-right\:h:hover { text-align: right; }
+.text-justify { text-align: justify; }
+.text-justify\:h:hover { text-align: justify; }
+
+/* whiteSpace */
+.whitespace-normal { white-space: normal; }
+.whitespace-normal\:h:hover { white-space: normal; }
+.whitespace-nowrap { white-space: nowrap; }
+.whitespace-nowrap\:h:hover { white-space: nowrap; }
+.whitespace-pre { white-space: pre; }
+.whitespace-pre\:h:hover { white-space: pre; }
+.whitespace-pre-line { white-space: pre-line; }
+.whitespace-pre-line\:h:hover { white-space: pre-line; }
+.whitespace-pre-wrap { white-space: pre-wrap; }
+.whitespace-pre-wrap\:h:hover { white-space: pre-wrap; }
+
+/* textDecoration */
+.decoration-none { text-decoration: none; }
+.decoration-none\:h:hover { text-decoration: none; }
+.decoration-underline { text-decoration: underline; }
+.decoration-underline\:h:hover { text-decoration: underline; }
+.decoration-line-through { text-decoration: line-through; }
+.decoration-line-through\:h:hover { text-decoration: line-through; }

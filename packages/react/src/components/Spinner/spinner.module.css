@@ -1,0 +1,21 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation-duration: 0.6s;
+  animation-iteration-count: infinite;
+  animation-name: spin;
+  animation-timing-function: linear;
+  border-bottom-color: currentColor;
+  border-left-color: currentColor;
+  border-radius: 50%;
+  border-right-color: currentColor;
+  border-style: solid;
+  border-top-color: transparent;
+}

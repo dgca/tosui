@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { Box } from "@/components/Box/Box";
+import { Box } from "./components/Box/Box";
 import { Text } from "@/components/Text/Text";
 import { Heading } from "@/components/Heading/Heading";
 import { Button } from "@/components/Button/Button";
@@ -134,10 +134,14 @@ function App() {
                 cursor="pointer"
                 bg={activeSection === section.id ? "primary-subtle" : "surface"}
                 color={
-                  activeSection === section.id ? "primary-emphasis" : "foreground-muted"
+                  activeSection === section.id
+                    ? "primary-emphasis"
+                    : "foreground-muted"
                 }
                 border="thin"
-                borderColor={activeSection === section.id ? "primary" : "border"}
+                borderColor={
+                  activeSection === section.id ? "primary" : "border"
+                }
                 onClick={() => setActiveSection(section.id)}
                 fontSize="sm"
               >
@@ -167,6 +171,26 @@ function App() {
               <Text color="foreground-muted">
                 It accepts all layout, spacing, color, and styling props.
               </Text>
+            </Box>
+
+            <Box
+              mt={4}
+              mb={4}
+              _hover={{ mt: 8, mb: { base: 4, md: 12 } }}
+              style={{ background: "var(--t-color-primary-subtle)", padding: 16, transition: "margin 0.2s" }}
+            >
+              Hover me to see margin change (mt: 4→8, mb: 4→4/12)
+            </Box>
+
+            <Box
+              display="flex"
+              _hover={{ display: "block" }}
+              style={{ background: "var(--t-color-accent-subtle)", padding: 16, gap: 8 }}
+            >
+              <span style={{ background: "var(--t-color-accent-default)", padding: 8 }}>A</span>
+              <span style={{ background: "var(--t-color-accent-default)", padding: 8 }}>B</span>
+              <span style={{ background: "var(--t-color-accent-default)", padding: 8 }}>C</span>
+              <span style={{ fontSize: 12, opacity: 0.7 }}>(flex → block on hover)</span>
             </Box>
           </Box>
         )}
@@ -246,7 +270,13 @@ function App() {
               <Text mb={3} weight="semibold">
                 Sizes
               </Text>
-              <Box display="flex" gap={3} alignItems="center" flexWrap="wrap" mb={4}>
+              <Box
+                display="flex"
+                gap={3}
+                alignItems="center"
+                flexWrap="wrap"
+                mb={4}
+              >
                 <Button size="sm">Small</Button>
                 <Button size="md">Medium</Button>
                 <Button size="lg">Large</Button>
@@ -278,17 +308,31 @@ function App() {
               </Box>
 
               <Text mb={3} weight="semibold">
-                Custom Colors
+                Color Schemes
               </Text>
               <Box display="flex" gap={3} flexWrap="wrap" mb={4}>
-                <Button bg="success-default">Success</Button>
-                <Button bg="error-default">Error</Button>
-                <Button variant="outline" borderColor="accent" color="accent">
-                  Accent Outline
-                </Button>
-                <Button variant="ghost" color="error">
-                  Error Ghost
-                </Button>
+                <Button colorScheme="primary">Primary</Button>
+                <Button colorScheme="accent">Accent</Button>
+                <Button colorScheme="success">Success</Button>
+                <Button colorScheme="warning">Warning</Button>
+                <Button colorScheme="error">Error</Button>
+                <Button colorScheme="info">Info</Button>
+              </Box>
+              <Box display="flex" gap={3} flexWrap="wrap" mb={4}>
+                <Button variant="outline" colorScheme="primary">Primary</Button>
+                <Button variant="outline" colorScheme="accent">Accent</Button>
+                <Button variant="outline" colorScheme="success">Success</Button>
+                <Button variant="outline" colorScheme="warning">Warning</Button>
+                <Button variant="outline" colorScheme="error">Error</Button>
+                <Button variant="outline" colorScheme="info">Info</Button>
+              </Box>
+              <Box display="flex" gap={3} flexWrap="wrap" mb={4}>
+                <Button variant="ghost" colorScheme="primary">Primary</Button>
+                <Button variant="ghost" colorScheme="accent">Accent</Button>
+                <Button variant="ghost" colorScheme="success">Success</Button>
+                <Button variant="ghost" colorScheme="warning">Warning</Button>
+                <Button variant="ghost" colorScheme="error">Error</Button>
+                <Button variant="ghost" colorScheme="info">Info</Button>
               </Box>
 
               <Text mb={3} weight="semibold">
@@ -370,10 +414,21 @@ function App() {
               rounded="md"
             >
               <Box display="flex" flexDirection="column" gap={3}>
-                <Box p={4} bg="primary-subtle" border="thin" borderColor="primary">
+                <Box
+                  p={4}
+                  bg="primary-subtle"
+                  border="thin"
+                  borderColor="primary"
+                >
                   Padding: p={"{4}"}
                 </Box>
-                <Box px={6} py={2} bg="accent-subtle" border="thin" borderColor="accent">
+                <Box
+                  px={6}
+                  py={2}
+                  bg="accent-subtle"
+                  border="thin"
+                  borderColor="accent"
+                >
                   Horizontal & Vertical: px={"{6}"} py={"{2}"}
                 </Box>
                 <Box
@@ -405,12 +460,7 @@ function App() {
               <Text mb={3} weight="semibold">
                 Flexbox
               </Text>
-              <Box
-                display="flex"
-                gap={3}
-                justifyContent="space-between"
-                mb={4}
-              >
+              <Box display="flex" gap={3} justifyContent="space-between" mb={4}>
                 <Box p={3} bg="primary-subtle" flex="1">
                   Item 1
                 </Box>
@@ -478,9 +528,7 @@ function App() {
                 <Text color="foreground-inverted-muted" mb={2}>
                   Inverted Muted
                 </Text>
-                <Text color="foreground-inverted-subtle">
-                  Inverted Subtle
-                </Text>
+                <Text color="foreground-inverted-subtle">Inverted Subtle</Text>
               </Box>
 
               <Text mb={3} weight="semibold">
@@ -490,19 +538,39 @@ function App() {
                 <Box bg="primary-subtle" p={3} rounded="sm">
                   Primary Subtle
                 </Box>
-                <Box bg="primary-default" color="foreground-inverted" p={3} rounded="sm">
+                <Box
+                  bg="primary-default"
+                  color="foreground-inverted"
+                  p={3}
+                  rounded="sm"
+                >
                   Primary
                 </Box>
-                <Box bg="primary-emphasis" color="foreground-inverted" p={3} rounded="sm">
+                <Box
+                  bg="primary-emphasis"
+                  color="foreground-inverted"
+                  p={3}
+                  rounded="sm"
+                >
                   Primary Emphasis
                 </Box>
                 <Box bg="accent-subtle" p={3} rounded="sm">
                   Accent Subtle
                 </Box>
-                <Box bg="accent-default" color="foreground-inverted" p={3} rounded="sm">
+                <Box
+                  bg="accent-default"
+                  color="foreground-inverted"
+                  p={3}
+                  rounded="sm"
+                >
                   Accent
                 </Box>
-                <Box bg="accent-emphasis" color="foreground-inverted" p={3} rounded="sm">
+                <Box
+                  bg="accent-emphasis"
+                  color="foreground-inverted"
+                  p={3}
+                  rounded="sm"
+                >
                   Accent Emphasis
                 </Box>
               </Box>
@@ -526,7 +594,12 @@ function App() {
               <Text mb={3} weight="semibold">
                 Border Widths
               </Text>
-              <Box display="grid" gridTemplateColumns="repeat(3, 1fr)" gap={3} mb={4}>
+              <Box
+                display="grid"
+                gridTemplateColumns="repeat(3, 1fr)"
+                gap={3}
+                mb={4}
+              >
                 <Box p={3} border="thin" borderColor="border">
                   Thin
                 </Box>
@@ -542,13 +615,31 @@ function App() {
                 Roundness
               </Text>
               <Box display="grid" gridTemplateColumns="repeat(3, 1fr)" gap={3}>
-                <Box p={3} border="thin" borderColor="border" rounded="sm" bg="primary-subtle">
+                <Box
+                  p={3}
+                  border="thin"
+                  borderColor="border"
+                  rounded="sm"
+                  bg="primary-subtle"
+                >
                   Small
                 </Box>
-                <Box p={3} border="thin" borderColor="border" rounded="md" bg="accent-subtle">
+                <Box
+                  p={3}
+                  border="thin"
+                  borderColor="border"
+                  rounded="md"
+                  bg="accent-subtle"
+                >
                   Medium
                 </Box>
-                <Box p={3} border="thin" borderColor="border" rounded="lg" bg="success-subtle">
+                <Box
+                  p={3}
+                  border="thin"
+                  borderColor="border"
+                  rounded="lg"
+                  bg="success-subtle"
+                >
                   Large
                 </Box>
               </Box>
@@ -570,7 +661,14 @@ function App() {
               rounded="md"
             >
               <Box display="grid" gridTemplateColumns="repeat(2, 1fr)" gap={4}>
-                <Box p={6} shadow="none" bg="background" border="thin" borderColor="border" rounded="md">
+                <Box
+                  p={6}
+                  shadow="none"
+                  bg="background"
+                  border="thin"
+                  borderColor="border"
+                  rounded="md"
+                >
                   None
                 </Box>
                 <Box p={6} shadow="sm" bg="background" rounded="md">

@@ -1,7 +1,8 @@
 import { type ElementType } from "react";
-import * as stylex from "@stylexjs/stylex";
+import clsx from "clsx";
 import { type Polymorphic } from "@/types/Polymorphic";
 import { Box, type BoxOwnProps } from "@/components/Box/Box";
+import styles from "./spinner.module.css";
 
 // ============================================================================
 // Types
@@ -19,31 +20,7 @@ export type SpinnerProps<T extends ElementType = "span"> = Polymorphic<
 >;
 
 // ============================================================================
-// Styles - Animation that Box can't handle
-// ============================================================================
-
-const spin = stylex.keyframes({
-  from: { transform: "rotate(0deg)" },
-  to: { transform: "rotate(360deg)" },
-});
-
-const styles = stylex.create({
-  spinner: {
-    animationDuration: "0.6s",
-    animationIterationCount: "infinite",
-    animationName: spin,
-    animationTimingFunction: "linear",
-    borderBottomColor: "currentColor",
-    borderLeftColor: "currentColor",
-    borderRadius: "50%",
-    borderRightColor: "currentColor",
-    borderStyle: "solid",
-    borderTopColor: "transparent",
-  },
-});
-
-// ============================================================================
-// Size configurations using Box props
+// Size configurations
 // ============================================================================
 
 const sizeConfig = {
@@ -66,27 +43,21 @@ export function Spinner<T extends ElementType = "span">({
   as,
   size = "md",
   className,
+  style,
   ...rest
 }: SpinnerProps<T>) {
   const Component = as || "span";
   const sizeProps = sizeConfig[size];
-
-  const { className: stylexClassName, style: stylexStyle } =
-    stylex.props(styles.spinner);
 
   return (
     // @ts-expect-error - Polymorphic component type forwarding
     <Box
       as={Component}
       display="inline-block"
-      // Size from config
       w={sizeProps.w}
       h={sizeProps.h}
-      // Border width via inline style (Box doesn't have borderWidth as arbitrary value)
-      style={{ borderWidth: sizeProps.borderWidth, ...stylexStyle }}
-      // StyleX animation
-      className={className ? `${stylexClassName} ${className}` : stylexClassName}
-      // Accessibility
+      style={{ borderWidth: sizeProps.borderWidth, ...style }}
+      className={clsx(styles.spinner, className)}
       role="status"
       aria-label="Loading"
       {...rest}

@@ -1,8 +1,9 @@
 import { type ElementType, type ReactNode } from "react";
-import * as stylex from "@stylexjs/stylex";
+import clsx from "clsx";
 import { type Polymorphic } from "@/types/Polymorphic";
 import { Box, type BoxOwnProps } from "@/components/Box/Box";
 import { Spinner } from "@/components/Spinner/Spinner";
+import styles from "./button.module.css";
 
 // ============================================================================
 // Types
@@ -10,10 +11,18 @@ import { Spinner } from "@/components/Spinner/Spinner";
 
 export type ButtonVariant = "solid" | "outline" | "ghost";
 export type ButtonSize = "sm" | "md" | "lg";
+export type ButtonColorScheme =
+  | "primary"
+  | "accent"
+  | "success"
+  | "warning"
+  | "error"
+  | "info";
 
 export type ButtonOwnProps = Omit<BoxOwnProps, "as"> & {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  colorScheme?: ButtonColorScheme;
   disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;
@@ -27,37 +36,6 @@ export type ButtonProps<T extends ElementType = "button"> = Polymorphic<
 >;
 
 // ============================================================================
-// Styles - Only what Box can't handle (hover states, transitions)
-// ============================================================================
-
-const styles = stylex.create({
-  base: {
-    transitionDuration: "150ms",
-    transitionProperty: "background-color, border-color, opacity",
-    transitionTimingFunction: "ease-in-out",
-  },
-  // Hover states - Box can't do pseudo-selectors
-  solidHover: {
-    backgroundColor: {
-      default: null,
-      ":hover": "var(--t-color-primary-emphasis)",
-    },
-  },
-  outlineHover: {
-    backgroundColor: {
-      default: null,
-      ":hover": "var(--t-color-primary-subtle)",
-    },
-  },
-  ghostHover: {
-    backgroundColor: {
-      default: null,
-      ":hover": "var(--t-color-primary-subtle)",
-    },
-  },
-});
-
-// ============================================================================
 // Size configurations using Box props
 // ============================================================================
 
@@ -68,28 +46,53 @@ const sizeConfig = {
 } as const;
 
 // ============================================================================
-// Variant configurations using Box props
+// Color configurations
 // ============================================================================
 
-const variantConfig = {
-  solid: {
-    bg: "primary-default",
-    color: "foreground-inverted",
-    border: "none",
-    borderColor: undefined, // transparent handled by not setting it
-  },
-  outline: {
-    bg: "transparent",
-    color: "primary",
-    border: "thin",
-    borderColor: "primary",
-  },
-  ghost: {
-    bg: "transparent",
-    color: "primary",
-    border: "none",
-    borderColor: undefined,
-  },
+type ColorConfig = {
+  bg: string;
+  color: string;
+  borderColor: string | undefined;
+  hoverBg: string;
+};
+
+function getColorConfig(
+  variant: ButtonVariant,
+  colorScheme: ButtonColorScheme
+): ColorConfig {
+  switch (variant) {
+    case "solid":
+      return {
+        bg: `${colorScheme}-default`,
+        color: "foreground-inverted",
+        borderColor: undefined,
+        hoverBg: `var(--t-color-${colorScheme}-emphasis)`,
+      };
+    case "outline":
+      return {
+        bg: "transparent",
+        color: colorScheme,
+        borderColor: colorScheme,
+        hoverBg: `var(--t-color-${colorScheme}-subtle)`,
+      };
+    case "ghost":
+      return {
+        bg: "transparent",
+        color: colorScheme,
+        borderColor: undefined,
+        hoverBg: `var(--t-color-${colorScheme}-subtle)`,
+      };
+  }
+}
+
+// ============================================================================
+// Variant border configurations
+// ============================================================================
+
+const variantBorderConfig = {
+  solid: "none",
+  outline: "thin",
+  ghost: "none",
 } as const;
 
 // ============================================================================
@@ -111,6 +114,7 @@ export function Button<T extends ElementType = "button">({
   as,
   variant = "solid",
   size = "md",
+  colorScheme = "primary",
   disabled = false,
   loading = false,
   fullWidth = false,
@@ -118,6 +122,7 @@ export function Button<T extends ElementType = "button">({
   rightIcon,
   children,
   className,
+  style,
   // Allow overriding default colors
   bg,
   color,
@@ -127,20 +132,9 @@ export function Button<T extends ElementType = "button">({
   const Component = as || "button";
   const isDisabled = disabled || loading;
 
-  // Get config for variant and size
-  const variantProps = variantConfig[variant];
+  // Get config for variant, size, and color
+  const colorConfig = getColorConfig(variant, colorScheme);
   const sizeProps = sizeConfig[size];
-
-  // Get hover style (only if not disabled)
-  const hoverStyle = !isDisabled
-    ? styles[`${variant}Hover` as keyof typeof styles]
-    : undefined;
-
-  const {
-    className: stylexClassName,
-    style: stylexStyle,
-    ...stylexRest
-  } = stylex.props(styles.base, hoverStyle);
 
   // Determine what to show for left icon slot
   const leftContent = loading ? (
@@ -185,30 +179,28 @@ export function Button<T extends ElementType = "button">({
       fontSize={sizeProps.fontSize}
       rounded={sizeProps.rounded}
       fontWeight="medium"
-      // Variant props (allow user overrides)
-      bg={bg ?? variantProps.bg}
-      color={color ?? variantProps.color}
-      border={variantProps.border}
-      borderColor={borderColor ?? variantProps.borderColor}
+      // Color props (allow user overrides)
+      bg={bg ?? colorConfig.bg}
+      color={color ?? colorConfig.color}
+      border={variantBorderConfig[variant]}
+      borderColor={borderColor ?? colorConfig.borderColor}
       // Width
       w={fullWidth ? "100%" : undefined}
       // Interaction states
-      cursor={isDisabled ? "notAllowed" : "pointer"}
+      cursor={isDisabled ? "not-allowed" : "pointer"}
       pointerEvents={isDisabled ? "none" : undefined}
-      opacity={isDisabled ? 0.4 : undefined}
+      opacity={isDisabled ? "faint" : undefined}
       // Text decoration for links
       textDecoration="none"
-      // StyleX styles (hover, transitions)
-      className={
-        className ? `${stylexClassName} ${className}` : stylexClassName
-      }
-      style={stylexStyle}
+      // CSS module styles (transitions + hover)
+      className={clsx(styles.button, styles[variant], className)}
+      // Set hover color via CSS variable
+      style={{ "--button-hover-bg": colorConfig.hoverBg, ...style }}
       // Accessibility
       disabled={isDisabled}
       aria-disabled={isDisabled}
       aria-busy={loading}
       {...rest}
-      {...stylexRest}
     >
       {leftContent}
       {children}

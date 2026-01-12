@@ -1,0 +1,155 @@
+/* overflow: auto */
+.auto { overflow: auto; }
+.auto\:h:hover { overflow: auto; }
+.auto\:f:focus { overflow: auto; }
+.auto\:a:active { overflow: auto; }
+.auto\:d:disabled { overflow: auto; }
+
+@media (min-width: 640px) { .auto_sm { overflow: auto; } .auto_sm\:h:hover { overflow: auto; } .auto_sm\:f:focus { overflow: auto; } .auto_sm\:a:active { overflow: auto; } .auto_sm\:d:disabled { overflow: auto; } }
+@media (min-width: 768px) { .auto_md { overflow: auto; } .auto_md\:h:hover { overflow: auto; } .auto_md\:f:focus { overflow: auto; } .auto_md\:a:active { overflow: auto; } .auto_md\:d:disabled { overflow: auto; } }
+@media (min-width: 1024px) { .auto_lg { overflow: auto; } .auto_lg\:h:hover { overflow: auto; } .auto_lg\:f:focus { overflow: auto; } .auto_lg\:a:active { overflow: auto; } .auto_lg\:d:disabled { overflow: auto; } }
+@media (min-width: 1280px) { .auto_xl { overflow: auto; } .auto_xl\:h:hover { overflow: auto; } .auto_xl\:f:focus { overflow: auto; } .auto_xl\:a:active { overflow: auto; } .auto_xl\:d:disabled { overflow: auto; } }
+@media (min-width: 1536px) { .auto_2xl { overflow: auto; } .auto_2xl\:h:hover { overflow: auto; } .auto_2xl\:f:focus { overflow: auto; } .auto_2xl\:a:active { overflow: auto; } .auto_2xl\:d:disabled { overflow: auto; } }
+
+/* overflow: hidden */
+.hidden { overflow: hidden; }
+.hidden\:h:hover { overflow: hidden; }
+.hidden\:f:focus { overflow: hidden; }
+.hidden\:a:active { overflow: hidden; }
+.hidden\:d:disabled { overflow: hidden; }
+
+@media (min-width: 640px) { .hidden_sm { overflow: hidden; } .hidden_sm\:h:hover { overflow: hidden; } .hidden_sm\:f:focus { overflow: hidden; } .hidden_sm\:a:active { overflow: hidden; } .hidden_sm\:d:disabled { overflow: hidden; } }
+@media (min-width: 768px) { .hidden_md { overflow: hidden; } .hidden_md\:h:hover { overflow: hidden; } .hidden_md\:f:focus { overflow: hidden; } .hidden_md\:a:active { overflow: hidden; } .hidden_md\:d:disabled { overflow: hidden; } }
+@media (min-width: 1024px) { .hidden_lg { overflow: hidden; } .hidden_lg\:h:hover { overflow: hidden; } .hidden_lg\:f:focus { overflow: hidden; } .hidden_lg\:a:active { overflow: hidden; } .hidden_lg\:d:disabled { overflow: hidden; } }
+@media (min-width: 1280px) { .hidden_xl { overflow: hidden; } .hidden_xl\:h:hover { overflow: hidden; } .hidden_xl\:f:focus { overflow: hidden; } .hidden_xl\:a:active { overflow: hidden; } .hidden_xl\:d:disabled { overflow: hidden; } }
+@media (min-width: 1536px) { .hidden_2xl { overflow: hidden; } .hidden_2xl\:h:hover { overflow: hidden; } .hidden_2xl\:f:focus { overflow: hidden; } .hidden_2xl\:a:active { overflow: hidden; } .hidden_2xl\:d:disabled { overflow: hidden; } }
+
+/* overflow: scroll */
+.scroll { overflow: scroll; }
+.scroll\:h:hover { overflow: scroll; }
+.scroll\:f:focus { overflow: scroll; }
+.scroll\:a:active { overflow: scroll; }
+.scroll\:d:disabled { overflow: scroll; }
+
+@media (min-width: 640px) { .scroll_sm { overflow: scroll; } .scroll_sm\:h:hover { overflow: scroll; } .scroll_sm\:f:focus { overflow: scroll; } .scroll_sm\:a:active { overflow: scroll; } .scroll_sm\:d:disabled { overflow: scroll; } }
+@media (min-width: 768px) { .scroll_md { overflow: scroll; } .scroll_md\:h:hover { overflow: scroll; } .scroll_md\:f:focus { overflow: scroll; } .scroll_md\:a:active { overflow: scroll; } .scroll_md\:d:disabled { overflow: scroll; } }
+@media (min-width: 1024px) { .scroll_lg { overflow: scroll; } .scroll_lg\:h:hover { overflow: scroll; } .scroll_lg\:f:focus { overflow: scroll; } .scroll_lg\:a:active { overflow: scroll; } .scroll_lg\:d:disabled { overflow: scroll; } }
+@media (min-width: 1280px) { .scroll_xl { overflow: scroll; } .scroll_xl\:h:hover { overflow: scroll; } .scroll_xl\:f:focus { overflow: scroll; } .scroll_xl\:a:active { overflow: scroll; } .scroll_xl\:d:disabled { overflow: scroll; } }
+@media (min-width: 1536px) { .scroll_2xl { overflow: scroll; } .scroll_2xl\:h:hover { overflow: scroll; } .scroll_2xl\:f:focus { overflow: scroll; } .scroll_2xl\:a:active { overflow: scroll; } .scroll_2xl\:d:disabled { overflow: scroll; } }
+
+/* overflow: visible */
+.visible { overflow: visible; }
+.visible\:h:hover { overflow: visible; }
+.visible\:f:focus { overflow: visible; }
+.visible\:a:active { overflow: visible; }
+.visible\:d:disabled { overflow: visible; }
+
+@media (min-width: 640px) { .visible_sm { overflow: visible; } .visible_sm\:h:hover { overflow: visible; } .visible_sm\:f:focus { overflow: visible; } .visible_sm\:a:active { overflow: visible; } .visible_sm\:d:disabled { overflow: visible; } }
+@media (min-width: 768px) { .visible_md { overflow: visible; } .visible_md\:h:hover { overflow: visible; } .visible_md\:f:focus { overflow: visible; } .visible_md\:a:active { overflow: visible; } .visible_md\:d:disabled { overflow: visible; } }
+@media (min-width: 1024px) { .visible_lg { overflow: visible; } .visible_lg\:h:hover { overflow: visible; } .visible_lg\:f:focus { overflow: visible; } .visible_lg\:a:active { overflow: visible; } .visible_lg\:d:disabled { overflow: visible; } }
+@media (min-width: 1280px) { .visible_xl { overflow: visible; } .visible_xl\:h:hover { overflow: visible; } .visible_xl\:f:focus { overflow: visible; } .visible_xl\:a:active { overflow: visible; } .visible_xl\:d:disabled { overflow: visible; } }
+@media (min-width: 1536px) { .visible_2xl { overflow: visible; } .visible_2xl\:h:hover { overflow: visible; } .visible_2xl\:f:focus { overflow: visible; } .visible_2xl\:a:active { overflow: visible; } .visible_2xl\:d:disabled { overflow: visible; } }
+
+/* overflow-x: auto */
+.autoX { overflow-x: auto; }
+.autoX\:h:hover { overflow-x: auto; }
+.autoX\:f:focus { overflow-x: auto; }
+.autoX\:a:active { overflow-x: auto; }
+.autoX\:d:disabled { overflow-x: auto; }
+
+@media (min-width: 640px) { .autoX_sm { overflow-x: auto; } .autoX_sm\:h:hover { overflow-x: auto; } .autoX_sm\:f:focus { overflow-x: auto; } .autoX_sm\:a:active { overflow-x: auto; } .autoX_sm\:d:disabled { overflow-x: auto; } }
+@media (min-width: 768px) { .autoX_md { overflow-x: auto; } .autoX_md\:h:hover { overflow-x: auto; } .autoX_md\:f:focus { overflow-x: auto; } .autoX_md\:a:active { overflow-x: auto; } .autoX_md\:d:disabled { overflow-x: auto; } }
+@media (min-width: 1024px) { .autoX_lg { overflow-x: auto; } .autoX_lg\:h:hover { overflow-x: auto; } .autoX_lg\:f:focus { overflow-x: auto; } .autoX_lg\:a:active { overflow-x: auto; } .autoX_lg\:d:disabled { overflow-x: auto; } }
+@media (min-width: 1280px) { .autoX_xl { overflow-x: auto; } .autoX_xl\:h:hover { overflow-x: auto; } .autoX_xl\:f:focus { overflow-x: auto; } .autoX_xl\:a:active { overflow-x: auto; } .autoX_xl\:d:disabled { overflow-x: auto; } }
+@media (min-width: 1536px) { .autoX_2xl { overflow-x: auto; } .autoX_2xl\:h:hover { overflow-x: auto; } .autoX_2xl\:f:focus { overflow-x: auto; } .autoX_2xl\:a:active { overflow-x: auto; } .autoX_2xl\:d:disabled { overflow-x: auto; } }
+
+/* overflow-x: hidden */
+.hiddenX { overflow-x: hidden; }
+.hiddenX\:h:hover { overflow-x: hidden; }
+.hiddenX\:f:focus { overflow-x: hidden; }
+.hiddenX\:a:active { overflow-x: hidden; }
+.hiddenX\:d:disabled { overflow-x: hidden; }
+
+@media (min-width: 640px) { .hiddenX_sm { overflow-x: hidden; } .hiddenX_sm\:h:hover { overflow-x: hidden; } .hiddenX_sm\:f:focus { overflow-x: hidden; } .hiddenX_sm\:a:active { overflow-x: hidden; } .hiddenX_sm\:d:disabled { overflow-x: hidden; } }
+@media (min-width: 768px) { .hiddenX_md { overflow-x: hidden; } .hiddenX_md\:h:hover { overflow-x: hidden; } .hiddenX_md\:f:focus { overflow-x: hidden; } .hiddenX_md\:a:active { overflow-x: hidden; } .hiddenX_md\:d:disabled { overflow-x: hidden; } }
+@media (min-width: 1024px) { .hiddenX_lg { overflow-x: hidden; } .hiddenX_lg\:h:hover { overflow-x: hidden; } .hiddenX_lg\:f:focus { overflow-x: hidden; } .hiddenX_lg\:a:active { overflow-x: hidden; } .hiddenX_lg\:d:disabled { overflow-x: hidden; } }
+@media (min-width: 1280px) { .hiddenX_xl { overflow-x: hidden; } .hiddenX_xl\:h:hover { overflow-x: hidden; } .hiddenX_xl\:f:focus { overflow-x: hidden; } .hiddenX_xl\:a:active { overflow-x: hidden; } .hiddenX_xl\:d:disabled { overflow-x: hidden; } }
+@media (min-width: 1536px) { .hiddenX_2xl { overflow-x: hidden; } .hiddenX_2xl\:h:hover { overflow-x: hidden; } .hiddenX_2xl\:f:focus { overflow-x: hidden; } .hiddenX_2xl\:a:active { overflow-x: hidden; } .hiddenX_2xl\:d:disabled { overflow-x: hidden; } }
+
+/* overflow-x: scroll */
+.scrollX { overflow-x: scroll; }
+.scrollX\:h:hover { overflow-x: scroll; }
+.scrollX\:f:focus { overflow-x: scroll; }
+.scrollX\:a:active { overflow-x: scroll; }
+.scrollX\:d:disabled { overflow-x: scroll; }
+
+@media (min-width: 640px) { .scrollX_sm { overflow-x: scroll; } .scrollX_sm\:h:hover { overflow-x: scroll; } .scrollX_sm\:f:focus { overflow-x: scroll; } .scrollX_sm\:a:active { overflow-x: scroll; } .scrollX_sm\:d:disabled { overflow-x: scroll; } }
+@media (min-width: 768px) { .scrollX_md { overflow-x: scroll; } .scrollX_md\:h:hover { overflow-x: scroll; } .scrollX_md\:f:focus { overflow-x: scroll; } .scrollX_md\:a:active { overflow-x: scroll; } .scrollX_md\:d:disabled { overflow-x: scroll; } }
+@media (min-width: 1024px) { .scrollX_lg { overflow-x: scroll; } .scrollX_lg\:h:hover { overflow-x: scroll; } .scrollX_lg\:f:focus { overflow-x: scroll; } .scrollX_lg\:a:active { overflow-x: scroll; } .scrollX_lg\:d:disabled { overflow-x: scroll; } }
+@media (min-width: 1280px) { .scrollX_xl { overflow-x: scroll; } .scrollX_xl\:h:hover { overflow-x: scroll; } .scrollX_xl\:f:focus { overflow-x: scroll; } .scrollX_xl\:a:active { overflow-x: scroll; } .scrollX_xl\:d:disabled { overflow-x: scroll; } }
+@media (min-width: 1536px) { .scrollX_2xl { overflow-x: scroll; } .scrollX_2xl\:h:hover { overflow-x: scroll; } .scrollX_2xl\:f:focus { overflow-x: scroll; } .scrollX_2xl\:a:active { overflow-x: scroll; } .scrollX_2xl\:d:disabled { overflow-x: scroll; } }
+
+/* overflow-x: visible */
+.visibleX { overflow-x: visible; }
+.visibleX\:h:hover { overflow-x: visible; }
+.visibleX\:f:focus { overflow-x: visible; }
+.visibleX\:a:active { overflow-x: visible; }
+.visibleX\:d:disabled { overflow-x: visible; }
+
+@media (min-width: 640px) { .visibleX_sm { overflow-x: visible; } .visibleX_sm\:h:hover { overflow-x: visible; } .visibleX_sm\:f:focus { overflow-x: visible; } .visibleX_sm\:a:active { overflow-x: visible; } .visibleX_sm\:d:disabled { overflow-x: visible; } }
+@media (min-width: 768px) { .visibleX_md { overflow-x: visible; } .visibleX_md\:h:hover { overflow-x: visible; } .visibleX_md\:f:focus { overflow-x: visible; } .visibleX_md\:a:active { overflow-x: visible; } .visibleX_md\:d:disabled { overflow-x: visible; } }
+@media (min-width: 1024px) { .visibleX_lg { overflow-x: visible; } .visibleX_lg\:h:hover { overflow-x: visible; } .visibleX_lg\:f:focus { overflow-x: visible; } .visibleX_lg\:a:active { overflow-x: visible; } .visibleX_lg\:d:disabled { overflow-x: visible; } }
+@media (min-width: 1280px) { .visibleX_xl { overflow-x: visible; } .visibleX_xl\:h:hover { overflow-x: visible; } .visibleX_xl\:f:focus { overflow-x: visible; } .visibleX_xl\:a:active { overflow-x: visible; } .visibleX_xl\:d:disabled { overflow-x: visible; } }
+@media (min-width: 1536px) { .visibleX_2xl { overflow-x: visible; } .visibleX_2xl\:h:hover { overflow-x: visible; } .visibleX_2xl\:f:focus { overflow-x: visible; } .visibleX_2xl\:a:active { overflow-x: visible; } .visibleX_2xl\:d:disabled { overflow-x: visible; } }
+
+/* overflow-y: auto */
+.autoY { overflow-y: auto; }
+.autoY\:h:hover { overflow-y: auto; }
+.autoY\:f:focus { overflow-y: auto; }
+.autoY\:a:active { overflow-y: auto; }
+.autoY\:d:disabled { overflow-y: auto; }
+
+@media (min-width: 640px) { .autoY_sm { overflow-y: auto; } .autoY_sm\:h:hover { overflow-y: auto; } .autoY_sm\:f:focus { overflow-y: auto; } .autoY_sm\:a:active { overflow-y: auto; } .autoY_sm\:d:disabled { overflow-y: auto; } }
+@media (min-width: 768px) { .autoY_md { overflow-y: auto; } .autoY_md\:h:hover { overflow-y: auto; } .autoY_md\:f:focus { overflow-y: auto; } .autoY_md\:a:active { overflow-y: auto; } .autoY_md\:d:disabled { overflow-y: auto; } }
+@media (min-width: 1024px) { .autoY_lg { overflow-y: auto; } .autoY_lg\:h:hover { overflow-y: auto; } .autoY_lg\:f:focus { overflow-y: auto; } .autoY_lg\:a:active { overflow-y: auto; } .autoY_lg\:d:disabled { overflow-y: auto; } }
+@media (min-width: 1280px) { .autoY_xl { overflow-y: auto; } .autoY_xl\:h:hover { overflow-y: auto; } .autoY_xl\:f:focus { overflow-y: auto; } .autoY_xl\:a:active { overflow-y: auto; } .autoY_xl\:d:disabled { overflow-y: auto; } }
+@media (min-width: 1536px) { .autoY_2xl { overflow-y: auto; } .autoY_2xl\:h:hover { overflow-y: auto; } .autoY_2xl\:f:focus { overflow-y: auto; } .autoY_2xl\:a:active { overflow-y: auto; } .autoY_2xl\:d:disabled { overflow-y: auto; } }
+
+/* overflow-y: hidden */
+.hiddenY { overflow-y: hidden; }
+.hiddenY\:h:hover { overflow-y: hidden; }
+.hiddenY\:f:focus { overflow-y: hidden; }
+.hiddenY\:a:active { overflow-y: hidden; }
+.hiddenY\:d:disabled { overflow-y: hidden; }
+
+@media (min-width: 640px) { .hiddenY_sm { overflow-y: hidden; } .hiddenY_sm\:h:hover { overflow-y: hidden; } .hiddenY_sm\:f:focus { overflow-y: hidden; } .hiddenY_sm\:a:active { overflow-y: hidden; } .hiddenY_sm\:d:disabled { overflow-y: hidden; } }
+@media (min-width: 768px) { .hiddenY_md { overflow-y: hidden; } .hiddenY_md\:h:hover { overflow-y: hidden; } .hiddenY_md\:f:focus { overflow-y: hidden; } .hiddenY_md\:a:active { overflow-y: hidden; } .hiddenY_md\:d:disabled { overflow-y: hidden; } }
+@media (min-width: 1024px) { .hiddenY_lg { overflow-y: hidden; } .hiddenY_lg\:h:hover { overflow-y: hidden; } .hiddenY_lg\:f:focus { overflow-y: hidden; } .hiddenY_lg\:a:active { overflow-y: hidden; } .hiddenY_lg\:d:disabled { overflow-y: hidden; } }
+@media (min-width: 1280px) { .hiddenY_xl { overflow-y: hidden; } .hiddenY_xl\:h:hover { overflow-y: hidden; } .hiddenY_xl\:f:focus { overflow-y: hidden; } .hiddenY_xl\:a:active { overflow-y: hidden; } .hiddenY_xl\:d:disabled { overflow-y: hidden; } }
+@media (min-width: 1536px) { .hiddenY_2xl { overflow-y: hidden; } .hiddenY_2xl\:h:hover { overflow-y: hidden; } .hiddenY_2xl\:f:focus { overflow-y: hidden; } .hiddenY_2xl\:a:active { overflow-y: hidden; } .hiddenY_2xl\:d:disabled { overflow-y: hidden; } }
+
+/* overflow-y: scroll */
+.scrollY { overflow-y: scroll; }
+.scrollY\:h:hover { overflow-y: scroll; }
+.scrollY\:f:focus { overflow-y: scroll; }
+.scrollY\:a:active { overflow-y: scroll; }
+.scrollY\:d:disabled { overflow-y: scroll; }
+
+@media (min-width: 640px) { .scrollY_sm { overflow-y: scroll; } .scrollY_sm\:h:hover { overflow-y: scroll; } .scrollY_sm\:f:focus { overflow-y: scroll; } .scrollY_sm\:a:active { overflow-y: scroll; } .scrollY_sm\:d:disabled { overflow-y: scroll; } }
+@media (min-width: 768px) { .scrollY_md { overflow-y: scroll; } .scrollY_md\:h:hover { overflow-y: scroll; } .scrollY_md\:f:focus { overflow-y: scroll; } .scrollY_md\:a:active { overflow-y: scroll; } .scrollY_md\:d:disabled { overflow-y: scroll; } }
+@media (min-width: 1024px) { .scrollY_lg { overflow-y: scroll; } .scrollY_lg\:h:hover { overflow-y: scroll; } .scrollY_lg\:f:focus { overflow-y: scroll; } .scrollY_lg\:a:active { overflow-y: scroll; } .scrollY_lg\:d:disabled { overflow-y: scroll; } }
+@media (min-width: 1280px) { .scrollY_xl { overflow-y: scroll; } .scrollY_xl\:h:hover { overflow-y: scroll; } .scrollY_xl\:f:focus { overflow-y: scroll; } .scrollY_xl\:a:active { overflow-y: scroll; } .scrollY_xl\:d:disabled { overflow-y: scroll; } }
+@media (min-width: 1536px) { .scrollY_2xl { overflow-y: scroll; } .scrollY_2xl\:h:hover { overflow-y: scroll; } .scrollY_2xl\:f:focus { overflow-y: scroll; } .scrollY_2xl\:a:active { overflow-y: scroll; } .scrollY_2xl\:d:disabled { overflow-y: scroll; } }
+
+/* overflow-y: visible */
+.visibleY { overflow-y: visible; }
+.visibleY\:h:hover { overflow-y: visible; }
+.visibleY\:f:focus { overflow-y: visible; }
+.visibleY\:a:active { overflow-y: visible; }
+.visibleY\:d:disabled { overflow-y: visible; }
+
+@media (min-width: 640px) { .visibleY_sm { overflow-y: visible; } .visibleY_sm\:h:hover { overflow-y: visible; } .visibleY_sm\:f:focus { overflow-y: visible; } .visibleY_sm\:a:active { overflow-y: visible; } .visibleY_sm\:d:disabled { overflow-y: visible; } }
+@media (min-width: 768px) { .visibleY_md { overflow-y: visible; } .visibleY_md\:h:hover { overflow-y: visible; } .visibleY_md\:f:focus { overflow-y: visible; } .visibleY_md\:a:active { overflow-y: visible; } .visibleY_md\:d:disabled { overflow-y: visible; } }
+@media (min-width: 1024px) { .visibleY_lg { overflow-y: visible; } .visibleY_lg\:h:hover { overflow-y: visible; } .visibleY_lg\:f:focus { overflow-y: visible; } .visibleY_lg\:a:active { overflow-y: visible; } .visibleY_lg\:d:disabled { overflow-y: visible; } }
+@media (min-width: 1280px) { .visibleY_xl { overflow-y: visible; } .visibleY_xl\:h:hover { overflow-y: visible; } .visibleY_xl\:f:focus { overflow-y: visible; } .visibleY_xl\:a:active { overflow-y: visible; } .visibleY_xl\:d:disabled { overflow-y: visible; } }
+@media (min-width: 1536px) { .visibleY_2xl { overflow-y: visible; } .visibleY_2xl\:h:hover { overflow-y: visible; } .visibleY_2xl\:f:focus { overflow-y: visible; } .visibleY_2xl\:a:active { overflow-y: visible; } .visibleY_2xl\:d:disabled { overflow-y: visible; } }

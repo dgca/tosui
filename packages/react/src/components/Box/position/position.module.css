@@ -1,0 +1,234 @@
+/* position: static */
+.static { position: static; }
+.static\:h:hover { position: static; }
+.static\:f:focus { position: static; }
+.static\:a:active { position: static; }
+.static\:d:disabled { position: static; }
+
+@media (min-width: 640px) {
+  .static_sm { position: static; }
+  .static_sm\:h:hover { position: static; }
+  .static_sm\:f:focus { position: static; }
+  .static_sm\:a:active { position: static; }
+  .static_sm\:d:disabled { position: static; }
+}
+
+@media (min-width: 768px) {
+  .static_md { position: static; }
+  .static_md\:h:hover { position: static; }
+  .static_md\:f:focus { position: static; }
+  .static_md\:a:active { position: static; }
+  .static_md\:d:disabled { position: static; }
+}
+
+@media (min-width: 1024px) {
+  .static_lg { position: static; }
+  .static_lg\:h:hover { position: static; }
+  .static_lg\:f:focus { position: static; }
+  .static_lg\:a:active { position: static; }
+  .static_lg\:d:disabled { position: static; }
+}
+
+@media (min-width: 1280px) {
+  .static_xl { position: static; }
+  .static_xl\:h:hover { position: static; }
+  .static_xl\:f:focus { position: static; }
+  .static_xl\:a:active { position: static; }
+  .static_xl\:d:disabled { position: static; }
+}
+
+@media (min-width: 1536px) {
+  .static_2xl { position: static; }
+  .static_2xl\:h:hover { position: static; }
+  .static_2xl\:f:focus { position: static; }
+  .static_2xl\:a:active { position: static; }
+  .static_2xl\:d:disabled { position: static; }
+}
+
+/* position: relative */
+.relative { position: relative; }
+.relative\:h:hover { position: relative; }
+.relative\:f:focus { position: relative; }
+.relative\:a:active { position: relative; }
+.relative\:d:disabled { position: relative; }
+
+@media (min-width: 640px) {
+  .relative_sm { position: relative; }
+  .relative_sm\:h:hover { position: relative; }
+  .relative_sm\:f:focus { position: relative; }
+  .relative_sm\:a:active { position: relative; }
+  .relative_sm\:d:disabled { position: relative; }
+}
+
+@media (min-width: 768px) {
+  .relative_md { position: relative; }
+  .relative_md\:h:hover { position: relative; }
+  .relative_md\:f:focus { position: relative; }
+  .relative_md\:a:active { position: relative; }
+  .relative_md\:d:disabled { position: relative; }
+}
+
+@media (min-width: 1024px) {
+  .relative_lg { position: relative; }
+  .relative_lg\:h:hover { position: relative; }
+  .relative_lg\:f:focus { position: relative; }
+  .relative_lg\:a:active { position: relative; }
+  .relative_lg\:d:disabled { position: relative; }
+}
+
+@media (min-width: 1280px) {
+  .relative_xl { position: relative; }
+  .relative_xl\:h:hover { position: relative; }
+  .relative_xl\:f:focus { position: relative; }
+  .relative_xl\:a:active { position: relative; }
+  .relative_xl\:d:disabled { position: relative; }
+}
+
+@media (min-width: 1536px) {
+  .relative_2xl { position: relative; }
+  .relative_2xl\:h:hover { position: relative; }
+  .relative_2xl\:f:focus { position: relative; }
+  .relative_2xl\:a:active { position: relative; }
+  .relative_2xl\:d:disabled { position: relative; }
+}
+
+/* position: absolute */
+.absolute { position: absolute; }
+.absolute\:h:hover { position: absolute; }
+.absolute\:f:focus { position: absolute; }
+.absolute\:a:active { position: absolute; }
+.absolute\:d:disabled { position: absolute; }
+
+@media (min-width: 640px) {
+  .absolute_sm { position: absolute; }
+  .absolute_sm\:h:hover { position: absolute; }
+  .absolute_sm\:f:focus { position: absolute; }
+  .absolute_sm\:a:active { position: absolute; }
+  .absolute_sm\:d:disabled { position: absolute; }
+}
+
+@media (min-width: 768px) {
+  .absolute_md { position: absolute; }
+  .absolute_md\:h:hover { position: absolute; }
+  .absolute_md\:f:focus { position: absolute; }
+  .absolute_md\:a:active { position: absolute; }
+  .absolute_md\:d:disabled { position: absolute; }
+}
+
+@media (min-width: 1024px) {
+  .absolute_lg { position: absolute; }
+  .absolute_lg\:h:hover { position: absolute; }
+  .absolute_lg\:f:focus { position: absolute; }
+  .absolute_lg\:a:active { position: absolute; }
+  .absolute_lg\:d:disabled { position: absolute; }
+}
+
+@media (min-width: 1280px) {
+  .absolute_xl { position: absolute; }
+  .absolute_xl\:h:hover { position: absolute; }
+  .absolute_xl\:f:focus { position: absolute; }
+  .absolute_xl\:a:active { position: absolute; }
+  .absolute_xl\:d:disabled { position: absolute; }
+}
+
+@media (min-width: 1536px) {
+  .absolute_2xl { position: absolute; }
+  .absolute_2xl\:h:hover { position: absolute; }
+  .absolute_2xl\:f:focus { position: absolute; }
+  .absolute_2xl\:a:active { position: absolute; }
+  .absolute_2xl\:d:disabled { position: absolute; }
+}
+
+/* position: fixed */
+.fixed { position: fixed; }
+.fixed\:h:hover { position: fixed; }
+.fixed\:f:focus { position: fixed; }
+.fixed\:a:active { position: fixed; }
+.fixed\:d:disabled { position: fixed; }
+
+@media (min-width: 640px) {
+  .fixed_sm { position: fixed; }
+  .fixed_sm\:h:hover { position: fixed; }
+  .fixed_sm\:f:focus { position: fixed; }
+  .fixed_sm\:a:active { position: fixed; }
+  .fixed_sm\:d:disabled { position: fixed; }
+}
+
+@media (min-width: 768px) {
+  .fixed_md { position: fixed; }
+  .fixed_md\:h:hover { position: fixed; }
+  .fixed_md\:f:focus { position: fixed; }
+  .fixed_md\:a:active { position: fixed; }
+  .fixed_md\:d:disabled { position: fixed; }
+}
+
+@media (min-width: 1024px) {
+  .fixed_lg { position: fixed; }
+  .fixed_lg\:h:hover { position: fixed; }
+  .fixed_lg\:f:focus { position: fixed; }
+  .fixed_lg\:a:active { position: fixed; }
+  .fixed_lg\:d:disabled { position: fixed; }
+}
+
+@media (min-width: 1280px) {
+  .fixed_xl { position: fixed; }
+  .fixed_xl\:h:hover { position: fixed; }
+  .fixed_xl\:f:focus { position: fixed; }
+  .fixed_xl\:a:active { position: fixed; }
+  .fixed_xl\:d:disabled { position: fixed; }
+}
+
+@media (min-width: 1536px) {
+  .fixed_2xl { position: fixed; }
+  .fixed_2xl\:h:hover { position: fixed; }
+  .fixed_2xl\:f:focus { position: fixed; }
+  .fixed_2xl\:a:active { position: fixed; }
+  .fixed_2xl\:d:disabled { position: fixed; }
+}
+
+/* position: sticky */
+.sticky { position: sticky; }
+.sticky\:h:hover { position: sticky; }
+.sticky\:f:focus { position: sticky; }
+.sticky\:a:active { position: sticky; }
+.sticky\:d:disabled { position: sticky; }
+
+@media (min-width: 640px) {
+  .sticky_sm { position: sticky; }
+  .sticky_sm\:h:hover { position: sticky; }
+  .sticky_sm\:f:focus { position: sticky; }
+  .sticky_sm\:a:active { position: sticky; }
+  .sticky_sm\:d:disabled { position: sticky; }
+}
+
+@media (min-width: 768px) {
+  .sticky_md { position: sticky; }
+  .sticky_md\:h:hover { position: sticky; }
+  .sticky_md\:f:focus { position: sticky; }
+  .sticky_md\:a:active { position: sticky; }
+  .sticky_md\:d:disabled { position: sticky; }
+}
+
+@media (min-width: 1024px) {
+  .sticky_lg { position: sticky; }
+  .sticky_lg\:h:hover { position: sticky; }
+  .sticky_lg\:f:focus { position: sticky; }
+  .sticky_lg\:a:active { position: sticky; }
+  .sticky_lg\:d:disabled { position: sticky; }
+}
+
+@media (min-width: 1280px) {
+  .sticky_xl { position: sticky; }
+  .sticky_xl\:h:hover { position: sticky; }
+  .sticky_xl\:f:focus { position: sticky; }
+  .sticky_xl\:a:active { position: sticky; }
+  .sticky_xl\:d:disabled { position: sticky; }
+}
+
+@media (min-width: 1536px) {
+  .sticky_2xl { position: sticky; }
+  .sticky_2xl\:h:hover { position: sticky; }
+  .sticky_2xl\:f:focus { position: sticky; }
+  .sticky_2xl\:a:active { position: sticky; }
+  .sticky_2xl\:d:disabled { position: sticky; }
+}

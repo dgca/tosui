@@ -1,0 +1,65 @@
+/* flexDirection */
+.flex-row { flex-direction: row; }
+.flex-row\:h:hover { flex-direction: row; }
+.flex-row-reverse { flex-direction: row-reverse; }
+.flex-row-reverse\:h:hover { flex-direction: row-reverse; }
+.flex-column { flex-direction: column; }
+.flex-column\:h:hover { flex-direction: column; }
+.flex-column-reverse { flex-direction: column-reverse; }
+.flex-column-reverse\:h:hover { flex-direction: column-reverse; }
+
+/* justifyContent */
+.justify-start { justify-content: start; }
+.justify-start\:h:hover { justify-content: start; }
+.justify-end { justify-content: end; }
+.justify-end\:h:hover { justify-content: end; }
+.justify-center { justify-content: center; }
+.justify-center\:h:hover { justify-content: center; }
+.justify-space-between { justify-content: space-between; }
+.justify-space-between\:h:hover { justify-content: space-between; }
+.justify-space-around { justify-content: space-around; }
+.justify-space-around\:h:hover { justify-content: space-around; }
+.justify-space-evenly { justify-content: space-evenly; }
+.justify-space-evenly\:h:hover { justify-content: space-evenly; }
+
+/* alignItems */
+.items-start { align-items: start; }
+.items-start\:h:hover { align-items: start; }
+.items-end { align-items: end; }
+.items-end\:h:hover { align-items: end; }
+.items-center { align-items: center; }
+.items-center\:h:hover { align-items: center; }
+.items-stretch { align-items: stretch; }
+.items-stretch\:h:hover { align-items: stretch; }
+.items-baseline { align-items: baseline; }
+.items-baseline\:h:hover { align-items: baseline; }
+
+/* alignSelf */
+.self-auto { align-self: auto; }
+.self-auto\:h:hover { align-self: auto; }
+.self-start { align-self: start; }
+.self-start\:h:hover { align-self: start; }
+.self-end { align-self: end; }
+.self-end\:h:hover { align-self: end; }
+.self-center { align-self: center; }
+.self-center\:h:hover { align-self: center; }
+.self-stretch { align-self: stretch; }
+.self-stretch\:h:hover { align-self: stretch; }
+.self-baseline { align-self: baseline; }
+.self-baseline\:h:hover { align-self: baseline; }
+
+/* flexWrap */
+.flex-nowrap { flex-wrap: nowrap; }
+.flex-nowrap\:h:hover { flex-wrap: nowrap; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-wrap\:h:hover { flex-wrap: wrap; }
+.flex-wrap-reverse { flex-wrap: wrap-reverse; }
+.flex-wrap-reverse\:h:hover { flex-wrap: wrap-reverse; }
+
+/* gap (variable-based) */
+.gap { gap: var(--t-gap); }
+.gap\:h:hover { gap: var(--t-gap-h); }
+
+/* flex (variable-based) */
+.flex { flex: var(--t-flex); }
+.flex\:h:hover { flex: var(--t-flex-h); }

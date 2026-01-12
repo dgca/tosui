@@ -1,21 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import stylex from "@stylexjs/unplugin";
 import dts from "vite-plugin-dts";
 import { resolve } from "path";
 
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src"),
     },
   },
   plugins: [
-    stylex.vite({
-      useCSSLayers: true,
-      dev: mode === "development",
-    }),
     react(),
     dts({
       tsconfigPath: "./tsconfig.build.json",
@@ -36,4 +31,4 @@ export default defineConfig(({ mode }) => ({
     emptyOutDir: true,
     cssCodeSplit: true,
   },
-}));
+});

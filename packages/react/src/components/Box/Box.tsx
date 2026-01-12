@@ -1,54 +1,78 @@
-import { type ElementType, type ReactNode } from "react";
-import * as stylex from "@stylexjs/stylex";
+import { type ElementType, type ReactNode, type CSSProperties } from "react";
 import { type Polymorphic } from "@/types/Polymorphic";
 import { clsx } from "clsx";
-import { resetStyles } from "./styleParts/reset";
-import { type DisplayProps, getDisplayStyles } from "./styleParts/display";
-import { type PositionProps, getPositionStyles } from "./styleParts/position";
-import { type OverflowProps, getOverflowStyles } from "./styleParts/overflow";
-import { type ZIndexProps, getZIndexStyles } from "./styleParts/zIndex";
-import { type SizeProps, getSizingStyles } from "./styleParts/sizing";
-import { type FlexboxProps, getFlexboxStyles } from "./styleParts/flexbox";
-import { type GridProps, getGridStyles } from "./styleParts/grid";
-import { type InsetProps, getInsetStyles } from "./styleParts/inset";
+import { resetClass } from "./reset/reset";
+import { getMarginStyles, type MarginProps } from "./margin/margin";
+import { getPaddingStyles, type PaddingProps } from "./padding/padding";
+import { getSizingStyles, type SizingProps } from "./sizing/sizing";
+import { getInsetStyles, type InsetProps } from "./inset/inset";
+import { getDisplayStyles, type DisplayProps } from "./display/display";
+import { getPositionStyles, type PositionProps } from "./position/position";
+import { getOverflowStyles, type OverflowProps } from "./overflow/overflow";
+import { getZIndexStyles, type ZIndexProps } from "./zIndex/zIndex";
+import { getShadowStyles, type ShadowProps } from "./shadows/shadows";
+import { getOpacityStyles, type OpacityProps } from "./opacity/opacity";
 import {
-  type TypographyProps,
-  getTypographyStyles,
-} from "./styleParts/typography";
-import { type ColorProps, getColorStyles } from "./styleParts/colors";
-import { type BorderProps, getBorderStyles } from "./styleParts/borders";
-import {
-  type RoundnessProps,
-  getRoundnessStyles,
-} from "./styleParts/roundness";
-import { type ShadowProps, getShadowStyles } from "./styleParts/shadows";
-import {
-  type InteractionProps,
   getInteractionStyles,
-} from "./styleParts/interactions";
-import { type TextProps, getTextStyles } from "./styleParts/text";
-import { type OpacityProps, getOpacityStyles } from "./styleParts/opacity";
-import { getPaddingStyles, type PaddingProps } from "./styleParts/padding";
-import { getMarginStyles, type MarginProps } from "./styleParts/margin";
+  type InteractionProps,
+} from "./interactions/interactions";
+import { getTextStyles, type TextStyleProps } from "./text/text";
+import {
+  getTypographyStyles,
+  type TypographyProps,
+} from "./typography/typography";
+import { getColorStyles, type ColorProps } from "./colors/colors";
+import { getBorderStyles, type BorderProps } from "./borders/borders";
+import { getRoundnessStyles, type RoundnessProps } from "./roundness/roundness";
+import { getFlexboxStyles, type FlexboxProps } from "./flexbox/flexbox";
+import { getGridStyles, type GridProps } from "./grid/grid";
 
-export type BoxOwnProps = MarginProps &
+// Combined state props for all style parts
+type StateStyleProps = MarginProps &
   PaddingProps &
+  SizingProps &
+  InsetProps &
   DisplayProps &
   PositionProps &
   OverflowProps &
   ZIndexProps &
-  SizeProps &
-  FlexboxProps &
-  GridProps &
-  InsetProps &
+  ShadowProps &
+  OpacityProps &
+  InteractionProps &
+  TextStyleProps &
   TypographyProps &
   ColorProps &
   BorderProps &
   RoundnessProps &
+  FlexboxProps &
+  GridProps;
+
+type StateProps = {
+  _hover?: StateStyleProps;
+  _focus?: StateStyleProps;
+  _active?: StateStyleProps;
+  _disabled?: StateStyleProps;
+};
+
+export type BoxOwnProps = MarginProps &
+  PaddingProps &
+  SizingProps &
+  InsetProps &
+  DisplayProps &
+  PositionProps &
+  OverflowProps &
+  ZIndexProps &
   ShadowProps &
+  OpacityProps &
   InteractionProps &
-  TextProps &
-  OpacityProps & {
+  TextStyleProps &
+  TypographyProps &
+  ColorProps &
+  BorderProps &
+  RoundnessProps &
+  FlexboxProps &
+  GridProps &
+  StateProps & {
     className?: string;
     children?: ReactNode;
   };
@@ -58,27 +82,25 @@ export type BoxProps<T extends ElementType = "div"> = Polymorphic<
   BoxOwnProps
 >;
 
-/**
- * Box - The core primitive component
- *
- * A polymorphic component that provides:
- * - Default element: <div>
- * - Can render as any HTML element via the `as` prop
- * - Type-safe props based on the element type
- */
+// Helper to combine multiple style results
+type StyleResult = {
+  className?: string;
+  style?: CSSProperties;
+};
+
+function combineStyles(...results: StyleResult[]): StyleResult {
+  return {
+    className: clsx(...results.map((r) => r.className)),
+    style: Object.assign({}, ...results.map((r) => r.style)),
+  };
+}
+
 export function Box<T extends ElementType = "div">({
   as,
   children,
   className,
   style,
-  // Spacing props
-  p,
-  pt,
-  pr,
-  pb,
-  pl,
-  px,
-  py,
+  // Margin props
   m,
   mt,
   mr,
@@ -86,37 +108,21 @@ export function Box<T extends ElementType = "div">({
   ml,
   mx,
   my,
-  // Layout props
-  display,
-  position,
-  overflow,
-  overflowX,
-  overflowY,
-  zIndex,
-  // Size props
+  // Padding props
+  p,
+  pt,
+  pr,
+  pb,
+  pl,
+  px,
+  py,
+  // Sizing props
   w,
   h,
   minW,
   maxW,
   minH,
   maxH,
-  // Flexbox props
-  flexDirection,
-  justifyContent,
-  alignItems,
-  alignSelf,
-  flexWrap,
-  gap,
-  gapRow,
-  gapColumn,
-  flex,
-  flexGrow,
-  flexShrink,
-  flexBasis,
-  // Grid props
-  justifySelf,
-  gridTemplateColumns,
-  gridTemplateRows,
   // Inset props
   inset,
   insetX,
@@ -125,6 +131,28 @@ export function Box<T extends ElementType = "div">({
   right,
   bottom,
   left,
+  // Display props
+  display,
+  // Position props
+  position,
+  // Overflow props
+  overflow,
+  overflowX,
+  overflowY,
+  // ZIndex props
+  zIndex,
+  // Shadow props
+  shadow,
+  // Opacity props
+  opacity,
+  // Interaction props
+  cursor,
+  pointerEvents,
+  userSelect,
+  // Text style props
+  textAlign,
+  whiteSpace,
+  textDecoration,
   // Typography props
   fontSize,
   fontFamily,
@@ -153,52 +181,72 @@ export function Box<T extends ElementType = "div">({
   roundedTopRight,
   roundedBottomLeft,
   roundedBottomRight,
-  // Shadow props
-  shadow,
-  // Interaction props
-  cursor,
-  pointerEvents,
-  userSelect,
-  // Text props
-  textAlign,
-  whiteSpace,
-  textDecoration,
-  // Opacity props
-  opacity,
+  // Flexbox props
+  flexDirection,
+  justifyContent,
+  alignItems,
+  alignSelf,
+  flexWrap,
+  gap,
+  gapRow,
+  gapColumn,
+  flex,
+  flexGrow,
+  flexShrink,
+  flexBasis,
+  // Grid props
+  justifySelf,
+  gridTemplateColumns,
+  gridTemplateRows,
+  // State props
+  _hover,
+  _focus,
+  _active,
+  _disabled,
   ...rest
 }: BoxProps<T>) {
   const Component = as || "div";
 
-  const {
-    className: stylexClassName,
-    style: stylexStyle,
-    ...stylexRest
-  } = stylex.props(
-    resetStyles.base,
-    resetStyles.reducedMotion,
-    getPaddingStyles({
-      p,
-      pt,
-      pr,
-      pb,
-      pl,
-      px,
-      py,
+  const stateProps = { _hover, _focus, _active, _disabled };
+
+  const styles = combineStyles(
+    getMarginStyles({ m, mt, mr, mb, ml, mx, my, ...stateProps }),
+    getPaddingStyles({ p, pt, pr, pb, pl, px, py, ...stateProps }),
+    getSizingStyles({ w, h, minW, maxW, minH, maxH, ...stateProps }),
+    getInsetStyles({ inset, insetX, insetY, top, right, bottom, left, ...stateProps }),
+    getDisplayStyles({ display, ...stateProps }),
+    getPositionStyles({ position, ...stateProps }),
+    getOverflowStyles({ overflow, overflowX, overflowY, ...stateProps }),
+    getZIndexStyles({ zIndex, ...stateProps }),
+    getShadowStyles({ shadow, ...stateProps }),
+    getOpacityStyles({ opacity, ...stateProps }),
+    getInteractionStyles({ cursor, pointerEvents, userSelect, ...stateProps }),
+    getTextStyles({ textAlign, whiteSpace, textDecoration, ...stateProps }),
+    getTypographyStyles({ fontSize, fontFamily, fontWeight, lineHeight }),
+    getColorStyles({ color, bg, borderColor, ...stateProps }),
+    getBorderStyles({
+      border,
+      borderX,
+      borderY,
+      borderTop,
+      borderRight,
+      borderBottom,
+      borderLeft,
+      borderStyle,
+      ...stateProps,
     }),
-    getMarginStyles({
-      m,
-      mt,
-      mr,
-      mb,
-      ml,
-      mx,
-      my,
+    getRoundnessStyles({
+      rounded,
+      roundedTop,
+      roundedBottom,
+      roundedLeft,
+      roundedRight,
+      roundedTopLeft,
+      roundedTopRight,
+      roundedBottomLeft,
+      roundedBottomRight,
+      ...stateProps,
     }),
-    getDisplayStyles(display),
-    getPositionStyles(position),
-    getOverflowStyles({ overflow, overflowX, overflowY }),
-    getZIndexStyles(zIndex),
-    getSizingStyles({ w, h, minW, maxW, minH, maxH }),
     getFlexboxStyles({
       flexDirection,
       justifyContent,
@@ -212,68 +260,24 @@ export function Box<T extends ElementType = "div">({
       flexGrow,
       flexShrink,
       flexBasis,
+      ...stateProps,
     }),
     getGridStyles({
       justifySelf,
       gridTemplateColumns,
       gridTemplateRows,
-    }),
-    getInsetStyles({
-      inset,
-      insetX,
-      insetY,
-      top,
-      right,
-      bottom,
-      left,
-    }),
-    getTypographyStyles({
-      fontSize,
-      fontFamily,
-      fontWeight,
-      lineHeight,
-    }),
-    getColorStyles({ color, bg, borderColor }),
-    getBorderStyles({
-      border,
-      borderX,
-      borderY,
-      borderTop,
-      borderRight,
-      borderBottom,
-      borderLeft,
-      borderStyle,
-    }),
-    getRoundnessStyles({
-      rounded,
-      roundedTop,
-      roundedBottom,
-      roundedLeft,
-      roundedRight,
-      roundedTopLeft,
-      roundedTopRight,
-      roundedBottomLeft,
-      roundedBottomRight,
-    }),
-    getShadowStyles({ shadow }),
-    getInteractionStyles({
-      cursor,
-      pointerEvents,
-      userSelect,
-    }),
-    getTextStyles({ textAlign, whiteSpace, textDecoration }),
-    getOpacityStyles({ opacity })
+      ...stateProps,
+    })
   );
 
   return (
     <Component
-      className={clsx(stylexClassName, className)}
+      className={clsx(resetClass, styles.className, className)}
       style={{
-        ...stylexStyle,
+        ...styles.style,
         ...style,
       }}
       {...rest}
-      {...stylexRest}
     >
       {children}
     </Component>

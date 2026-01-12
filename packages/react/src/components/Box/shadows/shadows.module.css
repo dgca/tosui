@@ -1,0 +1,51 @@
+/* shadow: none */
+.none { box-shadow: none; }
+.none\:h:hover { box-shadow: none; }
+.none\:f:focus { box-shadow: none; }
+.none\:a:active { box-shadow: none; }
+.none\:d:disabled { box-shadow: none; }
+
+@media (min-width: 640px) { .none_sm { box-shadow: none; } .none_sm\:h:hover { box-shadow: none; } .none_sm\:f:focus { box-shadow: none; } .none_sm\:a:active { box-shadow: none; } .none_sm\:d:disabled { box-shadow: none; } }
+@media (min-width: 768px) { .none_md { box-shadow: none; } .none_md\:h:hover { box-shadow: none; } .none_md\:f:focus { box-shadow: none; } .none_md\:a:active { box-shadow: none; } .none_md\:d:disabled { box-shadow: none; } }
+@media (min-width: 1024px) { .none_lg { box-shadow: none; } .none_lg\:h:hover { box-shadow: none; } .none_lg\:f:focus { box-shadow: none; } .none_lg\:a:active { box-shadow: none; } .none_lg\:d:disabled { box-shadow: none; } }
+@media (min-width: 1280px) { .none_xl { box-shadow: none; } .none_xl\:h:hover { box-shadow: none; } .none_xl\:f:focus { box-shadow: none; } .none_xl\:a:active { box-shadow: none; } .none_xl\:d:disabled { box-shadow: none; } }
+@media (min-width: 1536px) { .none_2xl { box-shadow: none; } .none_2xl\:h:hover { box-shadow: none; } .none_2xl\:f:focus { box-shadow: none; } .none_2xl\:a:active { box-shadow: none; } .none_2xl\:d:disabled { box-shadow: none; } }
+
+/* shadow: sm */
+.sm { box-shadow: var(--t-shadow-sm); }
+.sm\:h:hover { box-shadow: var(--t-shadow-sm); }
+.sm\:f:focus { box-shadow: var(--t-shadow-sm); }
+.sm\:a:active { box-shadow: var(--t-shadow-sm); }
+.sm\:d:disabled { box-shadow: var(--t-shadow-sm); }
+
+@media (min-width: 640px) { .sm_sm { box-shadow: var(--t-shadow-sm); } .sm_sm\:h:hover { box-shadow: var(--t-shadow-sm); } .sm_sm\:f:focus { box-shadow: var(--t-shadow-sm); } .sm_sm\:a:active { box-shadow: var(--t-shadow-sm); } .sm_sm\:d:disabled { box-shadow: var(--t-shadow-sm); } }
+@media (min-width: 768px) { .sm_md { box-shadow: var(--t-shadow-sm); } .sm_md\:h:hover { box-shadow: var(--t-shadow-sm); } .sm_md\:f:focus { box-shadow: var(--t-shadow-sm); } .sm_md\:a:active { box-shadow: var(--t-shadow-sm); } .sm_md\:d:disabled { box-shadow: var(--t-shadow-sm); } }
+@media (min-width: 1024px) { .sm_lg { box-shadow: var(--t-shadow-sm); } .sm_lg\:h:hover { box-shadow: var(--t-shadow-sm); } .sm_lg\:f:focus { box-shadow: var(--t-shadow-sm); } .sm_lg\:a:active { box-shadow: var(--t-shadow-sm); } .sm_lg\:d:disabled { box-shadow: var(--t-shadow-sm); } }
+@media (min-width: 1280px) { .sm_xl { box-shadow: var(--t-shadow-sm); } .sm_xl\:h:hover { box-shadow: var(--t-shadow-sm); } .sm_xl\:f:focus { box-shadow: var(--t-shadow-sm); } .sm_xl\:a:active { box-shadow: var(--t-shadow-sm); } .sm_xl\:d:disabled { box-shadow: var(--t-shadow-sm); } }
+@media (min-width: 1536px) { .sm_2xl { box-shadow: var(--t-shadow-sm); } .sm_2xl\:h:hover { box-shadow: var(--t-shadow-sm); } .sm_2xl\:f:focus { box-shadow: var(--t-shadow-sm); } .sm_2xl\:a:active { box-shadow: var(--t-shadow-sm); } .sm_2xl\:d:disabled { box-shadow: var(--t-shadow-sm); } }
+
+/* shadow: md */
+.md { box-shadow: var(--t-shadow-md); }
+.md\:h:hover { box-shadow: var(--t-shadow-md); }
+.md\:f:focus { box-shadow: var(--t-shadow-md); }
+.md\:a:active { box-shadow: var(--t-shadow-md); }
+.md\:d:disabled { box-shadow: var(--t-shadow-md); }
+
+@media (min-width: 640px) { .md_sm { box-shadow: var(--t-shadow-md); } .md_sm\:h:hover { box-shadow: var(--t-shadow-md); } .md_sm\:f:focus { box-shadow: var(--t-shadow-md); } .md_sm\:a:active { box-shadow: var(--t-shadow-md); } .md_sm\:d:disabled { box-shadow: var(--t-shadow-md); } }
+@media (min-width: 768px) { .md_md { box-shadow: var(--t-shadow-md); } .md_md\:h:hover { box-shadow: var(--t-shadow-md); } .md_md\:f:focus { box-shadow: var(--t-shadow-md); } .md_md\:a:active { box-shadow: var(--t-shadow-md); } .md_md\:d:disabled { box-shadow: var(--t-shadow-md); } }
+@media (min-width: 1024px) { .md_lg { box-shadow: var(--t-shadow-md); } .md_lg\:h:hover { box-shadow: var(--t-shadow-md); } .md_lg\:f:focus { box-shadow: var(--t-shadow-md); } .md_lg\:a:active { box-shadow: var(--t-shadow-md); } .md_lg\:d:disabled { box-shadow: var(--t-shadow-md); } }
+@media (min-width: 1280px) { .md_xl { box-shadow: var(--t-shadow-md); } .md_xl\:h:hover { box-shadow: var(--t-shadow-md); } .md_xl\:f:focus { box-shadow: var(--t-shadow-md); } .md_xl\:a:active { box-shadow: var(--t-shadow-md); } .md_xl\:d:disabled { box-shadow: var(--t-shadow-md); } }
+@media (min-width: 1536px) { .md_2xl { box-shadow: var(--t-shadow-md); } .md_2xl\:h:hover { box-shadow: var(--t-shadow-md); } .md_2xl\:f:focus { box-shadow: var(--t-shadow-md); } .md_2xl\:a:active { box-shadow: var(--t-shadow-md); } .md_2xl\:d:disabled { box-shadow: var(--t-shadow-md); } }
+
+/* shadow: lg */
+.lg { box-shadow: var(--t-shadow-lg); }
+.lg\:h:hover { box-shadow: var(--t-shadow-lg); }
+.lg\:f:focus { box-shadow: var(--t-shadow-lg); }
+.lg\:a:active { box-shadow: var(--t-shadow-lg); }
+.lg\:d:disabled { box-shadow: var(--t-shadow-lg); }
+
+@media (min-width: 640px) { .lg_sm { box-shadow: var(--t-shadow-lg); } .lg_sm\:h:hover { box-shadow: var(--t-shadow-lg); } .lg_sm\:f:focus { box-shadow: var(--t-shadow-lg); } .lg_sm\:a:active { box-shadow: var(--t-shadow-lg); } .lg_sm\:d:disabled { box-shadow: var(--t-shadow-lg); } }
+@media (min-width: 768px) { .lg_md { box-shadow: var(--t-shadow-lg); } .lg_md\:h:hover { box-shadow: var(--t-shadow-lg); } .lg_md\:f:focus { box-shadow: var(--t-shadow-lg); } .lg_md\:a:active { box-shadow: var(--t-shadow-lg); } .lg_md\:d:disabled { box-shadow: var(--t-shadow-lg); } }
+@media (min-width: 1024px) { .lg_lg { box-shadow: var(--t-shadow-lg); } .lg_lg\:h:hover { box-shadow: var(--t-shadow-lg); } .lg_lg\:f:focus { box-shadow: var(--t-shadow-lg); } .lg_lg\:a:active { box-shadow: var(--t-shadow-lg); } .lg_lg\:d:disabled { box-shadow: var(--t-shadow-lg); } }
+@media (min-width: 1280px) { .lg_xl { box-shadow: var(--t-shadow-lg); } .lg_xl\:h:hover { box-shadow: var(--t-shadow-lg); } .lg_xl\:f:focus { box-shadow: var(--t-shadow-lg); } .lg_xl\:a:active { box-shadow: var(--t-shadow-lg); } .lg_xl\:d:disabled { box-shadow: var(--t-shadow-lg); } }
+@media (min-width: 1536px) { .lg_2xl { box-shadow: var(--t-shadow-lg); } .lg_2xl\:h:hover { box-shadow: var(--t-shadow-lg); } .lg_2xl\:f:focus { box-shadow: var(--t-shadow-lg); } .lg_2xl\:a:active { box-shadow: var(--t-shadow-lg); } .lg_2xl\:d:disabled { box-shadow: var(--t-shadow-lg); } }

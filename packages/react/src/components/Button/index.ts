@@ -4,4 +4,5 @@ export {
   type ButtonOwnProps,
   type ButtonVariant,
   type ButtonSize,
+  type ButtonColorScheme,
 } from "./Button";
