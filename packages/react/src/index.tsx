@@ -59,3 +59,9 @@ export {
   type SelectVariant,
   type SelectProps,
 } from "./components/Select";
+export {
+  Checkbox,
+  type CheckboxSize,
+  type CheckboxProps,
+} from "./components/Checkbox";
+export { Radio, type RadioSize, type RadioProps } from "./components/Radio";
