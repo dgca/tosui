@@ -5,6 +5,14 @@ import { Text } from "@/components/Text/Text";
 import { Heading } from "@/components/Heading/Heading";
 import { Button } from "@/components/Button/Button";
 import { Spinner } from "@/components/Spinner/Spinner";
+import { Divider } from "@/components/Divider/Divider";
+import { Spacer } from "@/components/Spacer/Spacer";
+import { Stack } from "@/components/Stack/Stack";
+import { HStack } from "@/components/HStack/HStack";
+import { VStack } from "@/components/VStack/VStack";
+import { Flex } from "@/components/Flex/Flex";
+import { Grid } from "@/components/Grid/Grid";
+import { Container } from "@/components/Container/Container";
 
 // Example sections - easy to add more as you build components
 type Section =
@@ -13,6 +21,12 @@ type Section =
   | "heading"
   | "button"
   | "spinner"
+  | "stack"
+  | "flex"
+  | "grid"
+  | "container"
+  | "divider"
+  | "spacer"
   | "spacing"
   | "layout"
   | "colors"
@@ -40,6 +54,12 @@ function App() {
     { id: "heading", label: "Heading" },
     { id: "button", label: "Button" },
     { id: "spinner", label: "Spinner" },
+    { id: "stack", label: "Stack" },
+    { id: "flex", label: "Flex" },
+    { id: "grid", label: "Grid" },
+    { id: "container", label: "Container" },
+    { id: "divider", label: "Divider" },
+    { id: "spacer", label: "Spacer" },
     { id: "spacing", label: "Spacing" },
     { id: "layout", label: "Layout" },
     { id: "colors", label: "Colors" },
@@ -394,6 +414,417 @@ function App() {
                 </Box>
                 <Box color="warning">
                   <Spinner />
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        )}
+
+        {/* Stack Component */}
+        {shouldShowSection("stack") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Stack Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Stack (base component)
+              </Text>
+              <Stack gap={2} mb={4}>
+                <Box p={3} bg="success-subtle" rounded="sm">Stack Item 1</Box>
+                <Box p={3} bg="success-subtle" rounded="sm">Stack Item 2</Box>
+              </Stack>
+
+              <Text mb={3} weight="semibold">
+                VStack (default direction="column")
+              </Text>
+              <VStack gap={2} mb={4}>
+                <Box p={3} bg="primary-subtle" rounded="sm">Item 1</Box>
+                <Box p={3} bg="primary-subtle" rounded="sm">Item 2</Box>
+                <Box p={3} bg="primary-subtle" rounded="sm">Item 3</Box>
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                HStack (direction="row")
+              </Text>
+              <HStack gap={2} mb={4}>
+                <Box p={3} bg="accent-subtle" rounded="sm">Item 1</Box>
+                <Box p={3} bg="accent-subtle" rounded="sm">Item 2</Box>
+                <Box p={3} bg="accent-subtle" rounded="sm">Item 3</Box>
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Stack with different gaps
+              </Text>
+              <HStack gap={4} mb={4}>
+                <VStack gap={1}>
+                  <Text size="sm" color="foreground-muted">gap=1</Text>
+                  <Box p={2} bg="success-subtle" rounded="sm">A</Box>
+                  <Box p={2} bg="success-subtle" rounded="sm">B</Box>
+                </VStack>
+                <VStack gap={2}>
+                  <Text size="sm" color="foreground-muted">gap=2</Text>
+                  <Box p={2} bg="success-subtle" rounded="sm">A</Box>
+                  <Box p={2} bg="success-subtle" rounded="sm">B</Box>
+                </VStack>
+                <VStack gap={4}>
+                  <Text size="sm" color="foreground-muted">gap=4</Text>
+                  <Box p={2} bg="success-subtle" rounded="sm">A</Box>
+                  <Box p={2} bg="success-subtle" rounded="sm">B</Box>
+                </VStack>
+                <VStack gap={6}>
+                  <Text size="sm" color="foreground-muted">gap=6</Text>
+                  <Box p={2} bg="success-subtle" rounded="sm">A</Box>
+                  <Box p={2} bg="success-subtle" rounded="sm">B</Box>
+                </VStack>
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Stack with alignment
+              </Text>
+              <HStack gap={4}>
+                <VStack gap={2} align="start" p={3} bg="warning-subtle" rounded="sm" w="120px">
+                  <Text size="sm">align="start"</Text>
+                  <Box p={2} bg="warning-default" rounded="sm">Short</Box>
+                  <Box p={2} bg="warning-default" rounded="sm">Longer item</Box>
+                </VStack>
+                <VStack gap={2} align="center" p={3} bg="warning-subtle" rounded="sm" w="120px">
+                  <Text size="sm">align="center"</Text>
+                  <Box p={2} bg="warning-default" rounded="sm">Short</Box>
+                  <Box p={2} bg="warning-default" rounded="sm">Longer item</Box>
+                </VStack>
+                <VStack gap={2} align="end" p={3} bg="warning-subtle" rounded="sm" w="120px">
+                  <Text size="sm">align="end"</Text>
+                  <Box p={2} bg="warning-default" rounded="sm">Short</Box>
+                  <Box p={2} bg="warning-default" rounded="sm">Longer item</Box>
+                </VStack>
+              </HStack>
+            </Box>
+          </Box>
+        )}
+
+        {/* Flex Component */}
+        {shouldShowSection("flex") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Flex Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Basic Flex (row direction)
+              </Text>
+              <Flex gap={3} mb={4}>
+                <Box p={3} bg="primary-subtle" rounded="sm">Item 1</Box>
+                <Box p={3} bg="primary-subtle" rounded="sm">Item 2</Box>
+                <Box p={3} bg="primary-subtle" rounded="sm">Item 3</Box>
+              </Flex>
+
+              <Text mb={3} weight="semibold">
+                Flex with justify
+              </Text>
+              <VStack gap={2} mb={4}>
+                <Flex justify="start" p={2} bg="accent-subtle" rounded="sm">
+                  <Text size="sm">justify="start"</Text>
+                </Flex>
+                <Flex justify="center" p={2} bg="accent-subtle" rounded="sm">
+                  <Text size="sm">justify="center"</Text>
+                </Flex>
+                <Flex justify="end" p={2} bg="accent-subtle" rounded="sm">
+                  <Text size="sm">justify="end"</Text>
+                </Flex>
+                <Flex justify="space-between" p={2} bg="accent-subtle" rounded="sm">
+                  <Text size="sm">justify="space-between"</Text>
+                  <Text size="sm">End</Text>
+                </Flex>
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                Flex with wrap
+              </Text>
+              <Flex wrap="wrap" gap={2} mb={4}>
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                  <Box key={n} p={3} bg="success-subtle" rounded="sm" minW="100px">
+                    Item {n}
+                  </Box>
+                ))}
+              </Flex>
+
+              <Text mb={3} weight="semibold">
+                Column direction
+              </Text>
+              <Flex direction="column" gap={2} align="start">
+                <Box p={3} bg="error-subtle" rounded="sm">Column Item 1</Box>
+                <Box p={3} bg="error-subtle" rounded="sm">Column Item 2</Box>
+                <Box p={3} bg="error-subtle" rounded="sm">Column Item 3</Box>
+              </Flex>
+            </Box>
+          </Box>
+        )}
+
+        {/* Grid Component */}
+        {shouldShowSection("grid") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Grid Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Basic Grid (3 columns)
+              </Text>
+              <Grid columns="repeat(3, 1fr)" gap={3} mb={4}>
+                <Box p={3} bg="primary-subtle" rounded="sm">1</Box>
+                <Box p={3} bg="primary-subtle" rounded="sm">2</Box>
+                <Box p={3} bg="primary-subtle" rounded="sm">3</Box>
+                <Box p={3} bg="primary-subtle" rounded="sm">4</Box>
+                <Box p={3} bg="primary-subtle" rounded="sm">5</Box>
+                <Box p={3} bg="primary-subtle" rounded="sm">6</Box>
+              </Grid>
+
+              <Text mb={3} weight="semibold">
+                4-column Grid
+              </Text>
+              <Grid columns="repeat(4, 1fr)" gap={3} mb={4}>
+                <Box p={3} bg="accent-subtle" rounded="sm">Item 1</Box>
+                <Box p={3} bg="accent-subtle" rounded="sm">Item 2</Box>
+                <Box p={3} bg="accent-subtle" rounded="sm">Item 3</Box>
+                <Box p={3} bg="accent-subtle" rounded="sm">Item 4</Box>
+              </Grid>
+
+              <Text mb={3} weight="semibold">
+                Custom column template
+              </Text>
+              <Grid columns="1fr 2fr 1fr" gap={3} mb={4}>
+                <Box p={3} bg="success-subtle" rounded="sm">1fr</Box>
+                <Box p={3} bg="success-subtle" rounded="sm">2fr (wider)</Box>
+                <Box p={3} bg="success-subtle" rounded="sm">1fr</Box>
+              </Grid>
+
+              <Text mb={3} weight="semibold">
+                Grid with rows
+              </Text>
+              <Grid columns="repeat(2, 1fr)" rows="auto 100px auto" gap={3}>
+                <Box p={3} bg="warning-subtle" rounded="sm">Row 1</Box>
+                <Box p={3} bg="warning-subtle" rounded="sm">Row 1</Box>
+                <Box p={3} bg="warning-subtle" rounded="sm" display="flex" alignItems="center" justifyContent="center">Row 2 (100px height)</Box>
+                <Box p={3} bg="warning-subtle" rounded="sm" display="flex" alignItems="center" justifyContent="center">Row 2 (100px height)</Box>
+                <Box p={3} bg="warning-subtle" rounded="sm">Row 3</Box>
+                <Box p={3} bg="warning-subtle" rounded="sm">Row 3</Box>
+              </Grid>
+            </Box>
+          </Box>
+        )}
+
+        {/* Container Component */}
+        {shouldShowSection("container") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Container Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Container sizes
+              </Text>
+              <VStack gap={3} mb={4}>
+                <Container size="sm" bg="primary-subtle" p={3} rounded="sm">
+                  <Text size="sm">size="sm" (640px max)</Text>
+                </Container>
+                <Container size="md" bg="accent-subtle" p={3} rounded="sm">
+                  <Text size="sm">size="md" (768px max)</Text>
+                </Container>
+                <Container size="lg" bg="success-subtle" p={3} rounded="sm">
+                  <Text size="sm">size="lg" (1024px max) - default</Text>
+                </Container>
+                <Container size="xl" bg="warning-subtle" p={3} rounded="sm">
+                  <Text size="sm">size="xl" (1280px max)</Text>
+                </Container>
+                <Container size="full" bg="error-subtle" p={3} rounded="sm">
+                  <Text size="sm">size="full" (100% width)</Text>
+                </Container>
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                Container with centerContent
+              </Text>
+              <Container size="md" centerContent bg="info-subtle" p={4} rounded="sm">
+                <Box p={3} bg="info-default" color="foreground-inverted" rounded="sm">
+                  Centered content
+                </Box>
+              </Container>
+            </Box>
+          </Box>
+        )}
+
+        {/* Divider Component */}
+        {shouldShowSection("divider") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Divider Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Horizontal Dividers (default)
+              </Text>
+              <Box mb={4}>
+                <Text mb={2}>Content above</Text>
+                <Divider />
+                <Text mt={2}>Content below</Text>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Divider Colors
+              </Text>
+              <Box display="flex" flexDirection="column" gap={3} mb={4}>
+                <Box>
+                  <Text size="sm" color="foreground-muted" mb={1}>border-muted (default)</Text>
+                  <Divider />
+                </Box>
+                <Box>
+                  <Text size="sm" color="foreground-muted" mb={1}>border</Text>
+                  <Divider color="border" />
+                </Box>
+                <Box>
+                  <Text size="sm" color="foreground-muted" mb={1}>primary</Text>
+                  <Divider color="primary" />
+                </Box>
+                <Box>
+                  <Text size="sm" color="foreground-muted" mb={1}>accent</Text>
+                  <Divider color="accent" />
+                </Box>
+                <Box>
+                  <Text size="sm" color="foreground-muted" mb={1}>success</Text>
+                  <Divider color="success" />
+                </Box>
+                <Box>
+                  <Text size="sm" color="foreground-muted" mb={1}>error</Text>
+                  <Divider color="error" />
+                </Box>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Divider Thickness
+              </Text>
+              <Box display="flex" flexDirection="column" gap={3} mb={4}>
+                <Box>
+                  <Text size="sm" color="foreground-muted" mb={1}>1px (default)</Text>
+                  <Divider thickness={1} color="primary" />
+                </Box>
+                <Box>
+                  <Text size="sm" color="foreground-muted" mb={1}>2px</Text>
+                  <Divider thickness={2} color="primary" />
+                </Box>
+                <Box>
+                  <Text size="sm" color="foreground-muted" mb={1}>3px</Text>
+                  <Divider thickness={3} color="primary" />
+                </Box>
+                <Box>
+                  <Text size="sm" color="foreground-muted" mb={1}>4px</Text>
+                  <Divider thickness={4} color="primary" />
+                </Box>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Vertical Dividers
+              </Text>
+              <Box display="flex" gap={4} alignItems="stretch" h="80px">
+                <Box p={3} bg="primary-subtle" display="flex" alignItems="center">
+                  Left
+                </Box>
+                <Divider orientation="vertical" />
+                <Box p={3} bg="accent-subtle" display="flex" alignItems="center">
+                  Middle
+                </Box>
+                <Divider orientation="vertical" color="error" thickness={2} />
+                <Box p={3} bg="success-subtle" display="flex" alignItems="center">
+                  Right
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        )}
+
+        {/* Spacer Component */}
+        {shouldShowSection("spacer") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Spacer Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Push items apart in flex container
+              </Text>
+              <Box display="flex" p={3} bg="primary-subtle" rounded="md" mb={4}>
+                <Box p={2} bg="primary-default" color="foreground-inverted" rounded="sm">
+                  Logo
+                </Box>
+                <Spacer />
+                <Box p={2} bg="primary-default" color="foreground-inverted" rounded="sm">
+                  Nav
+                </Box>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Multiple spacers for equal distribution
+              </Text>
+              <Box display="flex" p={3} bg="accent-subtle" rounded="md" mb={4}>
+                <Box p={2} bg="accent-default" color="foreground-inverted" rounded="sm">
+                  A
+                </Box>
+                <Spacer />
+                <Box p={2} bg="accent-default" color="foreground-inverted" rounded="sm">
+                  B
+                </Box>
+                <Spacer />
+                <Box p={2} bg="accent-default" color="foreground-inverted" rounded="sm">
+                  C
+                </Box>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Vertical spacer
+              </Text>
+              <Box display="flex" flexDirection="column" h="200px" p={3} bg="success-subtle" rounded="md">
+                <Box p={2} bg="success-default" color="foreground-inverted" rounded="sm">
+                  Header
+                </Box>
+                <Spacer />
+                <Box p={2} bg="success-default" color="foreground-inverted" rounded="sm">
+                  Footer
                 </Box>
               </Box>
             </Box>

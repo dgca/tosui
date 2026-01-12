@@ -31,3 +31,9 @@ export {
   type DividerOwnProps,
 } from "./components/Divider";
 export { Spacer, type SpacerProps, type SpacerOwnProps } from "./components/Spacer";
+export {
+  Code,
+  type CodeVariant,
+  type CodeProps,
+  type CodeOwnProps,
+} from "./components/Code";
