@@ -16,7 +16,7 @@ None
 
 - [x] **Phase 1: Layout Primitives** — Stack, Flex, Grid, Container, Divider, Spacer (4/4 plans)
 - [x] **Phase 2: Typography & Text Inputs** — Code, Input, Textarea, Label (3/3 plans)
-- [ ] **Phase 3: Selection Controls** — Select, Checkbox, Radio, Switch, FormField (2/5 plans)
+- [ ] **Phase 3: Selection Controls** — Select, Checkbox, Radio, Switch, FormField (3/5 plans)
 - [ ] **Phase 4: Buttons & Feedback** — IconButton, Alert, Badge, Progress, Skeleton
 - [ ] **Phase 5: Data Display** — Avatar, Card, Image, List/ListItem
 - [ ] **Phase 6: Navigation** — Link, Tabs, Breadcrumb, Menu, Pagination
@@ -126,7 +126,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 |-------|----------------|--------|-----------|
 | 1. Layout Primitives | 4/4 | Complete | 2026-01-12 |
 | 2. Typography & Text Inputs | 3/3 | Complete | 2026-01-12 |
-| 3. Selection Controls | 2/5 | In progress | - |
+| 3. Selection Controls | 3/5 | In progress | - |
 | 4. Buttons & Feedback | 0/TBD | Not started | - |
 | 5. Data Display | 0/TBD | Not started | - |
 | 6. Navigation | 0/TBD | Not started | - |
