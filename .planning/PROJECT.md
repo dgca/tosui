@@ -33,14 +33,14 @@ Fewer, better choices. Every component follows the same patterns, uses the same 
 <!-- Current scope. Building toward these. -->
 
 **Layout Components:**
-- [ ] Stack — vertical/horizontal flex container with gap
-- [ ] HStack — horizontal stack shorthand
-- [ ] VStack — vertical stack shorthand
-- [ ] Flex — explicit flexbox container
-- [ ] Grid — CSS Grid container
-- [ ] Container — max-width centered wrapper
-- [ ] Divider — horizontal/vertical separator
-- [ ] Spacer — flexible space in flex layouts
+- [x] Stack — vertical/horizontal flex container with gap
+- [x] HStack — horizontal stack shorthand
+- [x] VStack — vertical stack shorthand
+- [x] Flex — explicit flexbox container
+- [x] Grid — CSS Grid container
+- [x] Container — max-width centered wrapper
+- [x] Divider — horizontal/vertical separator
+- [x] Spacer — flexible space in flex layouts
 
 **Typography:**
 - [ ] Code — inline code styling
@@ -116,6 +116,7 @@ New components should follow these established patterns.
 - **Prop Consistency:** All components use same prop names as Box (bg, not background; p, not padding)
 - **No Breaking Changes:** Existing component APIs are stable
 - **Bundle Size:** Keep total library size reasonable — avoid bloat
+- **Playground Verification:** After completing each phase, add examples of new components to App.tsx for visual verification before moving to the next phase
 
 ## Key Decisions
 
