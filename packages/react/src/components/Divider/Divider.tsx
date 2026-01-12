@@ -6,11 +6,22 @@ import { Box, type BoxOwnProps } from "@/components/Box/Box";
 // Types
 // ============================================================================
 
-export type DividerOwnProps = Omit<BoxOwnProps, "w" | "h" | "bg"> & {
+/** Divider color using semantic border color tokens */
+export type DividerColor =
+  | "border"
+  | "border-muted"
+  | "primary"
+  | "accent"
+  | "success"
+  | "warning"
+  | "error"
+  | "info";
+
+export type DividerOwnProps = Omit<BoxOwnProps, "w" | "h" | "bg" | "color"> & {
   /** Divider orientation (default: "horizontal") */
   orientation?: "horizontal" | "vertical";
   /** Divider color token (default: "border-muted") */
-  color?: BoxOwnProps["bg"];
+  color?: DividerColor;
   /** Divider thickness in pixels 1-4 (default: 1) */
   thickness?: 1 | 2 | 3 | 4;
 };
@@ -19,6 +30,21 @@ export type DividerProps<T extends ElementType = "hr"> = Polymorphic<
   T,
   DividerOwnProps
 >;
+
+// ============================================================================
+// Config
+// ============================================================================
+
+const COLOR_MAP: Record<DividerColor, string> = {
+  border: "var(--t-color-border)",
+  "border-muted": "var(--t-color-border-muted)",
+  primary: "var(--t-color-primary-default)",
+  accent: "var(--t-color-accent-default)",
+  success: "var(--t-color-success-default)",
+  warning: "var(--t-color-warning-default)",
+  error: "var(--t-color-error-default)",
+  info: "var(--t-color-info-default)",
+};
 
 // ============================================================================
 // Component
@@ -52,8 +78,8 @@ export function Divider<T extends ElementType = "hr">({
       aria-orientation={orientation}
       w={isHorizontal ? "100%" : undefined}
       h={isHorizontal ? undefined : "100%"}
-      bg={color}
       style={{
+        backgroundColor: COLOR_MAP[color],
         ...(isHorizontal
           ? { height: `${thickness}px` }
           : { width: `${thickness}px` }),

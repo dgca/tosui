@@ -24,3 +24,10 @@ export {
   type ContainerProps,
   type ContainerOwnProps,
 } from "./components/Container";
+export {
+  Divider,
+  type DividerColor,
+  type DividerProps,
+  type DividerOwnProps,
+} from "./components/Divider";
+export { Spacer, type SpacerProps, type SpacerOwnProps } from "./components/Spacer";
