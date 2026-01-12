@@ -17,6 +17,11 @@ import { Code } from "@/components/Code/Code";
 import { Input } from "@/components/Input/Input";
 import { Label } from "@/components/Label/Label";
 import { Textarea } from "@/components/Textarea/Textarea";
+import { Select } from "@/components/Select/Select";
+import { Checkbox } from "@/components/Checkbox/Checkbox";
+import { Radio } from "@/components/Radio/Radio";
+import { Switch } from "@/components/Switch/Switch";
+import { FormField } from "@/components/FormField/FormField";
 
 // Example sections - easy to add more as you build components
 type Section =
@@ -35,6 +40,11 @@ type Section =
   | "input"
   | "label"
   | "textarea"
+  | "select"
+  | "checkbox"
+  | "radio"
+  | "switch"
+  | "formfield"
   | "spacing"
   | "layout"
   | "colors"
@@ -72,6 +82,11 @@ function App() {
     { id: "input", label: "Input" },
     { id: "label", label: "Label" },
     { id: "textarea", label: "Textarea" },
+    { id: "select", label: "Select" },
+    { id: "checkbox", label: "Checkbox" },
+    { id: "radio", label: "Radio" },
+    { id: "switch", label: "Switch" },
+    { id: "formfield", label: "FormField" },
     { id: "spacing", label: "Spacing" },
     { id: "layout", label: "Layout" },
     { id: "colors", label: "Colors" },
@@ -1041,6 +1056,302 @@ function App() {
                   <Textarea resize="both" rows={2} placeholder="Both directions" />
                 </Box>
               </HStack>
+            </Box>
+          </Box>
+        )}
+
+        {/* Select Component */}
+        {shouldShowSection("select") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Select Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Sizes
+              </Text>
+              <VStack gap={3} mb={4}>
+                <Select size="sm">
+                  <option value="">Small select</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </Select>
+                <Select size="md">
+                  <option value="">Medium select (default)</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </Select>
+                <Select size="lg">
+                  <option value="">Large select</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </Select>
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                Variants
+              </Text>
+              <VStack gap={3} mb={4}>
+                <Select variant="outline">
+                  <option value="">Outline variant (default)</option>
+                  <option value="1">Option 1</option>
+                </Select>
+                <Select variant="filled">
+                  <option value="">Filled variant</option>
+                  <option value="1">Option 1</option>
+                </Select>
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                States
+              </Text>
+              <VStack gap={3}>
+                <Select>
+                  <option value="">Normal select</option>
+                  <option value="1">Option 1</option>
+                </Select>
+                <Select isDisabled>
+                  <option value="">Disabled select</option>
+                  <option value="1">Option 1</option>
+                </Select>
+                <Select isInvalid>
+                  <option value="">Invalid select</option>
+                  <option value="1">Option 1</option>
+                </Select>
+              </VStack>
+            </Box>
+          </Box>
+        )}
+
+        {/* Checkbox Component */}
+        {shouldShowSection("checkbox") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Checkbox Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Sizes
+              </Text>
+              <HStack gap={4} mb={4}>
+                <Checkbox size="sm" label="Small" />
+                <Checkbox size="md" label="Medium" />
+                <Checkbox size="lg" label="Large" />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Without labels
+              </Text>
+              <HStack gap={4} mb={4}>
+                <Checkbox size="sm" />
+                <Checkbox size="md" />
+                <Checkbox size="lg" />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Checked states
+              </Text>
+              <HStack gap={4} mb={4}>
+                <Checkbox label="Unchecked" />
+                <Checkbox label="Checked" defaultChecked />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Disabled state
+              </Text>
+              <HStack gap={4}>
+                <Checkbox label="Disabled unchecked" isDisabled />
+                <Checkbox label="Disabled checked" isDisabled defaultChecked />
+              </HStack>
+            </Box>
+          </Box>
+        )}
+
+        {/* Radio Component */}
+        {shouldShowSection("radio") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Radio Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Sizes
+              </Text>
+              <HStack gap={4} mb={4}>
+                <Radio size="sm" label="Small" name="size-demo" />
+                <Radio size="md" label="Medium" name="size-demo" />
+                <Radio size="lg" label="Large" name="size-demo" />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Radio group
+              </Text>
+              <VStack gap={2} align="start" mb={4}>
+                <Radio name="options" label="Option A" defaultChecked />
+                <Radio name="options" label="Option B" />
+                <Radio name="options" label="Option C" />
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                Disabled state
+              </Text>
+              <HStack gap={4}>
+                <Radio name="disabled-demo" label="Disabled" isDisabled />
+                <Radio name="disabled-demo-2" label="Disabled checked" isDisabled defaultChecked />
+              </HStack>
+            </Box>
+          </Box>
+        )}
+
+        {/* Switch Component */}
+        {shouldShowSection("switch") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Switch Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Sizes
+              </Text>
+              <HStack gap={4} mb={4}>
+                <Switch size="sm" label="Small" />
+                <Switch size="md" label="Medium" />
+                <Switch size="lg" label="Large" />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Without labels
+              </Text>
+              <HStack gap={4} mb={4}>
+                <Switch size="sm" />
+                <Switch size="md" />
+                <Switch size="lg" />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                On/Off states
+              </Text>
+              <HStack gap={4} mb={4}>
+                <Switch label="Off" />
+                <Switch label="On" defaultChecked />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Disabled state
+              </Text>
+              <HStack gap={4}>
+                <Switch label="Disabled off" isDisabled />
+                <Switch label="Disabled on" isDisabled defaultChecked />
+              </HStack>
+            </Box>
+          </Box>
+        )}
+
+        {/* FormField Component */}
+        {shouldShowSection("formfield") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              FormField Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                With helper text
+              </Text>
+              <Box mb={4} maxW="400px">
+                <FormField
+                  label="Username"
+                  helperText="Choose a unique username"
+                >
+                  <Input placeholder="Enter username" />
+                </FormField>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                With error message
+              </Text>
+              <Box mb={4} maxW="400px">
+                <FormField
+                  label="Email"
+                  isInvalid
+                  errorMessage="Please enter a valid email address"
+                >
+                  <Input placeholder="Enter email" />
+                </FormField>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Required field
+              </Text>
+              <Box mb={4} maxW="400px">
+                <FormField
+                  label="Password"
+                  isRequired
+                  helperText="Must be at least 8 characters"
+                >
+                  <Input type="password" placeholder="Enter password" />
+                </FormField>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Disabled field
+              </Text>
+              <Box mb={4} maxW="400px">
+                <FormField
+                  label="Read Only"
+                  isDisabled
+                  helperText="This field is disabled"
+                >
+                  <Input placeholder="Cannot edit" />
+                </FormField>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                With Select
+              </Text>
+              <Box maxW="400px">
+                <FormField
+                  label="Country"
+                  isRequired
+                  helperText="Select your country"
+                >
+                  <Select>
+                    <option value="">Choose a country</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="ca">Canada</option>
+                  </Select>
+                </FormField>
+              </Box>
             </Box>
           </Box>
         )}
