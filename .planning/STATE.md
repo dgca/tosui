@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-01-11)
 ## Current Position
 
 Phase: 1 of 7 (Layout Primitives)
-Plan: 1 of 4 in current phase
+Plan: 2 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-12 — Completed 01-01-PLAN.md
+Last activity: 2026-01-12 — Completed 01-02-PLAN.md
 
-Progress: █░░░░░░░░░ 10%
+Progress: ██░░░░░░░░ 15%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 1
+- Total plans completed: 2
 - Average duration: 2 min
-- Total execution time: 0.03 hours
+- Total execution time: 0.07 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 1. Layout Primitives | 1 | 2 min | 2 min |
+| 1. Layout Primitives | 2 | 4 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (2 min)
-- Trend: Starting baseline
+- Last 5 plans: 01-01 (2 min), 01-02 (2 min)
+- Trend: Consistent
 
 ## Accumulated Context
 
@@ -45,6 +45,8 @@ Recent decisions affecting current work:
 - Extended navigation set (Link + Tabs + Breadcrumb + Menu + Pagination)
 - Stack defaults to direction='column' (most common use case) [01-01]
 - HStack/VStack are thin wrappers, not duplicate implementations [01-01]
+- Flex uses shorthand direction/wrap/justify/align instead of flexDirection/etc [01-02]
+- Grid uses shorthand columns/rows instead of gridTemplateColumns/etc [01-02]
 
 ### Deferred Issues
 
@@ -61,5 +63,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-12
-Stopped at: Completed 01-01-PLAN.md
+Stopped at: Completed 01-02-PLAN.md
 Resume file: None
