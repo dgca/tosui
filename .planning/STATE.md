@@ -5,14 +5,14 @@
 See: .planning/PROJECT.md (updated 2026-01-11)
 
 **Core value:** Fewer, better choices. Every component follows the same patterns, uses the same tokens, and composes predictably.
-**Current focus:** Phase 1 — Layout Primitives
+**Current focus:** Phase 2 — Typography & Text Inputs
 
 ## Current Position
 
-Phase: 1 of 7 (Layout Primitives)
-Plan: 4 of 4 in current phase
-Status: Phase complete
-Last activity: 2026-01-12 — Completed 01-04-PLAN.md
+Phase: 2 of 7 (Typography & Text Inputs)
+Plan: 0 of 3 in current phase
+Status: Plans created, ready to execute
+Last activity: 2026-01-12 — Created Phase 2 plans
 
 Progress: ███░░░░░░░ 25%
 
