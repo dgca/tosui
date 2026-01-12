@@ -4,7 +4,7 @@
  * work well for content-centric websites.
  */
 
-/* Import Tosui React StyleX CSS */
+/* Import Tosui React CSS */
 @import "@tosui/react/styles.css";
 
 /* You can override the default Infima variables here. */

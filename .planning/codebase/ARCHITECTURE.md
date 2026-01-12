@@ -111,7 +111,7 @@
 **Patterns:**
 - No runtime error handling needed (stateless UI components)
 - TypeScript strict mode catches prop errors at build time
-- ESLint rules validate StyleX usage patterns
+- ESLint rules validate code quality
 - Invalid props produce TypeScript errors, not runtime exceptions
 
 ## Cross-Cutting Concerns

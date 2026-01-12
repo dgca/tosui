@@ -3,7 +3,6 @@ import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
-import stylexPlugin from "@stylexjs/eslint-plugin";
 import { defineConfig, globalIgnores } from "eslint/config";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
@@ -29,14 +28,6 @@ export default defineConfig([
         tsconfigRootDir: __dirname,
       },
     },
-    plugins: {
-      "@stylexjs": stylexPlugin,
-    },
-    rules: {
-      "@stylexjs/valid-styles": "error",
-      "@stylexjs/no-unused": "error",
-      "@stylexjs/valid-shorthands": "warn",
-      "@stylexjs/sort-keys": "warn",
-    },
+    rules: {},
   },
 ]);

@@ -98,7 +98,6 @@ tosui/
 **Documentation:**
 - `README.md` - Project overview and design tokens reference
 - `CLAUDE.md` - Developer guidelines for Claude Code
-- `packages/react/STYLEX_MENTAL_MODEL.md` - Styling system documentation
 
 ## Naming Conventions
 
