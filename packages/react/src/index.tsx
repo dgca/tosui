@@ -45,3 +45,11 @@ export {
   type InputOwnProps,
 } from "./components/Input";
 export { Label, type LabelProps, type LabelOwnProps } from "./components/Label";
+export {
+  Textarea,
+  type TextareaSize,
+  type TextareaVariant,
+  type TextareaResize,
+  type TextareaProps,
+  type TextareaOwnProps,
+} from "./components/Textarea";

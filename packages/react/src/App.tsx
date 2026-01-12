@@ -13,6 +13,10 @@ import { VStack } from "@/components/VStack/VStack";
 import { Flex } from "@/components/Flex/Flex";
 import { Grid } from "@/components/Grid/Grid";
 import { Container } from "@/components/Container/Container";
+import { Code } from "@/components/Code/Code";
+import { Input } from "@/components/Input/Input";
+import { Label } from "@/components/Label/Label";
+import { Textarea } from "@/components/Textarea/Textarea";
 
 // Example sections - easy to add more as you build components
 type Section =
@@ -27,6 +31,10 @@ type Section =
   | "container"
   | "divider"
   | "spacer"
+  | "code"
+  | "input"
+  | "label"
+  | "textarea"
   | "spacing"
   | "layout"
   | "colors"
@@ -60,6 +68,10 @@ function App() {
     { id: "container", label: "Container" },
     { id: "divider", label: "Divider" },
     { id: "spacer", label: "Spacer" },
+    { id: "code", label: "Code" },
+    { id: "input", label: "Input" },
+    { id: "label", label: "Label" },
+    { id: "textarea", label: "Textarea" },
     { id: "spacing", label: "Spacing" },
     { id: "layout", label: "Layout" },
     { id: "colors", label: "Colors" },
@@ -827,6 +839,208 @@ function App() {
                   Footer
                 </Box>
               </Box>
+            </Box>
+          </Box>
+        )}
+
+        {/* Code Component */}
+        {shouldShowSection("code") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Code Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Plain variant (default)
+              </Text>
+              <Text mb={4}>
+                Use <Code>npm install</Code> to install packages. The{" "}
+                <Code>package.json</Code> file defines your dependencies.
+              </Text>
+
+              <Text mb={3} weight="semibold">
+                Subtle variant
+              </Text>
+              <Text mb={4}>
+                Run <Code variant="subtle">pnpm build</Code> to compile the project.
+                Check <Code variant="subtle">dist/</Code> for output files.
+              </Text>
+
+              <Text mb={3} weight="semibold">
+                Different sizes
+              </Text>
+              <VStack gap={2} align="start">
+                <Text>
+                  <Code size="xs">xs code</Code> — Extra small
+                </Text>
+                <Text>
+                  <Code size="sm">sm code</Code> — Small
+                </Text>
+                <Text>
+                  <Code size="md">md code</Code> — Medium (default)
+                </Text>
+                <Text>
+                  <Code size="lg">lg code</Code> — Large
+                </Text>
+              </VStack>
+            </Box>
+          </Box>
+        )}
+
+        {/* Input Component */}
+        {shouldShowSection("input") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Input Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Sizes
+              </Text>
+              <VStack gap={3} mb={4}>
+                <Input size="sm" placeholder="Small input" />
+                <Input size="md" placeholder="Medium input (default)" />
+                <Input size="lg" placeholder="Large input" />
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                Variants
+              </Text>
+              <VStack gap={3} mb={4}>
+                <Input variant="outline" placeholder="Outline variant (default)" />
+                <Input variant="filled" placeholder="Filled variant" />
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                States
+              </Text>
+              <VStack gap={3} mb={4}>
+                <Input placeholder="Normal input" />
+                <Input isDisabled placeholder="Disabled input" />
+                <Input isInvalid placeholder="Invalid input" />
+              </VStack>
+            </Box>
+          </Box>
+        )}
+
+        {/* Label Component */}
+        {shouldShowSection("label") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Label Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Basic labels
+              </Text>
+              <VStack gap={3} mb={4} align="start">
+                <Box>
+                  <Label htmlFor="name">Name</Label>
+                  <Input id="name" placeholder="Enter your name" />
+                </Box>
+                <Box>
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" placeholder="Enter your email" />
+                </Box>
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                Required indicator
+              </Text>
+              <VStack gap={3} mb={4} align="start">
+                <Box>
+                  <Label htmlFor="required-field" required>Required Field</Label>
+                  <Input id="required-field" placeholder="This field is required" />
+                </Box>
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                Size and weight variants
+              </Text>
+              <VStack gap={2} align="start">
+                <Label size="xs">Extra small label</Label>
+                <Label size="sm">Small label (default)</Label>
+                <Label size="md">Medium label</Label>
+                <Label size="lg" weight="bold">Large bold label</Label>
+              </VStack>
+            </Box>
+          </Box>
+        )}
+
+        {/* Textarea Component */}
+        {shouldShowSection("textarea") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Textarea Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Sizes
+              </Text>
+              <VStack gap={3} mb={4}>
+                <Textarea size="sm" placeholder="Small textarea" rows={2} />
+                <Textarea size="md" placeholder="Medium textarea (default)" rows={3} />
+                <Textarea size="lg" placeholder="Large textarea" rows={4} />
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                Variants
+              </Text>
+              <VStack gap={3} mb={4}>
+                <Textarea variant="outline" placeholder="Outline variant (default)" />
+                <Textarea variant="filled" placeholder="Filled variant" />
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                States
+              </Text>
+              <VStack gap={3} mb={4}>
+                <Textarea placeholder="Normal textarea" />
+                <Textarea isDisabled placeholder="Disabled textarea" />
+                <Textarea isInvalid placeholder="Invalid textarea" />
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                Resize options
+              </Text>
+              <HStack gap={3}>
+                <Box flex="1">
+                  <Label>resize="none"</Label>
+                  <Textarea resize="none" rows={2} placeholder="No resize" />
+                </Box>
+                <Box flex="1">
+                  <Label>resize="vertical"</Label>
+                  <Textarea resize="vertical" rows={2} placeholder="Vertical only" />
+                </Box>
+                <Box flex="1">
+                  <Label>resize="both"</Label>
+                  <Textarea resize="both" rows={2} placeholder="Both directions" />
+                </Box>
+              </HStack>
             </Box>
           </Box>
         )}
