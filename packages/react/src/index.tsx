@@ -16,3 +16,5 @@ export { Spinner } from "./components/Spinner";
 export { Stack, type StackProps, type StackOwnProps } from "./components/Stack";
 export { HStack, type HStackProps, type HStackOwnProps } from "./components/HStack";
 export { VStack, type VStackProps, type VStackOwnProps } from "./components/VStack";
+export { Flex, type FlexProps, type FlexOwnProps } from "./components/Flex";
+export { Grid, type GridProps, type GridOwnProps } from "./components/Grid";
