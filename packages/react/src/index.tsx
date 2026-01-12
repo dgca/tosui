@@ -37,3 +37,11 @@ export {
   type CodeProps,
   type CodeOwnProps,
 } from "./components/Code";
+export {
+  Input,
+  type InputSize,
+  type InputVariant,
+  type InputProps,
+  type InputOwnProps,
+} from "./components/Input";
+export { Label, type LabelProps, type LabelOwnProps } from "./components/Label";
