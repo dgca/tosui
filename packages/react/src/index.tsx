@@ -74,3 +74,4 @@ export {
   type IconButtonColorScheme,
   type IconButtonProps,
 } from "./components/IconButton";
+export { Alert, type AlertStatus, type AlertProps } from "./components/Alert";
