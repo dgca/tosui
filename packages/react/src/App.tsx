@@ -22,6 +22,11 @@ import { Checkbox } from "@/components/Checkbox/Checkbox";
 import { Radio } from "@/components/Radio/Radio";
 import { Switch } from "@/components/Switch/Switch";
 import { FormField } from "@/components/FormField/FormField";
+import { IconButton } from "@/components/IconButton/IconButton";
+import { Alert } from "@/components/Alert/Alert";
+import { Badge } from "@/components/Badge/Badge";
+import { Progress } from "@/components/Progress/Progress";
+import { Skeleton } from "@/components/Skeleton/Skeleton";
 
 // Example sections - easy to add more as you build components
 type Section =
@@ -45,6 +50,11 @@ type Section =
   | "radio"
   | "switch"
   | "formfield"
+  | "iconbutton"
+  | "alert"
+  | "badge"
+  | "progress"
+  | "skeleton"
   | "spacing"
   | "layout"
   | "colors"
@@ -87,6 +97,11 @@ function App() {
     { id: "radio", label: "Radio" },
     { id: "switch", label: "Switch" },
     { id: "formfield", label: "FormField" },
+    { id: "iconbutton", label: "IconButton" },
+    { id: "alert", label: "Alert" },
+    { id: "badge", label: "Badge" },
+    { id: "progress", label: "Progress" },
+    { id: "skeleton", label: "Skeleton" },
     { id: "spacing", label: "Spacing" },
     { id: "layout", label: "Layout" },
     { id: "colors", label: "Colors" },
@@ -1351,6 +1366,266 @@ function App() {
                     <option value="ca">Canada</option>
                   </Select>
                 </FormField>
+              </Box>
+            </Box>
+          </Box>
+        )}
+
+        {/* IconButton Component */}
+        {shouldShowSection("iconbutton") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              IconButton Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Sizes
+              </Text>
+              <HStack gap={3} mb={4}>
+                <IconButton icon={<span>+</span>} aria-label="Add" size="sm" />
+                <IconButton icon={<span>+</span>} aria-label="Add" size="md" />
+                <IconButton icon={<span>+</span>} aria-label="Add" size="lg" />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Variants
+              </Text>
+              <HStack gap={3} mb={4}>
+                <IconButton icon={<span>+</span>} aria-label="Add" variant="solid" />
+                <IconButton icon={<span>+</span>} aria-label="Add" variant="outline" />
+                <IconButton icon={<span>+</span>} aria-label="Add" variant="ghost" />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Color Schemes
+              </Text>
+              <HStack gap={3} mb={4}>
+                <IconButton icon={<span>+</span>} aria-label="Add" colorScheme="primary" />
+                <IconButton icon={<span>+</span>} aria-label="Add" colorScheme="accent" />
+                <IconButton icon={<span>+</span>} aria-label="Add" colorScheme="success" />
+                <IconButton icon={<span>+</span>} aria-label="Add" colorScheme="warning" />
+                <IconButton icon={<span>+</span>} aria-label="Add" colorScheme="error" />
+                <IconButton icon={<span>+</span>} aria-label="Add" colorScheme="info" />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                States
+              </Text>
+              <HStack gap={3}>
+                <IconButton icon={<span>+</span>} aria-label="Add" disabled />
+                <IconButton icon={<span>+</span>} aria-label="Add" loading />
+              </HStack>
+            </Box>
+          </Box>
+        )}
+
+        {/* Alert Component */}
+        {shouldShowSection("alert") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Alert Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Status Variants
+              </Text>
+              <VStack gap={3} mb={4}>
+                <Alert status="success" title="Success">
+                  Your changes have been saved successfully.
+                </Alert>
+                <Alert status="warning" title="Warning">
+                  Please review your input before proceeding.
+                </Alert>
+                <Alert status="error" title="Error">
+                  Something went wrong. Please try again.
+                </Alert>
+                <Alert status="info" title="Info">
+                  New features are available. Check them out!
+                </Alert>
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                With Close Button
+              </Text>
+              <Alert
+                status="info"
+                title="Dismissable"
+                onClose={() => alert("Alert dismissed!")}
+              >
+                Click the X to dismiss this alert.
+              </Alert>
+            </Box>
+          </Box>
+        )}
+
+        {/* Badge Component */}
+        {shouldShowSection("badge") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Badge Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Color Schemes (Subtle)
+              </Text>
+              <HStack gap={2} mb={4}>
+                <Badge colorScheme="gray">Gray</Badge>
+                <Badge colorScheme="primary">Primary</Badge>
+                <Badge colorScheme="accent">Accent</Badge>
+                <Badge colorScheme="success">Success</Badge>
+                <Badge colorScheme="warning">Warning</Badge>
+                <Badge colorScheme="error">Error</Badge>
+                <Badge colorScheme="info">Info</Badge>
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Color Schemes (Solid)
+              </Text>
+              <HStack gap={2} mb={4}>
+                <Badge colorScheme="gray" variant="solid">Gray</Badge>
+                <Badge colorScheme="primary" variant="solid">Primary</Badge>
+                <Badge colorScheme="accent" variant="solid">Accent</Badge>
+                <Badge colorScheme="success" variant="solid">Success</Badge>
+                <Badge colorScheme="warning" variant="solid">Warning</Badge>
+                <Badge colorScheme="error" variant="solid">Error</Badge>
+                <Badge colorScheme="info" variant="solid">Info</Badge>
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Sizes
+              </Text>
+              <HStack gap={2}>
+                <Badge size="sm">Small</Badge>
+                <Badge size="md">Medium</Badge>
+              </HStack>
+            </Box>
+          </Box>
+        )}
+
+        {/* Progress Component */}
+        {shouldShowSection("progress") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Progress Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Values
+              </Text>
+              <VStack gap={3} mb={4}>
+                <Box>
+                  <Text size="sm" color="foreground-muted" mb={1}>25%</Text>
+                  <Progress value={25} />
+                </Box>
+                <Box>
+                  <Text size="sm" color="foreground-muted" mb={1}>50%</Text>
+                  <Progress value={50} />
+                </Box>
+                <Box>
+                  <Text size="sm" color="foreground-muted" mb={1}>75%</Text>
+                  <Progress value={75} />
+                </Box>
+                <Box>
+                  <Text size="sm" color="foreground-muted" mb={1}>100%</Text>
+                  <Progress value={100} />
+                </Box>
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                Sizes
+              </Text>
+              <VStack gap={3} mb={4}>
+                <Progress value={60} size="sm" />
+                <Progress value={60} size="md" />
+                <Progress value={60} size="lg" />
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                Color Schemes
+              </Text>
+              <VStack gap={3} mb={4}>
+                <Progress value={70} colorScheme="primary" />
+                <Progress value={70} colorScheme="accent" />
+                <Progress value={70} colorScheme="success" />
+                <Progress value={70} colorScheme="warning" />
+                <Progress value={70} colorScheme="error" />
+                <Progress value={70} colorScheme="info" />
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                Indeterminate
+              </Text>
+              <Progress isIndeterminate colorScheme="primary" />
+            </Box>
+          </Box>
+        )}
+
+        {/* Skeleton Component */}
+        {shouldShowSection("skeleton") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Skeleton Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Text Placeholder
+              </Text>
+              <VStack gap={2} mb={4} align="start">
+                <Skeleton w="200px" h="16px" />
+                <Skeleton w="160px" h="16px" />
+                <Skeleton w="180px" h="16px" />
+              </VStack>
+
+              <Text mb={3} weight="semibold">
+                Avatar Placeholder
+              </Text>
+              <HStack gap={3} mb={4}>
+                <Skeleton w="40px" h="40px" rounded="full" />
+                <Skeleton w="48px" h="48px" rounded="full" />
+                <Skeleton w="56px" h="56px" rounded="full" />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Card Placeholder
+              </Text>
+              <Box p={4} border="thin" borderColor="border" rounded="md" maxW="300px">
+                <Skeleton w="100%" h="150px" rounded="md" />
+                <Box mt={3}>
+                  <Skeleton w="80%" h="20px" />
+                </Box>
+                <Box mt={2}>
+                  <Skeleton w="60%" h="14px" />
+                </Box>
               </Box>
             </Box>
           </Box>

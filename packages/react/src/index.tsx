@@ -88,3 +88,4 @@ export {
   type ProgressSize,
   type ProgressProps,
 } from "./components/Progress";
+export { Skeleton, type SkeletonProps } from "./components/Skeleton";
