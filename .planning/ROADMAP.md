@@ -125,7 +125,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Layout Primitives | 4/4 | Complete | 2026-01-12 |
-| 2. Typography & Text Inputs | 2/3 | In progress | - |
+| 2. Typography & Text Inputs | 3/3 | Complete | 2026-01-12 |
 | 3. Selection Controls | 0/TBD | Not started | - |
 | 4. Buttons & Feedback | 0/TBD | Not started | - |
 | 5. Data Display | 0/TBD | Not started | - |

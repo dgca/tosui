@@ -43,17 +43,17 @@ Fewer, better choices. Every component follows the same patterns, uses the same 
 - [x] Spacer — flexible space in flex layouts
 
 **Typography:**
-- [ ] Code — inline code styling
+- [x] Code — inline code styling
 
 **Form Components:**
-- [ ] Input — text input field
-- [ ] Textarea — multiline text input
+- [x] Input — text input field
+- [x] Textarea — multiline text input
+- [x] Label — form label
 - [ ] Select — dropdown select
 - [ ] Checkbox — checkbox with label
 - [ ] Radio — radio button with label
 - [ ] Switch — toggle switch
 - [ ] FormField — wrapper with label, helper text, error
-- [ ] Label — form label
 
 **Button Variants:**
 - [ ] IconButton — icon-only button
