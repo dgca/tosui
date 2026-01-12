@@ -65,3 +65,4 @@ export {
   type CheckboxProps,
 } from "./components/Checkbox";
 export { Radio, type RadioSize, type RadioProps } from "./components/Radio";
+export { Switch, type SwitchSize, type SwitchProps } from "./components/Switch";
