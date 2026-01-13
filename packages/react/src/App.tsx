@@ -36,6 +36,65 @@ import { Tabs, TabList, Tab, TabPanel } from "@/components/Tabs/Tabs";
 import { Breadcrumb, BreadcrumbItem } from "@/components/Breadcrumb/Breadcrumb";
 import { Menu, MenuButton, MenuList, MenuItem } from "@/components/Menu/Menu";
 import { Pagination } from "@/components/Pagination/Pagination";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "@/components/Modal/Modal";
+import { Tooltip } from "@/components/Tooltip/Tooltip";
+import { Popover, PopoverHeader, PopoverBody } from "@/components/Popover/Popover";
+import { Accordion, AccordionItem } from "@/components/Accordion/Accordion";
+
+// Modal example with state
+function ModalExample() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [size, setSize] = useState<"sm" | "md" | "lg" | "xl" | "full">("md");
+
+  const openWithSize = (newSize: typeof size) => {
+    setSize(newSize);
+    setIsOpen(true);
+  };
+
+  return (
+    <Box as="section" mb={8}>
+      <Heading level={2} mb={4}>
+        Modal Component
+      </Heading>
+      <Box
+        p={4}
+        bg="surface"
+        border="thin"
+        borderColor="border"
+        rounded="md"
+      >
+        <Text mb={3} weight="semibold">
+          Different Sizes
+        </Text>
+        <HStack gap={2} mb={4}>
+          <Button size="sm" onClick={() => openWithSize("sm")}>Small</Button>
+          <Button size="sm" onClick={() => openWithSize("md")}>Medium</Button>
+          <Button size="sm" onClick={() => openWithSize("lg")}>Large</Button>
+          <Button size="sm" onClick={() => openWithSize("xl")}>Extra Large</Button>
+          <Button size="sm" onClick={() => openWithSize("full")}>Full</Button>
+        </HStack>
+
+        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} size={size}>
+          <ModalHeader>Modal Title ({size})</ModalHeader>
+          <ModalBody>
+            <Text mb={3}>
+              This is the modal body. It can contain any content you need.
+            </Text>
+            <Text color="foreground-muted">
+              Press Escape or click the backdrop to close.
+            </Text>
+          </ModalBody>
+          <ModalFooter>
+            <HStack gap={2}>
+              <Button variant="ghost" onClick={() => setIsOpen(false)}>Cancel</Button>
+              <Button onClick={() => setIsOpen(false)}>Confirm</Button>
+            </HStack>
+          </ModalFooter>
+        </Modal>
+      </Box>
+    </Box>
+  );
+}
 
 // Pagination example with state
 function PaginationExample() {
@@ -116,6 +175,10 @@ type Section =
   | "breadcrumb"
   | "menu"
   | "pagination"
+  | "modal"
+  | "tooltip"
+  | "popover"
+  | "accordion"
   | "spacing"
   | "layout"
   | "colors"
@@ -172,6 +235,10 @@ function App() {
     { id: "breadcrumb", label: "Breadcrumb" },
     { id: "menu", label: "Menu" },
     { id: "pagination", label: "Pagination" },
+    { id: "modal", label: "Modal" },
+    { id: "tooltip", label: "Tooltip" },
+    { id: "popover", label: "Popover" },
+    { id: "accordion", label: "Accordion" },
     { id: "spacing", label: "Spacing" },
     { id: "layout", label: "Layout" },
     { id: "colors", label: "Colors" },
@@ -2177,6 +2244,192 @@ function App() {
         {/* Pagination Component */}
         {shouldShowSection("pagination") && (
           <PaginationExample />
+        )}
+
+        {/* Modal Component */}
+        {shouldShowSection("modal") && (
+          <ModalExample />
+        )}
+
+        {/* Tooltip Component */}
+        {shouldShowSection("tooltip") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Tooltip Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Different Placements
+              </Text>
+              <HStack gap={4} mb={4}>
+                <Tooltip label="Tooltip on top" placement="top">
+                  <Button variant="outline" size="sm">Top</Button>
+                </Tooltip>
+                <Tooltip label="Tooltip on bottom" placement="bottom">
+                  <Button variant="outline" size="sm">Bottom</Button>
+                </Tooltip>
+                <Tooltip label="Tooltip on left" placement="left">
+                  <Button variant="outline" size="sm">Left</Button>
+                </Tooltip>
+                <Tooltip label="Tooltip on right" placement="right">
+                  <Button variant="outline" size="sm">Right</Button>
+                </Tooltip>
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                With Delay
+              </Text>
+              <HStack gap={4} mb={4}>
+                <Tooltip label="Instant tooltip" openDelay={0}>
+                  <Button variant="outline" size="sm">No delay</Button>
+                </Tooltip>
+                <Tooltip label="Delayed tooltip" openDelay={500}>
+                  <Button variant="outline" size="sm">500ms delay</Button>
+                </Tooltip>
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Disabled
+              </Text>
+              <Tooltip label="This won't show" isDisabled>
+                <Button variant="ghost" size="sm">Tooltip disabled</Button>
+              </Tooltip>
+            </Box>
+          </Box>
+        )}
+
+        {/* Popover Component */}
+        {shouldShowSection("popover") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Popover Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Different Placements
+              </Text>
+              <HStack gap={4} mb={4}>
+                <Popover
+                  placement="top"
+                  content={
+                    <>
+                      <PopoverHeader>Popover Top</PopoverHeader>
+                      <PopoverBody>
+                        <Text size="sm">Content appears above the trigger.</Text>
+                      </PopoverBody>
+                    </>
+                  }
+                >
+                  <Button variant="outline" size="sm">Top</Button>
+                </Popover>
+                <Popover
+                  placement="bottom"
+                  content={
+                    <>
+                      <PopoverHeader>Popover Bottom</PopoverHeader>
+                      <PopoverBody>
+                        <Text size="sm">Content appears below the trigger.</Text>
+                      </PopoverBody>
+                    </>
+                  }
+                >
+                  <Button variant="outline" size="sm">Bottom</Button>
+                </Popover>
+                <Popover
+                  placement="left"
+                  content={
+                    <>
+                      <PopoverHeader>Left</PopoverHeader>
+                      <PopoverBody>
+                        <Text size="sm">Content on left.</Text>
+                      </PopoverBody>
+                    </>
+                  }
+                >
+                  <Button variant="outline" size="sm">Left</Button>
+                </Popover>
+                <Popover
+                  placement="right"
+                  content={
+                    <>
+                      <PopoverHeader>Right</PopoverHeader>
+                      <PopoverBody>
+                        <Text size="sm">Content on right.</Text>
+                      </PopoverBody>
+                    </>
+                  }
+                >
+                  <Button variant="outline" size="sm">Right</Button>
+                </Popover>
+              </HStack>
+
+              <Text color="foreground-muted" size="sm">
+                Click trigger to open, click outside or press Escape to close.
+              </Text>
+            </Box>
+          </Box>
+        )}
+
+        {/* Accordion Component */}
+        {shouldShowSection("accordion") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Accordion Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Single Expand (default)
+              </Text>
+              <Box mb={4} maxW="500px">
+                <Accordion defaultIndex={0}>
+                  <AccordionItem index={0} title="Section 1">
+                    <Text>Content for section 1. Only one section can be open at a time.</Text>
+                  </AccordionItem>
+                  <AccordionItem index={1} title="Section 2">
+                    <Text>Content for section 2. Clicking opens this and closes others.</Text>
+                  </AccordionItem>
+                  <AccordionItem index={2} title="Section 3">
+                    <Text>Content for section 3.</Text>
+                  </AccordionItem>
+                </Accordion>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Multiple Expand
+              </Text>
+              <Box mb={4} maxW="500px">
+                <Accordion allowMultiple defaultIndex={[0, 1]}>
+                  <AccordionItem index={0} title="FAQ Item 1">
+                    <Text>Multiple items can be expanded simultaneously.</Text>
+                  </AccordionItem>
+                  <AccordionItem index={1} title="FAQ Item 2">
+                    <Text>This is also expanded by default.</Text>
+                  </AccordionItem>
+                  <AccordionItem index={2} title="FAQ Item 3 (Disabled)" isDisabled>
+                    <Text>This item is disabled.</Text>
+                  </AccordionItem>
+                </Accordion>
+              </Box>
+            </Box>
+          </Box>
         )}
 
         {/* Spacing */}
