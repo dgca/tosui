@@ -169,3 +169,9 @@ export {
   type PopoverHeaderProps,
   type PopoverBodyProps,
 } from "./components/Popover";
+export {
+  Accordion,
+  AccordionItem,
+  type AccordionProps,
+  type AccordionItemProps,
+} from "./components/Accordion";

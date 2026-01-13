@@ -1,0 +1,36 @@
+.accordion {
+  /* Container */
+}
+
+.item {
+  border-bottom: 1px solid var(--t-color-border);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.button {
+  transition: background-color 0.15s ease;
+  text-align: left;
+}
+
+.button:hover:not(:disabled) {
+  background-color: var(--t-color-surface-hover, rgba(0, 0, 0, 0.02));
+}
+
+.icon {
+  transition: transform 0.2s ease;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.content {
+  /* Content panel */
+}
+
+.disabled {
+  opacity: 0.5;
+}
