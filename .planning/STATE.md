@@ -10,7 +10,7 @@ See: .planning/PROJECT.md (updated 2026-01-11)
 ## Current Position
 
 Phase: 7 of 7 (Overlays)
-Plan: 0 of TBD in current phase
+Plan: 0 of 4 in current phase
 Status: Not started
 Last activity: 2026-01-12 — Completed Phase 6 (Navigation)
 
