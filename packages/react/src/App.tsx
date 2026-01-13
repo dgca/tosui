@@ -31,6 +31,54 @@ import { Avatar } from "@/components/Avatar/Avatar";
 import { Card, CardHeader, CardBody, CardFooter } from "@/components/Card/Card";
 import { Image } from "@/components/Image/Image";
 import { List, ListItem, ListIcon } from "@/components/List/List";
+import { Link } from "@/components/Link/Link";
+import { Tabs, TabList, Tab, TabPanel } from "@/components/Tabs/Tabs";
+import { Breadcrumb, BreadcrumbItem } from "@/components/Breadcrumb/Breadcrumb";
+import { Menu, MenuButton, MenuList, MenuItem } from "@/components/Menu/Menu";
+import { Pagination } from "@/components/Pagination/Pagination";
+
+// Pagination example with state
+function PaginationExample() {
+  const [page, setPage] = useState(5);
+  return (
+    <Box as="section" mb={8}>
+      <Heading level={2} mb={4}>
+        Pagination Component
+      </Heading>
+      <Box
+        p={4}
+        bg="surface"
+        border="thin"
+        borderColor="border"
+        rounded="md"
+      >
+        <Text mb={3} weight="semibold">
+          Basic Pagination
+        </Text>
+        <Box mb={4}>
+          <Pagination
+            page={page}
+            totalPages={20}
+            onPageChange={setPage}
+          />
+          <Text size="sm" color="foreground-muted" mt={2}>
+            Current page: {page}
+          </Text>
+        </Box>
+
+        <Text mb={3} weight="semibold">
+          Without Edge Buttons
+        </Text>
+        <Pagination
+          page={page}
+          totalPages={20}
+          onPageChange={setPage}
+          showEdges={false}
+        />
+      </Box>
+    </Box>
+  );
+}
 
 // Example sections - easy to add more as you build components
 type Section =
@@ -63,6 +111,11 @@ type Section =
   | "card"
   | "image"
   | "list"
+  | "link"
+  | "tabs"
+  | "breadcrumb"
+  | "menu"
+  | "pagination"
   | "spacing"
   | "layout"
   | "colors"
@@ -114,6 +167,11 @@ function App() {
     { id: "card", label: "Card" },
     { id: "image", label: "Image" },
     { id: "list", label: "List" },
+    { id: "link", label: "Link" },
+    { id: "tabs", label: "Tabs" },
+    { id: "breadcrumb", label: "Breadcrumb" },
+    { id: "menu", label: "Menu" },
+    { id: "pagination", label: "Pagination" },
     { id: "spacing", label: "Spacing" },
     { id: "layout", label: "Layout" },
     { id: "colors", label: "Colors" },
@@ -1913,6 +1971,212 @@ function App() {
               </List>
             </Box>
           </Box>
+        )}
+
+        {/* Link Component */}
+        {shouldShowSection("link") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Link Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Default Variant
+              </Text>
+              <Box mb={4}>
+                <Text>
+                  Visit our <Link href="#">documentation</Link> for more details.
+                </Text>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Underline Variant
+              </Text>
+              <Box mb={4}>
+                <Text>
+                  Read the <Link href="#" variant="underline">terms of service</Link> carefully.
+                </Text>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Subtle Variant
+              </Text>
+              <Box mb={4}>
+                <Text>
+                  See the <Link href="#" variant="subtle">changelog</Link> for updates.
+                </Text>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                External Link
+              </Text>
+              <Text>
+                Check out <Link href="https://example.com" external>example.com</Link> (opens in new tab).
+              </Text>
+            </Box>
+          </Box>
+        )}
+
+        {/* Tabs Component */}
+        {shouldShowSection("tabs") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Tabs Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Line Variant (default)
+              </Text>
+              <Box mb={4}>
+                <Tabs>
+                  <TabList>
+                    <Tab index={0}>Account</Tab>
+                    <Tab index={1}>Security</Tab>
+                    <Tab index={2}>Notifications</Tab>
+                  </TabList>
+                  <TabPanel index={0}>
+                    <Text>Manage your account settings and preferences.</Text>
+                  </TabPanel>
+                  <TabPanel index={1}>
+                    <Text>Update your password and security options.</Text>
+                  </TabPanel>
+                  <TabPanel index={2}>
+                    <Text>Configure your notification preferences.</Text>
+                  </TabPanel>
+                </Tabs>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Enclosed Variant
+              </Text>
+              <Box mb={4}>
+                <Tabs variant="enclosed">
+                  <TabList>
+                    <Tab index={0}>Overview</Tab>
+                    <Tab index={1}>Analytics</Tab>
+                    <Tab index={2} disabled>Settings</Tab>
+                  </TabList>
+                  <TabPanel index={0}>
+                    <Text>Project overview and summary.</Text>
+                  </TabPanel>
+                  <TabPanel index={1}>
+                    <Text>View detailed analytics data.</Text>
+                  </TabPanel>
+                  <TabPanel index={2}>
+                    <Text>Settings panel content.</Text>
+                  </TabPanel>
+                </Tabs>
+              </Box>
+            </Box>
+          </Box>
+        )}
+
+        {/* Breadcrumb Component */}
+        {shouldShowSection("breadcrumb") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Breadcrumb Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Default Separator
+              </Text>
+              <Box mb={4}>
+                <Breadcrumb>
+                  <BreadcrumbItem href="#">Home</BreadcrumbItem>
+                  <BreadcrumbItem href="#">Products</BreadcrumbItem>
+                  <BreadcrumbItem href="#">Electronics</BreadcrumbItem>
+                  <BreadcrumbItem>Smartphones</BreadcrumbItem>
+                </Breadcrumb>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Custom Separator
+              </Text>
+              <Box mb={4}>
+                <Breadcrumb separator="→">
+                  <BreadcrumbItem href="#">Dashboard</BreadcrumbItem>
+                  <BreadcrumbItem href="#">Settings</BreadcrumbItem>
+                  <BreadcrumbItem>Profile</BreadcrumbItem>
+                </Breadcrumb>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Icon Separator
+              </Text>
+              <Breadcrumb separator={<span>›</span>}>
+                <BreadcrumbItem href="#">Docs</BreadcrumbItem>
+                <BreadcrumbItem href="#">Components</BreadcrumbItem>
+                <BreadcrumbItem>Breadcrumb</BreadcrumbItem>
+              </Breadcrumb>
+            </Box>
+          </Box>
+        )}
+
+        {/* Menu Component */}
+        {shouldShowSection("menu") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Menu Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Basic Menu
+              </Text>
+              <HStack gap={4} mb={4}>
+                <Menu>
+                  <MenuButton>Actions ▾</MenuButton>
+                  <MenuList>
+                    <MenuItem onClick={() => alert("Edit clicked")}>Edit</MenuItem>
+                    <MenuItem onClick={() => alert("Duplicate clicked")}>Duplicate</MenuItem>
+                    <MenuItem onClick={() => alert("Delete clicked")}>Delete</MenuItem>
+                  </MenuList>
+                </Menu>
+
+                <Menu>
+                  <MenuButton variant="outline">Options ▾</MenuButton>
+                  <MenuList>
+                    <MenuItem>View Details</MenuItem>
+                    <MenuItem>Share</MenuItem>
+                    <MenuItem disabled>Archive (disabled)</MenuItem>
+                  </MenuList>
+                </Menu>
+              </HStack>
+
+              <Text color="foreground-muted" size="sm">
+                Click outside or press Escape to close the menu.
+              </Text>
+            </Box>
+          </Box>
+        )}
+
+        {/* Pagination Component */}
+        {shouldShowSection("pagination") && (
+          <PaginationExample />
         )}
 
         {/* Spacing */}
