@@ -160,3 +160,12 @@ export {
   type TooltipPlacement,
   type TooltipProps,
 } from "./components/Tooltip";
+export {
+  Popover,
+  PopoverHeader,
+  PopoverBody,
+  type PopoverPlacement,
+  type PopoverProps,
+  type PopoverHeaderProps,
+  type PopoverBodyProps,
+} from "./components/Popover";
