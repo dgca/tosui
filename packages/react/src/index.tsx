@@ -110,3 +110,9 @@ export {
   type ListItemProps,
   type ListIconProps,
 } from "./components/List";
+export {
+  Link,
+  type LinkVariant,
+  type LinkProps,
+  type LinkOwnProps,
+} from "./components/Link";

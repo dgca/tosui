@@ -1,0 +1,28 @@
+.link {
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+.default {
+  text-decoration: none;
+}
+
+.default:hover {
+  text-decoration: underline;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.subtle {
+  text-decoration: none;
+  color: inherit;
+}
+
+.subtle:hover {
+  color: var(--t-color-primary-default);
+}
