@@ -89,5 +89,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-12
-Stopped at: Completed Phase 7 (Overlays) - Milestone 1 Complete!
+Stopped at: v1.0 milestone archived and tagged
 Resume file: None

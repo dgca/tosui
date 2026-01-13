@@ -14,6 +14,7 @@ Fewer, better choices. Every component follows the same patterns, uses the same 
 
 <!-- Shipped and confirmed valuable. -->
 
+**Foundation (existing):**
 - ✓ Box primitive with layout, spacing, sizing, colors, borders, typography props — existing
 - ✓ Text typography component with responsive sizing — existing
 - ✓ Heading semantic headings (h1-h6) via Text — existing
@@ -28,62 +29,27 @@ Fewer, better choices. Every component follows the same patterns, uses the same 
 - ✓ Docusaurus documentation site — existing
 - ✓ npm package distribution (@tosui/react) — existing
 
+**v1.0 Component Library MVP:**
+- ✓ Stack, HStack, VStack — flex containers with gap — v1.0
+- ✓ Flex, Grid — explicit layout containers — v1.0
+- ✓ Container — max-width centered wrapper — v1.0
+- ✓ Divider, Spacer — layout utilities — v1.0
+- ✓ Code — inline code styling — v1.0
+- ✓ Input, Label, Textarea — text inputs — v1.0
+- ✓ Select — dropdown select — v1.0
+- ✓ Checkbox, Radio, Switch — selection controls — v1.0
+- ✓ FormField — form composition wrapper — v1.0
+- ✓ IconButton — icon-only button — v1.0
+- ✓ Alert, Badge, Progress, Skeleton — feedback components — v1.0
+- ✓ Avatar, Card, Image, List — data display — v1.0
+- ✓ Link, Tabs, Breadcrumb, Menu, Pagination — navigation — v1.0
+- ✓ Modal, Tooltip, Popover, Accordion — overlays — v1.0
+
 ### Active
 
 <!-- Current scope. Building toward these. -->
 
-**Layout Components:**
-- [x] Stack — vertical/horizontal flex container with gap
-- [x] HStack — horizontal stack shorthand
-- [x] VStack — vertical stack shorthand
-- [x] Flex — explicit flexbox container
-- [x] Grid — CSS Grid container
-- [x] Container — max-width centered wrapper
-- [x] Divider — horizontal/vertical separator
-- [x] Spacer — flexible space in flex layouts
-
-**Typography:**
-- [x] Code — inline code styling
-
-**Form Components:**
-- [x] Input — text input field
-- [x] Textarea — multiline text input
-- [x] Label — form label
-- [ ] Select — dropdown select
-- [ ] Checkbox — checkbox with label
-- [ ] Radio — radio button with label
-- [ ] Switch — toggle switch
-- [ ] FormField — wrapper with label, helper text, error
-
-**Button Variants:**
-- [ ] IconButton — icon-only button
-
-**Feedback:**
-- [ ] Alert — status/notification banner
-- [ ] Badge — small status indicator
-- [ ] Progress — progress bar
-- [ ] Skeleton — loading placeholder
-
-**Data Display:**
-- [ ] Avatar — user/entity avatar with fallback
-- [ ] Card — content container
-- [ ] Image — enhanced img with loading/fallback
-- [ ] List/ListItem — semantic list components
-
-**Navigation:**
-- [ ] Link — styled anchor with router support
-- [ ] Tabs — tabbed interface
-- [ ] Breadcrumb — navigation trail
-- [ ] Menu — dropdown menu
-- [ ] Pagination — page navigation
-
-**Overlay:**
-- [ ] Modal — dialog/modal with portal
-- [ ] Tooltip — hover information
-- [ ] Popover — click-triggered overlay
-
-**Disclosure:**
-- [ ] Accordion — collapsible sections
+(None — v1.0 complete, planning next milestone)
 
 ### Out of Scope
 
@@ -125,9 +91,19 @@ New components should follow these established patterns.
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
 | CSS Modules over StyleX | Simpler mental model, no custom compiler | ✓ Good |
-| Styled overlays over headless | Consistent theming, less user setup | — Pending |
-| Extended navigation set | Link + Tabs + Breadcrumb + Menu + Pagination covers common needs | — Pending |
-| Skip complex data components | Tables/calendars better served by dedicated libraries | — Pending |
+| Styled overlays over headless | Consistent theming, less user setup | ✓ Good |
+| Extended navigation set | Link + Tabs + Breadcrumb + Menu + Pagination covers common needs | ✓ Good |
+| Skip complex data components | Tables/calendars better served by dedicated libraries | ✓ Good |
+| Stack defaults to column | Most common use case for vertical layouts | ✓ Good |
+| Modal uses createPortal | Clean DOM hierarchy, z-index management | ✓ Good |
+| Context API for compound components | Tabs, Menu, Accordion use context for state | ✓ Good |
+
+## Current State
+
+**v1.0 shipped 2026-01-12** with 40 components across 7 phases.
+
+Tech stack: React, TypeScript, CSS Modules, Vite
+LOC: ~10,131 lines of TypeScript/CSS
 
 ---
-*Last updated: 2026-01-11 after initialization*
+*Last updated: 2026-01-12 after v1.0 milestone*

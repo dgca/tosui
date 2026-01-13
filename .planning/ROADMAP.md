@@ -4,15 +4,18 @@
 
 Build out Tosui from foundational primitives to a full-featured, minimal UI component library. Starting with layout components that extend Box patterns, then progressing through forms, feedback, data display, navigation, and finally complex overlays. Each phase delivers a coherent set of components that share patterns and can be verified independently.
 
-## Domain Expertise
+## Milestones
 
-None
+- [v1.0 Component Library MVP](milestones/v1.0-ROADMAP.md) (Phases 1-7) — SHIPPED 2026-01-12
 
 ## Phases
 
 **Phase Numbering:**
 - Integer phases (1, 2, 3): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
+
+<details>
+<summary>v1.0 Component Library MVP (Phases 1-7) — SHIPPED 2026-01-12</summary>
 
 - [x] **Phase 1: Layout Primitives** — Stack, Flex, Grid, Container, Divider, Spacer (4/4 plans)
 - [x] **Phase 2: Typography & Text Inputs** — Code, Input, Textarea, Label (3/3 plans)
@@ -21,6 +24,8 @@ None
 - [x] **Phase 5: Data Display** — Avatar, Card, Image, List/ListItem (4/4 plans)
 - [x] **Phase 6: Navigation** — Link, Tabs, Breadcrumb, Menu, Pagination (5/5 plans)
 - [x] **Phase 7: Overlays** — Modal, Tooltip, Popover, Accordion (4/4 plans)
+
+</details>
 
 ## Phase Details
 
