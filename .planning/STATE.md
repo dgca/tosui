@@ -10,7 +10,7 @@ See: .planning/PROJECT.md (updated 2026-01-11)
 ## Current Position
 
 Phase: 6 of 7 (Navigation)
-Plan: 0 of TBD in current phase
+Plan: 0 of 5 in current phase
 Status: Not started
 Last activity: 2026-01-12 — Completed Phase 5 (Data Display)
 
