@@ -90,3 +90,13 @@ export {
 } from "./components/Progress";
 export { Skeleton, type SkeletonProps } from "./components/Skeleton";
 export { Avatar, type AvatarSize, type AvatarProps } from "./components/Avatar";
+export {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  type CardProps,
+  type CardHeaderProps,
+  type CardBodyProps,
+  type CardFooterProps,
+} from "./components/Card";
