@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-11)
 
 **Core value:** Fewer, better choices. Every component follows the same patterns, uses the same tokens, and composes predictably.
-**Current focus:** Phase 4 — Buttons & Feedback
+**Current focus:** Phase 5 — Data Display
 
 ## Current Position
 
-Phase: 4 of 7 (Buttons & Feedback)
+Phase: 5 of 7 (Data Display)
 Plan: 0 of TBD in current phase
 Status: Not started
-Last activity: 2026-01-12 — Completed Phase 3 (Selection Controls)
+Last activity: 2026-01-12 — Completed Phase 4 (Buttons & Feedback)
 
-Progress: ███████░░░ 70%
+Progress: ████████░░ 80%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 12
+- Total plans completed: 17
 - Average duration: 2 min
-- Total execution time: 0.27 hours
+- Total execution time: 0.45 hours
 
 **By Phase:**
 
@@ -30,9 +30,10 @@ Progress: ███████░░░ 70%
 | 1. Layout Primitives | 4 | 7 min | 2 min |
 | 2. Typography & Text Inputs | 3 | 9 min | 3 min |
 | 3. Selection Controls | 5 | 11 min | 2 min |
+| 4. Buttons & Feedback | 5 | 10 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-01 (2 min), 03-02 (3 min), 03-03 (2 min), 03-04 (2 min), 03-05 (2 min)
+- Last 5 plans: 04-01 (2 min), 04-02 (2 min), 04-03 (2 min), 04-04 (2 min), 04-05 (2 min)
 - Trend: Consistent
 
 ## Accumulated Context
@@ -53,6 +54,9 @@ Recent decisions affecting current work:
 - Divider uses DividerColor type with inline backgroundColor (border-muted not in bg type) [01-04]
 - Custom select arrow via CSS background-image SVG [03-01]
 - cloneElement with any type for FormField child prop injection [03-04]
+- IconButton uses forwardRef for ref access [04-01]
+- Alert uses default SVG icons per status [04-02]
+- Badge "gray" colorScheme uses foreground/surface tokens [04-03]
 
 ### Deferred Issues
 
@@ -69,5 +73,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-12
-Stopped at: Completed Phase 3 (Selection Controls)
+Stopped at: Completed Phase 4 (Buttons & Feedback)
 Resume file: None
