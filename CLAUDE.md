@@ -34,7 +34,7 @@ Tosui is a themable, orderly, simple UI component library built on **constraint-
 This is a pnpm workspace with two packages:
 
 - `packages/react` - The component library (`@tosui/react`)
-- `packages/react-docs` - Docusaurus documentation site
+- `packages/docs` - Docusaurus documentation site
 
 ## Common Commands
 
