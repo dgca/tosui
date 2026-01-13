@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-11)
 
 **Core value:** Fewer, better choices. Every component follows the same patterns, uses the same tokens, and composes predictably.
-**Current focus:** Phase 7 — Overlays
+**Current focus:** Milestone 1 Complete
 
 ## Current Position
 
 Phase: 7 of 7 (Overlays)
-Plan: 0 of 4 in current phase
-Status: Not started
-Last activity: 2026-01-12 — Completed Phase 6 (Navigation)
+Plan: 4 of 4 in current phase
+Status: Complete
+Last activity: 2026-01-12 — Completed Phase 7 (Overlays)
 
-Progress: █████████▓ 95%
+Progress: ██████████ 100%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 26
+- Total plans completed: 30
 - Average duration: 2 min
-- Total execution time: 0.7 hours
+- Total execution time: 0.8 hours
 
 **By Phase:**
 
@@ -33,9 +33,10 @@ Progress: █████████▓ 95%
 | 4. Buttons & Feedback | 5 | 10 min | 2 min |
 | 5. Data Display | 4 | 8 min | 2 min |
 | 6. Navigation | 5 | 10 min | 2 min |
+| 7. Overlays | 4 | 8 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 06-01 (2 min), 06-02 (2 min), 06-03 (2 min), 06-04 (2 min), 06-05 (2 min)
+- Last 5 plans: 07-01 (2 min), 07-02 (2 min), 07-03 (2 min), 07-04 (2 min)
 - Trend: Consistent
 
 ## Accumulated Context
@@ -68,6 +69,10 @@ Recent decisions affecting current work:
 - Breadcrumb auto-marks last item as current page [06-03]
 - Menu uses semantic zIndex "dropdown" value [06-04]
 - Pagination calculates page range with ellipsis [06-05]
+- Modal uses createPortal to document.body [07-01]
+- Tooltip wraps children in Box span (avoids cloneElement ref issues) [07-02]
+- Popover click-triggered, closes on blur/escape [07-03]
+- Accordion uses Context API for state management [07-04]
 
 ### Deferred Issues
 
@@ -84,5 +89,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-12
-Stopped at: Completed Phase 6 (Navigation)
+Stopped at: Completed Phase 7 (Overlays) - Milestone 1 Complete!
 Resume file: None
