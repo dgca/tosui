@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-11)
 
 **Core value:** Fewer, better choices. Every component follows the same patterns, uses the same tokens, and composes predictably.
-**Current focus:** Phase 6 — Navigation
+**Current focus:** Phase 7 — Overlays
 
 ## Current Position
 
-Phase: 6 of 7 (Navigation)
-Plan: 0 of 5 in current phase
+Phase: 7 of 7 (Overlays)
+Plan: 0 of TBD in current phase
 Status: Not started
-Last activity: 2026-01-12 — Completed Phase 5 (Data Display)
+Last activity: 2026-01-12 — Completed Phase 6 (Navigation)
 
-Progress: █████████░ 90%
+Progress: █████████▓ 95%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 21
+- Total plans completed: 26
 - Average duration: 2 min
-- Total execution time: 0.55 hours
+- Total execution time: 0.7 hours
 
 **By Phase:**
 
@@ -32,9 +32,10 @@ Progress: █████████░ 90%
 | 3. Selection Controls | 5 | 11 min | 2 min |
 | 4. Buttons & Feedback | 5 | 10 min | 2 min |
 | 5. Data Display | 4 | 8 min | 2 min |
+| 6. Navigation | 5 | 10 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-01 (2 min), 05-02 (2 min), 05-03 (2 min), 05-04 (2 min)
+- Last 5 plans: 06-01 (2 min), 06-02 (2 min), 06-03 (2 min), 06-04 (2 min), 06-05 (2 min)
 - Trend: Consistent
 
 ## Accumulated Context
@@ -62,6 +63,11 @@ Recent decisions affecting current work:
 - Card uses compound components (CardHeader/CardBody/CardFooter) [05-02]
 - Image shows Skeleton while loading, placeholder icon on error [05-03]
 - List uses flexbox column with gap for spacing [05-04]
+- Link is polymorphic for router support [06-01]
+- Tabs use Context API for state management [06-02]
+- Breadcrumb auto-marks last item as current page [06-03]
+- Menu uses semantic zIndex "dropdown" value [06-04]
+- Pagination calculates page range with ellipsis [06-05]
 
 ### Deferred Issues
 
@@ -78,5 +84,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-12
-Stopped at: Completed Phase 5 (Data Display)
+Stopped at: Completed Phase 6 (Navigation)
 Resume file: None
