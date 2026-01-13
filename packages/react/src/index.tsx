@@ -116,3 +116,14 @@ export {
   type LinkProps,
   type LinkOwnProps,
 } from "./components/Link";
+export {
+  Tabs,
+  TabList,
+  Tab,
+  TabPanel,
+  type TabsVariant,
+  type TabsProps,
+  type TabListProps,
+  type TabProps,
+  type TabPanelProps,
+} from "./components/Tabs";

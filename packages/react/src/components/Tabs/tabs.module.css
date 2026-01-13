@@ -1,0 +1,55 @@
+.tabs {
+  width: 100%;
+}
+
+.tabList {
+  margin-bottom: 0;
+}
+
+.tab {
+  position: relative;
+  transition: color 0.15s ease;
+  margin-bottom: -1px;
+}
+
+.tab:hover:not(:disabled) {
+  color: var(--t-color-primary-default);
+}
+
+/* Line variant - bottom border indicator */
+.line .tab::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background 0.15s ease;
+}
+
+.line .tab.active::after {
+  background: var(--t-color-primary-default);
+}
+
+/* Enclosed variant - tab-like borders */
+.enclosed .tabList {
+  border-bottom: none;
+}
+
+.enclosed .tab {
+  border: 1px solid transparent;
+  border-bottom: 1px solid var(--t-color-border);
+  border-radius: var(--t-radius-md) var(--t-radius-md) 0 0;
+  margin-bottom: -1px;
+}
+
+.enclosed .tab.active {
+  border-color: var(--t-color-border);
+  border-bottom-color: var(--t-color-background);
+  background: var(--t-color-background);
+}
+
+.tabPanel {
+  /* Panel styles */
+}
