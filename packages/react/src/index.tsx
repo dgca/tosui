@@ -143,3 +143,4 @@ export {
   type MenuListProps,
   type MenuItemProps,
 } from "./components/Menu";
+export { Pagination, type PaginationProps } from "./components/Pagination";
