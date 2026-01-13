@@ -127,3 +127,9 @@ export {
   type TabProps,
   type TabPanelProps,
 } from "./components/Tabs";
+export {
+  Breadcrumb,
+  BreadcrumbItem,
+  type BreadcrumbProps,
+  type BreadcrumbItemProps,
+} from "./components/Breadcrumb";
