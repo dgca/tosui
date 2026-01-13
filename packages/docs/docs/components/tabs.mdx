@@ -1,0 +1,178 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Tabs as TosuiTabs, TabList, Tab, TabPanel, Box } from "@tosui/react";
+
+# Tabs
+
+Tabs organize content into separate views. Use `Tabs`, `TabList`, `Tab`, and `TabPanel` together.
+
+## Import
+
+```tsx
+import { Tabs, TabList, Tab, TabPanel } from "@tosui/react";
+```
+
+## Basic Usage
+
+<TosuiTabs>
+  <TabList>
+    <Tab index={0}>Account</Tab>
+    <Tab index={1}>Password</Tab>
+    <Tab index={2}>Notifications</Tab>
+  </TabList>
+  <TabPanel index={0}>
+    <Box>Account settings content</Box>
+  </TabPanel>
+  <TabPanel index={1}>
+    <Box>Password settings content</Box>
+  </TabPanel>
+  <TabPanel index={2}>
+    <Box>Notification settings content</Box>
+  </TabPanel>
+</TosuiTabs>
+
+```tsx
+<Tabs>
+  <TabList>
+    <Tab index={0}>Account</Tab>
+    <Tab index={1}>Password</Tab>
+    <Tab index={2}>Notifications</Tab>
+  </TabList>
+  <TabPanel index={0}>
+    <Box>Account settings content</Box>
+  </TabPanel>
+  <TabPanel index={1}>
+    <Box>Password settings content</Box>
+  </TabPanel>
+  <TabPanel index={2}>
+    <Box>Notification settings content</Box>
+  </TabPanel>
+</Tabs>
+```
+
+## Default Tab
+
+Use `defaultIndex` to set the initial active tab.
+
+```tsx
+<Tabs defaultIndex={1}>
+  <TabList>
+    <Tab index={0}>First</Tab>
+    <Tab index={1}>Second (default)</Tab>
+    <Tab index={2}>Third</Tab>
+  </TabList>
+  <TabPanel index={0}>First panel</TabPanel>
+  <TabPanel index={1}>Second panel</TabPanel>
+  <TabPanel index={2}>Third panel</TabPanel>
+</Tabs>
+```
+
+## Controlled Mode
+
+Use `index` and `onChange` for controlled mode.
+
+```tsx
+function ControlledTabs() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  return (
+    <Tabs index={activeIndex} onChange={setActiveIndex}>
+      <TabList>
+        <Tab index={0}>Tab 1</Tab>
+        <Tab index={1}>Tab 2</Tab>
+        <Tab index={2}>Tab 3</Tab>
+      </TabList>
+      <TabPanel index={0}>Panel 1</TabPanel>
+      <TabPanel index={1}>Panel 2</TabPanel>
+      <TabPanel index={2}>Panel 3</TabPanel>
+    </Tabs>
+  );
+}
+```
+
+## Disabled Tabs
+
+<TosuiTabs>
+  <TabList>
+    <Tab index={0}>Active</Tab>
+    <Tab index={1} disabled>Disabled</Tab>
+    <Tab index={2}>Another</Tab>
+  </TabList>
+  <TabPanel index={0}>
+    <Box>Active panel content</Box>
+  </TabPanel>
+  <TabPanel index={1}>
+    <Box>Disabled panel content</Box>
+  </TabPanel>
+  <TabPanel index={2}>
+    <Box>Another panel content</Box>
+  </TabPanel>
+</TosuiTabs>
+
+```tsx
+<Tabs>
+  <TabList>
+    <Tab index={0}>Active</Tab>
+    <Tab index={1} disabled>Disabled</Tab>
+    <Tab index={2}>Another</Tab>
+  </TabList>
+  <TabPanel index={0}>Active panel content</TabPanel>
+  <TabPanel index={1}>Disabled panel content</TabPanel>
+  <TabPanel index={2}>Another panel content</TabPanel>
+</Tabs>
+```
+
+## Variants
+
+The `variant` prop controls the tab style. Default is `"line"`.
+
+```tsx
+// Line variant (default)
+<Tabs variant="line">
+  <TabList>...</TabList>
+  ...
+</Tabs>
+
+// Enclosed variant
+<Tabs variant="enclosed">
+  <TabList>...</TabList>
+  ...
+</Tabs>
+```
+
+## Props Reference
+
+### Tabs
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| defaultIndex | `number` | `0` | Initial active tab (uncontrolled) |
+| index | `number` | - | Active tab index (controlled) |
+| onChange | `(index: number) => void` | - | Tab change callback |
+| variant | `"line"` \| `"enclosed"` | `"line"` | Visual variant |
+
+### Tab
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| index | `number` | - | Tab index (required) |
+| disabled | `boolean` | `false` | Disable the tab |
+
+### TabPanel
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| index | `number` | - | Panel index (required) |
+
+## Accessibility
+
+- Uses proper `role="tablist"`, `role="tab"`, and `role="tabpanel"` attributes
+- `aria-selected` indicates the active tab
+- `aria-disabled` indicates disabled tabs
+- Tab panels are only rendered when active
+
+## TypeScript
+
+```tsx
+import { Tabs, TabList, Tab, TabPanel, type TabsVariant, type TabsProps, type TabListProps, type TabProps, type TabPanelProps } from "@tosui/react";
+```

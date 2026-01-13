@@ -1,0 +1,176 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Textarea, VStack, Box } from "@tosui/react";
+
+# Textarea
+
+Textarea is a multiline text input component with size variants, visual styles, and configurable resize behavior.
+
+## Import
+
+```tsx
+import { Textarea } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Textarea placeholder="Enter your message" />
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Textarea placeholder="Enter your message" />
+  </TabItem>
+</Tabs>
+
+## Sizes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Textarea size="sm" placeholder="Small textarea" />
+      <Textarea size="md" placeholder="Medium textarea (default)" />
+      <Textarea size="lg" placeholder="Large textarea" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Textarea size="sm" placeholder="Small textarea" />
+      <Textarea size="md" placeholder="Medium textarea (default)" />
+      <Textarea size="lg" placeholder="Large textarea" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Variants
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Textarea variant="outline" placeholder="Outline variant (default)" />
+      <Textarea variant="filled" placeholder="Filled variant" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Textarea variant="outline" placeholder="Outline variant (default)" />
+      <Textarea variant="filled" placeholder="Filled variant" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## States
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Textarea placeholder="Normal textarea" />
+      <Textarea disabled placeholder="Disabled textarea" />
+      <Textarea isInvalid placeholder="Invalid textarea" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Textarea placeholder="Normal textarea" />
+      <Textarea disabled placeholder="Disabled textarea" />
+      <Textarea isInvalid placeholder="Invalid textarea" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Rows
+
+Control the initial height with the `rows` prop.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Textarea rows={2} placeholder="2 rows" />
+      <Textarea rows={5} placeholder="5 rows" />
+      <Textarea rows={8} placeholder="8 rows" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Textarea rows={2} placeholder="2 rows" />
+      <Textarea rows={5} placeholder="5 rows" />
+      <Textarea rows={8} placeholder="8 rows" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Resize Behavior
+
+Control how the textarea can be resized.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Textarea resize="vertical" placeholder="Vertical resize (default)" />
+      <Textarea resize="horizontal" placeholder="Horizontal resize" />
+      <Textarea resize="both" placeholder="Both directions" />
+      <Textarea resize="none" placeholder="No resize" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Textarea resize="vertical" placeholder="Vertical resize (default)" />
+      <Textarea resize="horizontal" placeholder="Horizontal resize" />
+      <Textarea resize="both" placeholder="Both directions" />
+      <Textarea resize="none" placeholder="No resize" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## With FormField
+
+Use with [FormField](/docs/components/form-field) for labels and validation messages.
+
+```tsx
+<FormField
+  label="Bio"
+  helperText="Tell us about yourself"
+>
+  <Textarea rows={4} placeholder="Your bio..." />
+</FormField>
+
+<FormField
+  label="Message"
+  errorMessage="Message is required"
+  isInvalid
+  isRequired
+>
+  <Textarea placeholder="Enter your message" />
+</FormField>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| size | `"sm"` \| `"md"` \| `"lg"` | `"md"` | Textarea size |
+| variant | `"outline"` \| `"filled"` | `"outline"` | Visual variant |
+| disabled | `boolean` | `false` | Disable the textarea |
+| isInvalid | `boolean` | `false` | Show invalid state |
+| rows | `number` | `3` | Number of visible rows |
+| resize | `"none"` \| `"vertical"` \| `"horizontal"` \| `"both"` | `"vertical"` | Resize behavior |
+
+Textarea also accepts all native `<textarea>` attributes and [Box](/docs/components/box) styling props.
+
+## TypeScript
+
+```tsx
+import { Textarea, type TextareaSize, type TextareaVariant, type TextareaResize, type TextareaProps, type TextareaOwnProps } from "@tosui/react";
+```

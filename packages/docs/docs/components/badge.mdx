@@ -1,0 +1,184 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Badge, HStack, VStack, Box } from "@tosui/react";
+
+# Badge
+
+Badge is a small status indicator for displaying counts, labels, and categories.
+
+## Import
+
+```tsx
+import { Badge } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Badge>Default</Badge>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Badge>Default</Badge>
+  </TabItem>
+</Tabs>
+
+## Color Schemes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={2} wrap>
+      <Badge colorScheme="gray">Gray</Badge>
+      <Badge colorScheme="primary">Primary</Badge>
+      <Badge colorScheme="accent">Accent</Badge>
+      <Badge colorScheme="success">Success</Badge>
+      <Badge colorScheme="warning">Warning</Badge>
+      <Badge colorScheme="error">Error</Badge>
+      <Badge colorScheme="info">Info</Badge>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={2} wrap>
+      <Badge colorScheme="gray">Gray</Badge>
+      <Badge colorScheme="primary">Primary</Badge>
+      <Badge colorScheme="accent">Accent</Badge>
+      <Badge colorScheme="success">Success</Badge>
+      <Badge colorScheme="warning">Warning</Badge>
+      <Badge colorScheme="error">Error</Badge>
+      <Badge colorScheme="info">Info</Badge>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Variants
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <HStack gap={2}>
+        <Badge variant="subtle" colorScheme="primary">Subtle</Badge>
+        <Badge variant="subtle" colorScheme="success">Subtle</Badge>
+        <Badge variant="subtle" colorScheme="error">Subtle</Badge>
+      </HStack>
+      <HStack gap={2}>
+        <Badge variant="solid" colorScheme="primary">Solid</Badge>
+        <Badge variant="solid" colorScheme="success">Solid</Badge>
+        <Badge variant="solid" colorScheme="error">Solid</Badge>
+      </HStack>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <HStack gap={2}>
+        <Badge variant="subtle" colorScheme="primary">Subtle</Badge>
+        <Badge variant="subtle" colorScheme="success">Subtle</Badge>
+        <Badge variant="subtle" colorScheme="error">Subtle</Badge>
+      </HStack>
+      <HStack gap={2}>
+        <Badge variant="solid" colorScheme="primary">Solid</Badge>
+        <Badge variant="solid" colorScheme="success">Solid</Badge>
+        <Badge variant="solid" colorScheme="error">Solid</Badge>
+      </HStack>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Sizes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={2} align="center">
+      <Badge size="sm">Small</Badge>
+      <Badge size="md">Medium</Badge>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={2} align="center">
+      <Badge size="sm">Small</Badge>
+      <Badge size="md">Medium</Badge>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Common Patterns
+
+### Status Indicator
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Badge colorScheme="success">Active</Badge>
+      <Badge colorScheme="warning">Pending</Badge>
+      <Badge colorScheme="error">Inactive</Badge>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <Badge colorScheme="success">Active</Badge>
+      <Badge colorScheme="warning">Pending</Badge>
+      <Badge colorScheme="error">Inactive</Badge>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+### Count Badge
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Badge variant="solid" colorScheme="primary">5</Badge>
+      <Badge variant="solid" colorScheme="error">99+</Badge>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <Badge variant="solid" colorScheme="primary">5</Badge>
+      <Badge variant="solid" colorScheme="error">99+</Badge>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+### Tags
+
+```tsx
+<HStack gap={2}>
+  <Badge>React</Badge>
+  <Badge>TypeScript</Badge>
+  <Badge>CSS Modules</Badge>
+</HStack>
+```
+
+### With Text
+
+```tsx
+<HStack gap={2} align="center">
+  <Text>Order Status:</Text>
+  <Badge colorScheme="success">Shipped</Badge>
+</HStack>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| colorScheme | `"gray"` \| `"primary"` \| `"accent"` \| `"success"` \| `"warning"` \| `"error"` \| `"info"` | `"gray"` | Color scheme |
+| variant | `"solid"` \| `"subtle"` | `"subtle"` | Visual variant |
+| size | `"sm"` \| `"md"` | `"md"` | Badge size |
+
+## TypeScript
+
+```tsx
+import { Badge, type BadgeColorScheme, type BadgeVariant, type BadgeSize, type BadgeProps } from "@tosui/react";
+```

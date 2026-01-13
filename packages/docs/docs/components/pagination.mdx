@@ -1,0 +1,136 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Pagination, Box, VStack } from "@tosui/react";
+
+# Pagination
+
+Pagination provides navigation for paginated content with page numbers, previous/next buttons, and ellipsis for large page ranges.
+
+## Import
+
+```tsx
+import { Pagination } from "@tosui/react";
+```
+
+## Basic Usage
+
+```tsx
+function PaginatedContent() {
+  const [page, setPage] = useState(1);
+
+  return (
+    <Pagination
+      page={page}
+      totalPages={10}
+      onPageChange={setPage}
+    />
+  );
+}
+```
+
+## Page Ranges
+
+Pagination automatically shows ellipsis for large page ranges.
+
+```tsx
+// Few pages - all shown
+<Pagination page={1} totalPages={5} onPageChange={setPage} />
+// Shows: « 1 2 3 4 5 »
+
+// Many pages - ellipsis shown
+<Pagination page={5} totalPages={20} onPageChange={setPage} />
+// Shows: « 1 … 4 5 6 … 20 »
+
+// Near start
+<Pagination page={2} totalPages={20} onPageChange={setPage} />
+// Shows: « 1 2 3 4 5 … 20 »
+
+// Near end
+<Pagination page={19} totalPages={20} onPageChange={setPage} />
+// Shows: « 1 … 16 17 18 19 20 »
+```
+
+## Siblings
+
+Control how many page numbers appear on each side of the current page.
+
+```tsx
+// 1 sibling (default)
+<Pagination page={10} totalPages={20} siblings={1} onPageChange={setPage} />
+// Shows: « 1 … 9 10 11 … 20 »
+
+// 2 siblings
+<Pagination page={10} totalPages={20} siblings={2} onPageChange={setPage} />
+// Shows: « 1 … 8 9 10 11 12 … 20 »
+```
+
+## Show Edges
+
+Toggle first/last page buttons with `showEdges`.
+
+```tsx
+// With edge buttons (default)
+<Pagination page={5} totalPages={20} showEdges onPageChange={setPage} />
+// Shows: «« « 4 5 6 » »»
+
+// Without edge buttons
+<Pagination page={5} totalPages={20} showEdges={false} onPageChange={setPage} />
+// Shows: « 4 5 6 »
+```
+
+## Complete Example
+
+```tsx
+function ProductList() {
+  const [page, setPage] = useState(1);
+  const { products, totalPages } = useProducts({ page, limit: 10 });
+
+  return (
+    <VStack gap={6}>
+      <Box>
+        {products.map(product => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </Box>
+
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        onPageChange={setPage}
+      />
+    </VStack>
+  );
+}
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| page | `number` | - | Current page (1-indexed, required) |
+| totalPages | `number` | - | Total number of pages (required) |
+| onPageChange | `(page: number) => void` | - | Page change callback (required) |
+| siblings | `number` | `1` | Number of page numbers on each side of current |
+| showEdges | `boolean` | `true` | Show first/last page buttons |
+
+## Button States
+
+- Previous button is disabled when `page === 1`
+- Next button is disabled when `page === totalPages`
+- First page button is disabled when `page === 1`
+- Last page button is disabled when `page === totalPages`
+- Current page button uses `solid` variant
+- Other page buttons use `ghost` variant
+
+## Accessibility
+
+- Wrapped in `<nav aria-label="Pagination">`
+- Buttons have appropriate `aria-label` (e.g., "Page 5", "Previous page")
+- Current page has `aria-current="page"`
+- Disabled buttons have `disabled` attribute
+
+## TypeScript
+
+```tsx
+import { Pagination, type PaginationProps } from "@tosui/react";
+```

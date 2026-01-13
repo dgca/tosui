@@ -43,7 +43,7 @@ export type AccordionItemProps = {
   /** Item title */
   title: ReactNode;
   /** Whether disabled */
-  isDisabled?: boolean;
+  disabled?: boolean;
   /** Additional class name */
   className?: string;
   /** Item content */
@@ -107,7 +107,7 @@ export function Accordion({
 export function AccordionItem({
   index,
   title,
-  isDisabled = false,
+  disabled = false,
   className,
   children,
 }: AccordionItemProps) {
@@ -122,7 +122,7 @@ export function AccordionItem({
       className={clsx(
         styles.item,
         isExpanded && styles.expanded,
-        isDisabled && styles.disabled,
+        disabled && styles.disabled,
         className
       )}
     >
@@ -138,11 +138,11 @@ export function AccordionItem({
         border="none"
         borderBottom={isExpanded ? "thin" : "none"}
         borderColor="border"
-        cursor={isDisabled ? "not-allowed" : "pointer"}
-        opacity={isDisabled ? "faint" : undefined}
-        onClick={() => !isDisabled && toggleIndex(index)}
+        cursor={disabled ? "not-allowed" : "pointer"}
+        opacity={disabled ? "faint" : undefined}
+        onClick={() => !disabled && toggleIndex(index)}
         aria-expanded={isExpanded}
-        aria-disabled={isDisabled}
+        aria-disabled={disabled}
         className={styles.button}
       >
         <Box fontWeight="medium">{title}</Box>

@@ -1,0 +1,172 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Checkbox, VStack, HStack, Box } from "@tosui/react";
+
+# Checkbox
+
+Checkbox is a toggle checkbox component with size variants, custom styling, and optional inline labels.
+
+## Import
+
+```tsx
+import { Checkbox } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Checkbox label="Accept terms and conditions" />
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Checkbox label="Accept terms and conditions" />
+  </TabItem>
+</Tabs>
+
+## Without Label
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Checkbox aria-label="Toggle option" />
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Checkbox aria-label="Toggle option" />
+  </TabItem>
+</Tabs>
+
+## Sizes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4} align="flex-start">
+      <Checkbox size="sm" label="Small checkbox" />
+      <Checkbox size="md" label="Medium checkbox (default)" />
+      <Checkbox size="lg" label="Large checkbox" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4} align="flex-start">
+      <Checkbox size="sm" label="Small checkbox" />
+      <Checkbox size="md" label="Medium checkbox (default)" />
+      <Checkbox size="lg" label="Large checkbox" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## States
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4} align="flex-start">
+      <Checkbox label="Unchecked" />
+      <Checkbox label="Checked" defaultChecked />
+      <Checkbox label="Disabled" disabled />
+      <Checkbox label="Disabled checked" disabled defaultChecked />
+      <Checkbox label="Invalid" isInvalid />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4} align="flex-start">
+      <Checkbox label="Unchecked" />
+      <Checkbox label="Checked" defaultChecked />
+      <Checkbox label="Disabled" disabled />
+      <Checkbox label="Disabled checked" disabled defaultChecked />
+      <Checkbox label="Invalid" isInvalid />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Controlled
+
+Use `isChecked` and `onChange` for controlled mode.
+
+```tsx
+function ControlledCheckbox() {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <Checkbox
+      label="Controlled checkbox"
+      isChecked={checked}
+      onChange={(e) => setChecked(e.target.checked)}
+    />
+  );
+}
+```
+
+## Checkbox Group
+
+Group checkboxes for multiple selections.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={2} align="flex-start">
+      <Box fontWeight="medium">Select toppings:</Box>
+      <Checkbox label="Pepperoni" />
+      <Checkbox label="Mushrooms" />
+      <Checkbox label="Onions" />
+      <Checkbox label="Extra cheese" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={2} align="flex-start">
+      <Box fontWeight="medium">Select toppings:</Box>
+      <Checkbox label="Pepperoni" />
+      <Checkbox label="Mushrooms" />
+      <Checkbox label="Onions" />
+      <Checkbox label="Extra cheese" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## With FormField
+
+Use with [FormField](/docs/components/form-field) for validation.
+
+```tsx
+<FormField
+  label="Terms"
+  errorMessage="You must accept the terms"
+  isInvalid
+  isRequired
+>
+  <Checkbox label="I accept the terms and conditions" />
+</FormField>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| size | `"sm"` \| `"md"` \| `"lg"` | `"md"` | Checkbox size |
+| label | `string` | - | Optional label text |
+| disabled | `boolean` | `false` | Disable the checkbox |
+| isInvalid | `boolean` | `false` | Show invalid state |
+| isChecked | `boolean` | - | Controlled checked state |
+| defaultChecked | `boolean` | - | Initial checked state (uncontrolled) |
+| onChange | `(e: ChangeEvent) => void` | - | Change handler |
+
+Checkbox also accepts all native `<input type="checkbox">` attributes.
+
+## Accessibility
+
+- Uses native `<input type="checkbox">` for accessibility
+- Label is associated with the input
+- Supports keyboard navigation
+- When no `label` is provided, use `aria-label` for accessibility
+
+## TypeScript
+
+```tsx
+import { Checkbox, type CheckboxSize, type CheckboxProps } from "@tosui/react";
+```

@@ -1,0 +1,234 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { FormField, Input, Select, Textarea, Checkbox, VStack, Box } from "@tosui/react";
+
+# FormField
+
+FormField is a wrapper component that provides labels, helper text, error messages, and accessibility features for form controls.
+
+## Import
+
+```tsx
+import { FormField } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <FormField label="Email">
+      <Input type="email" placeholder="you@example.com" />
+    </FormField>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <FormField label="Email">
+      <Input type="email" placeholder="you@example.com" />
+    </FormField>
+  </TabItem>
+</Tabs>
+
+## Helper Text
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <FormField label="Password" helperText="Must be at least 8 characters">
+      <Input type="password" placeholder="Enter password" />
+    </FormField>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <FormField label="Password" helperText="Must be at least 8 characters">
+      <Input type="password" placeholder="Enter password" />
+    </FormField>
+  </TabItem>
+</Tabs>
+
+## Required Field
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <FormField label="Username" isRequired>
+      <Input placeholder="Enter username" />
+    </FormField>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <FormField label="Username" isRequired>
+      <Input placeholder="Enter username" />
+    </FormField>
+  </TabItem>
+</Tabs>
+
+## Invalid State
+
+When `isInvalid` is true, the error message replaces the helper text.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <FormField
+      label="Email"
+      errorMessage="Please enter a valid email address"
+      isInvalid
+      isRequired
+    >
+      <Input type="email" placeholder="you@example.com" />
+    </FormField>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <FormField
+      label="Email"
+      errorMessage="Please enter a valid email address"
+      isInvalid
+      isRequired
+    >
+      <Input type="email" placeholder="you@example.com" />
+    </FormField>
+  </TabItem>
+</Tabs>
+
+## Disabled State
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <FormField label="Disabled Field" disabled>
+      <Input placeholder="Cannot edit" />
+    </FormField>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <FormField label="Disabled Field" disabled>
+      <Input placeholder="Cannot edit" />
+    </FormField>
+  </TabItem>
+</Tabs>
+
+## With Different Controls
+
+FormField works with any form control.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={6}>
+      <FormField label="Country" isRequired>
+        <Select>
+          <option value="">Select a country</option>
+          <option value="us">United States</option>
+          <option value="uk">United Kingdom</option>
+        </Select>
+      </FormField>
+
+      <FormField label="Bio" helperText="Tell us about yourself">
+        <Textarea rows={4} placeholder="Your bio..." />
+      </FormField>
+
+      <FormField
+        label="Terms"
+        errorMessage="You must accept the terms"
+        isInvalid
+      >
+        <Checkbox label="I accept the terms and conditions" />
+      </FormField>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={6}>
+      <FormField label="Country" isRequired>
+        <Select>
+          <option value="">Select a country</option>
+          <option value="us">United States</option>
+          <option value="uk">United Kingdom</option>
+        </Select>
+      </FormField>
+
+      <FormField label="Bio" helperText="Tell us about yourself">
+        <Textarea rows={4} placeholder="Your bio..." />
+      </FormField>
+
+      <FormField
+        label="Terms"
+        errorMessage="You must accept the terms"
+        isInvalid
+      >
+        <Checkbox label="I accept the terms and conditions" />
+      </FormField>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Complete Form Example
+
+```tsx
+<VStack gap={4}>
+  <FormField label="Full Name" isRequired>
+    <Input placeholder="John Doe" />
+  </FormField>
+
+  <FormField
+    label="Email"
+    helperText="We'll never share your email"
+    isRequired
+  >
+    <Input type="email" placeholder="you@example.com" />
+  </FormField>
+
+  <FormField label="Role">
+    <Select>
+      <option value="">Select a role</option>
+      <option value="developer">Developer</option>
+      <option value="designer">Designer</option>
+      <option value="manager">Manager</option>
+    </Select>
+  </FormField>
+
+  <FormField label="Message" helperText="Optional">
+    <Textarea placeholder="Your message..." />
+  </FormField>
+
+  <Button type="submit" w="100%">Submit</Button>
+</VStack>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| label | `string` | - | Label text (required) |
+| helperText | `string` | - | Helper text below the control |
+| errorMessage | `string` | - | Error message (shown when `isInvalid`) |
+| isRequired | `boolean` | `false` | Show required asterisk |
+| isInvalid | `boolean` | `false` | Show invalid state |
+| disabled | `boolean` | `false` | Disable the control |
+| id | `string` | auto-generated | Custom ID for the field |
+| children | `ReactNode` | - | The form control |
+
+## Accessibility
+
+FormField provides:
+- Proper `<label>` element linked to the control via `htmlFor`
+- `aria-describedby` linking the control to helper/error text
+- `aria-invalid` attribute when in error state
+- Auto-generated unique IDs when not provided
+
+## State Propagation
+
+FormField automatically passes these props to child controls:
+- `id` - for label association
+- `isInvalid` - for visual error state
+- `disabled` - for disabled state
+- `aria-describedby` - for accessibility
+- `aria-invalid` - for accessibility
+
+## TypeScript
+
+```tsx
+import { FormField, type FormFieldProps } from "@tosui/react";
+```

@@ -1,0 +1,195 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Avatar, HStack, VStack, Box } from "@tosui/react";
+
+# Avatar
+
+Avatar displays a user or entity with an image, initials fallback, or placeholder icon.
+
+## Import
+
+```tsx
+import { Avatar } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Avatar src="https://i.pravatar.cc/150?img=1" name="John Doe" />
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Avatar src="https://i.pravatar.cc/150?img=1" name="John Doe" />
+  </TabItem>
+</Tabs>
+
+## Sizes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4} align="center">
+      <Avatar size="sm" name="John Doe" />
+      <Avatar size="md" name="John Doe" />
+      <Avatar size="lg" name="John Doe" />
+      <Avatar size="xl" name="John Doe" />
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4} align="center">
+      <Avatar size="sm" name="John Doe" />
+      <Avatar size="md" name="John Doe" />
+      <Avatar size="lg" name="John Doe" />
+      <Avatar size="xl" name="John Doe" />
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Initials Fallback
+
+When no image is provided, Avatar shows initials from the name.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Avatar name="John Doe" />
+      <Avatar name="Jane Smith" />
+      <Avatar name="Alice" />
+      <Avatar name="Bob Builder" />
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <Avatar name="John Doe" />
+      <Avatar name="Jane Smith" />
+      <Avatar name="Alice" />
+      <Avatar name="Bob Builder" />
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Placeholder
+
+When no name or image is provided, a placeholder icon is shown.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Avatar />
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Avatar />
+  </TabItem>
+</Tabs>
+
+## Rounded Variants
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Avatar rounded="full" name="John Doe" />
+      <Avatar rounded="md" name="Jane Smith" />
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <Avatar rounded="full" name="John Doe" />
+      <Avatar rounded="md" name="Jane Smith" />
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Image Error Fallback
+
+If the image fails to load, Avatar falls back to initials.
+
+```tsx
+<Avatar
+  src="https://broken-url.example/image.jpg"
+  name="John Doe"
+/>
+// Falls back to "JD" initials
+```
+
+## Common Patterns
+
+### Avatar with Name
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={3} align="center">
+      <Avatar size="md" name="John Doe" />
+      <VStack gap={0} align="flex-start">
+        <Box fontWeight="medium">John Doe</Box>
+        <Box fontSize="sm" color="foreground-muted">john@example.com</Box>
+      </VStack>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={3} align="center">
+      <Avatar size="md" name="John Doe" />
+      <VStack gap={0} align="flex-start">
+        <Box fontWeight="medium">John Doe</Box>
+        <Box fontSize="sm" color="foreground-muted">john@example.com</Box>
+      </VStack>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+### Avatar Group
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={-2}>
+      <Avatar name="Alice" size="md" />
+      <Avatar name="Bob" size="md" />
+      <Avatar name="Carol" size="md" />
+      <Avatar name="Dan" size="md" />
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Box display="flex" style={{ marginLeft: '8px' }}>
+      <Avatar name="Alice" size="md" />
+      <Box ml={-2}><Avatar name="Bob" size="md" /></Box>
+      <Box ml={-2}><Avatar name="Carol" size="md" /></Box>
+      <Box ml={-2}><Avatar name="Dan" size="md" /></Box>
+    </Box>
+  </TabItem>
+</Tabs>
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| src | `string` | - | Image source URL |
+| name | `string` | - | Name for initials fallback |
+| size | `"sm"` \| `"md"` \| `"lg"` \| `"xl"` | `"md"` | Avatar size |
+| rounded | `"full"` \| `"md"` | `"full"` | Border radius |
+| alt | `string` | name or "Avatar" | Alt text for image |
+
+### Size Dimensions
+
+| Size | Dimensions |
+|------|------------|
+| sm | 32px |
+| md | 40px |
+| lg | 48px |
+| xl | 64px |
+
+## TypeScript
+
+```tsx
+import { Avatar, type AvatarSize, type AvatarProps } from "@tosui/react";
+```

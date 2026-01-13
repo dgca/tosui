@@ -20,7 +20,7 @@ export type InputOwnProps = Omit<
   /** Visual variant: outline (border) or filled (surface background) */
   variant?: InputVariant;
   /** Whether the input is disabled */
-  isDisabled?: boolean;
+  disabled?: boolean;
   /** Whether the input is in an invalid state */
   isInvalid?: boolean;
 };
@@ -58,7 +58,7 @@ export function Input<T extends ElementType = "input">({
   as,
   size = "md",
   variant = "outline",
-  isDisabled = false,
+  disabled = false,
   isInvalid = false,
   className,
   ...rest
@@ -100,7 +100,7 @@ export function Input<T extends ElementType = "input">({
       // CSS module for states
       className={clsx(styles.input, isInvalid && styles.invalid, className)}
       // Native disabled
-      disabled={isDisabled}
+      disabled={disabled}
       aria-invalid={isInvalid || undefined}
       {...rest}
     />

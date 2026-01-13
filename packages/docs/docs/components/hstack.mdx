@@ -1,0 +1,120 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { HStack, Box } from "@tosui/react";
+
+# HStack
+
+HStack is a convenience wrapper around Stack with a fixed horizontal (row) direction. Use it for horizontal layouts.
+
+## Import
+
+```tsx
+import { HStack } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Alignment
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4} align="center" justify="space-between" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Left</Box>
+      <Box p={4} bg="accent-subtle">Center</Box>
+      <Box p={2} bg="success-subtle">Right</Box>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4} align="center" justify="space-between" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Left</Box>
+      <Box p={4} bg="accent-subtle">Center</Box>
+      <Box p={2} bg="success-subtle">Right</Box>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Wrapping
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4} wrap>
+      <Box p={4} bg="primary-subtle" minW="120px">Item 1</Box>
+      <Box p={4} bg="accent-subtle" minW="120px">Item 2</Box>
+      <Box p={4} bg="success-subtle" minW="120px">Item 3</Box>
+      <Box p={4} bg="warning-subtle" minW="120px">Item 4</Box>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4} wrap>
+      <Box p={4} bg="primary-subtle" minW="120px">Item 1</Box>
+      <Box p={4} bg="accent-subtle" minW="120px">Item 2</Box>
+      <Box p={4} bg="success-subtle" minW="120px">Item 3</Box>
+      <Box p={4} bg="warning-subtle" minW="120px">Item 4</Box>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Common Patterns
+
+### Navigation Bar
+
+```tsx
+<HStack as="nav" gap={6} align="center" justify="space-between" p={4}>
+  <Box fontWeight="bold">Logo</Box>
+  <HStack gap={4}>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </HStack>
+</HStack>
+```
+
+### Button Group
+
+```tsx
+<HStack gap={2}>
+  <Button variant="solid">Save</Button>
+  <Button variant="outline">Cancel</Button>
+</HStack>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| gap | `0-32` | - | Gap between children (spacing multiplier) |
+| align | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"stretch"` \| `"baseline"` | - | Cross-axis alignment |
+| justify | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Main-axis alignment |
+| wrap | `boolean` | `false` | Enable flex wrapping |
+| as | `ElementType` | `"div"` | HTML element to render |
+
+HStack accepts all [Stack](/docs/components/stack) props except `direction`.
+
+## TypeScript
+
+```tsx
+import { HStack, type HStackProps, type HStackOwnProps } from "@tosui/react";
+```

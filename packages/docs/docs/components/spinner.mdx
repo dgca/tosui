@@ -1,0 +1,188 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Spinner, HStack, VStack, Box, Button } from "@tosui/react";
+
+# Spinner
+
+Spinner is a loading indicator that inherits color from its parent element.
+
+## Import
+
+```tsx
+import { Spinner } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Spinner />
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Spinner />
+  </TabItem>
+</Tabs>
+
+## Sizes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4} align="center">
+      <Spinner size="sm" />
+      <Spinner size="md" />
+      <Spinner size="lg" />
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4} align="center">
+      <Spinner size="sm" />
+      <Spinner size="md" />
+      <Spinner size="lg" />
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Colors
+
+Spinner inherits color from its parent. Set the parent's `color` to change the spinner color.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Box color="primary"><Spinner /></Box>
+      <Box color="accent"><Spinner /></Box>
+      <Box color="success"><Spinner /></Box>
+      <Box color="warning"><Spinner /></Box>
+      <Box color="error"><Spinner /></Box>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <Box color="primary"><Spinner /></Box>
+      <Box color="accent"><Spinner /></Box>
+      <Box color="success"><Spinner /></Box>
+      <Box color="warning"><Spinner /></Box>
+      <Box color="error"><Spinner /></Box>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Common Patterns
+
+### Button Loading State
+
+Button has built-in loading support:
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Button loading>Saving</Button>
+      <Button loading variant="outline">Processing</Button>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <Button loading>Saving</Button>
+      <Button loading variant="outline">Processing</Button>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+### Centered Loading
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Box display="flex" alignItems="center" justifyContent="center" h="200px" bg="surface" rounded="md">
+      <VStack gap={3}>
+        <Spinner size="lg" />
+        <Box color="foreground-muted" fontSize="sm">Loading...</Box>
+      </VStack>
+    </Box>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Box display="flex" alignItems="center" justifyContent="center" h="200px" bg="surface" rounded="md">
+      <VStack gap={3}>
+        <Spinner size="lg" />
+        <Box color="foreground-muted" fontSize="sm">Loading...</Box>
+      </VStack>
+    </Box>
+  </TabItem>
+</Tabs>
+
+### Inline Loading
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={2} align="center">
+      <Spinner size="sm" />
+      <Box fontSize="sm">Checking availability...</Box>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={2} align="center">
+      <Spinner size="sm" />
+      <Box fontSize="sm">Checking availability...</Box>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+### Full Page Loading
+
+```tsx
+function PageLoader() {
+  return (
+    <Box
+      position="fixed"
+      inset={0}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      bg="background"
+      zIndex="overlay"
+    >
+      <VStack gap={4}>
+        <Spinner size="lg" />
+        <Text>Loading application...</Text>
+      </VStack>
+    </Box>
+  );
+}
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| size | `"sm"` \| `"md"` \| `"lg"` | `"md"` | Spinner size |
+| as | `ElementType` | `"span"` | HTML element to render |
+
+### Size Dimensions
+
+| Size | Width/Height |
+|------|--------------|
+| sm | 1em |
+| md | 1.5em |
+| lg | 2em |
+
+## Accessibility
+
+- Uses `role="status"` with `aria-label="Loading"`
+- Communicates loading state to screen readers
+
+## TypeScript
+
+```tsx
+import { Spinner, type SpinnerSize, type SpinnerProps } from "@tosui/react";
+```

@@ -17,6 +17,12 @@ export type PopoverProps = {
   placement?: PopoverPlacement;
   /** Close on outside click */
   closeOnBlur?: boolean;
+  /** Controlled open state */
+  isOpen?: boolean;
+  /** Callback when popover opens */
+  onOpen?: () => void;
+  /** Callback when popover closes */
+  onClose?: () => void;
   /** Additional class name */
   className?: string;
   /** Trigger element */
@@ -48,19 +54,37 @@ export type PopoverBodyProps = {
  * - Toggles on click
  * - Positions relative to trigger
  * - Closes on outside click and Escape
+ * - Supports controlled mode via isOpen/onOpen/onClose
  * - Renders via portal
  */
 export function Popover({
   content,
   placement = "bottom",
   closeOnBlur = true,
+  isOpen: controlledIsOpen,
+  onOpen,
+  onClose,
   className,
   children,
 }: PopoverProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  const isControlled = controlledIsOpen !== undefined;
+  const isOpen = isControlled ? controlledIsOpen : internalIsOpen;
+
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const triggerRef = useRef<HTMLElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
+
+  const setOpen = (open: boolean) => {
+    if (!isControlled) {
+      setInternalIsOpen(open);
+    }
+    if (open) {
+      onOpen?.();
+    } else {
+      onClose?.();
+    }
+  };
 
   const updatePosition = () => {
     if (!triggerRef.current || !popoverRef.current) return;
@@ -108,7 +132,7 @@ export function Popover({
         popoverRef.current?.contains(e.target as Node)
       )
         return;
-      setIsOpen(false);
+      setOpen(false);
     };
 
     document.addEventListener("click", handleClick);
@@ -120,7 +144,7 @@ export function Popover({
     if (!isOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsOpen(false);
+      if (e.key === "Escape") setOpen(false);
     };
 
     document.addEventListener("keydown", handleKeyDown);
@@ -128,7 +152,7 @@ export function Popover({
   }, [isOpen]);
 
   const handleTriggerClick = () => {
-    setIsOpen(!isOpen);
+    setOpen(!isOpen);
   };
 
   return (

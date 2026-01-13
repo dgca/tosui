@@ -1,0 +1,170 @@
+# State Styling
+
+Tosui's Box component supports state props for styling hover, focus, active, and disabled states.
+
+## State Props
+
+Box accepts four state props that override base styles:
+
+| Prop | Triggered By |
+|------|--------------|
+| `_hover` | Mouse hover |
+| `_focus` | Keyboard focus |
+| `_active` | Mouse press / active |
+| `_disabled` | Disabled state |
+
+```tsx
+import { Box } from "@tosui/react";
+
+<Box
+  bg="surface"
+  p={4}
+  cursor="pointer"
+  _hover={{ bg: "primary-subtle" }}
+>
+  Hover to highlight
+</Box>
+```
+
+## Combining States
+
+Apply multiple state styles to a single element:
+
+```tsx
+<Box
+  bg="surface"
+  p={4}
+  cursor="pointer"
+  _hover={{ bg: "primary-subtle" }}
+  _active={{ bg: "primary-default" }}
+>
+  Click me
+</Box>
+```
+
+## State Support by Style Part
+
+Not all style properties support all states. Here's what's available:
+
+| Style Part | `_hover` | `_focus` | `_active` | `_disabled` |
+|------------|----------|----------|-----------|-------------|
+| Colors (`color`, `bg`, `borderColor`) | Yes | - | - | - |
+| Interactions (`cursor`, `pointerEvents`) | Yes | - | - | - |
+| Opacity | Yes | Yes | Yes | Yes |
+| Padding | Yes | Yes | Yes | Yes |
+| Margin | Yes | Yes | Yes | Yes |
+
+**Note**: Colors and interactions only support `_hover`. For full state control, use opacity or CSS classes.
+
+## Built-in Component States
+
+Interactive components like Button and Input have built-in state styling:
+
+```tsx
+// Button automatically handles hover, active, disabled states
+<Button>Click me</Button>
+<Button disabled>Can't click</Button>
+
+// Input automatically handles focus and disabled states
+<Input placeholder="Type here" />
+<Input disabled placeholder="Disabled" />
+```
+
+You don't need state props for these components - they're already styled.
+
+## When to Use State Props
+
+Use state props for:
+- **Custom interactive elements** built with Box
+- **Hover effects** on cards or list items
+- **Custom buttons** not using the Button component
+
+Don't use state props for:
+- Standard Button, Input, Link (already styled)
+- Non-interactive content
+- Complex hover effects (use CSS modules)
+
+## Examples
+
+### Hoverable Card
+
+```tsx
+<Box
+  as="article"
+  p={6}
+  bg="surface"
+  rounded="md"
+  shadow="sm"
+  cursor="pointer"
+  _hover={{ shadow: "md", bg: "primary-subtle" }}
+>
+  <Heading fontSize="lg">Card Title</Heading>
+  <Text color="foreground-muted">Card description</Text>
+</Box>
+```
+
+### Interactive List Item
+
+```tsx
+<Box
+  p={3}
+  cursor="pointer"
+  _hover={{ bg: "surface" }}
+  _active={{ bg: "primary-subtle" }}
+>
+  List item content
+</Box>
+```
+
+### Disabled State
+
+```tsx
+<Box
+  p={4}
+  bg="surface"
+  opacity={disabled ? "faint" : undefined}
+  cursor={disabled ? "not-allowed" : "pointer"}
+  pointerEvents={disabled ? "none" : undefined}
+>
+  {disabled ? "Disabled" : "Enabled"}
+</Box>
+```
+
+## CSS Pseudo-Classes
+
+For more complex state styling, use CSS modules with standard pseudo-classes:
+
+```css
+/* custom.module.css */
+.customButton {
+  transition: all 0.15s ease;
+}
+
+.customButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.customButton:active {
+  transform: translateY(0);
+}
+
+.customButton:focus-visible {
+  outline: 2px solid var(--t-color-primary-default);
+  outline-offset: 2px;
+}
+```
+
+```tsx
+import styles from "./custom.module.css";
+
+<Box className={styles.customButton} p={4} bg="surface" rounded="md">
+  Fancy button
+</Box>
+```
+
+This approach is better for:
+- Transitions and animations
+- Transform effects
+- Focus rings
+- Complex multi-property changes

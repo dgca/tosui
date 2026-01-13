@@ -2,6 +2,14 @@ import "./styles/styles.css";
 // Must be imported dynamically to split CSS into multiple files
 import("./styles/fonts.css");
 
+// Type utilities
+export type { Polymorphic } from "./types/Polymorphic";
+export type {
+  ResponsiveValue,
+  ResponsiveObject,
+  FullResponsiveObject,
+} from "./utils/breakpoints";
+
 export { Box, type BoxOwnProps, type BoxProps } from "./components/Box/Box";
 export { Text } from "./components/Text";
 export { Heading } from "./components/Heading";

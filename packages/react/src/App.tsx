@@ -1095,7 +1095,7 @@ function App() {
               </Text>
               <VStack gap={3} mb={4}>
                 <Input placeholder="Normal input" />
-                <Input isDisabled placeholder="Disabled input" />
+                <Input disabled placeholder="Disabled input" />
                 <Input isInvalid placeholder="Invalid input" />
               </VStack>
             </Box>
@@ -1187,7 +1187,7 @@ function App() {
               </Text>
               <VStack gap={3} mb={4}>
                 <Textarea placeholder="Normal textarea" />
-                <Textarea isDisabled placeholder="Disabled textarea" />
+                <Textarea disabled placeholder="Disabled textarea" />
                 <Textarea isInvalid placeholder="Invalid textarea" />
               </VStack>
 
@@ -1268,7 +1268,7 @@ function App() {
                   <option value="">Normal select</option>
                   <option value="1">Option 1</option>
                 </Select>
-                <Select isDisabled>
+                <Select disabled>
                   <option value="">Disabled select</option>
                   <option value="1">Option 1</option>
                 </Select>
@@ -1324,8 +1324,8 @@ function App() {
                 Disabled state
               </Text>
               <HStack gap={4}>
-                <Checkbox label="Disabled unchecked" isDisabled />
-                <Checkbox label="Disabled checked" isDisabled defaultChecked />
+                <Checkbox label="Disabled unchecked" disabled />
+                <Checkbox label="Disabled checked" disabled defaultChecked />
               </HStack>
             </Box>
           </Box>
@@ -1366,8 +1366,8 @@ function App() {
                 Disabled state
               </Text>
               <HStack gap={4}>
-                <Radio name="disabled-demo" label="Disabled" isDisabled />
-                <Radio name="disabled-demo-2" label="Disabled checked" isDisabled defaultChecked />
+                <Radio name="disabled-demo" label="Disabled" disabled />
+                <Radio name="disabled-demo-2" label="Disabled checked" disabled defaultChecked />
               </HStack>
             </Box>
           </Box>
@@ -1416,8 +1416,8 @@ function App() {
                 Disabled state
               </Text>
               <HStack gap={4}>
-                <Switch label="Disabled off" isDisabled />
-                <Switch label="Disabled on" isDisabled defaultChecked />
+                <Switch label="Disabled off" disabled />
+                <Switch label="Disabled on" disabled defaultChecked />
               </HStack>
             </Box>
           </Box>
@@ -1480,7 +1480,7 @@ function App() {
               <Box mb={4} maxW="400px">
                 <FormField
                   label="Read Only"
-                  isDisabled
+                  disabled
                   helperText="This field is disabled"
                 >
                   <Input placeholder="Cannot edit" />
@@ -2297,7 +2297,7 @@ function App() {
               <Text mb={3} weight="semibold">
                 Disabled
               </Text>
-              <Tooltip label="This won't show" isDisabled>
+              <Tooltip label="This won't show" disabled>
                 <Button variant="ghost" size="sm">Tooltip disabled</Button>
               </Tooltip>
             </Box>
@@ -2423,7 +2423,7 @@ function App() {
                   <AccordionItem index={1} title="FAQ Item 2">
                     <Text>This is also expanded by default.</Text>
                   </AccordionItem>
-                  <AccordionItem index={2} title="FAQ Item 3 (Disabled)" isDisabled>
+                  <AccordionItem index={2} title="FAQ Item 3 (Disabled)" disabled>
                     <Text>This item is disabled.</Text>
                   </AccordionItem>
                 </Accordion>

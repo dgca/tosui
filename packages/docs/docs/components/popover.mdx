@@ -1,0 +1,268 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Popover, PopoverHeader, PopoverBody, Button, HStack, VStack, Box, Text } from "@tosui/react";
+import { useState } from "react";
+
+# Popover
+
+Popover displays rich content in a floating panel triggered by a click.
+
+## Import
+
+```tsx
+import { Popover, PopoverHeader, PopoverBody } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Popover
+      content={
+        <PopoverBody>
+          This is the popover content.
+        </PopoverBody>
+      }
+    >
+      <Button>Click me</Button>
+    </Popover>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Popover
+      content={
+        <PopoverBody>
+          This is the popover content.
+        </PopoverBody>
+      }
+    >
+      <Button>Click me</Button>
+    </Popover>
+  </TabItem>
+</Tabs>
+
+## With Header
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Popover
+      content={
+        <>
+          <PopoverHeader>Popover Title</PopoverHeader>
+          <PopoverBody>
+            This popover has a header and body.
+          </PopoverBody>
+        </>
+      }
+    >
+      <Button>With Header</Button>
+    </Popover>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Popover
+      content={
+        <>
+          <PopoverHeader>Popover Title</PopoverHeader>
+          <PopoverBody>
+            This popover has a header and body.
+          </PopoverBody>
+        </>
+      }
+    >
+      <Button>With Header</Button>
+    </Popover>
+  </TabItem>
+</Tabs>
+
+## Placement
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Popover placement="top" content={<PopoverBody>Top</PopoverBody>}>
+        <Button>Top</Button>
+      </Popover>
+      <Popover placement="bottom" content={<PopoverBody>Bottom</PopoverBody>}>
+        <Button>Bottom</Button>
+      </Popover>
+      <Popover placement="left" content={<PopoverBody>Left</PopoverBody>}>
+        <Button>Left</Button>
+      </Popover>
+      <Popover placement="right" content={<PopoverBody>Right</PopoverBody>}>
+        <Button>Right</Button>
+      </Popover>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <Popover placement="top" content={<PopoverBody>Top</PopoverBody>}>
+        <Button>Top</Button>
+      </Popover>
+      <Popover placement="bottom" content={<PopoverBody>Bottom</PopoverBody>}>
+        <Button>Bottom</Button>
+      </Popover>
+      <Popover placement="left" content={<PopoverBody>Left</PopoverBody>}>
+        <Button>Left</Button>
+      </Popover>
+      <Popover placement="right" content={<PopoverBody>Right</PopoverBody>}>
+        <Button>Right</Button>
+      </Popover>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Close on Blur
+
+By default, popover closes when clicking outside. Disable with `closeOnBlur={false}`.
+
+```tsx
+<Popover
+  closeOnBlur={false}
+  content={
+    <PopoverBody>
+      Click outside - I won't close!
+    </PopoverBody>
+  }
+>
+  <Button>Stays Open</Button>
+</Popover>
+```
+
+## Controlled Mode
+
+Use `isOpen`, `onOpen`, and `onClose` for full control.
+
+```tsx
+function ControlledPopover() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Popover
+      isOpen={isOpen}
+      onOpen={() => setIsOpen(true)}
+      onClose={() => setIsOpen(false)}
+      content={
+        <PopoverBody>
+          <Button size="sm" onClick={() => setIsOpen(false)}>
+            Close
+          </Button>
+        </PopoverBody>
+      }
+    >
+      <Button>Controlled</Button>
+    </Popover>
+  );
+}
+```
+
+## Common Patterns
+
+### Confirmation Popover
+
+```tsx
+<Popover
+  content={
+    <>
+      <PopoverHeader>Delete item?</PopoverHeader>
+      <PopoverBody>
+        <Text mb={3}>This action cannot be undone.</Text>
+        <HStack gap={2} justify="flex-end">
+          <Button size="sm" variant="ghost">Cancel</Button>
+          <Button size="sm" color="error">Delete</Button>
+        </HStack>
+      </PopoverBody>
+    </>
+  }
+>
+  <Button variant="ghost" color="error">Delete</Button>
+</Popover>
+```
+
+### User Profile Popover
+
+```tsx
+<Popover
+  content={
+    <PopoverBody>
+      <VStack gap={2} align="flex-start">
+        <HStack gap={3}>
+          <Avatar name="John Doe" />
+          <Box>
+            <Text fontWeight="medium">John Doe</Text>
+            <Text fontSize="sm" color="foreground-muted">john@example.com</Text>
+          </Box>
+        </HStack>
+        <Divider />
+        <Button variant="ghost" size="sm" fullWidth>View Profile</Button>
+        <Button variant="ghost" size="sm" fullWidth>Settings</Button>
+        <Button variant="ghost" size="sm" fullWidth color="error">Sign Out</Button>
+      </VStack>
+    </PopoverBody>
+  }
+>
+  <Avatar name="John Doe" />
+</Popover>
+```
+
+### Form Popover
+
+```tsx
+<Popover
+  closeOnBlur={false}
+  content={
+    <>
+      <PopoverHeader>Quick Add</PopoverHeader>
+      <PopoverBody>
+        <VStack gap={3}>
+          <Input placeholder="Item name" />
+          <HStack gap={2} justify="flex-end">
+            <Button size="sm" variant="ghost">Cancel</Button>
+            <Button size="sm">Add</Button>
+          </HStack>
+        </VStack>
+      </PopoverBody>
+    </>
+  }
+>
+  <Button>Quick Add</Button>
+</Popover>
+```
+
+## Props Reference
+
+### Popover
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| content | `ReactNode` | - | Popover content (required) |
+| placement | `"top"` \| `"bottom"` \| `"left"` \| `"right"` | `"bottom"` | Popover position |
+| closeOnBlur | `boolean` | `true` | Close on outside click |
+| isOpen | `boolean` | - | Controlled open state |
+| onOpen | `() => void` | - | Callback when popover opens |
+| onClose | `() => void` | - | Callback when popover closes |
+| children | `ReactNode` | - | Trigger element (required) |
+
+### PopoverHeader, PopoverBody
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | Section content |
+
+## Accessibility
+
+- Uses `role="dialog"` on popover
+- Trigger has `aria-expanded` and `aria-haspopup="dialog"`
+- Closes on Escape key
+- Renders via portal to avoid clipping
+
+## TypeScript
+
+```tsx
+import { Popover, PopoverHeader, PopoverBody, type PopoverPlacement, type PopoverProps, type PopoverHeaderProps, type PopoverBodyProps } from "@tosui/react";
+```

@@ -1,0 +1,172 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Select, VStack, Box } from "@tosui/react";
+
+# Select
+
+Select is a dropdown select component with size variants, visual styles, and validation states.
+
+## Import
+
+```tsx
+import { Select } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Select>
+      <option value="">Select an option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </Select>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Select>
+      <option value="">Select an option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </Select>
+  </TabItem>
+</Tabs>
+
+## Sizes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Select size="sm">
+        <option>Small select</option>
+      </Select>
+      <Select size="md">
+        <option>Medium select (default)</option>
+      </Select>
+      <Select size="lg">
+        <option>Large select</option>
+      </Select>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Select size="sm">
+        <option>Small select</option>
+      </Select>
+      <Select size="md">
+        <option>Medium select (default)</option>
+      </Select>
+      <Select size="lg">
+        <option>Large select</option>
+      </Select>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Variants
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Select variant="outline">
+        <option>Outline variant (default)</option>
+      </Select>
+      <Select variant="filled">
+        <option>Filled variant</option>
+      </Select>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Select variant="outline">
+        <option>Outline variant (default)</option>
+      </Select>
+      <Select variant="filled">
+        <option>Filled variant</option>
+      </Select>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## States
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Select>
+        <option>Normal select</option>
+      </Select>
+      <Select disabled>
+        <option>Disabled select</option>
+      </Select>
+      <Select isInvalid>
+        <option>Invalid select</option>
+      </Select>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Select>
+        <option>Normal select</option>
+      </Select>
+      <Select disabled>
+        <option>Disabled select</option>
+      </Select>
+      <Select isInvalid>
+        <option>Invalid select</option>
+      </Select>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## With FormField
+
+Use with [FormField](/docs/components/form-field) for labels and validation messages.
+
+```tsx
+<FormField label="Country" isRequired>
+  <Select>
+    <option value="">Select a country</option>
+    <option value="us">United States</option>
+    <option value="uk">United Kingdom</option>
+    <option value="ca">Canada</option>
+  </Select>
+</FormField>
+
+<FormField
+  label="Category"
+  errorMessage="Please select a category"
+  isInvalid
+  isRequired
+>
+  <Select>
+    <option value="">Choose category...</option>
+  </Select>
+</FormField>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| size | `"sm"` \| `"md"` \| `"lg"` | `"md"` | Select size |
+| variant | `"outline"` \| `"filled"` | `"outline"` | Visual variant |
+| disabled | `boolean` | `false` | Disable the select |
+| isInvalid | `boolean` | `false` | Show invalid state |
+
+Select also accepts all native `<select>` attributes and [Box](/docs/components/box) styling props.
+
+## TypeScript
+
+```tsx
+import { Select, type SelectSize, type SelectVariant, type SelectProps } from "@tosui/react";
+```

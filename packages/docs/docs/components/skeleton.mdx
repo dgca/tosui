@@ -1,0 +1,210 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Skeleton, VStack, HStack, Box } from "@tosui/react";
+
+# Skeleton
+
+Skeleton is a loading placeholder with a shimmer animation. Use it to show content structure while data is loading.
+
+## Import
+
+```tsx
+import { Skeleton } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Skeleton w="200px" h="20px" />
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Skeleton w="200px" h="20px" />
+  </TabItem>
+</Tabs>
+
+## Sizes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4} align="stretch">
+      <Skeleton w="100%" h="12px" />
+      <Skeleton w="80%" h="12px" />
+      <Skeleton w="60%" h="12px" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4} align="stretch">
+      <Skeleton w="100%" h="12px" />
+      <Skeleton w="80%" h="12px" />
+      <Skeleton w="60%" h="12px" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Rounded Variants
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Skeleton w="48px" h="48px" rounded="full" />
+      <Skeleton w="48px" h="48px" rounded="md" />
+      <Skeleton w="48px" h="48px" rounded="none" />
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <Skeleton w="48px" h="48px" rounded="full" />
+      <Skeleton w="48px" h="48px" rounded="md" />
+      <Skeleton w="48px" h="48px" rounded="none" />
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Loaded State
+
+Use `isLoaded` to show content when loading is complete.
+
+```tsx
+function UserCard({ isLoading, user }) {
+  return (
+    <HStack gap={4}>
+      <Skeleton w="48px" h="48px" rounded="full" isLoaded={!isLoading}>
+        <Avatar src={user.avatar} name={user.name} />
+      </Skeleton>
+      <VStack align="flex-start" gap={2}>
+        <Skeleton w="120px" h="16px" isLoaded={!isLoading}>
+          <Text fontWeight="medium">{user.name}</Text>
+        </Skeleton>
+        <Skeleton w="80px" h="12px" isLoaded={!isLoading}>
+          <Text fontSize="sm" color="foreground-muted">{user.role}</Text>
+        </Skeleton>
+      </VStack>
+    </HStack>
+  );
+}
+```
+
+## Common Patterns
+
+### Card Skeleton
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Box p={4} bg="surface" rounded="md" border="thin" borderColor="border" w="300px">
+      <Skeleton w="100%" h="150px" rounded="md" />
+      <VStack gap={3} mt={4} align="stretch">
+        <Skeleton w="70%" h="16px" />
+        <Skeleton w="100%" h="12px" />
+        <Skeleton w="90%" h="12px" />
+      </VStack>
+    </Box>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Box p={4} bg="surface" rounded="md" border="thin" borderColor="border" w="300px">
+      <Skeleton w="100%" h="150px" rounded="md" />
+      <VStack gap={3} mt={4} align="stretch">
+        <Skeleton w="70%" h="16px" />
+        <Skeleton w="100%" h="12px" />
+        <Skeleton w="90%" h="12px" />
+      </VStack>
+    </Box>
+  </TabItem>
+</Tabs>
+
+### List Skeleton
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4} align="stretch">
+      {[1, 2, 3].map(i => (
+        <HStack key={i} gap={4}>
+          <Skeleton w="48px" h="48px" rounded="full" />
+          <VStack gap={2} align="stretch" flex={1}>
+            <Skeleton w="60%" h="14px" />
+            <Skeleton w="40%" h="12px" />
+          </VStack>
+        </HStack>
+      ))}
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4} align="stretch">
+      <HStack gap={4}>
+        <Skeleton w="48px" h="48px" rounded="full" />
+        <VStack gap={2} align="stretch" flex={1}>
+          <Skeleton w="60%" h="14px" />
+          <Skeleton w="40%" h="12px" />
+        </VStack>
+      </HStack>
+      <HStack gap={4}>
+        <Skeleton w="48px" h="48px" rounded="full" />
+        <VStack gap={2} align="stretch" flex={1}>
+          <Skeleton w="60%" h="14px" />
+          <Skeleton w="40%" h="12px" />
+        </VStack>
+      </HStack>
+      <HStack gap={4}>
+        <Skeleton w="48px" h="48px" rounded="full" />
+        <VStack gap={2} align="stretch" flex={1}>
+          <Skeleton w="60%" h="14px" />
+          <Skeleton w="40%" h="12px" />
+        </VStack>
+      </HStack>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+### Text Block
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={2} align="stretch">
+      <Skeleton w="100%" h="14px" />
+      <Skeleton w="100%" h="14px" />
+      <Skeleton w="100%" h="14px" />
+      <Skeleton w="75%" h="14px" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={2} align="stretch">
+      <Skeleton w="100%" h="14px" />
+      <Skeleton w="100%" h="14px" />
+      <Skeleton w="100%" h="14px" />
+      <Skeleton w="75%" h="14px" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| w | `string` | - | Width (CSS value) |
+| h | `string` | - | Height (CSS value) |
+| rounded | `"none"` \| `"sm"` \| `"md"` \| `"lg"` \| `"full"` | `"md"` | Border radius |
+| isLoaded | `boolean` | `false` | When true, renders children instead of skeleton |
+| children | `ReactNode` | - | Content to show when loaded |
+
+## Accessibility
+
+- Has `aria-hidden="true"` since it's decorative
+- When `isLoaded` is true, only children are rendered
+
+## TypeScript
+
+```tsx
+import { Skeleton, type SkeletonProps } from "@tosui/react";
+```

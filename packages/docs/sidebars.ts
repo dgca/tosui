@@ -1,25 +1,103 @@
 import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
-/**
- * Creating a sidebar enables you to:
- - create an ordered group of docs
- - render a sidebar for each doc of that group
- - provide next/previous navigation
-
- The sidebars can be generated from the filesystem, or explicitly defined here.
-
- Create as many sidebars as you want.
- */
 const sidebars: SidebarsConfig = {
-  docsSidebar: [
+  guideSidebar: [
     "introduction",
     "get-started",
     {
       type: "category",
-      label: "Components",
+      label: "Styling",
+      items: [
+        "guide/spacing",
+        "guide/colors",
+        "guide/responsive",
+        "guide/state-styling",
+        "guide/component-patterns",
+        "guide/customization",
+      ],
+    },
+  ],
+  componentsSidebar: [
+    {
+      type: "category",
+      label: "Primitives",
       items: ["components/box", "components/text", "components/heading"],
+    },
+    {
+      type: "category",
+      label: "Layout",
+      items: [
+        "components/stack",
+        "components/hstack",
+        "components/vstack",
+        "components/flex",
+        "components/grid",
+        "components/container",
+        "components/divider",
+        "components/spacer",
+      ],
+    },
+    {
+      type: "category",
+      label: "Forms",
+      items: [
+        "components/input",
+        "components/select",
+        "components/textarea",
+        "components/checkbox",
+        "components/radio",
+        "components/switch",
+        "components/form-field",
+        "components/label",
+      ],
+    },
+    {
+      type: "category",
+      label: "Buttons",
+      items: ["components/button", "components/icon-button"],
+    },
+    {
+      type: "category",
+      label: "Navigation",
+      items: [
+        "components/link",
+        "components/tabs",
+        "components/breadcrumb",
+        "components/menu",
+        "components/pagination",
+      ],
+    },
+    {
+      type: "category",
+      label: "Feedback",
+      items: [
+        "components/alert",
+        "components/badge",
+        "components/progress",
+        "components/skeleton",
+        "components/spinner",
+      ],
+    },
+    {
+      type: "category",
+      label: "Data Display",
+      items: [
+        "components/avatar",
+        "components/card",
+        "components/image",
+        "components/list",
+        "components/code",
+      ],
+    },
+    {
+      type: "category",
+      label: "Overlays",
+      items: [
+        "components/modal",
+        "components/tooltip",
+        "components/popover",
+        "components/accordion",
+      ],
     },
   ],
 };

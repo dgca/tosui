@@ -1,0 +1,156 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Input, VStack, Box } from "@tosui/react";
+
+# Input
+
+Input is a text input field component with size variants, visual styles, and validation states.
+
+## Import
+
+```tsx
+import { Input } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Input placeholder="Enter your name" />
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Input placeholder="Enter your name" />
+  </TabItem>
+</Tabs>
+
+## Sizes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Input size="sm" placeholder="Small input" />
+      <Input size="md" placeholder="Medium input (default)" />
+      <Input size="lg" placeholder="Large input" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Input size="sm" placeholder="Small input" />
+      <Input size="md" placeholder="Medium input (default)" />
+      <Input size="lg" placeholder="Large input" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Variants
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Input variant="outline" placeholder="Outline variant (default)" />
+      <Input variant="filled" placeholder="Filled variant" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Input variant="outline" placeholder="Outline variant (default)" />
+      <Input variant="filled" placeholder="Filled variant" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## States
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Input placeholder="Normal input" />
+      <Input disabled placeholder="Disabled input" />
+      <Input isInvalid placeholder="Invalid input" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Input placeholder="Normal input" />
+      <Input disabled placeholder="Disabled input" />
+      <Input isInvalid placeholder="Invalid input" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Input Types
+
+Input supports all native HTML input types.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Input type="text" placeholder="Text input" />
+      <Input type="email" placeholder="Email input" />
+      <Input type="password" placeholder="Password input" />
+      <Input type="number" placeholder="Number input" />
+      <Input type="date" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Input type="text" placeholder="Text input" />
+      <Input type="email" placeholder="Email input" />
+      <Input type="password" placeholder="Password input" />
+      <Input type="number" placeholder="Number input" />
+      <Input type="date" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## With FormField
+
+Use with [FormField](/docs/components/form-field) for labels and validation messages.
+
+```tsx
+<FormField
+  label="Email"
+  helperText="We'll never share your email"
+  isRequired
+>
+  <Input type="email" placeholder="you@example.com" />
+</FormField>
+
+<FormField
+  label="Username"
+  errorMessage="Username is already taken"
+  isInvalid
+  isRequired
+>
+  <Input placeholder="Enter username" />
+</FormField>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| size | `"sm"` \| `"md"` \| `"lg"` | `"md"` | Input size |
+| variant | `"outline"` \| `"filled"` | `"outline"` | Visual variant |
+| disabled | `boolean` | `false` | Disable the input |
+| isInvalid | `boolean` | `false` | Show invalid state |
+| type | `string` | `"text"` | HTML input type |
+| placeholder | `string` | - | Placeholder text |
+
+Input also accepts all native `<input>` attributes and [Box](/docs/components/box) styling props.
+
+## TypeScript
+
+```tsx
+import { Input, type InputSize, type InputVariant, type InputProps, type InputOwnProps } from "@tosui/react";
+```

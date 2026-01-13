@@ -19,7 +19,7 @@ export type FormFieldProps = {
   /** Whether the field is in an invalid state */
   isInvalid?: boolean;
   /** Whether the field is disabled */
-  isDisabled?: boolean;
+  disabled?: boolean;
   /** Custom ID for the field (auto-generated if not provided) */
   id?: string;
   /** The form control to render */
@@ -37,7 +37,7 @@ export type FormFieldProps = {
  * - Label with required indicator
  * - Helper text for descriptions
  * - Error message for validation
- * - State propagation to child controls (isInvalid, isDisabled)
+ * - State propagation to child controls (isInvalid, disabled)
  * - Accessible aria-describedby linking
  */
 export function FormField({
@@ -46,7 +46,7 @@ export function FormField({
   errorMessage,
   isRequired = false,
   isInvalid = false,
-  isDisabled = false,
+  disabled = false,
   id: providedId,
   children,
 }: FormFieldProps) {
@@ -70,7 +70,7 @@ export function FormField({
     return cloneElement(child as React.ReactElement<any>, {
       id: fieldId,
       isInvalid,
-      isDisabled,
+      disabled,
       "aria-describedby": hasMessage ? helperId : undefined,
       "aria-invalid": isInvalid || undefined,
     });

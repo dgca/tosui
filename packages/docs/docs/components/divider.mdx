@@ -1,0 +1,167 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Divider, Box, VStack, HStack } from "@tosui/react";
+
+# Divider
+
+Divider is a visual separator for content sections. It supports horizontal and vertical orientations with customizable colors.
+
+## Import
+
+```tsx
+import { Divider } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Box>Content above</Box>
+      <Divider />
+      <Box>Content below</Box>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Box>Content above</Box>
+      <Divider />
+      <Box>Content below</Box>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Orientation
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    {/* Horizontal (default) */}
+    <Divider orientation="horizontal" />
+
+    {/* Vertical - needs height context */}
+    <HStack gap={4} h="60px" align="center">
+      <Box>Left</Box>
+      <Divider orientation="vertical" />
+      <Box>Right</Box>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Box mb={4}>
+      <Divider orientation="horizontal" />
+    </Box>
+    <HStack gap={4} h="60px" align="center">
+      <Box>Left</Box>
+      <Divider orientation="vertical" />
+      <Box>Right</Box>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Colors
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Divider color="border" />
+      <Divider color="border-muted" />
+      <Divider color="primary" />
+      <Divider color="accent" />
+      <Divider color="success" />
+      <Divider color="warning" />
+      <Divider color="error" />
+      <Divider color="info" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Box><Divider color="border" /><Box fontSize="xs" color="foreground-muted">border</Box></Box>
+      <Box><Divider color="border-muted" /><Box fontSize="xs" color="foreground-muted">border-muted (default)</Box></Box>
+      <Box><Divider color="primary" /><Box fontSize="xs" color="foreground-muted">primary</Box></Box>
+      <Box><Divider color="accent" /><Box fontSize="xs" color="foreground-muted">accent</Box></Box>
+      <Box><Divider color="success" /><Box fontSize="xs" color="foreground-muted">success</Box></Box>
+      <Box><Divider color="warning" /><Box fontSize="xs" color="foreground-muted">warning</Box></Box>
+      <Box><Divider color="error" /><Box fontSize="xs" color="foreground-muted">error</Box></Box>
+      <Box><Divider color="info" /><Box fontSize="xs" color="foreground-muted">info</Box></Box>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Thickness
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Divider thickness={1} />
+      <Divider thickness={2} />
+      <Divider thickness={3} />
+      <Divider thickness={4} />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Box><Divider thickness={1} /><Box fontSize="xs" color="foreground-muted">1px (default)</Box></Box>
+      <Box><Divider thickness={2} /><Box fontSize="xs" color="foreground-muted">2px</Box></Box>
+      <Box><Divider thickness={3} /><Box fontSize="xs" color="foreground-muted">3px</Box></Box>
+      <Box><Divider thickness={4} /><Box fontSize="xs" color="foreground-muted">4px</Box></Box>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Common Patterns
+
+### Section Separator
+
+```tsx
+<VStack gap={6}>
+  <Box>
+    <Heading>Section 1</Heading>
+    <Text>Content for section 1...</Text>
+  </Box>
+  <Divider />
+  <Box>
+    <Heading>Section 2</Heading>
+    <Text>Content for section 2...</Text>
+  </Box>
+</VStack>
+```
+
+### Vertical in Navigation
+
+```tsx
+<HStack gap={4} align="center">
+  <Link href="#">Home</Link>
+  <Divider orientation="vertical" h="20px" />
+  <Link href="#">About</Link>
+  <Divider orientation="vertical" h="20px" />
+  <Link href="#">Contact</Link>
+</HStack>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| orientation | `"horizontal"` \| `"vertical"` | `"horizontal"` | Divider orientation |
+| color | `"border"` \| `"border-muted"` \| `"primary"` \| `"accent"` \| `"success"` \| `"warning"` \| `"error"` \| `"info"` | `"border-muted"` | Divider color |
+| thickness | `1` \| `2` \| `3` \| `4` | `1` | Thickness in pixels |
+| as | `ElementType` | `"hr"` (horizontal) / `"div"` (vertical) | HTML element to render |
+
+## Accessibility
+
+Divider includes proper ARIA attributes:
+- `role="separator"`
+- `aria-orientation` matching the orientation prop
+
+## TypeScript
+
+```tsx
+import { Divider, type DividerColor, type DividerProps, type DividerOwnProps } from "@tosui/react";
+```

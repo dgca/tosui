@@ -1,0 +1,187 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button, HStack, VStack, Box, Heading, Text } from "@tosui/react";
+import { useState } from "react";
+
+# Modal
+
+Modal is a dialog overlay component for focused interactions that require user attention.
+
+## Import
+
+```tsx
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "@tosui/react";
+```
+
+## Basic Usage
+
+Modal is a controlled component that requires `isOpen` and `onClose` props.
+
+```tsx
+function BasicModal() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <ModalHeader>
+          <Heading fontSize="lg">Modal Title</Heading>
+        </ModalHeader>
+        <ModalBody>
+          This is the modal content.
+        </ModalBody>
+        <ModalFooter>
+          <Button variant="ghost" onClick={() => setIsOpen(false)}>Cancel</Button>
+          <Button onClick={() => setIsOpen(false)}>Confirm</Button>
+        </ModalFooter>
+      </Modal>
+    </>
+  );
+}
+```
+
+## Sizes
+
+```tsx
+<VStack gap={2} align="flex-start">
+  <Button onClick={() => openModal("sm")}>Small (400px)</Button>
+  <Button onClick={() => openModal("md")}>Medium (500px)</Button>
+  <Button onClick={() => openModal("lg")}>Large (700px)</Button>
+  <Button onClick={() => openModal("xl")}>Extra Large (900px)</Button>
+  <Button onClick={() => openModal("full")}>Full Screen</Button>
+</VStack>
+
+<Modal isOpen={isOpen} onClose={onClose} size={size}>
+  <ModalBody>Content for {size} modal</ModalBody>
+</Modal>
+```
+
+### Size Dimensions
+
+| Size | Width |
+|------|-------|
+| sm | 400px |
+| md | 500px |
+| lg | 700px |
+| xl | 900px |
+| full | 100% |
+
+## Close Behaviors
+
+Control how the modal can be closed.
+
+```tsx
+// Disable close on overlay click
+<Modal
+  isOpen={isOpen}
+  onClose={onClose}
+  closeOnOverlayClick={false}
+>
+  ...
+</Modal>
+
+// Disable close on Escape key
+<Modal
+  isOpen={isOpen}
+  onClose={onClose}
+  closeOnEsc={false}
+>
+  ...
+</Modal>
+```
+
+## Common Patterns
+
+### Confirmation Dialog
+
+```tsx
+<Modal isOpen={isOpen} onClose={onClose} size="sm">
+  <ModalHeader>
+    <Heading fontSize="lg">Delete Item?</Heading>
+  </ModalHeader>
+  <ModalBody>
+    <Text>This action cannot be undone. Are you sure you want to delete this item?</Text>
+  </ModalBody>
+  <ModalFooter>
+    <Button variant="ghost" onClick={onClose}>Cancel</Button>
+    <Button color="error" onClick={handleDelete}>Delete</Button>
+  </ModalFooter>
+</Modal>
+```
+
+### Form Modal
+
+```tsx
+<Modal isOpen={isOpen} onClose={onClose}>
+  <ModalHeader>
+    <Heading fontSize="lg">Edit Profile</Heading>
+  </ModalHeader>
+  <ModalBody>
+    <VStack gap={4}>
+      <FormField label="Name">
+        <Input value={name} onChange={(e) => setName(e.target.value)} />
+      </FormField>
+      <FormField label="Email">
+        <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      </FormField>
+    </VStack>
+  </ModalBody>
+  <ModalFooter>
+    <Button variant="ghost" onClick={onClose}>Cancel</Button>
+    <Button onClick={handleSave}>Save Changes</Button>
+  </ModalFooter>
+</Modal>
+```
+
+### Long Content
+
+Modal scrolls internally when content exceeds viewport height.
+
+```tsx
+<Modal isOpen={isOpen} onClose={onClose}>
+  <ModalHeader>
+    <Heading fontSize="lg">Terms of Service</Heading>
+  </ModalHeader>
+  <ModalBody>
+    {/* Long scrollable content */}
+    <Text>Very long content goes here...</Text>
+  </ModalBody>
+  <ModalFooter>
+    <Button onClick={onClose}>I Accept</Button>
+  </ModalFooter>
+</Modal>
+```
+
+## Props Reference
+
+### Modal
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| isOpen | `boolean` | - | Whether modal is open (required) |
+| onClose | `() => void` | - | Callback when modal should close (required) |
+| size | `"sm"` \| `"md"` \| `"lg"` \| `"xl"` \| `"full"` | `"md"` | Modal size |
+| closeOnOverlayClick | `boolean` | `true` | Close when clicking backdrop |
+| closeOnEsc | `boolean` | `true` | Close on Escape key |
+
+### ModalHeader, ModalBody, ModalFooter
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | Section content |
+
+## Accessibility
+
+- Uses `role="dialog"` and `aria-modal="true"`
+- Traps focus within modal when open
+- Returns focus to trigger element on close
+- Prevents body scroll when open
+- Closes on Escape key by default
+
+## TypeScript
+
+```tsx
+import { Modal, ModalHeader, ModalBody, ModalFooter, type ModalSize, type ModalProps, type ModalHeaderProps, type ModalBodyProps, type ModalFooterProps } from "@tosui/react";
+```

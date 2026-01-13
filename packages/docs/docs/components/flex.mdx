@@ -1,0 +1,165 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Flex, Box } from "@tosui/react";
+
+# Flex
+
+Flex is an explicit flexbox container with shorthand props for common flexbox properties. It provides more granular control than Stack.
+
+## Import
+
+```tsx
+import { Flex } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Flex gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+    </Flex>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Flex gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+    </Flex>
+  </TabItem>
+</Tabs>
+
+## Direction
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Flex direction="column" gap={4}>
+      <Box p={4} bg="primary-subtle">Column 1</Box>
+      <Box p={4} bg="accent-subtle">Column 2</Box>
+    </Flex>
+
+    <Flex direction="row-reverse" gap={4}>
+      <Box p={4} bg="primary-subtle">First (shows last)</Box>
+      <Box p={4} bg="accent-subtle">Second (shows first)</Box>
+    </Flex>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Flex direction="column" gap={4} mb={4}>
+      <Box p={4} bg="primary-subtle">Column 1</Box>
+      <Box p={4} bg="accent-subtle">Column 2</Box>
+    </Flex>
+    <Flex direction="row-reverse" gap={4}>
+      <Box p={4} bg="primary-subtle">First (shows last)</Box>
+      <Box p={4} bg="accent-subtle">Second (shows first)</Box>
+    </Flex>
+  </TabItem>
+</Tabs>
+
+## Alignment
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Flex justify="space-between" align="center" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Left</Box>
+      <Box p={4} bg="accent-subtle">Center</Box>
+      <Box p={2} bg="success-subtle">Right</Box>
+    </Flex>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Flex justify="space-between" align="center" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Left</Box>
+      <Box p={4} bg="accent-subtle">Center</Box>
+      <Box p={2} bg="success-subtle">Right</Box>
+    </Flex>
+  </TabItem>
+</Tabs>
+
+## Wrapping
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Flex wrap="wrap" gap={4}>
+      <Box p={4} bg="primary-subtle" minW="120px">Item 1</Box>
+      <Box p={4} bg="accent-subtle" minW="120px">Item 2</Box>
+      <Box p={4} bg="success-subtle" minW="120px">Item 3</Box>
+      <Box p={4} bg="warning-subtle" minW="120px">Item 4</Box>
+      <Box p={4} bg="error-subtle" minW="120px">Item 5</Box>
+    </Flex>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Flex wrap="wrap" gap={4}>
+      <Box p={4} bg="primary-subtle" minW="120px">Item 1</Box>
+      <Box p={4} bg="accent-subtle" minW="120px">Item 2</Box>
+      <Box p={4} bg="success-subtle" minW="120px">Item 3</Box>
+      <Box p={4} bg="warning-subtle" minW="120px">Item 4</Box>
+      <Box p={4} bg="error-subtle" minW="120px">Item 5</Box>
+    </Flex>
+  </TabItem>
+</Tabs>
+
+## Flex Item Properties
+
+Flex supports `grow`, `shrink`, and `basis` for controlling the flex container itself.
+
+```tsx
+<Flex grow={1} shrink={0} basis="200px">
+  This flex container will grow to fill space
+</Flex>
+```
+
+## Separate Row and Column Gaps
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Flex wrap="wrap" gapRow={2} gapColumn={8}>
+      <Box p={4} bg="primary-subtle" minW="100px">Item 1</Box>
+      <Box p={4} bg="accent-subtle" minW="100px">Item 2</Box>
+      <Box p={4} bg="success-subtle" minW="100px">Item 3</Box>
+      <Box p={4} bg="warning-subtle" minW="100px">Item 4</Box>
+    </Flex>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Flex wrap="wrap" gapRow={2} gapColumn={8}>
+      <Box p={4} bg="primary-subtle" minW="100px">Item 1</Box>
+      <Box p={4} bg="accent-subtle" minW="100px">Item 2</Box>
+      <Box p={4} bg="success-subtle" minW="100px">Item 3</Box>
+      <Box p={4} bg="warning-subtle" minW="100px">Item 4</Box>
+    </Flex>
+  </TabItem>
+</Tabs>
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| direction | `"row"` \| `"column"` \| `"row-reverse"` \| `"column-reverse"` | `"row"` | Flex direction |
+| wrap | `"nowrap"` \| `"wrap"` \| `"wrap-reverse"` | `"nowrap"` | Flex wrap behavior |
+| justify | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Main-axis alignment |
+| align | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"stretch"` \| `"baseline"` | - | Cross-axis alignment |
+| alignContent | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Multi-line alignment |
+| gap | `0-32` | - | Gap between children |
+| gapRow | `0-32` | - | Row gap |
+| gapColumn | `0-32` | - | Column gap |
+| basis | `string` | - | Flex basis |
+| grow | `number` | - | Flex grow |
+| shrink | `number` | - | Flex shrink |
+| alignSelf | `"auto"` \| `"flex-start"` \| `"center"` \| `"flex-end"` \| `"stretch"` \| `"baseline"` | - | Self alignment in parent flex |
+| as | `ElementType` | `"div"` | HTML element to render |
+
+## TypeScript
+
+```tsx
+import { Flex, type FlexProps, type FlexOwnProps } from "@tosui/react";
+```

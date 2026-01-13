@@ -34,6 +34,12 @@ function useMenuContext() {
 // ============================================================================
 
 export type MenuProps = {
+  /** Controlled open state */
+  isOpen?: boolean;
+  /** Callback when menu opens */
+  onOpen?: () => void;
+  /** Callback when menu closes */
+  onClose?: () => void;
   /** Additional class name */
   className?: string;
   /** Menu components */
@@ -72,10 +78,31 @@ export type MenuItemProps = {
  *
  * Provides context for MenuButton, MenuList, and MenuItem.
  * Handles open/close state and click-outside behavior.
+ * Supports controlled mode via isOpen/onOpen/onClose.
  */
-export function Menu({ className, children }: MenuProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export function Menu({
+  isOpen: controlledIsOpen,
+  onOpen,
+  onClose,
+  className,
+  children,
+}: MenuProps) {
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  const isControlled = controlledIsOpen !== undefined;
+  const isOpen = isControlled ? controlledIsOpen : internalIsOpen;
+
   const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+  const setOpen = (open: boolean) => {
+    if (!isControlled) {
+      setInternalIsOpen(open);
+    }
+    if (open) {
+      onOpen?.();
+    } else {
+      onClose?.();
+    }
+  };
 
   // Close on outside click
   useEffect(() => {
@@ -83,7 +110,7 @@ export function Menu({ className, children }: MenuProps) {
 
     const handleClick = (e: MouseEvent) => {
       if (buttonRef.current?.contains(e.target as Node)) return;
-      setIsOpen(false);
+      setOpen(false);
     };
 
     document.addEventListener("click", handleClick);
@@ -95,7 +122,7 @@ export function Menu({ className, children }: MenuProps) {
     if (!isOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsOpen(false);
+      if (e.key === "Escape") setOpen(false);
     };
 
     document.addEventListener("keydown", handleKeyDown);
@@ -103,7 +130,7 @@ export function Menu({ className, children }: MenuProps) {
   }, [isOpen]);
 
   return (
-    <MenuContext.Provider value={{ isOpen, setIsOpen, buttonRef }}>
+    <MenuContext.Provider value={{ isOpen, setIsOpen: setOpen, buttonRef }}>
       <Box
         position="relative"
         display="inline-block"

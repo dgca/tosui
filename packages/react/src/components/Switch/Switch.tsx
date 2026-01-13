@@ -16,7 +16,7 @@ export type SwitchProps = Omit<
   /** Switch size affecting track and thumb dimensions */
   size?: SwitchSize;
   /** Whether the switch is disabled */
-  isDisabled?: boolean;
+  disabled?: boolean;
   /** Controlled checked state */
   isChecked?: boolean;
   /** Optional label text displayed to the right */
@@ -50,7 +50,7 @@ const sizeConfig = {
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   {
     size = "md",
-    isDisabled = false,
+    disabled = false,
     isChecked,
     label,
     className,
@@ -67,8 +67,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
       display="inline-flex"
       alignItems="center"
       gap={2}
-      cursor={isDisabled ? "not-allowed" : "pointer"}
-      opacity={isDisabled ? "faint" : undefined}
+      cursor={disabled ? "not-allowed" : "pointer"}
+      opacity={disabled ? "faint" : undefined}
       className={clsx(styles.wrapper, className)}
       style={style}
     >
@@ -78,7 +78,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
         role="switch"
         ref={ref}
         checked={isChecked}
-        disabled={isDisabled}
+        disabled={disabled}
         className={styles.input}
         {...rest}
       />

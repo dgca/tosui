@@ -20,7 +20,7 @@ export type SelectOwnProps = Omit<
   /** Visual variant: outline (border) or filled (surface background) */
   variant?: SelectVariant;
   /** Whether the select is disabled */
-  isDisabled?: boolean;
+  disabled?: boolean;
   /** Whether the select is in an invalid state */
   isInvalid?: boolean;
 };
@@ -59,7 +59,7 @@ export function Select<T extends ElementType = "select">({
   as,
   size = "md",
   variant = "outline",
-  isDisabled = false,
+  disabled = false,
   isInvalid = false,
   className,
   ...rest
@@ -101,7 +101,7 @@ export function Select<T extends ElementType = "select">({
       // CSS module for states and custom arrow
       className={clsx(styles.select, isInvalid && styles.invalid, className)}
       // Native disabled
-      disabled={isDisabled}
+      disabled={disabled}
       aria-invalid={isInvalid || undefined}
       {...rest}
     />

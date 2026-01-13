@@ -16,7 +16,7 @@ export type RadioProps = Omit<
   /** Radio size affecting circle dimensions */
   size?: RadioSize;
   /** Whether the radio is disabled */
-  isDisabled?: boolean;
+  disabled?: boolean;
   /** Controlled checked state */
   isChecked?: boolean;
   /** Optional label text displayed to the right */
@@ -51,7 +51,7 @@ const sizeConfig = {
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
   {
     size = "md",
-    isDisabled = false,
+    disabled = false,
     isChecked,
     label,
     className,
@@ -68,8 +68,8 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
       display="inline-flex"
       alignItems="center"
       gap={2}
-      cursor={isDisabled ? "not-allowed" : "pointer"}
-      opacity={isDisabled ? "faint" : undefined}
+      cursor={disabled ? "not-allowed" : "pointer"}
+      opacity={disabled ? "faint" : undefined}
       className={clsx(styles.wrapper, className)}
       style={style}
     >
@@ -78,7 +78,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
         type="radio"
         ref={ref}
         checked={isChecked}
-        disabled={isDisabled}
+        disabled={disabled}
         className={styles.input}
         {...rest}
       />

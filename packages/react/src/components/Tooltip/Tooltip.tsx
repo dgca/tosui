@@ -20,7 +20,13 @@ export type TooltipProps = {
   /** Delay before hiding (ms) */
   closeDelay?: number;
   /** Whether tooltip is disabled */
-  isDisabled?: boolean;
+  disabled?: boolean;
+  /** Controlled open state */
+  isOpen?: boolean;
+  /** Callback when tooltip opens */
+  onOpen?: () => void;
+  /** Callback when tooltip closes */
+  onClose?: () => void;
   /** Additional class name */
   className?: string;
   /** Trigger element */
@@ -38,6 +44,7 @@ export type TooltipProps = {
  * - Shows on hover and focus
  * - Positions relative to trigger element
  * - Supports configurable delays
+ * - Supports controlled mode via isOpen/onOpen/onClose
  * - Renders via portal
  */
 export function Tooltip({
@@ -45,11 +52,17 @@ export function Tooltip({
   placement = "top",
   openDelay = 0,
   closeDelay = 0,
-  isDisabled = false,
+  disabled = false,
+  isOpen: controlledIsOpen,
+  onOpen,
+  onClose,
   className,
   children,
 }: TooltipProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  const isControlled = controlledIsOpen !== undefined;
+  const isOpen = isControlled ? controlledIsOpen : internalIsOpen;
+
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const triggerRef = useRef<HTMLElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
@@ -92,17 +105,25 @@ export function Tooltip({
     if (isOpen) updatePosition();
   }, [isOpen, placement]);
 
+  const setOpen = (open: boolean) => {
+    if (!isControlled) {
+      setInternalIsOpen(open);
+    }
+    if (open) {
+      onOpen?.();
+    } else {
+      onClose?.();
+    }
+  };
+
   const handleOpen = () => {
-    if (isDisabled) return;
+    if (disabled) return;
     if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
 
     if (openDelay > 0) {
-      openTimeoutRef.current = window.setTimeout(
-        () => setIsOpen(true),
-        openDelay
-      );
+      openTimeoutRef.current = window.setTimeout(() => setOpen(true), openDelay);
     } else {
-      setIsOpen(true);
+      setOpen(true);
     }
   };
 
@@ -111,11 +132,11 @@ export function Tooltip({
 
     if (closeDelay > 0) {
       closeTimeoutRef.current = window.setTimeout(
-        () => setIsOpen(false),
+        () => setOpen(false),
         closeDelay
       );
     } else {
-      setIsOpen(false);
+      setOpen(false);
     }
   };
 

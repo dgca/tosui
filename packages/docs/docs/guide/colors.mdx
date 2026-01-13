@@ -1,0 +1,191 @@
+# Colors
+
+Tosui uses semantic color tokens that automatically adapt to light and dark modes. Instead of raw color values, you reference tokens by their purpose.
+
+## Semantic Philosophy
+
+Use colors by meaning, not appearance:
+
+```tsx
+// Good - semantic
+<Box color="foreground-muted">Secondary text</Box>
+<Box bg="primary-default">Brand element</Box>
+
+// Avoid - hardcoded
+<Box color="#666666">Secondary text</Box>
+<Box bg="#0066cc">Brand element</Box>
+```
+
+Semantic tokens ensure your UI adapts correctly to dark mode without manual adjustments.
+
+## Token Categories
+
+### Surface & Text
+
+For text content and backgrounds:
+
+| Token | Use |
+|-------|-----|
+| `foreground` | Primary text |
+| `foreground-muted` | Secondary text, descriptions |
+| `foreground-subtle` | Tertiary text, placeholders |
+| `foreground-inverted` | Text on dark backgrounds |
+| `background` | Page background |
+| `surface` | Card/panel backgrounds |
+
+```tsx
+<Box bg="surface" color="foreground">
+  <Text>Primary content</Text>
+  <Text color="foreground-muted">Supporting text</Text>
+</Box>
+```
+
+### Border
+
+For dividers and outlines:
+
+| Token | Use |
+|-------|-----|
+| `border` | Standard borders |
+| `border-muted` | Subtle dividers |
+
+```tsx
+<Box border="thin" borderColor="border">
+  Bordered container
+</Box>
+```
+
+### Brand Colors
+
+Primary and accent colors for brand identity:
+
+| Token | Use |
+|-------|-----|
+| `primary-default` | Main brand actions, links |
+| `primary-emphasis` | Hover/active states |
+| `primary-subtle` | Backgrounds, highlights |
+| `accent-default` | Secondary brand color |
+| `accent-emphasis` | Hover/active states |
+| `accent-subtle` | Backgrounds, highlights |
+
+```tsx
+<Button>Primary Action</Button>  {/* Uses primary-default */}
+<Box bg="primary-subtle" p={4}>
+  Highlighted section
+</Box>
+```
+
+### Feedback Colors
+
+For status and user feedback:
+
+| Category | Tokens | Use |
+|----------|--------|-----|
+| Success | `success-default`, `success-emphasis`, `success-subtle` | Confirmations, completed actions |
+| Warning | `warning-default`, `warning-emphasis`, `warning-subtle` | Cautions, important notices |
+| Error | `error-default`, `error-emphasis`, `error-subtle` | Errors, destructive actions |
+| Info | `info-default`, `info-emphasis`, `info-subtle` | Informational messages |
+
+```tsx
+<Alert status="success">Operation completed</Alert>
+<Badge colorScheme="error">Failed</Badge>
+<Box bg="warning-subtle" p={4}>Important notice</Box>
+```
+
+## Color Props
+
+Three props control colors on Box and components that accept Box props:
+
+| Prop | Description |
+|------|-------------|
+| `color` | Text color |
+| `bg` | Background color |
+| `borderColor` | Border color |
+
+```tsx
+<Box
+  bg="surface"
+  color="foreground"
+  borderColor="border"
+  border="thin"
+>
+  Styled box
+</Box>
+```
+
+## Dark Mode
+
+Colors automatically adapt when:
+- System preference is dark (`prefers-color-scheme: dark`)
+- `data-theme="dark"` is set on the HTML element
+
+No code changes needed - the same tokens work in both modes:
+
+```tsx
+// This works correctly in both light and dark mode
+<Box bg="surface" color="foreground">
+  Content adapts automatically
+</Box>
+```
+
+To force a specific theme:
+
+```html
+<!-- Force light mode -->
+<html data-theme="light">
+
+<!-- Force dark mode -->
+<html data-theme="dark">
+
+<!-- Follow system (default) -->
+<html data-theme="auto">
+```
+
+## Variant Pattern
+
+The three-tier variant pattern (`default`, `emphasis`, `subtle`) appears across all brand and feedback colors:
+
+| Variant | Use |
+|---------|-----|
+| `*-default` | Primary/main usage (buttons, links) |
+| `*-emphasis` | Stronger version (hover states) |
+| `*-subtle` | Lighter background (highlights, tags) |
+
+```tsx
+// Button states
+<Box bg="primary-default">Normal</Box>
+<Box bg="primary-emphasis">Hovered</Box>
+
+// Subtle backgrounds
+<Box bg="success-subtle" color="success-default" p={3}>
+  Success message with subtle background
+</Box>
+```
+
+## Common Patterns
+
+### Status Indicators
+
+```tsx
+<HStack gap={2}>
+  <Box w="8px" h="8px" rounded="full" bg="success-default" />
+  <Text>Online</Text>
+</HStack>
+```
+
+### Highlighted Text
+
+```tsx
+<Text>
+  Check out our <Box as="span" color="primary-default">new feature</Box>
+</Text>
+```
+
+### Muted Secondary Content
+
+```tsx
+<VStack gap={1} align="flex-start">
+  <Text fontWeight="medium">John Doe</Text>
+  <Text color="foreground-muted" fontSize="sm">john@example.com</Text>
+</VStack>
+```

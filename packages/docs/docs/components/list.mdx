@@ -1,0 +1,269 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { List, ListItem, ListIcon, VStack, Box } from "@tosui/react";
+
+# List
+
+List is a semantic list component for displaying ordered or unordered items.
+
+## Import
+
+```tsx
+import { List, ListItem, ListIcon } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <List>
+      <ListItem>First item</ListItem>
+      <ListItem>Second item</ListItem>
+      <ListItem>Third item</ListItem>
+    </List>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <List>
+      <ListItem>First item</ListItem>
+      <ListItem>Second item</ListItem>
+      <ListItem>Third item</ListItem>
+    </List>
+  </TabItem>
+</Tabs>
+
+## Ordered List
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <List as="ol">
+      <ListItem>Step one</ListItem>
+      <ListItem>Step two</ListItem>
+      <ListItem>Step three</ListItem>
+    </List>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <List as="ol">
+      <ListItem>Step one</ListItem>
+      <ListItem>Step two</ListItem>
+      <ListItem>Step three</ListItem>
+    </List>
+  </TabItem>
+</Tabs>
+
+## Style Types
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={6} align="flex-start">
+      <Box>
+        <Box fontWeight="medium" mb={2}>None (default for ul)</Box>
+        <List styleType="none">
+          <ListItem>Item without bullet</ListItem>
+          <ListItem>Another item</ListItem>
+        </List>
+      </Box>
+
+      <Box>
+        <Box fontWeight="medium" mb={2}>Disc</Box>
+        <List styleType="disc">
+          <ListItem>Item with bullet</ListItem>
+          <ListItem>Another item</ListItem>
+        </List>
+      </Box>
+
+      <Box>
+        <Box fontWeight="medium" mb={2}>Decimal (default for ol)</Box>
+        <List as="ol" styleType="decimal">
+          <ListItem>Numbered item</ListItem>
+          <ListItem>Another item</ListItem>
+        </List>
+      </Box>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={6} align="flex-start">
+      <Box>
+        <Box fontWeight="medium" mb={2}>None (default for ul)</Box>
+        <List styleType="none">
+          <ListItem>Item without bullet</ListItem>
+          <ListItem>Another item</ListItem>
+        </List>
+      </Box>
+      <Box>
+        <Box fontWeight="medium" mb={2}>Disc</Box>
+        <List styleType="disc">
+          <ListItem>Item with bullet</ListItem>
+          <ListItem>Another item</ListItem>
+        </List>
+      </Box>
+      <Box>
+        <Box fontWeight="medium" mb={2}>Decimal (default for ol)</Box>
+        <List as="ol" styleType="decimal">
+          <ListItem>Numbered item</ListItem>
+          <ListItem>Another item</ListItem>
+        </List>
+      </Box>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Spacing
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={6}>
+      <Box>
+        <Box fontWeight="medium" mb={2}>No spacing (default)</Box>
+        <List styleType="disc" spacing={0}>
+          <ListItem>First item</ListItem>
+          <ListItem>Second item</ListItem>
+          <ListItem>Third item</ListItem>
+        </List>
+      </Box>
+
+      <Box>
+        <Box fontWeight="medium" mb={2}>With spacing</Box>
+        <List styleType="disc" spacing={2}>
+          <ListItem>First item</ListItem>
+          <ListItem>Second item</ListItem>
+          <ListItem>Third item</ListItem>
+        </List>
+      </Box>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={6}>
+      <Box>
+        <Box fontWeight="medium" mb={2}>No spacing (default)</Box>
+        <List styleType="disc" spacing={0}>
+          <ListItem>First item</ListItem>
+          <ListItem>Second item</ListItem>
+          <ListItem>Third item</ListItem>
+        </List>
+      </Box>
+      <Box>
+        <Box fontWeight="medium" mb={2}>With spacing</Box>
+        <List styleType="disc" spacing={2}>
+          <ListItem>First item</ListItem>
+          <ListItem>Second item</ListItem>
+          <ListItem>Third item</ListItem>
+        </List>
+      </Box>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## With Icons
+
+Use `ListIcon` to add custom icons to list items.
+
+```tsx
+import { CheckIcon, StarIcon } from "your-icon-library";
+
+<List spacing={2}>
+  <ListItem>
+    <ListIcon><CheckIcon /></ListIcon>
+    Feature one
+  </ListItem>
+  <ListItem>
+    <ListIcon><CheckIcon /></ListIcon>
+    Feature two
+  </ListItem>
+  <ListItem>
+    <ListIcon><StarIcon /></ListIcon>
+    Premium feature
+  </ListItem>
+</List>
+```
+
+## Common Patterns
+
+### Feature List
+
+```tsx
+<List spacing={3}>
+  <ListItem>
+    <ListIcon><CheckIcon /></ListIcon>
+    Unlimited users
+  </ListItem>
+  <ListItem>
+    <ListIcon><CheckIcon /></ListIcon>
+    API access
+  </ListItem>
+  <ListItem>
+    <ListIcon><CheckIcon /></ListIcon>
+    24/7 support
+  </ListItem>
+  <ListItem>
+    <ListIcon><CheckIcon /></ListIcon>
+    Custom integrations
+  </ListItem>
+</List>
+```
+
+### Steps
+
+```tsx
+<List as="ol" spacing={4}>
+  <ListItem>
+    <Box>
+      <Box fontWeight="medium">Create an account</Box>
+      <Text fontSize="sm" color="foreground-muted">
+        Sign up with your email address
+      </Text>
+    </Box>
+  </ListItem>
+  <ListItem>
+    <Box>
+      <Box fontWeight="medium">Verify your email</Box>
+      <Text fontSize="sm" color="foreground-muted">
+        Click the link in your inbox
+      </Text>
+    </Box>
+  </ListItem>
+  <ListItem>
+    <Box>
+      <Box fontWeight="medium">Complete your profile</Box>
+      <Text fontSize="sm" color="foreground-muted">
+        Add your details and preferences
+      </Text>
+    </Box>
+  </ListItem>
+</List>
+```
+
+## Props Reference
+
+### List
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| as | `"ul"` \| `"ol"` | `"ul"` | HTML list element |
+| styleType | `"none"` \| `"disc"` \| `"decimal"` | depends on `as` | List style type |
+| spacing | `number` | `0` | Gap between items (spacing multiplier) |
+
+### ListItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | `ReactNode` | - | Item content |
+
+### ListIcon
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | `ReactNode` | - | Icon content |
+
+## TypeScript
+
+```tsx
+import { List, ListItem, ListIcon, type ListStyleType, type ListProps, type ListItemProps, type ListIconProps } from "@tosui/react";
+```

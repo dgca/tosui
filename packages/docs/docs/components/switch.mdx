@@ -1,0 +1,184 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Switch, VStack, HStack, Box } from "@tosui/react";
+
+# Switch
+
+Switch is a toggle switch component with size variants, sliding animation, and optional inline labels. Use it for on/off settings.
+
+## Import
+
+```tsx
+import { Switch } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Switch label="Enable notifications" />
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Switch label="Enable notifications" />
+  </TabItem>
+</Tabs>
+
+## Without Label
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Switch aria-label="Toggle option" />
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Switch aria-label="Toggle option" />
+  </TabItem>
+</Tabs>
+
+## Sizes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4} align="flex-start">
+      <Switch size="sm" label="Small switch" />
+      <Switch size="md" label="Medium switch (default)" />
+      <Switch size="lg" label="Large switch" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4} align="flex-start">
+      <Switch size="sm" label="Small switch" />
+      <Switch size="md" label="Medium switch (default)" />
+      <Switch size="lg" label="Large switch" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## States
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4} align="flex-start">
+      <Switch label="Off" />
+      <Switch label="On" defaultChecked />
+      <Switch label="Disabled off" disabled />
+      <Switch label="Disabled on" disabled defaultChecked />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4} align="flex-start">
+      <Switch label="Off" />
+      <Switch label="On" defaultChecked />
+      <Switch label="Disabled off" disabled />
+      <Switch label="Disabled on" disabled defaultChecked />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Controlled
+
+Use `isChecked` and `onChange` for controlled mode.
+
+```tsx
+function ControlledSwitch() {
+  const [enabled, setEnabled] = useState(false);
+
+  return (
+    <Switch
+      label={enabled ? "Enabled" : "Disabled"}
+      isChecked={enabled}
+      onChange={(e) => setEnabled(e.target.checked)}
+    />
+  );
+}
+```
+
+## Settings List
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4} align="stretch">
+      <HStack justify="space-between">
+        <Box>
+          <Box fontWeight="medium">Email notifications</Box>
+          <Box fontSize="sm" color="foreground-muted">Receive email updates</Box>
+        </Box>
+        <Switch defaultChecked />
+      </HStack>
+      <HStack justify="space-between">
+        <Box>
+          <Box fontWeight="medium">Push notifications</Box>
+          <Box fontSize="sm" color="foreground-muted">Receive push updates</Box>
+        </Box>
+        <Switch />
+      </HStack>
+      <HStack justify="space-between">
+        <Box>
+          <Box fontWeight="medium">Marketing emails</Box>
+          <Box fontSize="sm" color="foreground-muted">Receive marketing content</Box>
+        </Box>
+        <Switch />
+      </HStack>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4} align="stretch">
+      <HStack justify="space-between">
+        <Box>
+          <Box fontWeight="medium">Email notifications</Box>
+          <Box fontSize="sm" color="foreground-muted">Receive email updates</Box>
+        </Box>
+        <Switch defaultChecked />
+      </HStack>
+      <HStack justify="space-between">
+        <Box>
+          <Box fontWeight="medium">Push notifications</Box>
+          <Box fontSize="sm" color="foreground-muted">Receive push updates</Box>
+        </Box>
+        <Switch />
+      </HStack>
+      <HStack justify="space-between">
+        <Box>
+          <Box fontWeight="medium">Marketing emails</Box>
+          <Box fontSize="sm" color="foreground-muted">Receive marketing content</Box>
+        </Box>
+        <Switch />
+      </HStack>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| size | `"sm"` \| `"md"` \| `"lg"` | `"md"` | Switch size |
+| label | `string` | - | Optional label text |
+| disabled | `boolean` | `false` | Disable the switch |
+| isChecked | `boolean` | - | Controlled checked state |
+| defaultChecked | `boolean` | - | Initial checked state (uncontrolled) |
+| onChange | `(e: ChangeEvent) => void` | - | Change handler |
+
+Switch also accepts all native `<input type="checkbox">` attributes.
+
+## Accessibility
+
+- Uses native `<input type="checkbox">` with `role="switch"`
+- Label is associated with the input
+- Supports keyboard navigation (Space to toggle)
+- When no `label` is provided, use `aria-label` for accessibility
+
+## TypeScript
+
+```tsx
+import { Switch, type SwitchSize, type SwitchProps } from "@tosui/react";
+```

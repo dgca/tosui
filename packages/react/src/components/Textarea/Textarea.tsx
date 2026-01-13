@@ -21,7 +21,7 @@ export type TextareaOwnProps = Omit<
   /** Visual variant: outline (border) or filled (surface background) */
   variant?: TextareaVariant;
   /** Whether the textarea is disabled */
-  isDisabled?: boolean;
+  disabled?: boolean;
   /** Whether the textarea is in an invalid state */
   isInvalid?: boolean;
   /** Number of visible text rows */
@@ -74,7 +74,7 @@ export function Textarea<T extends ElementType = "textarea">({
   as,
   size = "md",
   variant = "outline",
-  isDisabled = false,
+  disabled = false,
   isInvalid = false,
   rows = 3,
   resize = "vertical",
@@ -124,7 +124,7 @@ export function Textarea<T extends ElementType = "textarea">({
         className
       )}
       // Native disabled
-      disabled={isDisabled}
+      disabled={disabled}
       aria-invalid={isInvalid || undefined}
       {...rest}
     />

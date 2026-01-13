@@ -1,0 +1,178 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { IconButton, HStack, VStack, Box } from "@tosui/react";
+
+# IconButton
+
+IconButton is a compact, icon-only button component. It requires an `aria-label` for accessibility.
+
+## Import
+
+```tsx
+import { IconButton } from "@tosui/react";
+```
+
+## Basic Usage
+
+```tsx
+import { EditIcon } from "your-icon-library";
+
+<IconButton icon={<EditIcon />} aria-label="Edit item" />
+```
+
+## Variants
+
+```tsx
+<HStack gap={4}>
+  <IconButton variant="solid" icon={<EditIcon />} aria-label="Edit" />
+  <IconButton variant="outline" icon={<EditIcon />} aria-label="Edit" />
+  <IconButton variant="ghost" icon={<EditIcon />} aria-label="Edit" />
+</HStack>
+```
+
+## Sizes
+
+```tsx
+<HStack gap={4} align="center">
+  <IconButton size="sm" icon={<EditIcon />} aria-label="Edit" />
+  <IconButton size="md" icon={<EditIcon />} aria-label="Edit" />
+  <IconButton size="lg" icon={<EditIcon />} aria-label="Edit" />
+</HStack>
+```
+
+## Color Schemes
+
+```tsx
+<HStack gap={4}>
+  <IconButton colorScheme="primary" icon={<StarIcon />} aria-label="Favorite" />
+  <IconButton colorScheme="accent" icon={<StarIcon />} aria-label="Favorite" />
+  <IconButton colorScheme="success" icon={<CheckIcon />} aria-label="Approve" />
+  <IconButton colorScheme="warning" icon={<AlertIcon />} aria-label="Warning" />
+  <IconButton colorScheme="error" icon={<TrashIcon />} aria-label="Delete" />
+  <IconButton colorScheme="info" icon={<InfoIcon />} aria-label="Info" />
+</HStack>
+```
+
+## Variants with Color Schemes
+
+```tsx
+<VStack gap={4}>
+  <HStack gap={4}>
+    <IconButton variant="solid" colorScheme="error" icon={<TrashIcon />} aria-label="Delete" />
+    <IconButton variant="outline" colorScheme="error" icon={<TrashIcon />} aria-label="Delete" />
+    <IconButton variant="ghost" colorScheme="error" icon={<TrashIcon />} aria-label="Delete" />
+  </HStack>
+</VStack>
+```
+
+## States
+
+```tsx
+<HStack gap={4}>
+  <IconButton icon={<EditIcon />} aria-label="Edit" />
+  <IconButton icon={<EditIcon />} aria-label="Edit" disabled />
+  <IconButton icon={<EditIcon />} aria-label="Edit" loading />
+</HStack>
+```
+
+## Common Patterns
+
+### Toolbar Actions
+
+```tsx
+<HStack gap={2} p={2} bg="surface" rounded="md">
+  <IconButton variant="ghost" icon={<BoldIcon />} aria-label="Bold" />
+  <IconButton variant="ghost" icon={<ItalicIcon />} aria-label="Italic" />
+  <IconButton variant="ghost" icon={<UnderlineIcon />} aria-label="Underline" />
+  <Divider orientation="vertical" h="24px" />
+  <IconButton variant="ghost" icon={<LinkIcon />} aria-label="Insert link" />
+  <IconButton variant="ghost" icon={<ImageIcon />} aria-label="Insert image" />
+</HStack>
+```
+
+### Card Actions
+
+```tsx
+<Card>
+  <CardBody>
+    <HStack justify="space-between">
+      <Box>
+        <Heading fontSize="lg">Item Title</Heading>
+        <Text color="foreground-muted">Item description</Text>
+      </Box>
+      <HStack gap={1}>
+        <IconButton
+          variant="ghost"
+          icon={<EditIcon />}
+          aria-label="Edit item"
+        />
+        <IconButton
+          variant="ghost"
+          colorScheme="error"
+          icon={<TrashIcon />}
+          aria-label="Delete item"
+        />
+      </HStack>
+    </HStack>
+  </CardBody>
+</Card>
+```
+
+### Close Button
+
+```tsx
+<Box position="relative" p={4} bg="surface" rounded="md">
+  <IconButton
+    variant="ghost"
+    icon={<CloseIcon />}
+    aria-label="Close"
+    position="absolute"
+    top={2}
+    right={2}
+  />
+  <Text>Modal or alert content</Text>
+</Box>
+```
+
+### Pagination Controls
+
+```tsx
+<HStack gap={2}>
+  <IconButton icon={<ChevronLeftIcon />} aria-label="Previous page" />
+  <Text>Page 1 of 10</Text>
+  <IconButton icon={<ChevronRightIcon />} aria-label="Next page" />
+</HStack>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| icon | `ReactNode` | - | The icon to display (required) |
+| aria-label | `string` | - | Accessible label (required) |
+| variant | `"solid"` \| `"outline"` \| `"ghost"` | `"solid"` | Visual variant |
+| size | `"sm"` \| `"md"` \| `"lg"` | `"md"` | Button size |
+| colorScheme | `"primary"` \| `"accent"` \| `"success"` \| `"warning"` \| `"error"` \| `"info"` | `"primary"` | Color scheme |
+| disabled | `boolean` | `false` | Disable the button |
+| loading | `boolean` | `false` | Show loading spinner |
+| onClick | `() => void` | - | Click handler |
+
+### Size Dimensions
+
+| Size | Dimensions |
+|------|------------|
+| sm | 28px x 28px |
+| md | 36px x 36px |
+| lg | 44px x 44px |
+
+## Accessibility
+
+- **`aria-label` is required** - IconButton has no visible text, so `aria-label` provides the accessible name
+- The icon is marked with `aria-hidden="true"` since the `aria-label` provides the meaning
+- Supports keyboard navigation (Enter/Space to activate)
+
+## TypeScript
+
+```tsx
+import { IconButton, type IconButtonVariant, type IconButtonSize, type IconButtonColorScheme, type IconButtonProps } from "@tosui/react";
+```

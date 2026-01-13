@@ -1,0 +1,209 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Menu, MenuButton, MenuList, MenuItem, Box } from "@tosui/react";
+
+# Menu
+
+Menu is a dropdown menu component with keyboard navigation and click-outside closing.
+
+## Import
+
+```tsx
+import { Menu, MenuButton, MenuList, MenuItem } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Menu>
+      <MenuButton>Actions</MenuButton>
+      <MenuList>
+        <MenuItem onClick={() => console.log("Edit")}>Edit</MenuItem>
+        <MenuItem onClick={() => console.log("Duplicate")}>Duplicate</MenuItem>
+        <MenuItem onClick={() => console.log("Delete")}>Delete</MenuItem>
+      </MenuList>
+    </Menu>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Menu>
+      <MenuButton>Actions</MenuButton>
+      <MenuList>
+        <MenuItem onClick={() => console.log("Edit")}>Edit</MenuItem>
+        <MenuItem onClick={() => console.log("Duplicate")}>Duplicate</MenuItem>
+        <MenuItem onClick={() => console.log("Delete")}>Delete</MenuItem>
+      </MenuList>
+    </Menu>
+  </TabItem>
+</Tabs>
+
+## Button Variants
+
+MenuButton accepts all Button props.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Menu>
+      <MenuButton variant="outline">Outline Menu</MenuButton>
+      <MenuList>
+        <MenuItem>Option 1</MenuItem>
+        <MenuItem>Option 2</MenuItem>
+      </MenuList>
+    </Menu>
+
+    <Menu>
+      <MenuButton variant="ghost" colorScheme="accent">Ghost Menu</MenuButton>
+      <MenuList>
+        <MenuItem>Option 1</MenuItem>
+        <MenuItem>Option 2</MenuItem>
+      </MenuList>
+    </Menu>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Box display="flex" gap={4}>
+      <Menu>
+        <MenuButton variant="outline">Outline Menu</MenuButton>
+        <MenuList>
+          <MenuItem>Option 1</MenuItem>
+          <MenuItem>Option 2</MenuItem>
+        </MenuList>
+      </Menu>
+      <Menu>
+        <MenuButton variant="ghost" colorScheme="accent">Ghost Menu</MenuButton>
+        <MenuList>
+          <MenuItem>Option 1</MenuItem>
+          <MenuItem>Option 2</MenuItem>
+        </MenuList>
+      </Menu>
+    </Box>
+  </TabItem>
+</Tabs>
+
+## Disabled Items
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Menu>
+      <MenuButton>Options</MenuButton>
+      <MenuList>
+        <MenuItem>Available</MenuItem>
+        <MenuItem disabled>Disabled</MenuItem>
+        <MenuItem>Another Option</MenuItem>
+      </MenuList>
+    </Menu>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Menu>
+      <MenuButton>Options</MenuButton>
+      <MenuList>
+        <MenuItem>Available</MenuItem>
+        <MenuItem disabled>Disabled</MenuItem>
+        <MenuItem>Another Option</MenuItem>
+      </MenuList>
+    </Menu>
+  </TabItem>
+</Tabs>
+
+## Controlled Mode
+
+Use `isOpen`, `onOpen`, and `onClose` for controlled mode.
+
+```tsx
+function ControlledMenu() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Menu
+      isOpen={isOpen}
+      onOpen={() => setIsOpen(true)}
+      onClose={() => setIsOpen(false)}
+    >
+      <MenuButton>Controlled Menu</MenuButton>
+      <MenuList>
+        <MenuItem>Option 1</MenuItem>
+        <MenuItem>Option 2</MenuItem>
+      </MenuList>
+    </Menu>
+  );
+}
+```
+
+## Common Patterns
+
+### User Account Menu
+
+```tsx
+<Menu>
+  <MenuButton variant="ghost">
+    <Avatar size="sm" name="John Doe" />
+  </MenuButton>
+  <MenuList>
+    <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
+    <MenuItem onClick={() => navigate("/settings")}>Settings</MenuItem>
+    <MenuItem onClick={() => logout()}>Sign Out</MenuItem>
+  </MenuList>
+</Menu>
+```
+
+### Actions Menu
+
+```tsx
+<Menu>
+  <MenuButton size="sm" variant="ghost">
+    <MoreIcon />
+  </MenuButton>
+  <MenuList>
+    <MenuItem onClick={handleEdit}>Edit</MenuItem>
+    <MenuItem onClick={handleDuplicate}>Duplicate</MenuItem>
+    <MenuItem onClick={handleArchive}>Archive</MenuItem>
+    <MenuItem onClick={handleDelete}>Delete</MenuItem>
+  </MenuList>
+</Menu>
+```
+
+## Behavior
+
+- **Click outside** closes the menu
+- **Escape key** closes the menu
+- Clicking a **MenuItem** closes the menu
+- Menu opens **below** the button by default
+
+## Props Reference
+
+### Menu
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| isOpen | `boolean` | - | Controlled open state |
+| onOpen | `() => void` | - | Called when menu opens |
+| onClose | `() => void` | - | Called when menu closes |
+
+### MenuButton
+
+MenuButton accepts all [Button](/docs/components/button) props.
+
+### MenuItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| onClick | `() => void` | - | Click handler |
+| disabled | `boolean` | `false` | Disable the item |
+
+## Accessibility
+
+- MenuButton has `aria-haspopup="menu"` and `aria-expanded`
+- MenuList has `role="menu"`
+- MenuItem has `role="menuitem"`
+- Escape key closes the menu
+
+## TypeScript
+
+```tsx
+import { Menu, MenuButton, MenuList, MenuItem, type MenuProps, type MenuButtonProps, type MenuListProps, type MenuItemProps } from "@tosui/react";
+```

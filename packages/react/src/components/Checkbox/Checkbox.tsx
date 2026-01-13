@@ -16,7 +16,7 @@ export type CheckboxProps = Omit<
   /** Checkbox size affecting box dimensions */
   size?: CheckboxSize;
   /** Whether the checkbox is disabled */
-  isDisabled?: boolean;
+  disabled?: boolean;
   /** Whether the checkbox is in an invalid state */
   isInvalid?: boolean;
   /** Controlled checked state */
@@ -53,7 +53,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox(
     {
       size = "md",
-      isDisabled = false,
+      disabled = false,
       isInvalid = false,
       isChecked,
       label,
@@ -71,8 +71,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         display="inline-flex"
         alignItems="center"
         gap={2}
-        cursor={isDisabled ? "not-allowed" : "pointer"}
-        opacity={isDisabled ? "faint" : undefined}
+        cursor={disabled ? "not-allowed" : "pointer"}
+        opacity={disabled ? "faint" : undefined}
         className={clsx(styles.wrapper, className)}
         style={style}
       >
@@ -81,7 +81,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           type="checkbox"
           ref={ref}
           checked={isChecked}
-          disabled={isDisabled}
+          disabled={disabled}
           aria-invalid={isInvalid || undefined}
           className={styles.input}
           {...rest}

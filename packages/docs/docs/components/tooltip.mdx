@@ -1,0 +1,199 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Tooltip, Button, HStack, VStack, Box, Text } from "@tosui/react";
+
+# Tooltip
+
+Tooltip displays informative text when hovering or focusing on an element.
+
+## Import
+
+```tsx
+import { Tooltip } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Tooltip label="This is a tooltip">
+      <Button>Hover me</Button>
+    </Tooltip>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Tooltip label="This is a tooltip">
+      <Button>Hover me</Button>
+    </Tooltip>
+  </TabItem>
+</Tabs>
+
+## Placement
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Tooltip label="Top tooltip" placement="top">
+        <Button>Top</Button>
+      </Tooltip>
+      <Tooltip label="Bottom tooltip" placement="bottom">
+        <Button>Bottom</Button>
+      </Tooltip>
+      <Tooltip label="Left tooltip" placement="left">
+        <Button>Left</Button>
+      </Tooltip>
+      <Tooltip label="Right tooltip" placement="right">
+        <Button>Right</Button>
+      </Tooltip>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <Tooltip label="Top tooltip" placement="top">
+        <Button>Top</Button>
+      </Tooltip>
+      <Tooltip label="Bottom tooltip" placement="bottom">
+        <Button>Bottom</Button>
+      </Tooltip>
+      <Tooltip label="Left tooltip" placement="left">
+        <Button>Left</Button>
+      </Tooltip>
+      <Tooltip label="Right tooltip" placement="right">
+        <Button>Right</Button>
+      </Tooltip>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## With Delays
+
+Control when the tooltip appears and disappears.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Tooltip label="Opens after 500ms" openDelay={500}>
+        <Button>Open delay</Button>
+      </Tooltip>
+      <Tooltip label="Closes after 300ms" closeDelay={300}>
+        <Button>Close delay</Button>
+      </Tooltip>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <Tooltip label="Opens after 500ms" openDelay={500}>
+        <Button>Open delay</Button>
+      </Tooltip>
+      <Tooltip label="Closes after 300ms" closeDelay={300}>
+        <Button>Close delay</Button>
+      </Tooltip>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Disabled State
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Tooltip label="This won't show" disabled>
+      <Button>Disabled tooltip</Button>
+    </Tooltip>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Tooltip label="This won't show" disabled>
+      <Button>Disabled tooltip</Button>
+    </Tooltip>
+  </TabItem>
+</Tabs>
+
+## Controlled Mode
+
+Use `isOpen`, `onOpen`, and `onClose` for full control.
+
+```tsx
+function ControlledTooltip() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Tooltip
+      label="Controlled tooltip"
+      isOpen={isOpen}
+      onOpen={() => setIsOpen(true)}
+      onClose={() => setIsOpen(false)}
+    >
+      <Button>Controlled</Button>
+    </Tooltip>
+  );
+}
+```
+
+## Common Patterns
+
+### Icon Button with Tooltip
+
+```tsx
+<Tooltip label="Settings">
+  <IconButton aria-label="Settings">
+    <SettingsIcon />
+  </IconButton>
+</Tooltip>
+```
+
+### Truncated Text with Tooltip
+
+```tsx
+<Tooltip label="This is the full text that doesn't fit in the container">
+  <Text
+    maxW="150px"
+    overflow="hidden"
+    whiteSpace="nowrap"
+    textOverflow="ellipsis"
+  >
+    This is the full text that doesn't fit in the container
+  </Text>
+</Tooltip>
+```
+
+### Disabled Button Explanation
+
+```tsx
+<Tooltip label="You need admin permissions to perform this action">
+  <Box as="span">
+    <Button disabled>Delete All</Button>
+  </Box>
+</Tooltip>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| label | `ReactNode` | - | Tooltip content (required) |
+| placement | `"top"` \| `"bottom"` \| `"left"` \| `"right"` | `"top"` | Tooltip position |
+| openDelay | `number` | `0` | Delay before showing (ms) |
+| closeDelay | `number` | `0` | Delay before hiding (ms) |
+| disabled | `boolean` | `false` | Whether tooltip is disabled |
+| isOpen | `boolean` | - | Controlled open state |
+| onOpen | `() => void` | - | Callback when tooltip opens |
+| onClose | `() => void` | - | Callback when tooltip closes |
+| children | `ReactNode` | - | Trigger element (required) |
+
+## Accessibility
+
+- Uses `role="tooltip"`
+- Shows on both hover and focus
+- Renders via portal to avoid clipping
+
+## TypeScript
+
+```tsx
+import { Tooltip, type TooltipPlacement, type TooltipProps } from "@tosui/react";
+```

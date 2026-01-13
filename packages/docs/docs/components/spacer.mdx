@@ -1,0 +1,151 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Spacer, Box, HStack, VStack } from "@tosui/react";
+
+# Spacer
+
+Spacer is a flexible space filler for flex layouts. It expands to fill available space, useful for pushing items apart.
+
+## Import
+
+```tsx
+import { Spacer } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Left</Box>
+      <Spacer />
+      <Box p={2} bg="accent-subtle">Right</Box>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Left</Box>
+      <Spacer />
+      <Box p={2} bg="accent-subtle">Right</Box>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Multiple Spacers
+
+Use multiple spacers to distribute items evenly.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Left</Box>
+      <Spacer />
+      <Box p={2} bg="accent-subtle">Center</Box>
+      <Spacer />
+      <Box p={2} bg="success-subtle">Right</Box>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Left</Box>
+      <Spacer />
+      <Box p={2} bg="accent-subtle">Center</Box>
+      <Spacer />
+      <Box p={2} bg="success-subtle">Right</Box>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Vertical Spacer
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack h="200px" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Top</Box>
+      <Spacer />
+      <Box p={2} bg="accent-subtle">Bottom</Box>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack h="200px" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Top</Box>
+      <Spacer />
+      <Box p={2} bg="accent-subtle">Bottom</Box>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Common Patterns
+
+### Navigation Bar
+
+```tsx
+<HStack as="nav" p={4} bg="surface" border="thin" borderColor="border">
+  <Box fontWeight="bold">Logo</Box>
+  <Spacer />
+  <HStack gap={4}>
+    <Link href="#">Home</Link>
+    <Link href="#">About</Link>
+    <Link href="#">Contact</Link>
+  </HStack>
+</HStack>
+```
+
+### Card Footer
+
+```tsx
+<Card>
+  <CardBody>
+    <Text>Card content</Text>
+  </CardBody>
+  <CardFooter>
+    <HStack>
+      <Text fontSize="sm" color="foreground-muted">Last updated: Today</Text>
+      <Spacer />
+      <Button size="sm">View Details</Button>
+    </HStack>
+  </CardFooter>
+</Card>
+```
+
+### Modal Actions
+
+```tsx
+<Modal isOpen={isOpen} onClose={onClose}>
+  <ModalHeader>Confirm Action</ModalHeader>
+  <ModalBody>Are you sure you want to proceed?</ModalBody>
+  <ModalFooter>
+    <HStack>
+      <Spacer />
+      <Button variant="ghost" onClick={onClose}>Cancel</Button>
+      <Button>Confirm</Button>
+    </HStack>
+  </ModalFooter>
+</Modal>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| as | `ElementType` | `"div"` | HTML element to render |
+
+Spacer accepts all [Box](/docs/components/box) props except `flex` (which is fixed at `1`).
+
+## When to Use
+
+- **Use Spacer** when you need flexible space that fills remaining room in a flex container
+- **Use gap** when you need fixed, consistent spacing between items
+- **Use margin** when you need fixed spacing on a specific element
+
+## TypeScript
+
+```tsx
+import { Spacer, type SpacerProps, type SpacerOwnProps } from "@tosui/react";
+```

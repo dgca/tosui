@@ -1,0 +1,179 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Radio, VStack, Box } from "@tosui/react";
+
+# Radio
+
+Radio is a radio button component with size variants, custom styling, and optional inline labels. Use the `name` prop to group radios together.
+
+## Import
+
+```tsx
+import { Radio } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={2} align="flex-start">
+      <Radio name="fruit" label="Apple" value="apple" />
+      <Radio name="fruit" label="Banana" value="banana" />
+      <Radio name="fruit" label="Orange" value="orange" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={2} align="flex-start">
+      <Radio name="fruit" label="Apple" value="apple" />
+      <Radio name="fruit" label="Banana" value="banana" />
+      <Radio name="fruit" label="Orange" value="orange" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Without Label
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Radio name="standalone" aria-label="Option" />
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Radio name="standalone" aria-label="Option" />
+  </TabItem>
+</Tabs>
+
+## Sizes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4} align="flex-start">
+      <Radio size="sm" name="size" label="Small radio" value="sm" />
+      <Radio size="md" name="size" label="Medium radio (default)" value="md" />
+      <Radio size="lg" name="size" label="Large radio" value="lg" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4} align="flex-start">
+      <Radio size="sm" name="size" label="Small radio" value="sm" />
+      <Radio size="md" name="size" label="Medium radio (default)" value="md" />
+      <Radio size="lg" name="size" label="Large radio" value="lg" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## States
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4} align="flex-start">
+      <Radio name="state1" label="Unchecked" />
+      <Radio name="state2" label="Checked" defaultChecked />
+      <Radio name="state3" label="Disabled" disabled />
+      <Radio name="state4" label="Disabled checked" disabled defaultChecked />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4} align="flex-start">
+      <Radio name="state1" label="Unchecked" />
+      <Radio name="state2" label="Checked" defaultChecked />
+      <Radio name="state3" label="Disabled" disabled />
+      <Radio name="state4" label="Disabled checked" disabled defaultChecked />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Controlled
+
+Use `isChecked` and `onChange` for controlled mode.
+
+```tsx
+function ControlledRadioGroup() {
+  const [selected, setSelected] = useState("option1");
+
+  return (
+    <VStack gap={2} align="flex-start">
+      <Radio
+        name="controlled"
+        label="Option 1"
+        value="option1"
+        isChecked={selected === "option1"}
+        onChange={() => setSelected("option1")}
+      />
+      <Radio
+        name="controlled"
+        label="Option 2"
+        value="option2"
+        isChecked={selected === "option2"}
+        onChange={() => setSelected("option2")}
+      />
+      <Radio
+        name="controlled"
+        label="Option 3"
+        value="option3"
+        isChecked={selected === "option3"}
+        onChange={() => setSelected("option3")}
+      />
+    </VStack>
+  );
+}
+```
+
+## Radio Group with Label
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={2} align="flex-start">
+      <Box fontWeight="medium">Select your plan:</Box>
+      <Radio name="plan" label="Free - $0/month" value="free" defaultChecked />
+      <Radio name="plan" label="Pro - $10/month" value="pro" />
+      <Radio name="plan" label="Enterprise - Contact us" value="enterprise" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={2} align="flex-start">
+      <Box fontWeight="medium">Select your plan:</Box>
+      <Radio name="plan" label="Free - $0/month" value="free" defaultChecked />
+      <Radio name="plan" label="Pro - $10/month" value="pro" />
+      <Radio name="plan" label="Enterprise - Contact us" value="enterprise" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| size | `"sm"` \| `"md"` \| `"lg"` | `"md"` | Radio size |
+| label | `string` | - | Optional label text |
+| name | `string` | - | Group name (required to link radios) |
+| value | `string` | - | Radio value |
+| disabled | `boolean` | `false` | Disable the radio |
+| isChecked | `boolean` | - | Controlled checked state |
+| defaultChecked | `boolean` | - | Initial checked state (uncontrolled) |
+| onChange | `(e: ChangeEvent) => void` | - | Change handler |
+
+Radio also accepts all native `<input type="radio">` attributes.
+
+## Accessibility
+
+- Uses native `<input type="radio">` for accessibility
+- Label is associated with the input
+- Use the same `name` prop to group radios
+- Supports keyboard navigation (arrow keys to switch between options)
+- When no `label` is provided, use `aria-label` for accessibility
+
+## TypeScript
+
+```tsx
+import { Radio, type RadioSize, type RadioProps } from "@tosui/react";
+```

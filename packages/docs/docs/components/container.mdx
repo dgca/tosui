@@ -1,0 +1,181 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Container, Box } from "@tosui/react";
+
+# Container
+
+Container provides a max-width centered content wrapper with preset sizes. Use it to constrain page content to readable widths.
+
+## Import
+
+```tsx
+import { Container } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Container>
+      <Box p={4} bg="surface" border="thin" borderColor="border">
+        Content constrained to max-width (default: lg = 1024px)
+      </Box>
+    </Container>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Container>
+      <Box p={4} bg="surface" border="thin" borderColor="border">
+        Content constrained to max-width (default: lg = 1024px)
+      </Box>
+    </Container>
+  </TabItem>
+</Tabs>
+
+## Sizes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Container size="sm">
+      <Box p={4} bg="primary-subtle" mb={2}>sm: 640px max-width</Box>
+    </Container>
+    <Container size="md">
+      <Box p={4} bg="accent-subtle" mb={2}>md: 768px max-width</Box>
+    </Container>
+    <Container size="lg">
+      <Box p={4} bg="success-subtle" mb={2}>lg: 1024px max-width (default)</Box>
+    </Container>
+    <Container size="xl">
+      <Box p={4} bg="warning-subtle" mb={2}>xl: 1280px max-width</Box>
+    </Container>
+    <Container size="2xl">
+      <Box p={4} bg="error-subtle" mb={2}>2xl: 1536px max-width</Box>
+    </Container>
+    <Container size="full">
+      <Box p={4} bg="info-subtle">full: 100% width</Box>
+    </Container>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Container size="sm">
+      <Box p={4} bg="primary-subtle" mb={2}>sm: 640px max-width</Box>
+    </Container>
+    <Container size="md">
+      <Box p={4} bg="accent-subtle" mb={2}>md: 768px max-width</Box>
+    </Container>
+    <Container size="lg">
+      <Box p={4} bg="success-subtle" mb={2}>lg: 1024px max-width (default)</Box>
+    </Container>
+    <Container size="xl">
+      <Box p={4} bg="warning-subtle" mb={2}>xl: 1280px max-width</Box>
+    </Container>
+    <Container size="2xl">
+      <Box p={4} bg="error-subtle" mb={2}>2xl: 1536px max-width</Box>
+    </Container>
+    <Container size="full">
+      <Box p={4} bg="info-subtle">full: 100% width</Box>
+    </Container>
+  </TabItem>
+</Tabs>
+
+## Center Content
+
+Use `centerContent` to center children both horizontally and vertically.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Container size="md" centerContent>
+      <Box p={4} bg="primary-subtle">
+        Centered content
+      </Box>
+    </Container>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Container size="md" centerContent>
+      <Box p={4} bg="primary-subtle">
+        Centered content
+      </Box>
+    </Container>
+  </TabItem>
+</Tabs>
+
+## Custom Padding
+
+The default horizontal padding is 16px (px={4}). Override it as needed.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Container px={8}>
+      <Box p={4} bg="surface" border="thin" borderColor="border">
+        Container with 32px horizontal padding
+      </Box>
+    </Container>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Container px={8}>
+      <Box p={4} bg="surface" border="thin" borderColor="border">
+        Container with 32px horizontal padding
+      </Box>
+    </Container>
+  </TabItem>
+</Tabs>
+
+## Common Patterns
+
+### Page Layout
+
+```tsx
+<Container as="main" size="lg" py={8}>
+  <Heading>Page Title</Heading>
+  <Text>Page content goes here...</Text>
+</Container>
+```
+
+### Narrow Content
+
+```tsx
+<Container size="sm">
+  <Card>
+    <CardBody>
+      <VStack gap={4}>
+        <Heading>Sign In</Heading>
+        <Input placeholder="Email" />
+        <Input type="password" placeholder="Password" />
+        <Button w="100%">Sign In</Button>
+      </VStack>
+    </CardBody>
+  </Card>
+</Container>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| size | `"sm"` \| `"md"` \| `"lg"` \| `"xl"` \| `"2xl"` \| `"full"` | `"lg"` | Max-width preset |
+| centerContent | `boolean` | `false` | Center children with flexbox |
+| px | `0-32` | `4` | Horizontal padding |
+| as | `ElementType` | `"div"` | HTML element to render |
+
+### Size Values
+
+| Size | Max Width |
+|------|-----------|
+| sm | 640px |
+| md | 768px |
+| lg | 1024px |
+| xl | 1280px |
+| 2xl | 1536px |
+| full | 100% |
+
+## TypeScript
+
+```tsx
+import { Container, type ContainerSize, type ContainerProps, type ContainerOwnProps } from "@tosui/react";
+```

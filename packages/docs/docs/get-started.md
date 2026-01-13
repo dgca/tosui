@@ -67,6 +67,22 @@ Design values describe intent (`foreground`, `background`), not specific measure
 
 ## Next Steps
 
-- Explore the [Box](/docs/components/box) component for layout and styling
-- Learn about [Text](/docs/components/text) for typography
-- Use [Heading](/docs/components/heading) for semantic headings
+**Primitives**
+- [Box](/docs/components/box) - Foundational layout primitive
+- [Text](/docs/components/text) - Text with typography props
+- [Heading](/docs/components/heading) - Semantic headings
+
+**Layout**
+- [Stack](/docs/components/stack) - Vertical/horizontal stacking
+- [Flex](/docs/components/flex) - Flexbox container
+- [Grid](/docs/components/grid) - CSS Grid container
+
+**Forms**
+- [Input](/docs/components/input) - Text input field
+- [Button](/docs/components/button) - Action buttons
+- [FormField](/docs/components/form-field) - Form field wrapper with labels
+
+**Overlays**
+- [Modal](/docs/components/modal) - Dialog windows
+- [Tooltip](/docs/components/tooltip) - Informational tooltips
+- [Popover](/docs/components/popover) - Rich content popovers
