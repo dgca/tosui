@@ -155,3 +155,8 @@ export {
   type ModalBodyProps,
   type ModalFooterProps,
 } from "./components/Modal";
+export {
+  Tooltip,
+  type TooltipPlacement,
+  type TooltipProps,
+} from "./components/Tooltip";
