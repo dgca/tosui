@@ -133,3 +133,13 @@ export {
   type BreadcrumbProps,
   type BreadcrumbItemProps,
 } from "./components/Breadcrumb";
+export {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  type MenuProps,
+  type MenuButtonProps,
+  type MenuListProps,
+  type MenuItemProps,
+} from "./components/Menu";

@@ -1,0 +1,24 @@
+.menu {
+  /* Container */
+}
+
+.menuList {
+  /* Dropdown */
+}
+
+.menuItem {
+  transition: background-color 0.15s ease;
+}
+
+.menuItem:hover:not(:disabled) {
+  background-color: var(--t-color-surface-hover, rgba(0, 0, 0, 0.05));
+}
+
+.menuItem:focus {
+  outline: none;
+  background-color: var(--t-color-surface-hover, rgba(0, 0, 0, 0.05));
+}
+
+.menuItem.disabled {
+  opacity: 0.5;
+}
