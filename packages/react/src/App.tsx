@@ -27,6 +27,10 @@ import { Alert } from "@/components/Alert/Alert";
 import { Badge } from "@/components/Badge/Badge";
 import { Progress } from "@/components/Progress/Progress";
 import { Skeleton } from "@/components/Skeleton/Skeleton";
+import { Avatar } from "@/components/Avatar/Avatar";
+import { Card, CardHeader, CardBody, CardFooter } from "@/components/Card/Card";
+import { Image } from "@/components/Image/Image";
+import { List, ListItem, ListIcon } from "@/components/List/List";
 
 // Example sections - easy to add more as you build components
 type Section =
@@ -55,6 +59,10 @@ type Section =
   | "badge"
   | "progress"
   | "skeleton"
+  | "avatar"
+  | "card"
+  | "image"
+  | "list"
   | "spacing"
   | "layout"
   | "colors"
@@ -102,6 +110,10 @@ function App() {
     { id: "badge", label: "Badge" },
     { id: "progress", label: "Progress" },
     { id: "skeleton", label: "Skeleton" },
+    { id: "avatar", label: "Avatar" },
+    { id: "card", label: "Card" },
+    { id: "image", label: "Image" },
+    { id: "list", label: "List" },
     { id: "spacing", label: "Spacing" },
     { id: "layout", label: "Layout" },
     { id: "colors", label: "Colors" },
@@ -1627,6 +1639,278 @@ function App() {
                   <Skeleton w="60%" h="14px" />
                 </Box>
               </Box>
+            </Box>
+          </Box>
+        )}
+
+        {/* Avatar Component */}
+        {shouldShowSection("avatar") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Avatar Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Sizes
+              </Text>
+              <HStack gap={3} mb={4}>
+                <Avatar size="sm" name="John Doe" />
+                <Avatar size="md" name="Jane Smith" />
+                <Avatar size="lg" name="Bob Wilson" />
+                <Avatar size="xl" name="Alice Brown" />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                With Images
+              </Text>
+              <HStack gap={3} mb={4}>
+                <Avatar
+                  src="https://i.pravatar.cc/150?u=1"
+                  name="User 1"
+                  size="md"
+                />
+                <Avatar
+                  src="https://i.pravatar.cc/150?u=2"
+                  name="User 2"
+                  size="md"
+                />
+                <Avatar
+                  src="https://i.pravatar.cc/150?u=3"
+                  name="User 3"
+                  size="md"
+                />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Rounded Variants
+              </Text>
+              <HStack gap={3} mb={4}>
+                <Avatar name="Full" rounded="full" />
+                <Avatar name="Medium" rounded="md" />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Fallback (no name)
+              </Text>
+              <Avatar />
+            </Box>
+          </Box>
+        )}
+
+        {/* Card Component */}
+        {shouldShowSection("card") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Card Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Basic Card
+              </Text>
+              <Box mb={4} maxW="400px">
+                <Card>
+                  <CardBody>
+                    <Text>This is a basic card with just body content.</Text>
+                  </CardBody>
+                </Card>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Card with Header/Body/Footer
+              </Text>
+              <Box mb={4} maxW="400px">
+                <Card>
+                  <CardHeader>
+                    <Text weight="semibold">Card Title</Text>
+                  </CardHeader>
+                  <CardBody>
+                    <Text>Card body content goes here. It can contain any content you want.</Text>
+                  </CardBody>
+                  <CardFooter>
+                    <HStack gap={2}>
+                      <Button size="sm">Action</Button>
+                      <Button size="sm" variant="ghost">Cancel</Button>
+                    </HStack>
+                  </CardFooter>
+                </Card>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Shadow Variants
+              </Text>
+              <HStack gap={4}>
+                <Card shadow="none">
+                  <CardBody>
+                    <Text size="sm">shadow="none"</Text>
+                  </CardBody>
+                </Card>
+                <Card shadow="sm">
+                  <CardBody>
+                    <Text size="sm">shadow="sm"</Text>
+                  </CardBody>
+                </Card>
+                <Card shadow="md">
+                  <CardBody>
+                    <Text size="sm">shadow="md"</Text>
+                  </CardBody>
+                </Card>
+              </HStack>
+            </Box>
+          </Box>
+        )}
+
+        {/* Image Component */}
+        {shouldShowSection("image") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              Image Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Basic Image
+              </Text>
+              <Box mb={4}>
+                <Image
+                  src="https://picsum.photos/300/200"
+                  alt="Random image"
+                  w="300px"
+                  h="200px"
+                />
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Rounded Variants
+              </Text>
+              <HStack gap={3} mb={4}>
+                <Image
+                  src="https://picsum.photos/100/100?1"
+                  alt="No rounding"
+                  w="100px"
+                  h="100px"
+                  rounded="none"
+                />
+                <Image
+                  src="https://picsum.photos/100/100?2"
+                  alt="Medium rounding"
+                  w="100px"
+                  h="100px"
+                  rounded="md"
+                />
+                <Image
+                  src="https://picsum.photos/100/100?3"
+                  alt="Full rounding"
+                  w="100px"
+                  h="100px"
+                  rounded="full"
+                />
+              </HStack>
+
+              <Text mb={3} weight="semibold">
+                Error Fallback (broken src)
+              </Text>
+              <Image
+                src="https://invalid-url-that-will-fail.com/image.jpg"
+                alt="Broken image"
+                w="200px"
+                h="150px"
+              />
+            </Box>
+          </Box>
+        )}
+
+        {/* List Component */}
+        {shouldShowSection("list") && (
+          <Box as="section" mb={8}>
+            <Heading level={2} mb={4}>
+              List Component
+            </Heading>
+            <Box
+              p={4}
+              bg="surface"
+              border="thin"
+              borderColor="border"
+              rounded="md"
+            >
+              <Text mb={3} weight="semibold">
+                Unordered List (no bullets)
+              </Text>
+              <Box mb={4}>
+                <List spacing={1}>
+                  <ListItem>First item</ListItem>
+                  <ListItem>Second item</ListItem>
+                  <ListItem>Third item</ListItem>
+                </List>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Unordered List (with bullets)
+              </Text>
+              <Box mb={4}>
+                <List styleType="disc" spacing={1}>
+                  <ListItem>First item</ListItem>
+                  <ListItem>Second item</ListItem>
+                  <ListItem>Third item</ListItem>
+                </List>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                Ordered List
+              </Text>
+              <Box mb={4}>
+                <List as="ol" spacing={1}>
+                  <ListItem>Step one</ListItem>
+                  <ListItem>Step two</ListItem>
+                  <ListItem>Step three</ListItem>
+                </List>
+              </Box>
+
+              <Text mb={3} weight="semibold">
+                List with Icons
+              </Text>
+              <List spacing={2}>
+                <ListItem>
+                  <ListIcon>
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </ListIcon>
+                  Feature one completed
+                </ListItem>
+                <ListItem>
+                  <ListIcon>
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </ListIcon>
+                  Feature two completed
+                </ListItem>
+                <ListItem>
+                  <ListIcon>
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </ListIcon>
+                  Feature three completed
+                </ListItem>
+              </List>
             </Box>
           </Box>
         )}
