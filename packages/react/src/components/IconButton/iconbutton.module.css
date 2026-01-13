@@ -1,0 +1,18 @@
+.iconButton {
+  transition-duration: 150ms;
+  transition-property: background-color, border-color, opacity;
+  transition-timing-function: ease-in-out;
+  flex-shrink: 0;
+}
+
+.solid:hover:not(:disabled) {
+  background-color: var(--iconbutton-hover-bg);
+}
+
+.outline:hover:not(:disabled) {
+  background-color: var(--iconbutton-hover-bg);
+}
+
+.ghost:hover:not(:disabled) {
+  background-color: var(--iconbutton-hover-bg);
+}

@@ -1,0 +1,27 @@
+.alert {
+  border-left: 4px solid;
+}
+
+.success {
+  border-left-color: var(--t-color-success-default);
+}
+
+.warning {
+  border-left-color: var(--t-color-warning-default);
+}
+
+.error {
+  border-left-color: var(--t-color-error-default);
+}
+
+.info {
+  border-left-color: var(--t-color-info-default);
+}
+
+.closeButton {
+  transition: background-color 150ms ease-in-out;
+}
+
+.closeButton:hover {
+  background-color: var(--t-color-border-muted);
+}

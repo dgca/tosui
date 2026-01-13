@@ -1,0 +1,204 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Image, HStack, VStack, Box } from "@tosui/react";
+
+# Image
+
+Image is an enhanced img element with loading states, error fallback, and object-fit options.
+
+## Import
+
+```tsx
+import { Image } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Image
+      src="https://picsum.photos/300/200"
+      alt="Sample image"
+      w="300px"
+      h="200px"
+    />
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Image
+      src="https://picsum.photos/300/200"
+      alt="Sample image"
+      w="300px"
+      h="200px"
+    />
+  </TabItem>
+</Tabs>
+
+## Object Fit
+
+Control how the image fits within its container.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <VStack gap={2}>
+        <Image src="https://picsum.photos/400/300" alt="Cover" w="150px" h="100px" objectFit="cover" />
+        <Box fontSize="sm">cover</Box>
+      </VStack>
+      <VStack gap={2}>
+        <Image src="https://picsum.photos/400/300" alt="Contain" w="150px" h="100px" objectFit="contain" />
+        <Box fontSize="sm">contain</Box>
+      </VStack>
+      <VStack gap={2}>
+        <Image src="https://picsum.photos/400/300" alt="Fill" w="150px" h="100px" objectFit="fill" />
+        <Box fontSize="sm">fill</Box>
+      </VStack>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <VStack gap={2}>
+        <Box bg="surface" p={1}><Image src="https://picsum.photos/400/300" alt="Cover" w="150px" h="100px" objectFit="cover" /></Box>
+        <Box fontSize="sm">cover</Box>
+      </VStack>
+      <VStack gap={2}>
+        <Box bg="surface" p={1}><Image src="https://picsum.photos/400/300" alt="Contain" w="150px" h="100px" objectFit="contain" /></Box>
+        <Box fontSize="sm">contain</Box>
+      </VStack>
+      <VStack gap={2}>
+        <Box bg="surface" p={1}><Image src="https://picsum.photos/400/300" alt="Fill" w="150px" h="100px" objectFit="fill" /></Box>
+        <Box fontSize="sm">fill</Box>
+      </VStack>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Rounded Variants
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Image src="https://picsum.photos/100" alt="None" w="100px" h="100px" rounded="none" />
+      <Image src="https://picsum.photos/100" alt="Small" w="100px" h="100px" rounded="sm" />
+      <Image src="https://picsum.photos/100" alt="Medium" w="100px" h="100px" rounded="md" />
+      <Image src="https://picsum.photos/100" alt="Large" w="100px" h="100px" rounded="lg" />
+      <Image src="https://picsum.photos/100" alt="Full" w="100px" h="100px" rounded="full" />
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <Image src="https://picsum.photos/100" alt="None" w="100px" h="100px" rounded="none" />
+      <Image src="https://picsum.photos/100" alt="Small" w="100px" h="100px" rounded="sm" />
+      <Image src="https://picsum.photos/100" alt="Medium" w="100px" h="100px" rounded="md" />
+      <Image src="https://picsum.photos/100" alt="Large" w="100px" h="100px" rounded="lg" />
+      <Image src="https://picsum.photos/100" alt="Full" w="100px" h="100px" rounded="full" />
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Loading State
+
+Image shows a skeleton placeholder while loading.
+
+```tsx
+<Image
+  src="https://picsum.photos/300/200"
+  alt="Loading example"
+  w="300px"
+  h="200px"
+/>
+```
+
+## Fallback Image
+
+Provide a `fallbackSrc` to show if the main image fails to load.
+
+```tsx
+<Image
+  src="https://broken-url.example/image.jpg"
+  fallbackSrc="https://via.placeholder.com/300x200"
+  alt="With fallback"
+  w="300px"
+  h="200px"
+/>
+```
+
+## Error State
+
+If both the main image and fallback fail, a placeholder icon is shown.
+
+```tsx
+<Image
+  src="https://broken-url.example/image.jpg"
+  alt="Broken image"
+  w="300px"
+  h="200px"
+/>
+```
+
+## Common Patterns
+
+### Gallery Item
+
+```tsx
+<Box
+  position="relative"
+  cursor="pointer"
+  overflow="hidden"
+  rounded="md"
+>
+  <Image
+    src="/gallery/photo.jpg"
+    alt="Gallery item"
+    w="100%"
+    h="200px"
+    objectFit="cover"
+  />
+</Box>
+```
+
+### Product Image
+
+```tsx
+<Card>
+  <Image
+    src="/product.jpg"
+    alt="Product"
+    w="100%"
+    h="250px"
+    objectFit="contain"
+  />
+  <CardBody>
+    <Text fontWeight="medium">Product Name</Text>
+    <Text color="foreground-muted">$99.99</Text>
+  </CardBody>
+</Card>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| src | `string` | - | Image source URL (required) |
+| alt | `string` | - | Alt text (required) |
+| w | `string` | - | Width (CSS value) |
+| h | `string` | - | Height (CSS value) |
+| objectFit | `"cover"` \| `"contain"` \| `"fill"` \| `"none"` | `"cover"` | Object fit behavior |
+| fallbackSrc | `string` | - | Fallback image URL |
+| rounded | `"none"` \| `"sm"` \| `"md"` \| `"lg"` \| `"full"` | `"none"` | Border radius |
+
+## Accessibility
+
+- `alt` prop is required for accessibility
+- Error placeholder has appropriate styling
+
+## TypeScript
+
+```tsx
+import { Image, type ImageObjectFit, type ImageProps } from "@tosui/react";
+```

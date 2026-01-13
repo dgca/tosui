@@ -1,0 +1,229 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Card, CardHeader, CardBody, CardFooter, Button, HStack, VStack, Box, Heading, Text } from "@tosui/react";
+
+# Card
+
+Card is a flexible content container with optional header, body, and footer sections.
+
+## Import
+
+```tsx
+import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Card>
+      <CardBody>
+        This is the card content.
+      </CardBody>
+    </Card>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Card>
+      <CardBody>
+        This is the card content.
+      </CardBody>
+    </Card>
+  </TabItem>
+</Tabs>
+
+## With Header
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Card>
+      <CardHeader>
+        <Heading fontSize="lg">Card Title</Heading>
+      </CardHeader>
+      <CardBody>
+        Card content goes here.
+      </CardBody>
+    </Card>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Card>
+      <CardHeader>
+        <Heading fontSize="lg">Card Title</Heading>
+      </CardHeader>
+      <CardBody>
+        Card content goes here.
+      </CardBody>
+    </Card>
+  </TabItem>
+</Tabs>
+
+## With Footer
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Card>
+      <CardHeader>
+        <Heading fontSize="lg">Confirm Action</Heading>
+      </CardHeader>
+      <CardBody>
+        Are you sure you want to proceed with this action?
+      </CardBody>
+      <CardFooter>
+        <HStack justify="flex-end" gap={2}>
+          <Button variant="ghost">Cancel</Button>
+          <Button>Confirm</Button>
+        </HStack>
+      </CardFooter>
+    </Card>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Card>
+      <CardHeader>
+        <Heading fontSize="lg">Confirm Action</Heading>
+      </CardHeader>
+      <CardBody>
+        Are you sure you want to proceed with this action?
+      </CardBody>
+      <CardFooter>
+        <HStack justify="flex-end" gap={2}>
+          <Button variant="ghost">Cancel</Button>
+          <Button>Confirm</Button>
+        </HStack>
+      </CardFooter>
+    </Card>
+  </TabItem>
+</Tabs>
+
+## Shadow Variants
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4} wrap>
+      <Card shadow="none" w="200px">
+        <CardBody>No shadow</CardBody>
+      </Card>
+      <Card shadow="sm" w="200px">
+        <CardBody>Small shadow</CardBody>
+      </Card>
+      <Card shadow="md" w="200px">
+        <CardBody>Medium shadow</CardBody>
+      </Card>
+      <Card shadow="lg" w="200px">
+        <CardBody>Large shadow</CardBody>
+      </Card>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4} wrap>
+      <Card shadow="none">
+        <CardBody>No shadow</CardBody>
+      </Card>
+      <Card shadow="sm">
+        <CardBody>Small shadow</CardBody>
+      </Card>
+      <Card shadow="md">
+        <CardBody>Medium shadow</CardBody>
+      </Card>
+      <Card shadow="lg">
+        <CardBody>Large shadow</CardBody>
+      </Card>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Common Patterns
+
+### Product Card
+
+```tsx
+<Card w="300px">
+  <Image src="/product.jpg" alt="Product" h="200px" />
+  <CardBody>
+    <VStack gap={2} align="flex-start">
+      <Badge colorScheme="success">In Stock</Badge>
+      <Heading fontSize="lg">Product Name</Heading>
+      <Text color="foreground-muted">Short product description</Text>
+      <Text fontWeight="bold" fontSize="lg">$99.99</Text>
+    </VStack>
+  </CardBody>
+  <CardFooter>
+    <Button fullWidth>Add to Cart</Button>
+  </CardFooter>
+</Card>
+```
+
+### Profile Card
+
+```tsx
+<Card>
+  <CardBody>
+    <VStack gap={4}>
+      <Avatar size="xl" name="John Doe" />
+      <VStack gap={1}>
+        <Heading fontSize="lg">John Doe</Heading>
+        <Text color="foreground-muted">Software Engineer</Text>
+      </VStack>
+      <HStack gap={8}>
+        <VStack gap={0}>
+          <Text fontWeight="bold">124</Text>
+          <Text fontSize="sm" color="foreground-muted">Posts</Text>
+        </VStack>
+        <VStack gap={0}>
+          <Text fontWeight="bold">5.2k</Text>
+          <Text fontSize="sm" color="foreground-muted">Followers</Text>
+        </VStack>
+      </HStack>
+    </VStack>
+  </CardBody>
+  <CardFooter>
+    <Button fullWidth variant="outline">Follow</Button>
+  </CardFooter>
+</Card>
+```
+
+### Settings Card
+
+```tsx
+<Card>
+  <CardHeader>
+    <Heading fontSize="md">Notification Settings</Heading>
+  </CardHeader>
+  <CardBody>
+    <VStack gap={4} align="stretch">
+      <HStack justify="space-between">
+        <Text>Email notifications</Text>
+        <Switch defaultChecked />
+      </HStack>
+      <HStack justify="space-between">
+        <Text>Push notifications</Text>
+        <Switch />
+      </HStack>
+    </VStack>
+  </CardBody>
+</Card>
+```
+
+## Props Reference
+
+### Card
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| shadow | `"none"` \| `"sm"` \| `"md"` \| `"lg"` | `"sm"` | Shadow elevation |
+
+### CardHeader, CardBody, CardFooter
+
+These components accept `className` and `children` props only.
+
+## TypeScript
+
+```tsx
+import { Card, CardHeader, CardBody, CardFooter, type CardProps, type CardHeaderProps, type CardBodyProps, type CardFooterProps } from "@tosui/react";
+```

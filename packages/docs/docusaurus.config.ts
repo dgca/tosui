@@ -64,9 +64,15 @@ const config: Config = {
       items: [
         {
           type: "docSidebar",
-          sidebarId: "docsSidebar",
+          sidebarId: "guideSidebar",
           position: "left",
-          label: "Docs",
+          label: "Guide",
+        },
+        {
+          type: "docSidebar",
+          sidebarId: "componentsSidebar",
+          position: "left",
+          label: "Components",
         },
         {
           href: "https://github.com/dgca/tosui",
@@ -79,15 +85,32 @@ const config: Config = {
       style: "light",
       links: [
         {
-          title: "Docs",
+          title: "Guide",
           items: [
+            {
+              label: "Introduction",
+              to: "/docs/introduction",
+            },
             {
               label: "Get Started",
               to: "/docs/get-started",
             },
+          ],
+        },
+        {
+          title: "Components",
+          items: [
             {
-              label: "Components",
+              label: "Primitives",
               to: "/docs/components/box",
+            },
+            {
+              label: "Layout",
+              to: "/docs/components/stack",
+            },
+            {
+              label: "Forms",
+              to: "/docs/components/input",
             },
           ],
         },
@@ -101,7 +124,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `A work in progress, maintained by <a href="https://www.linkedin.com/in/dan-cortes-8954b345/" target="_blank" rel="noopener noreferrer">Dan Cortes</a>`,
+      copyright: `Maintained by <a href="https://www.linkedin.com/in/dan-cortes-8954b345/" target="_blank" rel="noopener noreferrer">Dan Cortes</a>`,
     },
     prism: {
       theme: prismThemes.github,

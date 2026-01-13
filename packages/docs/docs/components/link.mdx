@@ -1,0 +1,145 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Link, VStack, HStack, Box } from "@tosui/react";
+
+# Link
+
+Link is a styled anchor element with variants for different use cases.
+
+## Import
+
+```tsx
+import { Link } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Link href="/docs">Documentation</Link>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Link href="/docs">Documentation</Link>
+  </TabItem>
+</Tabs>
+
+## Variants
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4} align="flex-start">
+      <Link variant="default" href="#">Default (underline on hover)</Link>
+      <Link variant="underline" href="#">Underline (always underlined)</Link>
+      <Link variant="subtle" href="#">Subtle (inherits color)</Link>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4} align="flex-start">
+      <Link variant="default" href="#">Default (underline on hover)</Link>
+      <Link variant="underline" href="#">Underline (always underlined)</Link>
+      <Link variant="subtle" href="#">Subtle (inherits color)</Link>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## External Links
+
+Use `external` for links that open in a new tab. This automatically adds `target="_blank"` and `rel="noopener noreferrer"`.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Link href="https://github.com" external>
+      GitHub (opens in new tab)
+    </Link>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Link href="https://github.com" external>
+      GitHub (opens in new tab)
+    </Link>
+  </TabItem>
+</Tabs>
+
+## Inline Links
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Box>
+      Read our <Link href="#">documentation</Link> for more information,
+      or check out the <Link href="#">getting started guide</Link>.
+    </Box>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Box>
+      Read our <Link href="#">documentation</Link> for more information,
+      or check out the <Link href="#">getting started guide</Link>.
+    </Box>
+  </TabItem>
+</Tabs>
+
+## With Router Libraries
+
+Link is polymorphic and works with router libraries like React Router or Next.js.
+
+```tsx
+// React Router
+import { Link as RouterLink } from "react-router-dom";
+
+<Link as={RouterLink} to="/about">
+  About
+</Link>
+
+// Next.js
+import NextLink from "next/link";
+
+<Link as={NextLink} href="/about">
+  About
+</Link>
+```
+
+## Navigation List
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack as="nav" gap={2} align="flex-start">
+      <Link href="#">Home</Link>
+      <Link href="#">Products</Link>
+      <Link href="#">About</Link>
+      <Link href="#">Contact</Link>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack as="nav" gap={2} align="flex-start">
+      <Link href="#">Home</Link>
+      <Link href="#">Products</Link>
+      <Link href="#">About</Link>
+      <Link href="#">Contact</Link>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | `"default"` \| `"underline"` \| `"subtle"` | `"default"` | Visual variant |
+| external | `boolean` | `false` | Open in new tab |
+| href | `string` | - | Link destination |
+| as | `ElementType` | `"a"` | HTML element or router component |
+
+Link also accepts all [Box](/docs/components/box) styling props.
+
+## TypeScript
+
+```tsx
+import { Link, type LinkVariant, type LinkProps, type LinkOwnProps } from "@tosui/react";
+```

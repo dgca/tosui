@@ -1,0 +1,16 @@
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  flex-shrink: 0;
+}
+
+.cardBody {
+  flex: 1;
+}
+
+.cardFooter {
+  flex-shrink: 0;
+}

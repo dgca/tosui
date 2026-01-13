@@ -1,0 +1,156 @@
+# Responsive
+
+Tosui supports responsive styling through breakpoint-aware props. Most Box props can accept either a single value or a responsive object.
+
+## Breakpoints
+
+Tosui uses a mobile-first breakpoint system:
+
+| Key | Min Width | Typical Device |
+|-----|-----------|----------------|
+| `base` | 0px | Mobile phones |
+| `sm` | 640px | Large phones |
+| `md` | 768px | Tablets |
+| `lg` | 1024px | Laptops |
+| `xl` | 1280px | Desktops |
+| `2xl` | 1536px | Large displays |
+
+## Simple vs Responsive Values
+
+Most props accept either a simple value or a responsive object:
+
+```tsx
+// Simple - applies to all screen sizes
+<Box p={4} />
+
+// Responsive - changes at breakpoints
+<Box p={{ base: 2, md: 4, lg: 6 }} />
+```
+
+The responsive version produces:
+- **Mobile (base)**: 8px padding
+- **Tablet (md)**: 16px padding
+- **Desktop (lg)**: 24px padding
+
+## Mobile-First Cascade
+
+You only need to specify breakpoints where values change. Smaller breakpoints cascade up:
+
+```tsx
+// Only specify base and lg
+<Box p={{ base: 2, lg: 6 }} />
+```
+
+This produces:
+- **base**: 8px (specified)
+- **sm**: 8px (inherits from base)
+- **md**: 8px (inherits from base)
+- **lg**: 24px (specified)
+- **xl**: 24px (inherits from lg)
+- **2xl**: 24px (inherits from lg)
+
+## Responsive Props
+
+These props support responsive values:
+
+| Category | Props |
+|----------|-------|
+| Spacing | `p`, `px`, `py`, `pt`, `pr`, `pb`, `pl`, `m`, `mx`, `my`, `mt`, `mr`, `mb`, `ml`, `gap` |
+| Sizing | `w`, `h`, `minW`, `maxW`, `minH`, `maxH` |
+| Layout | `display`, `flexDirection`, `justifyContent`, `alignItems`, `flexWrap` |
+| Grid | `gridTemplateColumns`, `gridTemplateRows` |
+
+## Common Patterns
+
+### Responsive Padding
+
+```tsx
+<Box p={{ base: 4, md: 6, lg: 8 }}>
+  Content with increasing padding on larger screens
+</Box>
+```
+
+### Show/Hide Elements
+
+```tsx
+// Hidden on mobile, visible on tablet+
+<Box display={{ base: "none", md: "block" }}>
+  Desktop navigation
+</Box>
+
+// Visible on mobile, hidden on tablet+
+<Box display={{ base: "block", md: "none" }}>
+  Mobile menu button
+</Box>
+```
+
+### Responsive Flex Direction
+
+```tsx
+// Stack vertically on mobile, horizontally on tablet+
+<Box
+  display="flex"
+  flexDirection={{ base: "column", md: "row" }}
+  gap={4}
+>
+  <Box>First</Box>
+  <Box>Second</Box>
+</Box>
+```
+
+### Responsive Grid
+
+```tsx
+<Box
+  display="grid"
+  gridTemplateColumns={{
+    base: "1fr",
+    md: "1fr 1fr",
+    lg: "1fr 1fr 1fr"
+  }}
+  gap={4}
+>
+  <Box>Card 1</Box>
+  <Box>Card 2</Box>
+  <Box>Card 3</Box>
+</Box>
+```
+
+### Responsive Typography
+
+```tsx
+<Heading size={{ base: "xl", md: "2xl", lg: "3xl" }}>
+  Scales with viewport
+</Heading>
+```
+
+### Responsive Width
+
+```tsx
+<Box w={{ base: "100%", md: "50%", lg: "33%" }}>
+  Responsive width container
+</Box>
+```
+
+## Layout Components
+
+Stack components accept responsive props too:
+
+```tsx
+<Stack
+  direction={{ base: "column", md: "row" }}
+  gap={{ base: 4, lg: 8 }}
+>
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+</Stack>
+```
+
+This is equivalent to using HStack on larger screens and VStack on mobile.
+
+## Best Practices
+
+1. **Design mobile-first**: Start with base values, then add larger breakpoints
+2. **Minimize breakpoints**: Only add breakpoints where the layout actually needs to change
+3. **Use semantic breakpoints**: Think "tablet and up" (`md`), not "768px"
+4. **Test all sizes**: Verify layouts at each breakpoint you use

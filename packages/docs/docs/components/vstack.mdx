@@ -1,0 +1,100 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { VStack, Box } from "@tosui/react";
+
+# VStack
+
+VStack is a convenience wrapper around Stack with a fixed vertical (column) direction. Use it for vertical layouts.
+
+## Import
+
+```tsx
+import { VStack } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Alignment
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4} align="center" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={4} bg="primary-subtle" w="200px">Centered</Box>
+      <Box p={4} bg="accent-subtle" w="150px">Items</Box>
+      <Box p={4} bg="success-subtle" w="100px">Here</Box>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4} align="center" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={4} bg="primary-subtle" w="200px">Centered</Box>
+      <Box p={4} bg="accent-subtle" w="150px">Items</Box>
+      <Box p={4} bg="success-subtle" w="100px">Here</Box>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Common Patterns
+
+### Form Layout
+
+```tsx
+<VStack gap={4} align="stretch">
+  <Input placeholder="Name" />
+  <Input placeholder="Email" />
+  <Textarea placeholder="Message" />
+  <Button>Submit</Button>
+</VStack>
+```
+
+### Card Content
+
+```tsx
+<Card>
+  <CardBody>
+    <VStack gap={3} align="flex-start">
+      <Heading fontSize="xl">Card Title</Heading>
+      <Text color="foreground-muted">Card description goes here.</Text>
+      <Button size="sm">Learn More</Button>
+    </VStack>
+  </CardBody>
+</Card>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| gap | `0-32` | - | Gap between children (spacing multiplier) |
+| align | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"stretch"` \| `"baseline"` | - | Cross-axis alignment |
+| justify | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Main-axis alignment |
+| wrap | `boolean` | `false` | Enable flex wrapping |
+| as | `ElementType` | `"div"` | HTML element to render |
+
+VStack accepts all [Stack](/docs/components/stack) props except `direction`.
+
+## TypeScript
+
+```tsx
+import { VStack, type VStackProps, type VStackOwnProps } from "@tosui/react";
+```

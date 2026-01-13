@@ -1,0 +1,226 @@
+# Customization
+
+Tosui is fully customizable via CSS variables. Override any design token to match your brand, and the entire component library adapts automatically.
+
+## How It Works
+
+Tosui defines all design values as CSS variables (custom properties). To customize, override these variables in your CSS:
+
+```css
+:root {
+  --t-color-primary-default: #8b5cf6;
+  --t-color-primary-emphasis: #7c3aed;
+  --t-color-primary-subtle: #ede9fe;
+}
+```
+
+All components using `primary-*` tokens will now use your colors.
+
+## Overriding Tokens
+
+### Global Overrides
+
+Override in `:root` to affect your entire app:
+
+```css
+/* your-theme.css */
+:root {
+  --t-color-primary-default: #dc2626;
+  --t-spacing-unit: 5px;
+  --t-radius-md: 12px;
+}
+```
+
+### Scoped Overrides
+
+Override within a selector to affect only that subtree:
+
+```css
+.marketing-section {
+  --t-color-primary-default: #059669;
+}
+```
+
+```tsx
+<Box className="marketing-section">
+  <Button>Uses green primary</Button>
+</Box>
+```
+
+### Inline Overrides
+
+Override inline for a single element:
+
+```tsx
+<Box style={{ '--t-color-primary-default': '#f59e0b' }}>
+  <Button>Uses amber primary</Button>
+</Box>
+```
+
+## Customizable Tokens
+
+### Colors
+
+Surface and text colors:
+
+| Variable | Default Purpose |
+|----------|-----------------|
+| `--t-color-foreground` | Primary text |
+| `--t-color-foreground-muted` | Secondary text |
+| `--t-color-foreground-subtle` | Tertiary text |
+| `--t-color-border` | Standard borders |
+| `--t-color-border-muted` | Subtle borders |
+| `--t-color-background` | Page background |
+| `--t-color-surface` | Card/panel backgrounds |
+
+Brand colors (each has `-default`, `-emphasis`, `-subtle` variants):
+
+| Category | Variables |
+|----------|-----------|
+| Primary | `--t-color-primary-*` |
+| Accent | `--t-color-accent-*` |
+
+Feedback colors (each has `-default`, `-emphasis`, `-subtle` variants):
+
+| Category | Variables |
+|----------|-----------|
+| Success | `--t-color-success-*` |
+| Warning | `--t-color-warning-*` |
+| Error | `--t-color-error-*` |
+| Info | `--t-color-info-*` |
+
+### Spacing
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `--t-spacing-unit` | `4px` | Base unit for all spacing (multipliers 0-32) |
+
+Changing this scales all spacing proportionally. With `5px`, `p={4}` becomes `20px` instead of `16px`.
+
+### Typography
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `--t-font-family-heading` | System sans-serif | Headings |
+| `--t-font-family-body` | System sans-serif | Body text |
+| `--t-font-family-mono` | System monospace | Code |
+| `--t-font-size-xs` through `--t-font-size-5xl` | 12px to 48px | Font sizes |
+| `--t-font-weight-normal` through `--t-font-weight-bold` | 400 to 700 | Font weights |
+| `--t-line-height-tight` through `--t-line-height-relaxed` | 1.25 to 1.75 | Line heights |
+
+### Borders and Shadows
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `--t-radius-none` through `--t-radius-full` | 0px to 9999px | Border radii |
+| `--t-border-width-thin` through `--t-border-width-thick` | 1px to 4px | Border widths |
+| `--t-shadow-sm` through `--t-shadow-lg` | Light shadows | Box shadows |
+
+### Transitions
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `--t-transition-fast` | `150ms` | Quick transitions |
+| `--t-transition-normal` | `250ms` | Standard transitions |
+| `--t-transition-slow` | `350ms` | Slow transitions |
+| `--t-transition-easing` | `ease-in-out` | Easing function |
+
+## Dark Mode
+
+Control the color scheme with the `data-theme` attribute on your HTML element:
+
+```html
+<!-- Follow system preference (default) -->
+<html>
+
+<!-- Or explicitly: -->
+<html data-theme="auto">
+
+<!-- Force light mode -->
+<html data-theme="light">
+
+<!-- Force dark mode -->
+<html data-theme="dark">
+```
+
+Tosui automatically switches between light and dark color values based on this attribute or system preference.
+
+### Customizing Dark Mode Colors
+
+To customize dark mode colors specifically, target the dark theme selector:
+
+```css
+:root[data-theme="dark"] {
+  --t-color-primary-default: #a78bfa;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    --t-color-primary-default: #a78bfa;
+  }
+}
+```
+
+## Custom Theme Example
+
+Here's a complete example customizing the primary brand color:
+
+```css
+/* custom-theme.css */
+:root {
+  /* Primary - teal */
+  --t-color-primary-default: #0d9488;
+  --t-color-primary-emphasis: #0f766e;
+  --t-color-primary-subtle: #ccfbf1;
+}
+
+:root[data-theme="dark"],
+html:not([data-theme="light"]) {
+  --t-color-primary-default: #2dd4bf;
+  --t-color-primary-emphasis: #5eead4;
+  --t-color-primary-subtle: #134e4a;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    --t-color-primary-default: #2dd4bf;
+    --t-color-primary-emphasis: #5eead4;
+    --t-color-primary-subtle: #134e4a;
+  }
+}
+```
+
+Import after Tosui's styles:
+
+```tsx
+import "@tosui/react/styles.css";
+import "./custom-theme.css";
+```
+
+## Font Customization
+
+Tosui uses system fonts by default. To use custom fonts:
+
+### Option 1: Use Tosui's IBM Plex Fonts
+
+```tsx
+import "@tosui/react/styles.css";
+import "@tosui/react/fonts.css"; // Adds IBM Plex Sans and Mono
+```
+
+### Option 2: Use Your Own Fonts
+
+```css
+/* custom-fonts.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --t-font-family-heading: 'Inter', sans-serif;
+  --t-font-family-body: 'Inter', sans-serif;
+}
+```
+
+```tsx
+import "@tosui/react/styles.css";
+import "./custom-fonts.css";
+```

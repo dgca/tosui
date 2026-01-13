@@ -1,0 +1,65 @@
+/* Hidden native checkbox */
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom checkbox box */
+.box {
+  transition-duration: 150ms;
+  transition-property: border-color, background-color, box-shadow;
+  transition-timing-function: ease-in-out;
+  position: relative;
+}
+
+/* Checkmark icon (hidden by default) */
+.box::before {
+  content: "";
+  position: absolute;
+  display: none;
+  width: 40%;
+  height: 60%;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translate(-10%, -10%);
+}
+
+/* Focus ring when input is focused */
+.input:focus-visible ~ .box {
+  border-color: var(--t-color-primary-default);
+  box-shadow: 0 0 0 3px var(--t-color-primary-subtle);
+}
+
+/* Checked state */
+.input:checked ~ .box {
+  background-color: var(--t-color-primary-default);
+  border-color: var(--t-color-primary-default);
+}
+
+.input:checked ~ .box::before {
+  display: block;
+}
+
+/* Invalid state */
+.box.invalid {
+  border-color: var(--t-color-error-default);
+}
+
+.input:focus-visible ~ .box.invalid {
+  border-color: var(--t-color-error-default);
+  box-shadow: 0 0 0 3px var(--t-color-error-subtle);
+}
+
+.input:checked ~ .box.invalid {
+  background-color: var(--t-color-error-default);
+  border-color: var(--t-color-error-default);
+}
+
+/* Disabled state (handled via opacity on wrapper) */
+.input:disabled ~ .box {
+  cursor: not-allowed;
+}

@@ -1,0 +1,173 @@
+# Spacing
+
+Tosui uses a multiplier-based spacing system built on a 4px base unit. This creates consistent, harmonious spacing throughout your UI.
+
+## The Base Unit
+
+All spacing in Tosui is calculated from a single base unit:
+
+```css
+--t-spacing-unit: 4px
+```
+
+When you use spacing props like `p={4}` or `m={8}`, the value is multiplied by 4px:
+
+| Multiplier | Pixels | Common Use |
+|------------|--------|------------|
+| 0 | 0px | No spacing |
+| 1 | 4px | Tight spacing, icon gaps |
+| 2 | 8px | Compact elements |
+| 3 | 12px | Small padding |
+| 4 | 16px | Standard padding |
+| 6 | 24px | Section spacing |
+| 8 | 32px | Large gaps |
+| 12 | 48px | Section breaks |
+| 16 | 64px | Major sections |
+
+The system supports multipliers from 0 to 32 (0px to 128px).
+
+## Padding Props
+
+Padding adds space inside an element's border.
+
+```tsx
+import { Box } from "@tosui/react";
+
+// All sides
+<Box p={4}>16px padding on all sides</Box>
+
+// Horizontal and vertical
+<Box px={6} py={3}>24px horizontal, 12px vertical</Box>
+
+// Individual sides
+<Box pt={2} pr={4} pb={2} pl={4}>Different per side</Box>
+```
+
+| Prop | Description |
+|------|-------------|
+| `p` | All sides |
+| `px` | Left and right |
+| `py` | Top and bottom |
+| `pt` | Top only |
+| `pr` | Right only |
+| `pb` | Bottom only |
+| `pl` | Left only |
+
+## Margin Props
+
+Margin adds space outside an element's border.
+
+```tsx
+// All sides
+<Box m={4}>16px margin on all sides</Box>
+
+// Horizontal and vertical
+<Box mx={6} my={3}>24px horizontal, 12px vertical</Box>
+
+// Individual sides
+<Box mt={8} mb={4}>32px top, 16px bottom</Box>
+```
+
+| Prop | Description |
+|------|-------------|
+| `m` | All sides |
+| `mx` | Left and right |
+| `my` | Top and bottom |
+| `mt` | Top only |
+| `mr` | Right only |
+| `mb` | Bottom only |
+| `ml` | Left only |
+
+## Gap (Flexbox/Grid)
+
+Use `gap` for spacing between flex or grid children:
+
+```tsx
+<Box display="flex" gap={4}>
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+For different row and column gaps:
+
+```tsx
+<Box display="grid" gapRow={4} gapColumn={8}>
+  {/* Grid items */}
+</Box>
+```
+
+## Specificity Cascade
+
+When multiple spacing props apply to the same side, more specific props win:
+
+```tsx
+// Result: left=32px, right=24px, top=16px, bottom=16px
+<Box p={4} px={6} pl={8} />
+```
+
+Order of specificity (most to least):
+1. Individual side (`pt`, `pr`, `pb`, `pl`)
+2. Axis (`px`, `py`)
+3. All sides (`p`)
+
+## Common Patterns
+
+### Card Padding
+
+```tsx
+<Box p={6} bg="surface" rounded="md">
+  Card content with comfortable padding
+</Box>
+```
+
+### Section Spacing
+
+```tsx
+<Box py={12}>
+  <Heading mb={6}>Section Title</Heading>
+  <Text>Section content with vertical rhythm</Text>
+</Box>
+```
+
+### Tight Lists
+
+```tsx
+<VStack gap={2}>
+  <Text>Item 1</Text>
+  <Text>Item 2</Text>
+  <Text>Item 3</Text>
+</VStack>
+```
+
+### Button Groups
+
+```tsx
+<HStack gap={3}>
+  <Button>Cancel</Button>
+  <Button>Submit</Button>
+</HStack>
+```
+
+## Custom Values
+
+For values outside the multiplier system, use CSS strings:
+
+```tsx
+<Box p="20px">Custom 20px padding</Box>
+<Box m="2rem">Custom 2rem margin</Box>
+<Box p="clamp(16px, 4vw, 32px)">Fluid padding</Box>
+```
+
+## Customizing the Base Unit
+
+The default base unit is `4px`, but you can change it by overriding the CSS variable:
+
+```css
+:root {
+  --t-spacing-unit: 5px;
+}
+```
+
+With `5px`, `p={4}` becomes `20px` instead of `16px`. See the [Customization guide](/docs/guide/customization) for more theming options.

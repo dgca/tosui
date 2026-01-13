@@ -1,0 +1,25 @@
+.breadcrumb ol {
+  list-style: none;
+}
+
+.item {
+  white-space: nowrap;
+}
+
+.link {
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.link:hover {
+  color: var(--t-color-primary-default);
+  text-decoration: underline;
+}
+
+.current {
+  font-weight: 500;
+}
+
+.separator {
+  user-select: none;
+}

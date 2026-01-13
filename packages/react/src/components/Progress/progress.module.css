@@ -1,0 +1,24 @@
+.track {
+  height: var(--progress-height);
+  width: 100%;
+}
+
+.fill {
+  width: var(--progress-width, 0%);
+  height: 100%;
+  transition: width 200ms ease-in-out;
+}
+
+.indeterminate {
+  width: 40%;
+  animation: indeterminate 1.5s ease-in-out infinite;
+}
+
+@keyframes indeterminate {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 100%;
+  }
+}

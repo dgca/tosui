@@ -1,0 +1,248 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Button, HStack, VStack, Box } from "@tosui/react";
+
+# Button
+
+Button is an interactive button component with variants, sizes, color schemes, and loading states.
+
+## Import
+
+```tsx
+import { Button } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Button>Click me</Button>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Button>Click me</Button>
+  </TabItem>
+</Tabs>
+
+## Variants
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Button variant="solid">Solid</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <Button variant="solid">Solid</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Sizes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4} align="center">
+      <Button size="sm">Small</Button>
+      <Button size="md">Medium</Button>
+      <Button size="lg">Large</Button>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4} align="center">
+      <Button size="sm">Small</Button>
+      <Button size="md">Medium</Button>
+      <Button size="lg">Large</Button>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Color Schemes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4} wrap>
+      <Button colorScheme="primary">Primary</Button>
+      <Button colorScheme="accent">Accent</Button>
+      <Button colorScheme="success">Success</Button>
+      <Button colorScheme="warning">Warning</Button>
+      <Button colorScheme="error">Error</Button>
+      <Button colorScheme="info">Info</Button>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4} wrap>
+      <Button colorScheme="primary">Primary</Button>
+      <Button colorScheme="accent">Accent</Button>
+      <Button colorScheme="success">Success</Button>
+      <Button colorScheme="warning">Warning</Button>
+      <Button colorScheme="error">Error</Button>
+      <Button colorScheme="info">Info</Button>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## Variants with Color Schemes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <HStack gap={4}>
+        <Button variant="solid" colorScheme="success">Solid</Button>
+        <Button variant="outline" colorScheme="success">Outline</Button>
+        <Button variant="ghost" colorScheme="success">Ghost</Button>
+      </HStack>
+      <HStack gap={4}>
+        <Button variant="solid" colorScheme="error">Solid</Button>
+        <Button variant="outline" colorScheme="error">Outline</Button>
+        <Button variant="ghost" colorScheme="error">Ghost</Button>
+      </HStack>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <HStack gap={4}>
+        <Button variant="solid" colorScheme="success">Solid</Button>
+        <Button variant="outline" colorScheme="success">Outline</Button>
+        <Button variant="ghost" colorScheme="success">Ghost</Button>
+      </HStack>
+      <HStack gap={4}>
+        <Button variant="solid" colorScheme="error">Solid</Button>
+        <Button variant="outline" colorScheme="error">Outline</Button>
+        <Button variant="ghost" colorScheme="error">Ghost</Button>
+      </HStack>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## States
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Button>Normal</Button>
+      <Button disabled>Disabled</Button>
+      <Button loading>Loading</Button>
+    </HStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <HStack gap={4}>
+      <Button>Normal</Button>
+      <Button disabled>Disabled</Button>
+      <Button loading>Loading</Button>
+    </HStack>
+  </TabItem>
+</Tabs>
+
+## With Icons
+
+```tsx
+import { ArrowRightIcon, DownloadIcon } from "your-icon-library";
+
+<HStack gap={4}>
+  <Button leftIcon={<DownloadIcon />}>Download</Button>
+  <Button rightIcon={<ArrowRightIcon />}>Continue</Button>
+  <Button leftIcon={<DownloadIcon />} rightIcon={<ArrowRightIcon />}>
+    Both Icons
+  </Button>
+</HStack>
+```
+
+When loading, the left icon is replaced with a spinner:
+
+```tsx
+<Button leftIcon={<DownloadIcon />} loading>
+  Downloading
+</Button>
+```
+
+## Full Width
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Button fullWidth>Full Width Button</Button>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Button fullWidth>Full Width Button</Button>
+  </TabItem>
+</Tabs>
+
+## As Link
+
+Button can render as any element using the `as` prop.
+
+```tsx
+<Button as="a" href="/signup">
+  Sign Up
+</Button>
+```
+
+## Common Patterns
+
+### Form Actions
+
+```tsx
+<HStack gap={4} justify="flex-end">
+  <Button variant="ghost">Cancel</Button>
+  <Button>Submit</Button>
+</HStack>
+```
+
+### Destructive Action
+
+```tsx
+<HStack gap={4}>
+  <Button variant="outline">Cancel</Button>
+  <Button colorScheme="error">Delete</Button>
+</HStack>
+```
+
+### Button Group
+
+```tsx
+<HStack gap={0}>
+  <Button rounded="md" roundedRight="none" borderRight="none">Left</Button>
+  <Button rounded="none" borderRight="none">Middle</Button>
+  <Button rounded="md" roundedLeft="none">Right</Button>
+</HStack>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | `"solid"` \| `"outline"` \| `"ghost"` | `"solid"` | Visual variant |
+| size | `"sm"` \| `"md"` \| `"lg"` | `"md"` | Button size |
+| colorScheme | `"primary"` \| `"accent"` \| `"success"` \| `"warning"` \| `"error"` \| `"info"` | `"primary"` | Color scheme |
+| disabled | `boolean` | `false` | Disable the button |
+| loading | `boolean` | `false` | Show loading spinner |
+| fullWidth | `boolean` | `false` | Expand to full width |
+| leftIcon | `ReactNode` | - | Icon before text |
+| rightIcon | `ReactNode` | - | Icon after text |
+| as | `ElementType` | `"button"` | HTML element to render |
+
+Button also accepts all [Box](/docs/components/box) styling props.
+
+## TypeScript
+
+```tsx
+import { Button, type ButtonVariant, type ButtonSize, type ButtonColorScheme, type ButtonProps } from "@tosui/react";
+```

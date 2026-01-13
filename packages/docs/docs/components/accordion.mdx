@@ -1,0 +1,246 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Accordion, AccordionItem, VStack, Box, Text } from "@tosui/react";
+
+# Accordion
+
+Accordion displays collapsible content sections for organizing information.
+
+## Import
+
+```tsx
+import { Accordion, AccordionItem } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Accordion>
+      <AccordionItem index={0} title="Section 1">
+        Content for section 1
+      </AccordionItem>
+      <AccordionItem index={1} title="Section 2">
+        Content for section 2
+      </AccordionItem>
+      <AccordionItem index={2} title="Section 3">
+        Content for section 3
+      </AccordionItem>
+    </Accordion>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Accordion>
+      <AccordionItem index={0} title="Section 1">
+        Content for section 1
+      </AccordionItem>
+      <AccordionItem index={1} title="Section 2">
+        Content for section 2
+      </AccordionItem>
+      <AccordionItem index={2} title="Section 3">
+        Content for section 3
+      </AccordionItem>
+    </Accordion>
+  </TabItem>
+</Tabs>
+
+## Default Expanded
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Accordion defaultIndex={0}>
+      <AccordionItem index={0} title="Initially Open">
+        This section is open by default.
+      </AccordionItem>
+      <AccordionItem index={1} title="Closed">
+        This section starts closed.
+      </AccordionItem>
+    </Accordion>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Accordion defaultIndex={0}>
+      <AccordionItem index={0} title="Initially Open">
+        This section is open by default.
+      </AccordionItem>
+      <AccordionItem index={1} title="Closed">
+        This section starts closed.
+      </AccordionItem>
+    </Accordion>
+  </TabItem>
+</Tabs>
+
+## Allow Multiple
+
+Enable multiple sections to be open simultaneously.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Accordion allowMultiple defaultIndex={[0, 1]}>
+      <AccordionItem index={0} title="Section A">
+        This can stay open
+      </AccordionItem>
+      <AccordionItem index={1} title="Section B">
+        While this is also open
+      </AccordionItem>
+      <AccordionItem index={2} title="Section C">
+        Open all three at once!
+      </AccordionItem>
+    </Accordion>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Accordion allowMultiple defaultIndex={[0, 1]}>
+      <AccordionItem index={0} title="Section A">
+        This can stay open
+      </AccordionItem>
+      <AccordionItem index={1} title="Section B">
+        While this is also open
+      </AccordionItem>
+      <AccordionItem index={2} title="Section C">
+        Open all three at once!
+      </AccordionItem>
+    </Accordion>
+  </TabItem>
+</Tabs>
+
+## Disabled Items
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Accordion>
+      <AccordionItem index={0} title="Available">
+        This section can be toggled.
+      </AccordionItem>
+      <AccordionItem index={1} title="Disabled Section" disabled>
+        This section cannot be opened.
+      </AccordionItem>
+      <AccordionItem index={2} title="Also Available">
+        This section can be toggled too.
+      </AccordionItem>
+    </Accordion>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Accordion>
+      <AccordionItem index={0} title="Available">
+        This section can be toggled.
+      </AccordionItem>
+      <AccordionItem index={1} title="Disabled Section" disabled>
+        This section cannot be opened.
+      </AccordionItem>
+      <AccordionItem index={2} title="Also Available">
+        This section can be toggled too.
+      </AccordionItem>
+    </Accordion>
+  </TabItem>
+</Tabs>
+
+## Common Patterns
+
+### FAQ Section
+
+```tsx
+<Accordion>
+  <AccordionItem index={0} title="What is Tosui?">
+    Tosui is a themable, orderly, simple UI component library built on
+    constraint-driven simplicity.
+  </AccordionItem>
+  <AccordionItem index={1} title="How do I install it?">
+    <Text>Run the following command:</Text>
+    <Code variant="subtle" mt={2} display="block">npm install @tosui/react</Code>
+  </AccordionItem>
+  <AccordionItem index={2} title="Is it accessible?">
+    Yes! All components follow WAI-ARIA guidelines and support keyboard navigation.
+  </AccordionItem>
+</Accordion>
+```
+
+### Settings Sections
+
+```tsx
+<Accordion allowMultiple>
+  <AccordionItem index={0} title="Account Settings">
+    <VStack gap={3} align="stretch">
+      <HStack justify="space-between">
+        <Text>Email notifications</Text>
+        <Switch />
+      </HStack>
+      <HStack justify="space-between">
+        <Text>Two-factor authentication</Text>
+        <Switch />
+      </HStack>
+    </VStack>
+  </AccordionItem>
+  <AccordionItem index={1} title="Privacy Settings">
+    <VStack gap={3} align="stretch">
+      <HStack justify="space-between">
+        <Text>Profile visibility</Text>
+        <Select defaultValue="public">
+          <option value="public">Public</option>
+          <option value="private">Private</option>
+        </Select>
+      </HStack>
+    </VStack>
+  </AccordionItem>
+</Accordion>
+```
+
+### Product Features
+
+```tsx
+<Accordion>
+  <AccordionItem index={0} title="Free Plan">
+    <List styleType="disc" spacing={2}>
+      <ListItem>5 projects</ListItem>
+      <ListItem>Basic support</ListItem>
+      <ListItem>1GB storage</ListItem>
+    </List>
+  </AccordionItem>
+  <AccordionItem index={1} title="Pro Plan">
+    <List styleType="disc" spacing={2}>
+      <ListItem>Unlimited projects</ListItem>
+      <ListItem>Priority support</ListItem>
+      <ListItem>100GB storage</ListItem>
+      <ListItem>Custom domains</ListItem>
+    </List>
+  </AccordionItem>
+</Accordion>
+```
+
+## Props Reference
+
+### Accordion
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| defaultIndex | `number` \| `number[]` | - | Default expanded index(es) |
+| allowMultiple | `boolean` | `false` | Allow multiple items expanded |
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | AccordionItem children |
+
+### AccordionItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| index | `number` | - | Item index (required) |
+| title | `ReactNode` | - | Item header (required) |
+| disabled | `boolean` | `false` | Whether item is disabled |
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | Item content |
+
+## Accessibility
+
+- Uses `aria-expanded` on trigger buttons
+- Uses `aria-disabled` for disabled items
+- Keyboard accessible via Tab and Enter/Space
+
+## TypeScript
+
+```tsx
+import { Accordion, AccordionItem, type AccordionProps, type AccordionItemProps } from "@tosui/react";
+```

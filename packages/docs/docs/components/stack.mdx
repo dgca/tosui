@@ -1,0 +1,154 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Stack, Box } from "@tosui/react";
+
+# Stack
+
+Stack is a flex-based layout component for arranging children with consistent spacing. It defaults to a column direction, making it ideal for vertical layouts.
+
+## Import
+
+```tsx
+import { Stack } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Stack gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+    </Stack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Stack gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+    </Stack>
+  </TabItem>
+</Tabs>
+
+## Direction
+
+Control the stack direction with the `direction` prop.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Stack direction="row" gap={4}>
+      <Box p={4} bg="primary-subtle">Row 1</Box>
+      <Box p={4} bg="accent-subtle">Row 2</Box>
+      <Box p={4} bg="success-subtle">Row 3</Box>
+    </Stack>
+
+    <Stack direction="column" gap={4}>
+      <Box p={4} bg="primary-subtle">Column 1</Box>
+      <Box p={4} bg="accent-subtle">Column 2</Box>
+      <Box p={4} bg="success-subtle">Column 3</Box>
+    </Stack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Stack direction="row" gap={4} mb={4}>
+      <Box p={4} bg="primary-subtle">Row 1</Box>
+      <Box p={4} bg="accent-subtle">Row 2</Box>
+      <Box p={4} bg="success-subtle">Row 3</Box>
+    </Stack>
+    <Stack direction="column" gap={4}>
+      <Box p={4} bg="primary-subtle">Column 1</Box>
+      <Box p={4} bg="accent-subtle">Column 2</Box>
+      <Box p={4} bg="success-subtle">Column 3</Box>
+    </Stack>
+  </TabItem>
+</Tabs>
+
+## Alignment
+
+Use `align` and `justify` to control item alignment.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Stack direction="row" gap={4} align="center" justify="space-between" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Left</Box>
+      <Box p={4} bg="accent-subtle">Center (taller)</Box>
+      <Box p={2} bg="success-subtle">Right</Box>
+    </Stack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Stack direction="row" gap={4} align="center" justify="space-between" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Left</Box>
+      <Box p={4} bg="accent-subtle">Center (taller)</Box>
+      <Box p={2} bg="success-subtle">Right</Box>
+    </Stack>
+  </TabItem>
+</Tabs>
+
+## Wrapping
+
+Enable wrapping with the `wrap` prop for responsive layouts.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Stack direction="row" gap={4} wrap>
+      <Box p={4} bg="primary-subtle" minW="150px">Item 1</Box>
+      <Box p={4} bg="accent-subtle" minW="150px">Item 2</Box>
+      <Box p={4} bg="success-subtle" minW="150px">Item 3</Box>
+      <Box p={4} bg="warning-subtle" minW="150px">Item 4</Box>
+      <Box p={4} bg="error-subtle" minW="150px">Item 5</Box>
+    </Stack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Stack direction="row" gap={4} wrap>
+      <Box p={4} bg="primary-subtle" minW="150px">Item 1</Box>
+      <Box p={4} bg="accent-subtle" minW="150px">Item 2</Box>
+      <Box p={4} bg="success-subtle" minW="150px">Item 3</Box>
+      <Box p={4} bg="warning-subtle" minW="150px">Item 4</Box>
+      <Box p={4} bg="error-subtle" minW="150px">Item 5</Box>
+    </Stack>
+  </TabItem>
+</Tabs>
+
+## Polymorphic
+
+Stack can render as any HTML element using the `as` prop.
+
+```tsx
+<Stack as="nav" gap={2}>
+  <a href="#">Home</a>
+  <a href="#">About</a>
+  <a href="#">Contact</a>
+</Stack>
+
+<Stack as="ul" gap={2}>
+  <li>Item 1</li>
+  <li>Item 2</li>
+</Stack>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| direction | `"row"` \| `"column"` \| `"row-reverse"` \| `"column-reverse"` | `"column"` | Stack direction |
+| gap | `0-32` | - | Gap between children (spacing multiplier) |
+| align | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"stretch"` \| `"baseline"` | - | Cross-axis alignment |
+| justify | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Main-axis alignment |
+| wrap | `boolean` | `false` | Enable flex wrapping |
+| as | `ElementType` | `"div"` | HTML element to render |
+
+Stack also accepts all [Box](/docs/components/box) props except `display`, `flexDirection`, `justifyContent`, `alignItems`, `flexWrap`, and `gap`.
+
+## TypeScript
+
+```tsx
+import { Stack, type StackProps, type StackOwnProps } from "@tosui/react";
+```

@@ -1,0 +1,145 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Breadcrumb, BreadcrumbItem, Box } from "@tosui/react";
+
+# Breadcrumb
+
+Breadcrumb is a navigation trail that shows the user's location in a hierarchical structure.
+
+## Import
+
+```tsx
+import { Breadcrumb, BreadcrumbItem } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Breadcrumb>
+      <BreadcrumbItem href="/">Home</BreadcrumbItem>
+      <BreadcrumbItem href="/products">Products</BreadcrumbItem>
+      <BreadcrumbItem>Electronics</BreadcrumbItem>
+    </Breadcrumb>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Breadcrumb>
+      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+      <BreadcrumbItem href="#">Products</BreadcrumbItem>
+      <BreadcrumbItem>Electronics</BreadcrumbItem>
+    </Breadcrumb>
+  </TabItem>
+</Tabs>
+
+## Custom Separator
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Breadcrumb separator=">">
+      <BreadcrumbItem href="/">Home</BreadcrumbItem>
+      <BreadcrumbItem href="/docs">Docs</BreadcrumbItem>
+      <BreadcrumbItem>Components</BreadcrumbItem>
+    </Breadcrumb>
+
+    <Breadcrumb separator="-">
+      <BreadcrumbItem href="/">Home</BreadcrumbItem>
+      <BreadcrumbItem href="/docs">Docs</BreadcrumbItem>
+      <BreadcrumbItem>Components</BreadcrumbItem>
+    </Breadcrumb>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Box mb={4}>
+      <Breadcrumb separator=">">
+        <BreadcrumbItem href="#">Home</BreadcrumbItem>
+        <BreadcrumbItem href="#">Docs</BreadcrumbItem>
+        <BreadcrumbItem>Components</BreadcrumbItem>
+      </Breadcrumb>
+    </Box>
+    <Breadcrumb separator="-">
+      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+      <BreadcrumbItem href="#">Docs</BreadcrumbItem>
+      <BreadcrumbItem>Components</BreadcrumbItem>
+    </Breadcrumb>
+  </TabItem>
+</Tabs>
+
+## Icon Separator
+
+```tsx
+import { ChevronRightIcon } from "your-icon-library";
+
+<Breadcrumb separator={<ChevronRightIcon size={14} />}>
+  <BreadcrumbItem href="/">Home</BreadcrumbItem>
+  <BreadcrumbItem href="/settings">Settings</BreadcrumbItem>
+  <BreadcrumbItem>Profile</BreadcrumbItem>
+</Breadcrumb>
+```
+
+## Current Page
+
+The last item is automatically marked as the current page. It renders as text instead of a link.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Breadcrumb>
+      <BreadcrumbItem href="/">Home</BreadcrumbItem>
+      <BreadcrumbItem href="/users">Users</BreadcrumbItem>
+      <BreadcrumbItem href="/users/123">John Doe</BreadcrumbItem>
+      <BreadcrumbItem>Edit Profile</BreadcrumbItem>
+    </Breadcrumb>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Breadcrumb>
+      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+      <BreadcrumbItem href="#">Users</BreadcrumbItem>
+      <BreadcrumbItem href="#">John Doe</BreadcrumbItem>
+      <BreadcrumbItem>Edit Profile</BreadcrumbItem>
+    </Breadcrumb>
+  </TabItem>
+</Tabs>
+
+## With Router
+
+```tsx
+import { Link as RouterLink } from "react-router-dom";
+
+<Breadcrumb>
+  <BreadcrumbItem as={RouterLink} to="/">Home</BreadcrumbItem>
+  <BreadcrumbItem as={RouterLink} to="/products">Products</BreadcrumbItem>
+  <BreadcrumbItem>Current Product</BreadcrumbItem>
+</Breadcrumb>
+```
+
+## Props Reference
+
+### Breadcrumb
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| separator | `ReactNode` | `"/"` | Separator between items |
+
+### BreadcrumbItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| href | `string` | - | Link destination (omit for current page) |
+| isCurrentPage | `boolean` | auto | Whether this is the current page (auto-set for last item) |
+
+## Accessibility
+
+- Renders as `<nav aria-label="Breadcrumb">` for screen reader navigation
+- Uses `<ol>` for semantic list structure
+- Current page has `aria-current="page"`
+- Separators have `aria-hidden="true"`
+
+## TypeScript
+
+```tsx
+import { Breadcrumb, BreadcrumbItem, type BreadcrumbProps, type BreadcrumbItemProps } from "@tosui/react";
+```

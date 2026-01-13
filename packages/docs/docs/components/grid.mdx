@@ -1,0 +1,176 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Grid, Box } from "@tosui/react";
+
+# Grid
+
+Grid is a CSS Grid layout component with shorthand props for common grid properties.
+
+## Import
+
+```tsx
+import { Grid } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Grid columns="repeat(3, 1fr)" gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+      <Box p={4} bg="warning-subtle">Item 4</Box>
+      <Box p={4} bg="error-subtle">Item 5</Box>
+      <Box p={4} bg="info-subtle">Item 6</Box>
+    </Grid>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Grid columns="repeat(3, 1fr)" gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+      <Box p={4} bg="warning-subtle">Item 4</Box>
+      <Box p={4} bg="error-subtle">Item 5</Box>
+      <Box p={4} bg="info-subtle">Item 6</Box>
+    </Grid>
+  </TabItem>
+</Tabs>
+
+## Column Patterns
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    {/* Equal columns */}
+    <Grid columns="1fr 1fr" gap={4}>
+      <Box p={4} bg="primary-subtle">Half</Box>
+      <Box p={4} bg="accent-subtle">Half</Box>
+    </Grid>
+
+    {/* Fixed + flexible */}
+    <Grid columns="200px 1fr" gap={4}>
+      <Box p={4} bg="primary-subtle">Sidebar (200px)</Box>
+      <Box p={4} bg="accent-subtle">Main (flexible)</Box>
+    </Grid>
+
+    {/* Auto-fit responsive */}
+    <Grid columns="repeat(auto-fit, minmax(150px, 1fr))" gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+      <Box p={4} bg="warning-subtle">Item 4</Box>
+    </Grid>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Grid columns="1fr 1fr" gap={4} mb={4}>
+      <Box p={4} bg="primary-subtle">Half</Box>
+      <Box p={4} bg="accent-subtle">Half</Box>
+    </Grid>
+    <Grid columns="200px 1fr" gap={4} mb={4}>
+      <Box p={4} bg="primary-subtle">Sidebar (200px)</Box>
+      <Box p={4} bg="accent-subtle">Main (flexible)</Box>
+    </Grid>
+    <Grid columns="repeat(auto-fit, minmax(150px, 1fr))" gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+      <Box p={4} bg="warning-subtle">Item 4</Box>
+    </Grid>
+  </TabItem>
+</Tabs>
+
+## Rows
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Grid columns="1fr 1fr" rows="100px 200px" gap={4}>
+      <Box p={4} bg="primary-subtle">Row 1 (100px)</Box>
+      <Box p={4} bg="accent-subtle">Row 1 (100px)</Box>
+      <Box p={4} bg="success-subtle">Row 2 (200px)</Box>
+      <Box p={4} bg="warning-subtle">Row 2 (200px)</Box>
+    </Grid>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Grid columns="1fr 1fr" rows="100px 200px" gap={4}>
+      <Box p={4} bg="primary-subtle">Row 1 (100px)</Box>
+      <Box p={4} bg="accent-subtle">Row 1 (100px)</Box>
+      <Box p={4} bg="success-subtle">Row 2 (200px)</Box>
+      <Box p={4} bg="warning-subtle">Row 2 (200px)</Box>
+    </Grid>
+  </TabItem>
+</Tabs>
+
+## Separate Row and Column Gaps
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Grid columns="repeat(3, 1fr)" gapRow={2} gapColumn={8}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+      <Box p={4} bg="warning-subtle">Item 4</Box>
+      <Box p={4} bg="error-subtle">Item 5</Box>
+      <Box p={4} bg="info-subtle">Item 6</Box>
+    </Grid>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Grid columns="repeat(3, 1fr)" gapRow={2} gapColumn={8}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+      <Box p={4} bg="warning-subtle">Item 4</Box>
+      <Box p={4} bg="error-subtle">Item 5</Box>
+      <Box p={4} bg="info-subtle">Item 6</Box>
+    </Grid>
+  </TabItem>
+</Tabs>
+
+## Alignment
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Grid columns="repeat(3, 100px)" gap={4} justify="center" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={4} bg="primary-subtle">1</Box>
+      <Box p={4} bg="accent-subtle">2</Box>
+      <Box p={4} bg="success-subtle">3</Box>
+    </Grid>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Grid columns="repeat(3, 100px)" gap={4} justify="center" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={4} bg="primary-subtle">1</Box>
+      <Box p={4} bg="accent-subtle">2</Box>
+      <Box p={4} bg="success-subtle">3</Box>
+    </Grid>
+  </TabItem>
+</Tabs>
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| columns | `string` | - | Grid template columns (CSS value) |
+| rows | `string` | - | Grid template rows (CSS value) |
+| gap | `0-32` | - | Gap between grid items |
+| gapRow | `0-32` | - | Row gap |
+| gapColumn | `0-32` | - | Column gap |
+| justify | `"start"` \| `"center"` \| `"end"` \| `"stretch"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Justify items |
+| align | `"start"` \| `"center"` \| `"end"` \| `"stretch"` \| `"baseline"` | - | Align items |
+| justifyContent | `"start"` \| `"center"` \| `"end"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Distribute tracks horizontally |
+| alignContent | `"start"` \| `"center"` \| `"end"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Distribute tracks vertically |
+| as | `ElementType` | `"div"` | HTML element to render |
+
+## TypeScript
+
+```tsx
+import { Grid, type GridProps, type GridOwnProps } from "@tosui/react";
+```

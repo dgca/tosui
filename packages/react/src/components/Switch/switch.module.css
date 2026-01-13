@@ -1,0 +1,48 @@
+/* Hidden native checkbox */
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Track (pill shape) */
+.track {
+  background-color: var(--t-color-border-muted);
+  transition-duration: 150ms;
+  transition-property: background-color, box-shadow;
+  transition-timing-function: ease-in-out;
+  padding: 2px;
+}
+
+/* Thumb (sliding circle) */
+.thumb {
+  transition-duration: 150ms;
+  transition-property: transform;
+  transition-timing-function: ease-in-out;
+  transform: translateX(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Focus ring on track when input is focused */
+.input:focus-visible ~ .track {
+  box-shadow: 0 0 0 3px var(--t-color-primary-subtle);
+}
+
+/* Checked state - track becomes primary color */
+.input:checked ~ .track {
+  background-color: var(--t-color-primary-default);
+}
+
+/* Checked state - thumb slides right */
+.input:checked ~ .track .thumb {
+  /* Translate by: track width - thumb size - padding (2px each side = 4px) */
+  transform: translateX(calc(var(--switch-track-width) - var(--switch-thumb-size) - 4px));
+}
+
+/* Disabled state (handled via opacity on wrapper) */
+.input:disabled ~ .track {
+  cursor: not-allowed;
+}

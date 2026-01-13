@@ -1,0 +1,210 @@
+# Component Patterns
+
+Tosui components fall into two categories: simple components that accept Box props for flexible styling, and complex components with their own focused APIs.
+
+## Simple Components
+
+These components accept most Box props, letting you customize spacing, colors, layout, and more:
+
+### Layout
+
+| Component | Description |
+|-----------|-------------|
+| [Stack](/docs/components/stack) | Flex container with direction control |
+| [HStack](/docs/components/hstack) | Horizontal stack (row) |
+| [VStack](/docs/components/vstack) | Vertical stack (column) |
+| [Flex](/docs/components/flex) | Flexbox container |
+| [Grid](/docs/components/grid) | CSS Grid container |
+| [Container](/docs/components/container) | Centered max-width container |
+| [Spacer](/docs/components/spacer) | Flexible space filler |
+| [Divider](/docs/components/divider) | Visual separator |
+
+### Typography
+
+| Component | Description |
+|-----------|-------------|
+| [Text](/docs/components/text) | Body text with size/weight props |
+| [Heading](/docs/components/heading) | Semantic headings (h1-h6) |
+
+### Forms
+
+| Component | Description |
+|-----------|-------------|
+| [Input](/docs/components/input) | Text input field |
+| [Textarea](/docs/components/textarea) | Multi-line text input |
+| [Checkbox](/docs/components/checkbox) | Checkbox with label |
+| [Radio](/docs/components/radio) | Radio button group |
+| [Switch](/docs/components/switch) | Toggle switch |
+
+### Actions
+
+| Component | Description |
+|-----------|-------------|
+| [Button](/docs/components/button) | Action button |
+| [IconButton](/docs/components/icon-button) | Icon-only button |
+| [Link](/docs/components/link) | Styled anchor |
+
+### Using Box Props
+
+Simple components accept layout, spacing, and some visual props:
+
+```tsx
+// Text with margin and custom color
+<Text mb={4} color="foreground-muted">
+  Description text
+</Text>
+
+// Button with custom margin
+<Button mt={6}>Submit</Button>
+
+// Input with full width
+<Input w="100%" />
+
+// Stack with responsive gap
+<VStack gap={{ base: 4, md: 8 }}>
+  <Text>Item 1</Text>
+  <Text>Item 2</Text>
+</VStack>
+```
+
+## Complex Components
+
+These components have focused APIs designed for their specific use case. They don't expose Box props directly but may have subcomponents that do.
+
+### Overlays
+
+| Component | Description |
+|-----------|-------------|
+| [Modal](/docs/components/modal) | Dialog overlay |
+| [Popover](/docs/components/popover) | Click-triggered floating panel |
+| [Tooltip](/docs/components/tooltip) | Hover information overlay |
+
+### Containers
+
+| Component | Description |
+|-----------|-------------|
+| [Accordion](/docs/components/accordion) | Collapsible sections |
+| [Menu](/docs/components/menu) | Dropdown menu |
+| [Tabs](/docs/components/tabs) | Tabbed content |
+| [Card](/docs/components/card) | Content container |
+
+### Data Display
+
+| Component | Description |
+|-----------|-------------|
+| [Alert](/docs/components/alert) | Status messages |
+| [Avatar](/docs/components/avatar) | User/entity image |
+| [Badge](/docs/components/badge) | Status indicator |
+| [Skeleton](/docs/components/skeleton) | Loading placeholder |
+| [Progress](/docs/components/progress) | Progress indicator |
+
+### Working with Complex Components
+
+Complex components accept specific props for their behavior:
+
+```tsx
+// Modal - controlled open state
+<Modal isOpen={isOpen} onClose={onClose} size="lg">
+  <ModalHeader>Title</ModalHeader>
+  <ModalBody>Content</ModalBody>
+</Modal>
+
+// Accordion - expansion control
+<Accordion allowMultiple defaultIndex={[0]}>
+  <AccordionItem index={0} title="Section 1">
+    Content
+  </AccordionItem>
+</Accordion>
+
+// Tabs - tab selection
+<Tabs defaultValue="tab1">
+  <TabList>
+    <Tab value="tab1">Tab 1</Tab>
+    <Tab value="tab2">Tab 2</Tab>
+  </TabList>
+  <TabPanels>
+    <TabPanel value="tab1">Content 1</TabPanel>
+    <TabPanel value="tab2">Content 2</TabPanel>
+  </TabPanels>
+</Tabs>
+```
+
+### Subcomponents
+
+Many complex components have subcomponents that render as styled Box elements:
+
+```tsx
+// ModalBody and ModalFooter have built-in padding
+<Modal isOpen={true} onClose={onClose}>
+  <ModalHeader>Title</ModalHeader>
+  <ModalBody>
+    This has padding from ModalBody
+  </ModalBody>
+  <ModalFooter>
+    <Button>Action</Button>
+  </ModalFooter>
+</Modal>
+
+// CardBody has built-in padding
+<Card>
+  <CardBody>
+    Content with padding
+  </CardBody>
+</Card>
+```
+
+To add custom styles to subcomponents, use `className`:
+
+```tsx
+<ModalBody className="custom-body-class">
+  Custom styled body
+</ModalBody>
+```
+
+## Polymorphic Components
+
+Some simple components support the `as` prop to change the rendered HTML element:
+
+```tsx
+// Box as different elements
+<Box as="section">Section content</Box>
+<Box as="article">Article content</Box>
+<Box as="nav">Navigation</Box>
+
+// Text as different elements
+<Text as="label">Form label</Text>
+<Text as="span">Inline text</Text>
+
+// Heading levels
+<Heading as="h1">Page Title</Heading>
+<Heading as="h2">Section Title</Heading>
+```
+
+TypeScript will correctly infer the allowed attributes based on the element type.
+
+## When to Use Each Pattern
+
+**Use simple components when:**
+- You need custom spacing or layout
+- You're building custom UI patterns
+- You need responsive styling
+
+**Use complex components when:**
+- You need specific behavior (modals, accordions, menus)
+- The component handles interactions for you
+- You want consistent patterns across your app
+
+**Combine both:**
+
+```tsx
+<Card>
+  <CardBody>
+    {/* Simple components inside complex component */}
+    <VStack gap={4}>
+      <Heading fontSize="lg">Card Title</Heading>
+      <Text color="foreground-muted">Description</Text>
+      <Button>Action</Button>
+    </VStack>
+  </CardBody>
+</Card>
+```

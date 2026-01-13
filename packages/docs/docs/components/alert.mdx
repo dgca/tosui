@@ -1,0 +1,167 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Alert, VStack, Box } from "@tosui/react";
+
+# Alert
+
+Alert is a status notification banner for displaying contextual feedback messages.
+
+## Import
+
+```tsx
+import { Alert } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Alert>This is an informational message.</Alert>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Alert>This is an informational message.</Alert>
+  </TabItem>
+</Tabs>
+
+## Status Variants
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Alert status="info">Info: This is an informational message.</Alert>
+      <Alert status="success">Success: Your changes have been saved.</Alert>
+      <Alert status="warning">Warning: Please review before continuing.</Alert>
+      <Alert status="error">Error: Something went wrong.</Alert>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Alert status="info">Info: This is an informational message.</Alert>
+      <Alert status="success">Success: Your changes have been saved.</Alert>
+      <Alert status="warning">Warning: Please review before continuing.</Alert>
+      <Alert status="error">Error: Something went wrong.</Alert>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## With Title
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <Alert status="success" title="Payment Successful">
+        Your payment has been processed. Check your email for receipt.
+      </Alert>
+      <Alert status="error" title="Upload Failed">
+        The file could not be uploaded. Please try again.
+      </Alert>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4}>
+      <Alert status="success" title="Payment Successful">
+        Your payment has been processed. Check your email for receipt.
+      </Alert>
+      <Alert status="error" title="Upload Failed">
+        The file could not be uploaded. Please try again.
+      </Alert>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Dismissible
+
+Pass `onClose` to show a close button.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Alert
+      status="info"
+      title="New Feature Available"
+      onClose={() => console.log("Dismissed")}
+    >
+      Check out our new dashboard features.
+    </Alert>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Alert
+      status="info"
+      title="New Feature Available"
+      onClose={() => console.log("Dismissed")}
+    >
+      Check out our new dashboard features.
+    </Alert>
+  </TabItem>
+</Tabs>
+
+## Custom Icon
+
+```tsx
+import { BellIcon } from "your-icon-library";
+
+<Alert status="info" icon={<BellIcon />}>
+  You have new notifications.
+</Alert>
+```
+
+## Common Patterns
+
+### Form Validation Error
+
+```tsx
+<Alert status="error" title="Form Errors">
+  <ul>
+    <li>Email is required</li>
+    <li>Password must be at least 8 characters</li>
+  </ul>
+</Alert>
+```
+
+### Success Feedback
+
+```tsx
+function SaveButton() {
+  const [saved, setSaved] = useState(false);
+
+  return (
+    <VStack gap={4}>
+      {saved && (
+        <Alert status="success" onClose={() => setSaved(false)}>
+          Your changes have been saved successfully.
+        </Alert>
+      )}
+      <Button onClick={() => setSaved(true)}>Save Changes</Button>
+    </VStack>
+  );
+}
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| status | `"success"` \| `"warning"` \| `"error"` \| `"info"` | `"info"` | Alert status (determines color and icon) |
+| title | `ReactNode` | - | Optional title above description |
+| children | `ReactNode` | - | Alert description content |
+| icon | `ReactNode` | status-based | Custom icon (overrides default) |
+| onClose | `() => void` | - | Close callback (shows close button when provided) |
+
+## Accessibility
+
+- Uses `role="alert"` for screen reader announcements
+- Close button has `aria-label="Dismiss"`
+- Icon has `aria-hidden="true"`
+
+## TypeScript
+
+```tsx
+import { Alert, type AlertStatus, type AlertProps } from "@tosui/react";
+```

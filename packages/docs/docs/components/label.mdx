@@ -1,0 +1,141 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Label, Input, VStack, Box } from "@tosui/react";
+
+# Label
+
+Label is a form label component with size variants and optional required indicator. Use it for standalone labels or when building custom form layouts.
+
+## Import
+
+```tsx
+import { Label } from "@tosui/react";
+```
+
+## Basic Usage
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={1} align="stretch">
+      <Label htmlFor="email">Email</Label>
+      <Input id="email" type="email" placeholder="you@example.com" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={1} align="stretch">
+      <Label htmlFor="email">Email</Label>
+      <Input id="email" type="email" placeholder="you@example.com" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Required Indicator
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={1} align="stretch">
+      <Label htmlFor="username" required>Username</Label>
+      <Input id="username" placeholder="Enter username" />
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={1} align="stretch">
+      <Label htmlFor="username" required>Username</Label>
+      <Input id="username" placeholder="Enter username" />
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Sizes
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4} align="flex-start">
+      <Label size="xs">Extra small label</Label>
+      <Label size="sm">Small label (default)</Label>
+      <Label size="md">Medium label</Label>
+      <Label size="lg">Large label</Label>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4} align="flex-start">
+      <Label size="xs">Extra small label</Label>
+      <Label size="sm">Small label (default)</Label>
+      <Label size="md">Medium label</Label>
+      <Label size="lg">Large label</Label>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## Weights
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4} align="flex-start">
+      <Label weight="normal">Normal weight</Label>
+      <Label weight="medium">Medium weight (default)</Label>
+      <Label weight="semibold">Semibold weight</Label>
+      <Label weight="bold">Bold weight</Label>
+    </VStack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <VStack gap={4} align="flex-start">
+      <Label weight="normal">Normal weight</Label>
+      <Label weight="medium">Medium weight (default)</Label>
+      <Label weight="semibold">Semibold weight</Label>
+      <Label weight="bold">Bold weight</Label>
+    </VStack>
+  </TabItem>
+</Tabs>
+
+## When to Use
+
+- **Use Label** when you need standalone labels or custom form layouts
+- **Use [FormField](/docs/components/form-field)** when you need labels with helper text, error messages, and automatic accessibility linking
+
+## Custom Form Layout
+
+```tsx
+<Box display="grid" gridTemplateColumns="120px 1fr" gap={4} alignItems="center">
+  <Label htmlFor="first-name">First Name</Label>
+  <Input id="first-name" placeholder="John" />
+
+  <Label htmlFor="last-name">Last Name</Label>
+  <Input id="last-name" placeholder="Doe" />
+
+  <Label htmlFor="email" required>Email</Label>
+  <Input id="email" type="email" placeholder="you@example.com" />
+</Box>
+```
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| size | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` | `"sm"` | Label font size |
+| weight | `"normal"` \| `"medium"` \| `"semibold"` \| `"bold"` | `"medium"` | Label font weight |
+| required | `boolean` | `false` | Show required asterisk |
+| htmlFor | `string` | - | ID of the associated form control |
+| as | `ElementType` | `"label"` | HTML element to render |
+
+Label also accepts all [Box](/docs/components/box) styling props.
+
+## Accessibility
+
+- Renders as a native `<label>` element by default
+- Use `htmlFor` to associate with the form control's `id`
+- The required asterisk includes `aria-hidden="true"` (screen readers announce "required" via the input's `aria-required`)
+
+## TypeScript
+
+```tsx
+import { Label, type LabelProps, type LabelOwnProps } from "@tosui/react";
+```

@@ -1,0 +1,48 @@
+/* Hidden native radio */
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom radio circle */
+.circle {
+  transition-duration: 150ms;
+  transition-property: border-color, background-color, box-shadow;
+  transition-timing-function: ease-in-out;
+  position: relative;
+}
+
+/* Inner dot (hidden by default) */
+.circle::before {
+  content: "";
+  position: absolute;
+  display: none;
+  width: 50%;
+  height: 50%;
+  background-color: var(--t-color-primary-default);
+  border-radius: 50%;
+}
+
+/* Focus ring when input is focused */
+.input:focus-visible ~ .circle {
+  border-color: var(--t-color-primary-default);
+  box-shadow: 0 0 0 3px var(--t-color-primary-subtle);
+}
+
+/* Checked state */
+.input:checked ~ .circle {
+  border-color: var(--t-color-primary-default);
+}
+
+.input:checked ~ .circle::before {
+  display: block;
+}
+
+/* Disabled state (handled via opacity on wrapper) */
+.input:disabled ~ .circle {
+  cursor: not-allowed;
+}

@@ -18,7 +18,6 @@ When working in this codebase, follow these principles:
 3. **Keep documentation in sync** - If you make a change that makes documentation incorrect, update the documentation in the same session. This includes:
 
    - README.md (design tokens, usage examples)
-   - STYLEX_MENTAL_MODEL.md (implementation patterns)
    - CLAUDE.md (this file)
    - Code comments explaining complex logic
 
@@ -79,56 +78,56 @@ pnpm build:docs  # (from root)
 
 ## Architecture
 
-### StyleX-Based Styling System
+### CSS Modules Styling System
 
-Tosui uses **StyleX** (not Linaria, not Tailwind) for zero-runtime atomic CSS generation. This is critical to understand:
+Tosui uses **CSS Modules** for component styling with **CSS Variables** for design tokens. This provides:
 
-**Key StyleX concepts:**
+- Zero runtime CSS generation (styles compile at build time)
+- Component-scoped class names (no style collisions)
+- Type-safe class imports via `.module.css` files
+- CSS Variables for theming and dynamic values
 
-- All styles compile to atomic CSS at build time (zero runtime cost)
-- No CSS-in-JS shorthands allowed (e.g., `padding: "10px 20px"` is forbidden)
-- Must use longhand properties: `paddingTop`, `paddingRight`, etc.
-- Apply styles with `stylex.props()`, never manual className management
-- Later styles override earlier ones in merge order
+**Key concepts:**
 
-**CRITICAL GOTCHA - Read `packages/react/STYLEX_MENTAL_MODEL.md` before working with styles:**
-
-StyleX **drops earlier styles when merging the same CSS property at different breakpoints**. You must put all responsive breakpoints in a single object to avoid losing styles during merging.
+- Style parts in `packages/react/src/components/Box/*/` have both `.ts` (logic) and `.module.css` (styles)
+- Each style part exports a getter function (e.g., `getPaddingStyles()`) that returns `{ className: string; style: CSSProperties }`
+- CSS Variables set inline via style prop (e.g., `--t-pt: calc(var(--t-spacing-unit) * 4)`)
+- CSS Modules provide the class names, CSS Variables provide the values
 
 ### Responsive Styling Pattern
 
-All style parts follow this unified pattern to avoid combinatorial explosion:
+All style parts use CSS Variables for responsive values:
+
+```css
+/* padding.module.css */
+.pt { padding-top: var(--t-pt); }
+.pt_sm { padding-top: var(--t-pt_sm); }
+
+@media (min-width: 640px) {
+  .pt_sm { padding-top: var(--t-pt_sm); }
+}
+@media (min-width: 768px) {
+  .pt_md { padding-top: var(--t-pt_md); }
+}
+/* ... etc for each breakpoint */
+```
 
 ```tsx
-// Static styles for non-responsive values
-const overflowStyles = stylex.create({
-  auto: { overflow: "auto" },
-  hidden: { overflow: "hidden" },
-  scroll: { overflow: "scroll" },
-  visible: { overflow: "visible" },
-});
-
-// Responsive styles - ALL breakpoints in one object
-const overflowStylesResponsive = stylex.create({
-  responsive: (value: FullResponsiveObject<OverflowValues>) => ({
-    overflow: {
-      default: value.base,
-      [breakpoints.sm]: value.sm,
-      [breakpoints.md]: value.md,
-      [breakpoints.lg]: value.lg,
-      [breakpoints.xl]: value.xl,
-      [breakpoints["2xl"]]: value["2xl"],
-    },
-  }),
-});
+// padding.ts - getter function
+export function getPaddingStyles(props: PaddingProps): StyleResult {
+  // Returns className (from CSS module) + style object (CSS variables)
+  return {
+    className: clsx(styles.pt, props.pt && styles.pt_sm),
+    style: { '--t-pt': `calc(var(--t-spacing-unit) * ${props.pt})` }
+  };
+}
 ```
 
 **Why this pattern?**
 
-- Prevents StyleX from dropping breakpoints during style merging
-- Avoids generating 531,441 static variants for enumerated responsive props
-- Works for both dynamic props (padding, margin) and enumerated props (overflow, display)
-- Uses `toFullResponsiveObject()` helper to fill missing breakpoints with mobile-first cascade
+- Mobile-first responsive design via media queries in CSS
+- CSS Variables allow dynamic values without generating static variants
+- Uses `toFullResponsiveObject()` helper to cascade missing breakpoints
 
 ### Component Architecture
 
@@ -162,21 +161,20 @@ const overflowStylesResponsive = stylex.create({
 
 ### Style Parts Organization
 
-Component styling is split into modular "style parts" in `packages/react/src/components/Box/styleParts/`:
+Component styling is split into modular "style parts" in `packages/react/src/components/Box/`:
 
-- `reset.ts` - CSS reset styles
-- `display.ts`, `position.ts`, `overflow.ts`, `zIndex.ts` - Layout
-- `padding.ts`, `margin.ts`, `sizing.ts` - Box model
-- `flexbox.ts`, `grid.ts`, `inset.ts` - Advanced layout
-- `typography.ts`, `colors.ts` - Visual
-- `borders.ts`, `roundness.ts`, `shadows.ts` - Surface
-- `interactions.ts`, `text.ts`, `opacity.ts` - Behavior
+- `reset/` - CSS reset styles
+- `display/`, `position/`, `overflow/`, `zIndex/` - Layout
+- `padding/`, `margin/`, `sizing/` - Box model
+- `flexbox/`, `grid/`, `inset/` - Advanced layout
+- `typography/`, `colors/` - Visual
+- `borders/`, `roundness/`, `shadows/` - Surface
+- `interactions/`, `text/`, `opacity/` - Behavior
 
-Each style part exports:
+Each style part directory contains:
 
-1. Type definitions for props (e.g., `PaddingProps`)
-2. StyleX style objects
-3. Getter function (e.g., `getPaddingStyles()`) that returns appropriate styles based on prop values
+1. `{name}.ts` - Type definitions and getter function (e.g., `getPaddingStyles()`)
+2. `{name}.module.css` - CSS classes with responsive breakpoints
 
 ### Build Configuration
 
@@ -186,7 +184,6 @@ Each style part exports:
 - Externalized dependencies: `react`, `react-dom`, `react/jsx-runtime`
 - TypeScript declarations via `vite-plugin-dts` using `tsconfig.build.json`
 - **CSS code splitting enabled** (`cssCodeSplit: true`) to separate fonts.css
-- StyleX plugin with mode-aware dev setting
 - Sourcemaps enabled
 - Empty dist on rebuild
 
@@ -194,7 +191,7 @@ Each style part exports:
 
 - `src/index.tsx` - Entry point, imports `styles.css` and dynamically imports `fonts.css`
 - `dist/index.js` - Bundled JavaScript
-- `dist/index.css` - Main CSS bundle (design tokens + StyleX atomic CSS)
+- `dist/index.css` - Main CSS bundle (design tokens + CSS module styles)
 - `dist/fonts.css` - Optional IBM Plex fonts (dynamic import chunk)
 - `dist/index.d.ts` - TypeScript declarations (with full type tree)
 
@@ -311,13 +308,11 @@ type ResponsiveObject<T> = {
 };
 ```
 
-Always use `toFullResponsiveObject()` helper to fill missing breakpoints before passing to StyleX responsive functions.
+Always use `toFullResponsiveObject()` helper to fill missing breakpoints for mobile-first cascade.
 
 ## Critical Rules
 
-1. **Never use CSS shorthands** - StyleX forbids them, always use longhand properties
-2. **All responsive breakpoints in one object** - StyleX drops earlier styles when merging same property
-3. **Read STYLEX_MENTAL_MODEL.md** - Contains critical gotchas and implementation patterns
-4. **Path aliases compile correctly** - `@/*` is configured properly, use it throughout
-5. **Ternaries over utility functions** - Don't use `call()` utility, use simple ternary expressions
-6. **Build before testing exports** - Run `pnpm f:lib build` to generate dist files before testing package exports
+1. **Path aliases compile correctly** - `@/*` is configured properly, use it throughout
+2. **Build before testing exports** - Run `pnpm f:lib build` to generate dist files before testing package exports
+3. **CSS Variables for dynamic values** - Use CSS Variables (e.g., `--t-pt`) set via inline styles, with CSS Modules providing the class names
+4. **Mobile-first responsive** - Use `toFullResponsiveObject()` to cascade breakpoint values

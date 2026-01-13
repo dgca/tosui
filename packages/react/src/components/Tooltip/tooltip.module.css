@@ -1,0 +1,4 @@
+.tooltip {
+  pointer-events: none;
+  white-space: nowrap;
+}

@@ -4,7 +4,7 @@
  * Tosui Base Styles
  *
  * Import this file to enable Tosui design token CSS variables.
- * Components use StyleX for scoped styling and consistent resets.
+ * Components use CSS Modules for scoped styling and consistent resets.
  */
 
 /* === DESIGN TOKENS === */
