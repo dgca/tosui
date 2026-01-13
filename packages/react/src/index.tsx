@@ -100,3 +100,4 @@ export {
   type CardBodyProps,
   type CardFooterProps,
 } from "./components/Card";
+export { Image, type ImageObjectFit, type ImageProps } from "./components/Image";
