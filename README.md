@@ -2,6 +2,10 @@
 
 Tosui is a themable, orderly, simple UI system — a foundation for building component libraries.
 
+## Links
+
+- [Docs](https://dgca.github.io/tosui/)
+
 ## Philosophy
 
 Tosui is built on **constraint-driven simplicity**. By intentionally limiting options, we reduce decision fatigue, improve consistency, and make design systems easier to learn, implement, and maintain.
