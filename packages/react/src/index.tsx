@@ -144,3 +144,14 @@ export {
   type MenuItemProps,
 } from "./components/Menu";
 export { Pagination, type PaginationProps } from "./components/Pagination";
+export {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  type ModalSize,
+  type ModalProps,
+  type ModalHeaderProps,
+  type ModalBodyProps,
+  type ModalFooterProps,
+} from "./components/Modal";
