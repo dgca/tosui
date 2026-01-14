@@ -15,11 +15,12 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@tosui/react": "workspace:*",
     "@docusaurus/core": "3.9.2",
     "@docusaurus/preset-classic": "3.9.2",
     "@mdx-js/react": "^3.0.0",
+    "@tosui/react": "workspace:*",
     "clsx": "^2.0.0",
+    "docusaurus-plugin-llms": "^0.2.2",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

@@ -35,6 +35,19 @@ const config: Config = {
     locales: ["en"],
   },
 
+  plugins: [
+    [
+      "docusaurus-plugin-llms",
+      {
+        title: "@tosui/react",
+        description:
+          "A themable, orderly, simple UI component library for React with constraint-driven design.",
+        excludeImports: true,
+        removeDuplicateHeadings: true,
+      },
+    ],
+  ],
+
   presets: [
     [
       "classic",
