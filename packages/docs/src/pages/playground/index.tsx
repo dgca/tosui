@@ -73,7 +73,7 @@ function ModalExample() {
   };
 
   return (
-    <Box as="section" mb={8}>
+    <Box as="section" id="section-modal" mb={8}>
       <Heading level={2} mb={4}>
         Modal Component
       </Heading>
@@ -121,7 +121,7 @@ function ModalExample() {
 function PaginationExample() {
   const [page, setPage] = useState(5);
   return (
-    <Box as="section" mb={8}>
+    <Box as="section" id="section-pagination" mb={8}>
       <Heading level={2} mb={4}>
         Pagination Component
       </Heading>
@@ -160,104 +160,110 @@ function PaginationExample() {
   );
 }
 
-// Example sections
-type Section =
-  | "box"
-  | "text"
-  | "heading"
-  | "button"
-  | "spinner"
-  | "stack"
-  | "flex"
-  | "grid"
-  | "container"
-  | "divider"
-  | "spacer"
-  | "code"
-  | "input"
-  | "label"
-  | "textarea"
-  | "select"
-  | "checkbox"
-  | "radio"
-  | "switch"
-  | "formfield"
-  | "iconbutton"
-  | "alert"
-  | "badge"
-  | "progress"
-  | "skeleton"
-  | "avatar"
-  | "card"
-  | "image"
-  | "list"
-  | "link"
-  | "tabs"
-  | "breadcrumb"
-  | "menu"
-  | "pagination"
-  | "modal"
-  | "tooltip"
-  | "popover"
-  | "accordion"
-  | "spacing"
-  | "layout"
-  | "colors"
-  | "borders"
-  | "shadows";
-
-const sections: { id: Section | "all"; label: string }[] = [
-  { id: "all", label: "All" },
-  { id: "box", label: "Box" },
-  { id: "text", label: "Text" },
-  { id: "heading", label: "Heading" },
-  { id: "button", label: "Button" },
-  { id: "spinner", label: "Spinner" },
-  { id: "stack", label: "Stack" },
-  { id: "flex", label: "Flex" },
-  { id: "grid", label: "Grid" },
-  { id: "container", label: "Container" },
-  { id: "divider", label: "Divider" },
-  { id: "spacer", label: "Spacer" },
-  { id: "code", label: "Code" },
-  { id: "input", label: "Input" },
-  { id: "label", label: "Label" },
-  { id: "textarea", label: "Textarea" },
-  { id: "select", label: "Select" },
-  { id: "checkbox", label: "Checkbox" },
-  { id: "radio", label: "Radio" },
-  { id: "switch", label: "Switch" },
-  { id: "formfield", label: "FormField" },
-  { id: "iconbutton", label: "IconButton" },
-  { id: "alert", label: "Alert" },
-  { id: "badge", label: "Badge" },
-  { id: "progress", label: "Progress" },
-  { id: "skeleton", label: "Skeleton" },
-  { id: "avatar", label: "Avatar" },
-  { id: "card", label: "Card" },
-  { id: "image", label: "Image" },
-  { id: "list", label: "List" },
-  { id: "link", label: "Link" },
-  { id: "tabs", label: "Tabs" },
-  { id: "breadcrumb", label: "Breadcrumb" },
-  { id: "menu", label: "Menu" },
-  { id: "pagination", label: "Pagination" },
-  { id: "modal", label: "Modal" },
-  { id: "tooltip", label: "Tooltip" },
-  { id: "popover", label: "Popover" },
-  { id: "accordion", label: "Accordion" },
-  { id: "spacing", label: "Spacing" },
-  { id: "layout", label: "Layout" },
-  { id: "colors", label: "Colors" },
-  { id: "borders", label: "Borders" },
-  { id: "shadows", label: "Shadows" },
+// Section groups for the dropdown
+const sectionGroups = [
+  {
+    label: "Primitives",
+    sections: [
+      { id: "box", label: "Box" },
+      { id: "text", label: "Text" },
+      { id: "heading", label: "Heading" },
+    ],
+  },
+  {
+    label: "Layout",
+    sections: [
+      { id: "stack", label: "Stack" },
+      { id: "flex", label: "Flex" },
+      { id: "grid", label: "Grid" },
+      { id: "container", label: "Container" },
+      { id: "divider", label: "Divider" },
+      { id: "spacer", label: "Spacer" },
+    ],
+  },
+  {
+    label: "Form",
+    sections: [
+      { id: "button", label: "Button" },
+      { id: "input", label: "Input" },
+      { id: "label", label: "Label" },
+      { id: "textarea", label: "Textarea" },
+      { id: "select", label: "Select" },
+      { id: "checkbox", label: "Checkbox" },
+      { id: "radio", label: "Radio" },
+      { id: "switch", label: "Switch" },
+      { id: "formfield", label: "FormField" },
+      { id: "iconbutton", label: "IconButton" },
+    ],
+  },
+  {
+    label: "Feedback",
+    sections: [
+      { id: "alert", label: "Alert" },
+      { id: "badge", label: "Badge" },
+      { id: "progress", label: "Progress" },
+      { id: "spinner", label: "Spinner" },
+      { id: "skeleton", label: "Skeleton" },
+    ],
+  },
+  {
+    label: "Data Display",
+    sections: [
+      { id: "avatar", label: "Avatar" },
+      { id: "card", label: "Card" },
+      { id: "image", label: "Image" },
+      { id: "list", label: "List" },
+      { id: "link", label: "Link" },
+      { id: "code", label: "Code" },
+    ],
+  },
+  {
+    label: "Navigation",
+    sections: [
+      { id: "tabs", label: "Tabs" },
+      { id: "breadcrumb", label: "Breadcrumb" },
+      { id: "menu", label: "Menu" },
+      { id: "pagination", label: "Pagination" },
+    ],
+  },
+  {
+    label: "Overlay",
+    sections: [
+      { id: "modal", label: "Modal" },
+      { id: "tooltip", label: "Tooltip" },
+      { id: "popover", label: "Popover" },
+      { id: "accordion", label: "Accordion" },
+    ],
+  },
+  {
+    label: "Design Tokens",
+    sections: [
+      { id: "spacing", label: "Spacing" },
+      { id: "layout", label: "Layout" },
+      { id: "colors", label: "Colors" },
+      { id: "borders", label: "Borders" },
+      { id: "shadows", label: "Shadows" },
+    ],
+  },
 ];
 
 export default function Playground(): ReactNode {
-  const [activeSection, setActiveSection] = useState<Section | "all">("all");
+  const handleSectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const sectionId = e.target.value;
+    if (!sectionId) return;
 
-  const shouldShowSection = (section: Section) =>
-    activeSection === "all" || activeSection === section;
+    const element = document.getElementById(`section-${sectionId}`);
+    if (element) {
+      const navOffset = 120; // Account for sticky nav + dropdown
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - navOffset,
+        behavior: "smooth",
+      });
+    }
+    // Reset dropdown to placeholder
+    e.target.value = "";
+  };
 
   return (
     <Layout title="Playground" description="Interactive component playground">
@@ -266,46 +272,37 @@ export default function Playground(): ReactNode {
         <Box
           className={styles.sectionNav}
           bg="surface"
-        borderBottom="thin"
-        borderColor="border"
-        py={3}
-        px={4}
-      >
-        <Box maxW="1200px" mx="auto">
-          <Box display="flex" gap={2} flexWrap="wrap">
-            {sections.map((section) => (
-              <Box
-                key={section.id}
-                as="button"
-                p={2}
-                px={3}
-                rounded="sm"
-                cursor="pointer"
-                bg={activeSection === section.id ? "primary-subtle" : "surface"}
-                color={
-                  activeSection === section.id
-                    ? "primary-emphasis"
-                    : "foreground-muted"
-                }
-                border="thin"
-                borderColor={
-                  activeSection === section.id ? "primary" : "border"
-                }
-                onClick={() => setActiveSection(section.id)}
-                fontSize="sm"
-              >
-                {section.label}
-              </Box>
-            ))}
+          borderBottom="thin"
+          borderColor="border"
+          py={3}
+          px={4}
+        >
+          <Box maxW="1200px" mx="auto">
+            <select
+              className={styles.sectionSelect}
+              onChange={handleSectionChange}
+              defaultValue=""
+            >
+              <option value="" disabled>
+                Jump to section...
+              </option>
+              {sectionGroups.map((group) => (
+                <optgroup key={group.label} label={group.label}>
+                  {group.sections.map((section) => (
+                    <option key={section.id} value={section.id}>
+                      {section.label}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
           </Box>
         </Box>
-      </Box>
 
-      {/* Main Content */}
-      <Box as="main" p={8} maxW="1200px" mx="auto" color="foreground">
-        {/* Box Component */}
-        {shouldShowSection("box") && (
-          <Box as="section" mb={8}>
+        {/* Main Content */}
+        <Box as="main" p={8} maxW="1200px" mx="auto" color="foreground">
+          {/* Box Component */}
+          <Box as="section" id="section-box" mb={8}>
             <Heading level={2} mb={4}>
               Box Component
             </Heading>
@@ -342,11 +339,9 @@ export default function Playground(): ReactNode {
               <span style={{ fontSize: 12, opacity: 0.7 }}>(flex - block on hover)</span>
             </Box>
           </Box>
-        )}
 
-        {/* Text Component */}
-        {shouldShowSection("text") && (
-          <Box as="section" mb={8}>
+          {/* Text Component */}
+          <Box as="section" id="section-text" mb={8}>
             <Heading level={2} mb={4}>
               Text Component
             </Heading>
@@ -367,11 +362,9 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
 
-        {/* Heading Component */}
-        {shouldShowSection("heading") && (
-          <Box as="section" mb={8}>
+          {/* Heading Component */}
+          <Box as="section" id="section-heading" mb={8}>
             <Heading level={2} mb={4}>
               Heading Component
             </Heading>
@@ -392,11 +385,9 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
 
-        {/* Button Component */}
-        {shouldShowSection("button") && (
-          <Box as="section" mb={8}>
+          {/* Button Component */}
+          <Box as="section" id="section-button" mb={8}>
             <Heading level={2} mb={4}>
               Button Component
             </Heading>
@@ -504,11 +495,9 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
 
-        {/* Spinner Component */}
-        {shouldShowSection("spinner") && (
-          <Box as="section" mb={8}>
+          {/* Spinner Component */}
+          <Box as="section" id="section-spinner" mb={8}>
             <Heading level={2} mb={4}>
               Spinner Component
             </Heading>
@@ -547,11 +536,9 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
 
-        {/* Stack Component */}
-        {shouldShowSection("stack") && (
-          <Box as="section" mb={8}>
+          {/* Stack Component */}
+          <Box as="section" id="section-stack" mb={8}>
             <Heading level={2} mb={4}>
               Stack Component
             </Heading>
@@ -636,11 +623,9 @@ export default function Playground(): ReactNode {
               </HStack>
             </Box>
           </Box>
-        )}
 
-        {/* Flex Component */}
-        {shouldShowSection("flex") && (
-          <Box as="section" mb={8}>
+          {/* Flex Component */}
+          <Box as="section" id="section-flex" mb={8}>
             <Heading level={2} mb={4}>
               Flex Component
             </Heading>
@@ -700,11 +685,9 @@ export default function Playground(): ReactNode {
               </Flex>
             </Box>
           </Box>
-        )}
 
-        {/* Grid Component */}
-        {shouldShowSection("grid") && (
-          <Box as="section" mb={8}>
+          {/* Grid Component */}
+          <Box as="section" id="section-grid" mb={8}>
             <Heading level={2} mb={4}>
               Grid Component
             </Heading>
@@ -759,11 +742,9 @@ export default function Playground(): ReactNode {
               </Grid>
             </Box>
           </Box>
-        )}
 
-        {/* Container Component */}
-        {shouldShowSection("container") && (
-          <Box as="section" mb={8}>
+          {/* Container Component */}
+          <Box as="section" id="section-container" mb={8}>
             <Heading level={2} mb={4}>
               Container Component
             </Heading>
@@ -805,11 +786,9 @@ export default function Playground(): ReactNode {
               </Container>
             </Box>
           </Box>
-        )}
 
-        {/* Divider Component */}
-        {shouldShowSection("divider") && (
-          <Box as="section" mb={8}>
+          {/* Divider Component */}
+          <Box as="section" id="section-divider" mb={8}>
             <Heading level={2} mb={4}>
               Divider Component
             </Heading>
@@ -899,11 +878,9 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
 
-        {/* Spacer Component */}
-        {shouldShowSection("spacer") && (
-          <Box as="section" mb={8}>
+          {/* Spacer Component */}
+          <Box as="section" id="section-spacer" mb={8}>
             <Heading level={2} mb={4}>
               Spacer Component
             </Heading>
@@ -958,11 +935,9 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
 
-        {/* Code Component */}
-        {shouldShowSection("code") && (
-          <Box as="section" mb={8}>
+          {/* Code Component */}
+          <Box as="section" id="section-code" mb={8}>
             <Heading level={2} mb={4}>
               Code Component
             </Heading>
@@ -1008,11 +983,9 @@ export default function Playground(): ReactNode {
               </VStack>
             </Box>
           </Box>
-        )}
 
-        {/* Input Component */}
-        {shouldShowSection("input") && (
-          <Box as="section" mb={8}>
+          {/* Input Component */}
+          <Box as="section" id="section-input" mb={8}>
             <Heading level={2} mb={4}>
               Input Component
             </Heading>
@@ -1050,11 +1023,9 @@ export default function Playground(): ReactNode {
               </VStack>
             </Box>
           </Box>
-        )}
 
-        {/* Label Component */}
-        {shouldShowSection("label") && (
-          <Box as="section" mb={8}>
+          {/* Label Component */}
+          <Box as="section" id="section-label" mb={8}>
             <Heading level={2} mb={4}>
               Label Component
             </Heading>
@@ -1100,11 +1071,9 @@ export default function Playground(): ReactNode {
               </VStack>
             </Box>
           </Box>
-        )}
 
-        {/* Textarea Component */}
-        {shouldShowSection("textarea") && (
-          <Box as="section" mb={8}>
+          {/* Textarea Component */}
+          <Box as="section" id="section-textarea" mb={8}>
             <Heading level={2} mb={4}>
               Textarea Component
             </Heading>
@@ -1160,11 +1129,9 @@ export default function Playground(): ReactNode {
               </HStack>
             </Box>
           </Box>
-        )}
 
-        {/* Select Component */}
-        {shouldShowSection("select") && (
-          <Box as="section" mb={8}>
+          {/* Select Component */}
+          <Box as="section" id="section-select" mb={8}>
             <Heading level={2} mb={4}>
               Select Component
             </Heading>
@@ -1229,11 +1196,9 @@ export default function Playground(): ReactNode {
               </VStack>
             </Box>
           </Box>
-        )}
 
-        {/* Checkbox Component */}
-        {shouldShowSection("checkbox") && (
-          <Box as="section" mb={8}>
+          {/* Checkbox Component */}
+          <Box as="section" id="section-checkbox" mb={8}>
             <Heading level={2} mb={4}>
               Checkbox Component
             </Heading>
@@ -1279,11 +1244,9 @@ export default function Playground(): ReactNode {
               </HStack>
             </Box>
           </Box>
-        )}
 
-        {/* Radio Component */}
-        {shouldShowSection("radio") && (
-          <Box as="section" mb={8}>
+          {/* Radio Component */}
+          <Box as="section" id="section-radio" mb={8}>
             <Heading level={2} mb={4}>
               Radio Component
             </Heading>
@@ -1321,11 +1284,9 @@ export default function Playground(): ReactNode {
               </HStack>
             </Box>
           </Box>
-        )}
 
-        {/* Switch Component */}
-        {shouldShowSection("switch") && (
-          <Box as="section" mb={8}>
+          {/* Switch Component */}
+          <Box as="section" id="section-switch" mb={8}>
             <Heading level={2} mb={4}>
               Switch Component
             </Heading>
@@ -1371,11 +1332,9 @@ export default function Playground(): ReactNode {
               </HStack>
             </Box>
           </Box>
-        )}
 
-        {/* FormField Component */}
-        {shouldShowSection("formfield") && (
-          <Box as="section" mb={8}>
+          {/* FormField Component */}
+          <Box as="section" id="section-formfield" mb={8}>
             <Heading level={2} mb={4}>
               FormField Component
             </Heading>
@@ -1456,11 +1415,9 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
 
-        {/* IconButton Component */}
-        {shouldShowSection("iconbutton") && (
-          <Box as="section" mb={8}>
+          {/* IconButton Component */}
+          <Box as="section" id="section-iconbutton" mb={8}>
             <Heading level={2} mb={4}>
               IconButton Component
             </Heading>
@@ -1510,11 +1467,9 @@ export default function Playground(): ReactNode {
               </HStack>
             </Box>
           </Box>
-        )}
 
-        {/* Alert Component */}
-        {shouldShowSection("alert") && (
-          <Box as="section" mb={8}>
+          {/* Alert Component */}
+          <Box as="section" id="section-alert" mb={8}>
             <Heading level={2} mb={4}>
               Alert Component
             </Heading>
@@ -1555,11 +1510,9 @@ export default function Playground(): ReactNode {
               </Alert>
             </Box>
           </Box>
-        )}
 
-        {/* Badge Component */}
-        {shouldShowSection("badge") && (
-          <Box as="section" mb={8}>
+          {/* Badge Component */}
+          <Box as="section" id="section-badge" mb={8}>
             <Heading level={2} mb={4}>
               Badge Component
             </Heading>
@@ -1605,11 +1558,9 @@ export default function Playground(): ReactNode {
               </HStack>
             </Box>
           </Box>
-        )}
 
-        {/* Progress Component */}
-        {shouldShowSection("progress") && (
-          <Box as="section" mb={8}>
+          {/* Progress Component */}
+          <Box as="section" id="section-progress" mb={8}>
             <Heading level={2} mb={4}>
               Progress Component
             </Heading>
@@ -1669,11 +1620,9 @@ export default function Playground(): ReactNode {
               <Progress isIndeterminate colorScheme="primary" />
             </Box>
           </Box>
-        )}
 
-        {/* Skeleton Component */}
-        {shouldShowSection("skeleton") && (
-          <Box as="section" mb={8}>
+          {/* Skeleton Component */}
+          <Box as="section" id="section-skeleton" mb={8}>
             <Heading level={2} mb={4}>
               Skeleton Component
             </Heading>
@@ -1716,11 +1665,9 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
 
-        {/* Avatar Component */}
-        {shouldShowSection("avatar") && (
-          <Box as="section" mb={8}>
+          {/* Avatar Component */}
+          <Box as="section" id="section-avatar" mb={8}>
             <Heading level={2} mb={4}>
               Avatar Component
             </Heading>
@@ -1776,11 +1723,9 @@ export default function Playground(): ReactNode {
               <Avatar />
             </Box>
           </Box>
-        )}
 
-        {/* Card Component */}
-        {shouldShowSection("card") && (
-          <Box as="section" mb={8}>
+          {/* Card Component */}
+          <Box as="section" id="section-card" mb={8}>
             <Heading level={2} mb={4}>
               Card Component
             </Heading>
@@ -1844,11 +1789,9 @@ export default function Playground(): ReactNode {
               </HStack>
             </Box>
           </Box>
-        )}
 
-        {/* Image Component */}
-        {shouldShowSection("image") && (
-          <Box as="section" mb={8}>
+          {/* Image Component */}
+          <Box as="section" id="section-image" mb={8}>
             <Heading level={2} mb={4}>
               Image Component
             </Heading>
@@ -1909,11 +1852,9 @@ export default function Playground(): ReactNode {
               />
             </Box>
           </Box>
-        )}
 
-        {/* List Component */}
-        {shouldShowSection("list") && (
-          <Box as="section" mb={8}>
+          {/* List Component */}
+          <Box as="section" id="section-list" mb={8}>
             <Heading level={2} mb={4}>
               List Component
             </Heading>
@@ -1988,11 +1929,9 @@ export default function Playground(): ReactNode {
               </List>
             </Box>
           </Box>
-        )}
 
-        {/* Link Component */}
-        {shouldShowSection("link") && (
-          <Box as="section" mb={8}>
+          {/* Link Component */}
+          <Box as="section" id="section-link" mb={8}>
             <Heading level={2} mb={4}>
               Link Component
             </Heading>
@@ -2038,11 +1977,9 @@ export default function Playground(): ReactNode {
               </Text>
             </Box>
           </Box>
-        )}
 
-        {/* Tabs Component */}
-        {shouldShowSection("tabs") && (
-          <Box as="section" mb={8}>
+          {/* Tabs Component */}
+          <Box as="section" id="section-tabs" mb={8}>
             <Heading level={2} mb={4}>
               Tabs Component
             </Heading>
@@ -2098,11 +2035,9 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
 
-        {/* Breadcrumb Component */}
-        {shouldShowSection("breadcrumb") && (
-          <Box as="section" mb={8}>
+          {/* Breadcrumb Component */}
+          <Box as="section" id="section-breadcrumb" mb={8}>
             <Heading level={2} mb={4}>
               Breadcrumb Component
             </Heading>
@@ -2146,11 +2081,9 @@ export default function Playground(): ReactNode {
               </Breadcrumb>
             </Box>
           </Box>
-        )}
 
-        {/* Menu Component */}
-        {shouldShowSection("menu") && (
-          <Box as="section" mb={8}>
+          {/* Menu Component */}
+          <Box as="section" id="section-menu" mb={8}>
             <Heading level={2} mb={4}>
               Menu Component
             </Heading>
@@ -2189,17 +2122,15 @@ export default function Playground(): ReactNode {
               </Text>
             </Box>
           </Box>
-        )}
 
-        {/* Pagination Component */}
-        {shouldShowSection("pagination") && <PaginationExample />}
+          {/* Pagination Component */}
+          <PaginationExample />
 
-        {/* Modal Component */}
-        {shouldShowSection("modal") && <ModalExample />}
+          {/* Modal Component */}
+          <ModalExample />
 
-        {/* Tooltip Component */}
-        {shouldShowSection("tooltip") && (
-          <Box as="section" mb={8}>
+          {/* Tooltip Component */}
+          <Box as="section" id="section-tooltip" mb={8}>
             <Heading level={2} mb={4}>
               Tooltip Component
             </Heading>
@@ -2248,11 +2179,9 @@ export default function Playground(): ReactNode {
               </Tooltip>
             </Box>
           </Box>
-        )}
 
-        {/* Popover Component */}
-        {shouldShowSection("popover") && (
-          <Box as="section" mb={8}>
+          {/* Popover Component */}
+          <Box as="section" id="section-popover" mb={8}>
             <Heading level={2} mb={4}>
               Popover Component
             </Heading>
@@ -2326,11 +2255,9 @@ export default function Playground(): ReactNode {
               </Text>
             </Box>
           </Box>
-        )}
 
-        {/* Accordion Component */}
-        {shouldShowSection("accordion") && (
-          <Box as="section" mb={8}>
+          {/* Accordion Component */}
+          <Box as="section" id="section-accordion" mb={8}>
             <Heading level={2} mb={4}>
               Accordion Component
             </Heading>
@@ -2376,11 +2303,9 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
 
-        {/* Spacing */}
-        {shouldShowSection("spacing") && (
-          <Box as="section" mb={8}>
+          {/* Spacing */}
+          <Box as="section" id="section-spacing" mb={8}>
             <Heading level={2} mb={4}>
               Spacing
             </Heading>
@@ -2420,11 +2345,9 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
 
-        {/* Layout */}
-        {shouldShowSection("layout") && (
-          <Box as="section" mb={8}>
+          {/* Layout */}
+          <Box as="section" id="section-layout" mb={8}>
             <Heading level={2} mb={4}>
               Layout
             </Heading>
@@ -2466,11 +2389,9 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
 
-        {/* Colors */}
-        {shouldShowSection("colors") && (
-          <Box as="section" mb={8}>
+          {/* Colors */}
+          <Box as="section" id="section-colors" mb={8}>
             <Heading level={2} mb={4}>
               Colors
             </Heading>
@@ -2554,11 +2475,9 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
 
-        {/* Borders */}
-        {shouldShowSection("borders") && (
-          <Box as="section" mb={8}>
+          {/* Borders */}
+          <Box as="section" id="section-borders" mb={8}>
             <Heading level={2} mb={4}>
               Borders &amp; Roundness
             </Heading>
@@ -2623,11 +2542,9 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
 
-        {/* Shadows */}
-        {shouldShowSection("shadows") && (
-          <Box as="section" mb={8}>
+          {/* Shadows */}
+          <Box as="section" id="section-shadows" mb={8}>
             <Heading level={2} mb={4}>
               Shadows
             </Heading>
@@ -2661,7 +2578,6 @@ export default function Playground(): ReactNode {
               </Box>
             </Box>
           </Box>
-        )}
         </Box>
       </Box>
     </Layout>
