@@ -140,6 +140,7 @@ function PaginationExample() {
             page={page}
             totalPages={10}
             onPageChange={setPage}
+            siblings={0}
           />
           <Text size="sm" color="foreground-muted" mt={2}>
             Current page: {page}
@@ -154,6 +155,7 @@ function PaginationExample() {
           totalPages={10}
           onPageChange={setPage}
           showEdges={false}
+          siblings={0}
         />
       </Box>
     </Box>
