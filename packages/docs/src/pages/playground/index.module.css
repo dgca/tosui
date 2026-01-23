@@ -1,0 +1,9 @@
+/**
+ * Styles for the playground page
+ */
+
+.sectionNav {
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  z-index: 100;
+}

@@ -88,6 +88,11 @@ const config: Config = {
           label: "Components",
         },
         {
+          to: "/playground",
+          position: "left",
+          label: "Playground",
+        },
+        {
           href: "https://github.com/dgca/tosui",
           label: "GitHub",
           position: "right",

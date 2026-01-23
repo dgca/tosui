@@ -59,7 +59,7 @@ export function Text<T extends ElementType = "span">({
   size,
   weight,
   align,
-  color,
+  color = "foreground",
   truncate,
   italic,
   className,
