@@ -87,7 +87,7 @@ function ModalExample() {
         <Text mb={3} weight="semibold">
           Different Sizes
         </Text>
-        <HStack gap={2} mb={4}>
+        <HStack gap={2} mb={4} wrap>
           <Button size="sm" onClick={() => openWithSize("sm")}>Small</Button>
           <Button size="sm" onClick={() => openWithSize("md")}>Medium</Button>
           <Button size="sm" onClick={() => openWithSize("lg")}>Large</Button>
@@ -138,7 +138,7 @@ function PaginationExample() {
         <Box mb={4}>
           <Pagination
             page={page}
-            totalPages={20}
+            totalPages={10}
             onPageChange={setPage}
           />
           <Text size="sm" color="foreground-muted" mt={2}>
@@ -151,7 +151,7 @@ function PaginationExample() {
         </Text>
         <Pagination
           page={page}
-          totalPages={20}
+          totalPages={10}
           onPageChange={setPage}
           showEdges={false}
         />
@@ -604,7 +604,7 @@ export default function Playground(): ReactNode {
               <Text mb={3} weight="semibold">
                 Stack with alignment
               </Text>
-              <HStack gap={4}>
+              <HStack gap={4} wrap>
                 <VStack gap={2} align="start" p={3} bg="warning-subtle" rounded="sm" w="120px">
                   <Text size="sm">align="start"</Text>
                   <Box p={2} bg="warning-default" rounded="sm">Short</Box>
@@ -1113,7 +1113,7 @@ export default function Playground(): ReactNode {
               <Text mb={3} weight="semibold">
                 Resize options
               </Text>
-              <HStack gap={3}>
+              <HStack gap={3} wrap>
                 <Box flex="1">
                   <Label>resize="none"</Label>
                   <Textarea resize="none" rows={2} placeholder="No resize" />
@@ -1300,7 +1300,7 @@ export default function Playground(): ReactNode {
               <Text mb={3} weight="semibold">
                 Sizes
               </Text>
-              <HStack gap={4} mb={4}>
+              <HStack gap={4} mb={4} wrap>
                 <Switch size="sm" label="Small" />
                 <Switch size="md" label="Medium" />
                 <Switch size="lg" label="Large" />
@@ -1309,7 +1309,7 @@ export default function Playground(): ReactNode {
               <Text mb={3} weight="semibold">
                 Without labels
               </Text>
-              <HStack gap={4} mb={4}>
+              <HStack gap={4} mb={4} wrap>
                 <Switch size="sm" />
                 <Switch size="md" />
                 <Switch size="lg" />
@@ -1318,7 +1318,7 @@ export default function Playground(): ReactNode {
               <Text mb={3} weight="semibold">
                 On/Off states
               </Text>
-              <HStack gap={4} mb={4}>
+              <HStack gap={4} mb={4} wrap>
                 <Switch label="Off" />
                 <Switch label="On" defaultChecked />
               </HStack>
@@ -1326,7 +1326,7 @@ export default function Playground(): ReactNode {
               <Text mb={3} weight="semibold">
                 Disabled state
               </Text>
-              <HStack gap={4}>
+              <HStack gap={4} wrap>
                 <Switch label="Disabled off" disabled />
                 <Switch label="Disabled on" disabled defaultChecked />
               </HStack>
@@ -1526,7 +1526,7 @@ export default function Playground(): ReactNode {
               <Text mb={3} weight="semibold">
                 Color Schemes (Subtle)
               </Text>
-              <HStack gap={2} mb={4}>
+              <HStack gap={2} mb={4} wrap>
                 <Badge colorScheme="gray">Gray</Badge>
                 <Badge colorScheme="primary">Primary</Badge>
                 <Badge colorScheme="accent">Accent</Badge>
@@ -1539,7 +1539,7 @@ export default function Playground(): ReactNode {
               <Text mb={3} weight="semibold">
                 Color Schemes (Solid)
               </Text>
-              <HStack gap={2} mb={4}>
+              <HStack gap={2} mb={4} wrap>
                 <Badge colorScheme="gray" variant="solid">Gray</Badge>
                 <Badge colorScheme="primary" variant="solid">Primary</Badge>
                 <Badge colorScheme="accent" variant="solid">Accent</Badge>
