@@ -50,6 +50,9 @@
   --t-light-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
+  /* Skeleton Shimmer */
+  --t-light-skeleton-shimmer: rgba(0, 0, 0, 0.06);
+
   /* === DARK MODE === */
 
   /* Surface & Text Colors */
@@ -59,15 +62,15 @@
   --t-dark-foreground-inverted: #000000;
   --t-dark-foreground-inverted-muted: #374151;
   --t-dark-foreground-inverted-subtle: #6b7280;
-  --t-dark-border: #374151;
-  --t-dark-border-muted: #1f2937;
-  --t-dark-background: #0f172a;
-  --t-dark-surface: #1e293b;
+  --t-dark-border: #262626;
+  --t-dark-border-muted: #1a1a1a;
+  --t-dark-background: #0e0e0e;
+  --t-dark-surface: #141414;
 
   /* Brand Colors - Primary */
-  --t-dark-primary-default: #60a5fa;
-  --t-dark-primary-emphasis: #3b82f6;
-  --t-dark-primary-subtle: #1e3a8a;
+  --t-dark-primary-default: #4588e8;
+  --t-dark-primary-emphasis: #3270d0;
+  --t-dark-primary-subtle: #172554;
 
   /* Brand Colors - Accent */
   --t-dark-accent-default: #a78bfa;
@@ -100,4 +103,7 @@
     0 4px 6px rgba(0, 0, 0, 0.3);
   --t-dark-shadow-lg: 0 0 0 1px rgba(255, 255, 255, 0.2),
     0 10px 15px rgba(0, 0, 0, 0.4);
+
+  /* Skeleton Shimmer */
+  --t-dark-skeleton-shimmer: rgba(255, 255, 255, 0.12);
 }

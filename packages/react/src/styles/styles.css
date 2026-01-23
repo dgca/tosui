@@ -7,6 +7,11 @@
  * Components use CSS Modules for scoped styling and consistent resets.
  */
 
+/* === BASE RESET === */
+body {
+  margin: 0;
+}
+
 /* === DESIGN TOKENS === */
 :root {
   /* Surface & Text Colors (Light Mode) */
@@ -105,6 +110,9 @@
   --t-shadow-md: var(--t-light-shadow-md);
   --t-shadow-lg: var(--t-light-shadow-lg);
 
+  /* Skeleton */
+  --t-skeleton-shimmer: var(--t-light-skeleton-shimmer);
+
   /* Transitions */
   --t-transition-fast: 150ms;
   --t-transition-normal: 250ms;
@@ -173,6 +181,9 @@
     --t-shadow-sm: var(--t-dark-shadow-sm);
     --t-shadow-md: var(--t-dark-shadow-md);
     --t-shadow-lg: var(--t-dark-shadow-lg);
+
+    /* Skeleton */
+    --t-skeleton-shimmer: var(--t-dark-skeleton-shimmer);
   }
 }
 
@@ -225,4 +236,7 @@
   --t-shadow-sm: var(--t-dark-shadow-sm);
   --t-shadow-md: var(--t-dark-shadow-md);
   --t-shadow-lg: var(--t-dark-shadow-lg);
+
+  /* Skeleton */
+  --t-skeleton-shimmer: var(--t-dark-skeleton-shimmer);
 }

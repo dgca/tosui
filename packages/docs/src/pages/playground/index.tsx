@@ -1,45 +1,66 @@
-import { useState } from "react";
-import "./App.css";
-import { Box } from "./components/Box/Box";
-import { Text } from "@/components/Text/Text";
-import { Heading } from "@/components/Heading/Heading";
-import { Button } from "@/components/Button/Button";
-import { Spinner } from "@/components/Spinner/Spinner";
-import { Divider } from "@/components/Divider/Divider";
-import { Spacer } from "@/components/Spacer/Spacer";
-import { Stack } from "@/components/Stack/Stack";
-import { HStack } from "@/components/HStack/HStack";
-import { VStack } from "@/components/VStack/VStack";
-import { Flex } from "@/components/Flex/Flex";
-import { Grid } from "@/components/Grid/Grid";
-import { Container } from "@/components/Container/Container";
-import { Code } from "@/components/Code/Code";
-import { Input } from "@/components/Input/Input";
-import { Label } from "@/components/Label/Label";
-import { Textarea } from "@/components/Textarea/Textarea";
-import { Select } from "@/components/Select/Select";
-import { Checkbox } from "@/components/Checkbox/Checkbox";
-import { Radio } from "@/components/Radio/Radio";
-import { Switch } from "@/components/Switch/Switch";
-import { FormField } from "@/components/FormField/FormField";
-import { IconButton } from "@/components/IconButton/IconButton";
-import { Alert } from "@/components/Alert/Alert";
-import { Badge } from "@/components/Badge/Badge";
-import { Progress } from "@/components/Progress/Progress";
-import { Skeleton } from "@/components/Skeleton/Skeleton";
-import { Avatar } from "@/components/Avatar/Avatar";
-import { Card, CardHeader, CardBody, CardFooter } from "@/components/Card/Card";
-import { Image } from "@/components/Image/Image";
-import { List, ListItem, ListIcon } from "@/components/List/List";
-import { Link } from "@/components/Link/Link";
-import { Tabs, TabList, Tab, TabPanel } from "@/components/Tabs/Tabs";
-import { Breadcrumb, BreadcrumbItem } from "@/components/Breadcrumb/Breadcrumb";
-import { Menu, MenuButton, MenuList, MenuItem } from "@/components/Menu/Menu";
-import { Pagination } from "@/components/Pagination/Pagination";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "@/components/Modal/Modal";
-import { Tooltip } from "@/components/Tooltip/Tooltip";
-import { Popover, PopoverHeader, PopoverBody } from "@/components/Popover/Popover";
-import { Accordion, AccordionItem } from "@/components/Accordion/Accordion";
+import { useState, type ReactNode } from "react";
+import Layout from "@theme/Layout";
+import {
+  Box,
+  Text,
+  Heading,
+  Button,
+  Spinner,
+  Divider,
+  Spacer,
+  Stack,
+  HStack,
+  VStack,
+  Flex,
+  Grid,
+  Container,
+  Code,
+  Input,
+  Label,
+  Textarea,
+  Select,
+  Checkbox,
+  Radio,
+  Switch,
+  FormField,
+  IconButton,
+  Alert,
+  Badge,
+  Progress,
+  Skeleton,
+  Avatar,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Image,
+  List,
+  ListItem,
+  ListIcon,
+  Link,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanel,
+  Breadcrumb,
+  BreadcrumbItem,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Pagination,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Tooltip,
+  Popover,
+  PopoverHeader,
+  PopoverBody,
+  Accordion,
+  AccordionItem,
+} from "@tosui/react";
+import styles from "./index.module.css";
 
 // Modal example with state
 function ModalExample() {
@@ -139,7 +160,7 @@ function PaginationExample() {
   );
 }
 
-// Example sections - easy to add more as you build components
+// Example sections
 type Section =
   | "box"
   | "text"
@@ -185,143 +206,72 @@ type Section =
   | "borders"
   | "shadows";
 
-function App() {
-  const [theme, setTheme] = useState<"light" | "dark" | "auto">("auto");
+const sections: { id: Section | "all"; label: string }[] = [
+  { id: "all", label: "All" },
+  { id: "box", label: "Box" },
+  { id: "text", label: "Text" },
+  { id: "heading", label: "Heading" },
+  { id: "button", label: "Button" },
+  { id: "spinner", label: "Spinner" },
+  { id: "stack", label: "Stack" },
+  { id: "flex", label: "Flex" },
+  { id: "grid", label: "Grid" },
+  { id: "container", label: "Container" },
+  { id: "divider", label: "Divider" },
+  { id: "spacer", label: "Spacer" },
+  { id: "code", label: "Code" },
+  { id: "input", label: "Input" },
+  { id: "label", label: "Label" },
+  { id: "textarea", label: "Textarea" },
+  { id: "select", label: "Select" },
+  { id: "checkbox", label: "Checkbox" },
+  { id: "radio", label: "Radio" },
+  { id: "switch", label: "Switch" },
+  { id: "formfield", label: "FormField" },
+  { id: "iconbutton", label: "IconButton" },
+  { id: "alert", label: "Alert" },
+  { id: "badge", label: "Badge" },
+  { id: "progress", label: "Progress" },
+  { id: "skeleton", label: "Skeleton" },
+  { id: "avatar", label: "Avatar" },
+  { id: "card", label: "Card" },
+  { id: "image", label: "Image" },
+  { id: "list", label: "List" },
+  { id: "link", label: "Link" },
+  { id: "tabs", label: "Tabs" },
+  { id: "breadcrumb", label: "Breadcrumb" },
+  { id: "menu", label: "Menu" },
+  { id: "pagination", label: "Pagination" },
+  { id: "modal", label: "Modal" },
+  { id: "tooltip", label: "Tooltip" },
+  { id: "popover", label: "Popover" },
+  { id: "accordion", label: "Accordion" },
+  { id: "spacing", label: "Spacing" },
+  { id: "layout", label: "Layout" },
+  { id: "colors", label: "Colors" },
+  { id: "borders", label: "Borders" },
+  { id: "shadows", label: "Shadows" },
+];
+
+export default function Playground(): ReactNode {
   const [activeSection, setActiveSection] = useState<Section | "all">("all");
-
-  // Apply theme to root element
-  const handleThemeChange = (newTheme: typeof theme) => {
-    setTheme(newTheme);
-    if (newTheme === "auto") {
-      document.documentElement.removeAttribute("data-theme");
-    } else {
-      document.documentElement.setAttribute("data-theme", newTheme);
-    }
-  };
-
-  const sections: { id: Section | "all"; label: string }[] = [
-    { id: "all", label: "All" },
-    { id: "box", label: "Box" },
-    { id: "text", label: "Text" },
-    { id: "heading", label: "Heading" },
-    { id: "button", label: "Button" },
-    { id: "spinner", label: "Spinner" },
-    { id: "stack", label: "Stack" },
-    { id: "flex", label: "Flex" },
-    { id: "grid", label: "Grid" },
-    { id: "container", label: "Container" },
-    { id: "divider", label: "Divider" },
-    { id: "spacer", label: "Spacer" },
-    { id: "code", label: "Code" },
-    { id: "input", label: "Input" },
-    { id: "label", label: "Label" },
-    { id: "textarea", label: "Textarea" },
-    { id: "select", label: "Select" },
-    { id: "checkbox", label: "Checkbox" },
-    { id: "radio", label: "Radio" },
-    { id: "switch", label: "Switch" },
-    { id: "formfield", label: "FormField" },
-    { id: "iconbutton", label: "IconButton" },
-    { id: "alert", label: "Alert" },
-    { id: "badge", label: "Badge" },
-    { id: "progress", label: "Progress" },
-    { id: "skeleton", label: "Skeleton" },
-    { id: "avatar", label: "Avatar" },
-    { id: "card", label: "Card" },
-    { id: "image", label: "Image" },
-    { id: "list", label: "List" },
-    { id: "link", label: "Link" },
-    { id: "tabs", label: "Tabs" },
-    { id: "breadcrumb", label: "Breadcrumb" },
-    { id: "menu", label: "Menu" },
-    { id: "pagination", label: "Pagination" },
-    { id: "modal", label: "Modal" },
-    { id: "tooltip", label: "Tooltip" },
-    { id: "popover", label: "Popover" },
-    { id: "accordion", label: "Accordion" },
-    { id: "spacing", label: "Spacing" },
-    { id: "layout", label: "Layout" },
-    { id: "colors", label: "Colors" },
-    { id: "borders", label: "Borders" },
-    { id: "shadows", label: "Shadows" },
-  ];
 
   const shouldShowSection = (section: Section) =>
     activeSection === "all" || activeSection === section;
 
   return (
-    <Box bg="background" minH="100vh" color='foreground'>
-      {/* Header with navigation and theme toggle */}
-      <Box
-        as="header"
-        position="sticky"
-        top={0}
-        bg="surface"
+    <Layout title="Playground" description="Interactive component playground">
+      <Box bg="background">
+        {/* Section Navigation */}
+        <Box
+          className={styles.sectionNav}
+          bg="surface"
         borderBottom="thin"
         borderColor="border"
-        p={4}
-        zIndex="sticky"
-        shadow="sm"
+        py={3}
+        px={4}
       >
         <Box maxW="1200px" mx="auto">
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            mb={4}
-          >
-            <Heading level={1} size="2xl">
-              Tosui Playground
-            </Heading>
-
-            {/* Theme Toggle */}
-            <Box display="flex" gap={2}>
-              <Box
-                as="button"
-                p={2}
-                px={3}
-                rounded="md"
-                cursor="pointer"
-                bg={theme === "light" ? "primary-default" : "surface"}
-                color={theme === "light" ? "foreground-inverted" : "foreground"}
-                border="thin"
-                borderColor={theme === "light" ? "primary" : "border"}
-                onClick={() => handleThemeChange("light")}
-              >
-                Light
-              </Box>
-              <Box
-                as="button"
-                p={2}
-                px={3}
-                rounded="md"
-                cursor="pointer"
-                bg={theme === "auto" ? "primary-default" : "surface"}
-                color={theme === "auto" ? "foreground-inverted" : "foreground"}
-                border="thin"
-                borderColor={theme === "auto" ? "primary" : "border"}
-                onClick={() => handleThemeChange("auto")}
-              >
-                Auto
-              </Box>
-              <Box
-                as="button"
-                p={2}
-                px={3}
-                rounded="md"
-                cursor="pointer"
-                bg={theme === "dark" ? "primary-default" : "surface"}
-                color={theme === "dark" ? "foreground-inverted" : "foreground"}
-                border="thin"
-                borderColor={theme === "dark" ? "primary" : "border"}
-                onClick={() => handleThemeChange("dark")}
-              >
-                Dark
-              </Box>
-            </Box>
-          </Box>
-
-          {/* Section Navigation */}
           <Box display="flex" gap={2} flexWrap="wrap">
             {sections.map((section) => (
               <Box
@@ -352,7 +302,7 @@ function App() {
       </Box>
 
       {/* Main Content */}
-      <Box as="main" p={8} maxW="1200px" mx="auto">
+      <Box as="main" p={8} maxW="1200px" mx="auto" color="foreground">
         {/* Box Component */}
         {shouldShowSection("box") && (
           <Box as="section" mb={8}>
@@ -378,7 +328,7 @@ function App() {
               _hover={{ mt: 8, mb: { base: 4, md: 12 } }}
               style={{ background: "var(--t-color-primary-subtle)", padding: 16, transition: "margin 0.2s" }}
             >
-              Hover me to see margin change (mt: 4→8, mb: 4→4/12)
+              Hover me to see margin change (mt: 4-8, mb: 4-4/12)
             </Box>
 
             <Box
@@ -389,7 +339,7 @@ function App() {
               <span style={{ background: "var(--t-color-accent-default)", padding: 8 }}>A</span>
               <span style={{ background: "var(--t-color-accent-default)", padding: 8 }}>B</span>
               <span style={{ background: "var(--t-color-accent-default)", padding: 8 }}>C</span>
-              <span style={{ fontSize: 12, opacity: 0.7 }}>(flex → block on hover)</span>
+              <span style={{ fontSize: 12, opacity: 0.7 }}>(flex - block on hover)</span>
             </Box>
           </Box>
         )}
@@ -497,8 +447,8 @@ function App() {
               </Text>
               <Box display="flex" gap={3} flexWrap="wrap" mb={4}>
                 <Button leftIcon={<span>+</span>}>Add Item</Button>
-                <Button rightIcon={<span>→</span>}>Next</Button>
-                <Button leftIcon={<span>←</span>} rightIcon={<span>→</span>}>
+                <Button rightIcon={<span>-&gt;</span>}>Next</Button>
+                <Button leftIcon={<span>&lt;-</span>} rightIcon={<span>-&gt;</span>}>
                   Both
                 </Button>
                 <Button loading leftIcon={<span>+</span>}>
@@ -1044,16 +994,16 @@ function App() {
               </Text>
               <VStack gap={2} align="start">
                 <Text>
-                  <Code size="xs">xs code</Code> — Extra small
+                  <Code size="xs">xs code</Code> - Extra small
                 </Text>
                 <Text>
-                  <Code size="sm">sm code</Code> — Small
+                  <Code size="sm">sm code</Code> - Small
                 </Text>
                 <Text>
-                  <Code size="md">md code</Code> — Medium (default)
+                  <Code size="md">md code</Code> - Medium (default)
                 </Text>
                 <Text>
-                  <Code size="lg">lg code</Code> — Large
+                  <Code size="lg">lg code</Code> - Large
                 </Text>
               </VStack>
             </Box>
@@ -2179,7 +2129,7 @@ function App() {
                 Custom Separator
               </Text>
               <Box mb={4}>
-                <Breadcrumb separator="→">
+                <Breadcrumb separator="-&gt;">
                   <BreadcrumbItem href="#">Dashboard</BreadcrumbItem>
                   <BreadcrumbItem href="#">Settings</BreadcrumbItem>
                   <BreadcrumbItem>Profile</BreadcrumbItem>
@@ -2189,7 +2139,7 @@ function App() {
               <Text mb={3} weight="semibold">
                 Icon Separator
               </Text>
-              <Breadcrumb separator={<span>›</span>}>
+              <Breadcrumb separator={<span>&rsaquo;</span>}>
                 <BreadcrumbItem href="#">Docs</BreadcrumbItem>
                 <BreadcrumbItem href="#">Components</BreadcrumbItem>
                 <BreadcrumbItem>Breadcrumb</BreadcrumbItem>
@@ -2216,7 +2166,7 @@ function App() {
               </Text>
               <HStack gap={4} mb={4}>
                 <Menu>
-                  <MenuButton>Actions ▾</MenuButton>
+                  <MenuButton>Actions &#9662;</MenuButton>
                   <MenuList>
                     <MenuItem onClick={() => alert("Edit clicked")}>Edit</MenuItem>
                     <MenuItem onClick={() => alert("Duplicate clicked")}>Duplicate</MenuItem>
@@ -2225,7 +2175,7 @@ function App() {
                 </Menu>
 
                 <Menu>
-                  <MenuButton variant="outline">Options ▾</MenuButton>
+                  <MenuButton variant="outline">Options &#9662;</MenuButton>
                   <MenuList>
                     <MenuItem>View Details</MenuItem>
                     <MenuItem>Share</MenuItem>
@@ -2242,14 +2192,10 @@ function App() {
         )}
 
         {/* Pagination Component */}
-        {shouldShowSection("pagination") && (
-          <PaginationExample />
-        )}
+        {shouldShowSection("pagination") && <PaginationExample />}
 
         {/* Modal Component */}
-        {shouldShowSection("modal") && (
-          <ModalExample />
-        )}
+        {shouldShowSection("modal") && <ModalExample />}
 
         {/* Tooltip Component */}
         {shouldShowSection("tooltip") && (
@@ -2452,7 +2398,7 @@ function App() {
                   border="thin"
                   borderColor="primary"
                 >
-                  Padding: p={"{4}"}
+                  Padding: p=&#123;4&#125;
                 </Box>
                 <Box
                   px={6}
@@ -2461,7 +2407,7 @@ function App() {
                   border="thin"
                   borderColor="accent"
                 >
-                  Horizontal & Vertical: px={"{6}"} py={"{2}"}
+                  Horizontal &amp; Vertical: px=&#123;6&#125; py=&#123;2&#125;
                 </Box>
                 <Box
                   p={{ base: 2, md: 4, lg: 6 }}
@@ -2469,7 +2415,7 @@ function App() {
                   border="thin"
                   borderColor="success"
                 >
-                  Responsive: p={"{"}base: 2, md: 4, lg: 6{"}"}
+                  Responsive: p=&#123;base: 2, md: 4, lg: 6&#125;
                 </Box>
               </Box>
             </Box>
@@ -2614,7 +2560,7 @@ function App() {
         {shouldShowSection("borders") && (
           <Box as="section" mb={8}>
             <Heading level={2} mb={4}>
-              Borders & Roundness
+              Borders &amp; Roundness
             </Heading>
             <Box
               p={4}
@@ -2716,9 +2662,8 @@ function App() {
             </Box>
           </Box>
         )}
+        </Box>
       </Box>
-    </Box>
+    </Layout>
   );
 }
-
-export default App;
