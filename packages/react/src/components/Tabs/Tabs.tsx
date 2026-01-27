@@ -1,3 +1,5 @@
+"use client";
+
 import { type ReactNode, createContext, useContext, useState } from "react";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
