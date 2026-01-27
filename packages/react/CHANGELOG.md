@@ -1,5 +1,11 @@
 # @tosui/react
 
+## 0.1.2
+
+### Patch Changes
+
+- 8bff846: Split files, add use client directive to client components
+
 ## 0.1.1
 
 ### Patch Changes
