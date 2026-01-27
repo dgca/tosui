@@ -7,11 +7,6 @@
  * Components use CSS Modules for scoped styling and consistent resets.
  */
 
-/* === BASE RESET === */
-body {
-  margin: 0;
-}
-
 /* === DESIGN TOKENS === */
 :root {
   /* Surface & Text Colors (Light Mode) */
@@ -84,12 +79,15 @@ body {
   --t-line-height-relaxed: 1.75;
 
   /* Font Families */
-  --t-font-family-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  --t-font-family-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  --t-font-family-mono: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  --t-font-family-heading:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --t-font-family-body:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --t-font-family-mono:
+    "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
 
   /* Border Radius */
   --t-radius-none: 0px;

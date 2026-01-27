@@ -1,4 +1,6 @@
 import "./styles/styles.css";
+// Import reset CSS first to ensure it appears before component styles in the bundle
+import "./components/Box/reset/reset.module.css";
 // fonts.css is exported separately for optional import by consumers
 
 // Type utilities
