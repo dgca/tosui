@@ -1,6 +1,5 @@
 import "./styles/styles.css";
-// Must be imported dynamically to split CSS into multiple files
-import("./styles/fonts.css");
+// fonts.css is exported separately for optional import by consumers
 
 // Type utilities
 export type { Polymorphic } from "./types/Polymorphic";

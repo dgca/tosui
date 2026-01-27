@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, type CSSProperties } from "react";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
