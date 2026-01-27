@@ -2,92 +2,122 @@
 
 Tosui is fully customizable via CSS variables. Override any design token to match your brand, and the entire component library adapts automatically.
 
-## How It Works
+## Quick Start
 
-Tosui defines all design values as CSS variables (custom properties). To customize, override these variables in your CSS:
+Customize your brand colors for both light and dark modes in one place:
+
+```css
+/* custom-theme.css */
+:root {
+  /* Light mode primary - teal */
+  --t-light-primary-default: #0d9488;
+  --t-light-primary-emphasis: #0f766e;
+  --t-light-primary-subtle: #ccfbf1;
+
+  /* Dark mode primary - teal */
+  --t-dark-primary-default: #2dd4bf;
+  --t-dark-primary-emphasis: #5eead4;
+  --t-dark-primary-subtle: #134e4a;
+}
+```
+
+Import after Tosui's styles:
+
+```tsx
+import "@tosui/react/styles.css";
+import "./custom-theme.css";
+```
+
+That's it—Tosui's theme switching handles the rest automatically.
+
+## How Theming Works
+
+Tosui uses a **two-tier variable system** for colors:
+
+1. **Primitive variables** (`--t-light-*`, `--t-dark-*`) hold the actual color values for each mode
+2. **Semantic variables** (`--t-color-*`) reference the appropriate primitive based on the active theme
+
+For example, `--t-color-primary-default` automatically resolves to `--t-light-primary-default` in light mode and `--t-dark-primary-default` in dark mode.
+
+### When to Use Which
+
+| Use Case | Variable Type | Example |
+|----------|---------------|---------|
+| Theme customization (both modes) | Primitives | `--t-light-primary-default`, `--t-dark-primary-default` |
+| Scoped overrides | Semantic | `--t-color-primary-default` |
+| Single element styling | Semantic | `--t-color-primary-default` |
+| Single-mode-only changes | Semantic | `--t-color-primary-default` |
+
+**Rule of thumb:** Use primitives for theming, semantic for overrides.
+
+## Customizing Colors
+
+### Brand Colors
+
+Primary and accent colors each have three variants:
+
+| Variant | Purpose |
+|---------|---------|
+| `-default` | Standard state (buttons, links) |
+| `-emphasis` | Hover/active states |
+| `-subtle` | Backgrounds, badges |
 
 ```css
 :root {
-  --t-color-primary-default: #8b5cf6;
-  --t-color-primary-emphasis: #7c3aed;
-  --t-color-primary-subtle: #ede9fe;
+  /* Primary brand color */
+  --t-light-primary-default: #8b5cf6;
+  --t-light-primary-emphasis: #7c3aed;
+  --t-light-primary-subtle: #ede9fe;
+
+  --t-dark-primary-default: #a78bfa;
+  --t-dark-primary-emphasis: #c4b5fd;
+  --t-dark-primary-subtle: #4c1d95;
+
+  /* Accent color */
+  --t-light-accent-default: #f59e0b;
+  --t-light-accent-emphasis: #d97706;
+  --t-light-accent-subtle: #fef3c7;
+
+  --t-dark-accent-default: #fbbf24;
+  --t-dark-accent-emphasis: #fcd34d;
+  --t-dark-accent-subtle: #78350f;
 }
 ```
 
-All components using `primary-*` tokens will now use your colors.
+### Feedback Colors
 
-## Overriding Tokens
-
-### Global Overrides
-
-Override in `:root` to affect your entire app:
+Success, warning, error, and info follow the same `-default`, `-emphasis`, `-subtle` pattern:
 
 ```css
-/* your-theme.css */
 :root {
-  --t-color-primary-default: #dc2626;
-  --t-spacing-unit: 5px;
-  --t-radius-md: 12px;
+  /* Example: custom error colors */
+  --t-light-error-default: #dc2626;
+  --t-light-error-emphasis: #b91c1c;
+  --t-light-error-subtle: #fee2e2;
+
+  --t-dark-error-default: #f87171;
+  --t-dark-error-emphasis: #fca5a5;
+  --t-dark-error-subtle: #7f1d1d;
 }
 ```
 
-### Scoped Overrides
+### Surface Colors
 
-Override within a selector to affect only that subtree:
+These control text, borders, and backgrounds:
 
-```css
-.marketing-section {
-  --t-color-primary-default: #059669;
-}
-```
+| Variable | Purpose |
+|----------|---------|
+| `--t-{mode}-foreground` | Primary text |
+| `--t-{mode}-foreground-muted` | Secondary text |
+| `--t-{mode}-foreground-subtle` | Tertiary text |
+| `--t-{mode}-border` | Standard borders |
+| `--t-{mode}-border-muted` | Subtle borders |
+| `--t-{mode}-background` | Page background |
+| `--t-{mode}-surface` | Card/panel backgrounds |
 
-```tsx
-<Box className="marketing-section">
-  <Button>Uses green primary</Button>
-</Box>
-```
+Replace `{mode}` with `light` or `dark`.
 
-### Inline Overrides
-
-Override inline for a single element:
-
-```tsx
-<Box style={{ '--t-color-primary-default': '#f59e0b' }}>
-  <Button>Uses amber primary</Button>
-</Box>
-```
-
-## Customizable Tokens
-
-### Colors
-
-Surface and text colors:
-
-| Variable | Default Purpose |
-|----------|-----------------|
-| `--t-color-foreground` | Primary text |
-| `--t-color-foreground-muted` | Secondary text |
-| `--t-color-foreground-subtle` | Tertiary text |
-| `--t-color-border` | Standard borders |
-| `--t-color-border-muted` | Subtle borders |
-| `--t-color-background` | Page background |
-| `--t-color-surface` | Card/panel backgrounds |
-
-Brand colors (each has `-default`, `-emphasis`, `-subtle` variants):
-
-| Category | Variables |
-|----------|-----------|
-| Primary | `--t-color-primary-*` |
-| Accent | `--t-color-accent-*` |
-
-Feedback colors (each has `-default`, `-emphasis`, `-subtle` variants):
-
-| Category | Variables |
-|----------|-----------|
-| Success | `--t-color-success-*` |
-| Warning | `--t-color-warning-*` |
-| Error | `--t-color-error-*` |
-| Info | `--t-color-info-*` |
+## Other Tokens
 
 ### Spacing
 
@@ -99,22 +129,22 @@ Changing this scales all spacing proportionally. With `5px`, `p={4}` becomes `20
 
 ### Typography
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `--t-font-family-heading` | System sans-serif | Headings |
-| `--t-font-family-body` | System sans-serif | Body text |
-| `--t-font-family-mono` | System monospace | Code |
-| `--t-font-size-xs` through `--t-font-size-5xl` | 12px to 48px | Font sizes |
-| `--t-font-weight-normal` through `--t-font-weight-bold` | 400 to 700 | Font weights |
-| `--t-line-height-tight` through `--t-line-height-relaxed` | 1.25 to 1.75 | Line heights |
+| Variable | Description |
+|----------|-------------|
+| `--t-font-family-heading` | Headings (default: system sans-serif) |
+| `--t-font-family-body` | Body text (default: system sans-serif) |
+| `--t-font-family-mono` | Code (default: system monospace) |
+| `--t-font-size-xs` through `--t-font-size-5xl` | Font sizes (12px to 48px) |
+| `--t-font-weight-normal` through `--t-font-weight-bold` | Font weights (400 to 700) |
+| `--t-line-height-tight` through `--t-line-height-relaxed` | Line heights (1.25 to 1.75) |
 
-### Borders and Shadows
+### Borders & Shadows
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `--t-radius-none` through `--t-radius-full` | 0px to 9999px | Border radii |
-| `--t-border-width-thin` through `--t-border-width-thick` | 1px to 4px | Border widths |
-| `--t-shadow-sm` through `--t-shadow-lg` | Light shadows | Box shadows |
+| Variable | Description |
+|----------|-------------|
+| `--t-radius-none` through `--t-radius-full` | Border radii (0px to 9999px) |
+| `--t-border-width-thin` through `--t-border-width-thick` | Border widths (1px to 4px) |
+| `--t-shadow-sm` through `--t-shadow-lg` | Box shadows |
 
 ### Transitions
 
@@ -125,9 +155,34 @@ Changing this scales all spacing proportionally. With `5px`, `p={4}` becomes `20
 | `--t-transition-slow` | `350ms` | Slow transitions |
 | `--t-transition-easing` | `ease-in-out` | Easing function |
 
+## Override Scopes
+
+CSS variables cascade, so you can override at any level:
+
+```css
+/* Global: affects entire app */
+:root {
+  --t-light-primary-default: #dc2626;
+}
+
+/* Scoped: affects only this subtree */
+.marketing-section {
+  --t-color-primary-default: #059669;
+}
+```
+
+```tsx
+{/* Inline: affects only this element and children */}
+<Box style={{ '--t-color-primary-default': '#f59e0b' }}>
+  <Button>Uses amber primary</Button>
+</Box>
+```
+
+Note: Scoped and inline overrides use semantic variables (`--t-color-*`) since they apply to the current theme only.
+
 ## Dark Mode
 
-Control the color scheme with the `data-theme` attribute on your HTML element:
+Control the color scheme with the `data-theme` attribute:
 
 ```html
 <!-- Follow system preference (default) -->
@@ -143,61 +198,9 @@ Control the color scheme with the `data-theme` attribute on your HTML element:
 <html data-theme="dark">
 ```
 
-Tosui automatically switches between light and dark color values based on this attribute or system preference.
+Tosui automatically switches between light and dark values based on this attribute or system preference.
 
-### Customizing Dark Mode Colors
-
-To customize dark mode colors specifically, target the dark theme selector:
-
-```css
-:root[data-theme="dark"] {
-  --t-color-primary-default: #a78bfa;
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) {
-    --t-color-primary-default: #a78bfa;
-  }
-}
-```
-
-## Custom Theme Example
-
-Here's a complete example customizing the primary brand color:
-
-```css
-/* custom-theme.css */
-:root {
-  /* Primary - teal */
-  --t-color-primary-default: #0d9488;
-  --t-color-primary-emphasis: #0f766e;
-  --t-color-primary-subtle: #ccfbf1;
-}
-
-:root[data-theme="dark"],
-html:not([data-theme="light"]) {
-  --t-color-primary-default: #2dd4bf;
-  --t-color-primary-emphasis: #5eead4;
-  --t-color-primary-subtle: #134e4a;
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) {
-    --t-color-primary-default: #2dd4bf;
-    --t-color-primary-emphasis: #5eead4;
-    --t-color-primary-subtle: #134e4a;
-  }
-}
-```
-
-Import after Tosui's styles:
-
-```tsx
-import "@tosui/react/styles.css";
-import "./custom-theme.css";
-```
-
-## Font Customization
+## Fonts
 
 Tosui uses system fonts by default. To use custom fonts:
 
@@ -224,3 +227,8 @@ import "@tosui/react/fonts.css"; // Adds IBM Plex Sans and Mono
 import "@tosui/react/styles.css";
 import "./custom-fonts.css";
 ```
+
+## Token Reference
+
+For the complete list of tokens and their default values, see the source:
+[`packages/react/src/styles/styles.css`](https://github.com/dgca/tosui/blob/main/packages/react/src/styles/styles.css)

@@ -29,7 +29,7 @@ For text content and backgrounds:
 | `foreground` | Primary text |
 | `foreground-muted` | Secondary text, descriptions |
 | `foreground-subtle` | Tertiary text, placeholders |
-| `foreground-inverted` | Text on dark backgrounds |
+| `foreground-inverted` | Text on colored/dark backgrounds |
 | `background` | Page background |
 | `surface` | Card/panel backgrounds |
 
@@ -37,6 +37,22 @@ For text content and backgrounds:
 <Box bg="surface" color="foreground">
   <Text>Primary content</Text>
   <Text color="foreground-muted">Supporting text</Text>
+</Box>
+```
+
+#### When to Use `foreground-inverted`
+
+Use `foreground-inverted` for text that appears on colored or dark backgrounds:
+
+```tsx
+// Text on a colored background
+<Box bg="primary-default" color="foreground-inverted" p={4}>
+  White text on blue background
+</Box>
+
+// Text on success background
+<Box bg="success-default" color="foreground-inverted" p={4}>
+  White text on green background
 </Box>
 ```
 
@@ -68,28 +84,57 @@ Primary and accent colors for brand identity:
 | `accent-emphasis` | Hover/active states |
 | `accent-subtle` | Backgrounds, highlights |
 
+**Primary vs Accent:**
+- **Primary** is your main brand color—use it for primary actions (main buttons, links, key UI elements)
+- **Accent** is a complementary color—use it for secondary highlights, decorative elements, or to draw attention to non-primary elements
+
 ```tsx
-<Button>Primary Action</Button>  {/* Uses primary-default */}
+// Primary for main actions
+<Button>Submit</Button>  {/* Uses primary-default */}
+
+// Subtle backgrounds for highlights
 <Box bg="primary-subtle" p={4}>
   Highlighted section
+</Box>
+
+// Accent for secondary emphasis
+<Box bg="accent-subtle" p={2} rounded="md">
+  <Text color="accent-default">New feature</Text>
 </Box>
 ```
 
 ### Feedback Colors
 
-For status and user feedback:
+For status and user feedback. Each category has three variants:
 
-| Category | Tokens | Use |
-|----------|--------|-----|
-| Success | `success-default`, `success-emphasis`, `success-subtle` | Confirmations, completed actions |
-| Warning | `warning-default`, `warning-emphasis`, `warning-subtle` | Cautions, important notices |
-| Error | `error-default`, `error-emphasis`, `error-subtle` | Errors, destructive actions |
-| Info | `info-default`, `info-emphasis`, `info-subtle` | Informational messages |
+| Variant | Purpose |
+|---------|---------|
+| `*-default` | Text, icons, solid elements |
+| `*-emphasis` | Hover/active states |
+| `*-subtle` | Background colors |
+
+| Category | Use |
+|----------|-----|
+| `success-*` | Confirmations, completed actions |
+| `warning-*` | Cautions, important notices |
+| `error-*` | Errors, destructive actions |
+| `info-*` | Informational messages |
 
 ```tsx
-<Alert status="success">Operation completed</Alert>
-<Badge colorScheme="error">Failed</Badge>
-<Box bg="warning-subtle" p={4}>Important notice</Box>
+// Success message with subtle background
+<Box bg="success-subtle" color="success-default" p={4} rounded="md">
+  Operation completed successfully
+</Box>
+
+// Error indicator
+<Box bg="error-subtle" color="error-default" p={4} rounded="md">
+  Please fix the errors above
+</Box>
+
+// Warning notice
+<Box bg="warning-subtle" color="warning-default" p={4} rounded="md">
+  This action cannot be undone
+</Box>
 ```
 
 ## Color Props
@@ -119,7 +164,7 @@ Colors automatically adapt when:
 - System preference is dark (`prefers-color-scheme: dark`)
 - `data-theme="dark"` is set on the HTML element
 
-No code changes needed - the same tokens work in both modes:
+No code changes needed—the same tokens work in both modes:
 
 ```tsx
 // This works correctly in both light and dark mode
@@ -141,36 +186,15 @@ To force a specific theme:
 <html data-theme="auto">
 ```
 
-## Variant Pattern
-
-The three-tier variant pattern (`default`, `emphasis`, `subtle`) appears across all brand and feedback colors:
-
-| Variant | Use |
-|---------|-----|
-| `*-default` | Primary/main usage (buttons, links) |
-| `*-emphasis` | Stronger version (hover states) |
-| `*-subtle` | Lighter background (highlights, tags) |
-
-```tsx
-// Button states
-<Box bg="primary-default">Normal</Box>
-<Box bg="primary-emphasis">Hovered</Box>
-
-// Subtle backgrounds
-<Box bg="success-subtle" color="success-default" p={3}>
-  Success message with subtle background
-</Box>
-```
-
 ## Common Patterns
 
 ### Status Indicators
 
 ```tsx
-<HStack gap={2}>
+<Box display="flex" alignItems="center" gap={2}>
   <Box w="8px" h="8px" rounded="full" bg="success-default" />
   <Text>Online</Text>
-</HStack>
+</Box>
 ```
 
 ### Highlighted Text
@@ -184,8 +208,22 @@ The three-tier variant pattern (`default`, `emphasis`, `subtle`) appears across 
 ### Muted Secondary Content
 
 ```tsx
-<VStack gap={1} align="flex-start">
+<Box display="flex" flexDirection="column" gap={1}>
   <Text fontWeight="medium">John Doe</Text>
   <Text color="foreground-muted" fontSize="sm">john@example.com</Text>
-</VStack>
+</Box>
 ```
+
+### Status Message
+
+```tsx
+<Box bg="info-subtle" color="info-default" p={4} rounded="md">
+  <Text fontWeight="medium">Tip</Text>
+  <Text>You can customize these colors in your theme.</Text>
+</Box>
+```
+
+## Token Reference
+
+For the complete list of color tokens and their default values (light and dark mode), see the source:
+[`packages/react/src/styles/_color-scheme.css`](https://github.com/dgca/tosui/blob/main/packages/react/src/styles/_color-scheme.css)

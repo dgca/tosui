@@ -26,6 +26,16 @@ When you use spacing props like `p={4}` or `m={8}`, the value is multiplied by 4
 
 The system supports multipliers from 0 to 32 (0px to 128px).
 
+To change the base unit globally, override the CSS variable:
+
+```css
+:root {
+  --t-spacing-unit: 5px;
+}
+```
+
+With `5px`, `p={4}` becomes `20px` instead of `16px`. See the [Customization guide](/docs/guide/customization) for more theming options.
+
 ## Padding Props
 
 Padding adds space inside an element's border.
@@ -78,6 +88,18 @@ Margin adds space outside an element's border.
 | `mb` | Bottom only |
 | `ml` | Left only |
 
+### Negative Margins
+
+Negative margins are supported using negative multipliers:
+
+```tsx
+// Negative margin to pull element up
+<Box mt={-4}>Pulls up by 16px</Box>
+
+// Or with CSS string values
+<Box mt="-10px">Custom negative margin</Box>
+```
+
 ## Gap (Flexbox/Grid)
 
 Use `gap` for spacing between flex or grid children:
@@ -90,27 +112,69 @@ Use `gap` for spacing between flex or grid children:
 </Box>
 ```
 
-For different row and column gaps:
+For different row and column gaps, use `gapRow` and `gapColumn`:
 
 ```tsx
-<Box display="grid" gapRow={4} gapColumn={8}>
-  {/* Grid items */}
+// Grid with different row and column gaps
+<Box display="grid" gridTemplateColumns="1fr 1fr" gapRow={4} gapColumn={8}>
+  <Box>Cell 1</Box>
+  <Box>Cell 2</Box>
+  <Box>Cell 3</Box>
+  <Box>Cell 4</Box>
 </Box>
 ```
 
+| Prop | Description |
+|------|-------------|
+| `gap` | Sets both row and column gap |
+| `gapRow` | Gap between rows (overrides `gap` for rows) |
+| `gapColumn` | Gap between columns (overrides `gap` for columns) |
+
+## Responsive Spacing
+
+All spacing props support responsive values. Specify different values for each breakpoint:
+
+```tsx
+// Padding that increases with screen size
+<Box p={{ base: 2, md: 4, lg: 6 }}>
+  8px on mobile, 16px on tablet, 24px on desktop
+</Box>
+
+// Responsive gap
+<Box display="flex" gap={{ base: 2, md: 4 }}>
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+</Box>
+
+// Responsive margins
+<Box my={{ base: 4, lg: 8 }}>
+  16px vertical margin on mobile, 32px on large screens
+</Box>
+```
+
+Breakpoints use a mobile-first cascade—you only need to specify breakpoints where the value changes. See the [Responsive guide](/docs/guide/responsive) for more details.
+
 ## Specificity Cascade
 
-When multiple spacing props apply to the same side, more specific props win:
+When multiple spacing props apply to the same side, more specific props override less specific ones:
 
 ```tsx
 // Result: left=32px, right=24px, top=16px, bottom=16px
 <Box p={4} px={6} pl={8} />
+
+// Result: top=32px, bottom=16px
+<Box py={4} pt={8} />
+
+// Result: left=24px, right=24px, top=8px, bottom=16px
+<Box p={4} px={6} py={2} pb={4} />
 ```
 
 Order of specificity (most to least):
 1. Individual side (`pt`, `pr`, `pb`, `pl`)
 2. Axis (`px`, `py`)
 3. All sides (`p`)
+
+The same applies to margin props (`m`, `mx`, `my`, `mt`, etc.).
 
 ## Common Patterns
 
@@ -133,6 +197,8 @@ Order of specificity (most to least):
 
 ### Tight Lists
 
+[VStack](/docs/components/vstack) is a convenience component that renders a vertical flex container:
+
 ```tsx
 <VStack gap={2}>
   <Text>Item 1</Text>
@@ -142,6 +208,8 @@ Order of specificity (most to least):
 ```
 
 ### Button Groups
+
+[HStack](/docs/components/hstack) is a convenience component that renders a horizontal flex container:
 
 ```tsx
 <HStack gap={3}>
@@ -159,15 +227,3 @@ For values outside the multiplier system, use CSS strings:
 <Box m="2rem">Custom 2rem margin</Box>
 <Box p="clamp(16px, 4vw, 32px)">Fluid padding</Box>
 ```
-
-## Customizing the Base Unit
-
-The default base unit is `4px`, but you can change it by overriding the CSS variable:
-
-```css
-:root {
-  --t-spacing-unit: 5px;
-}
-```
-
-With `5px`, `p={4}` becomes `20px` instead of `16px`. See the [Customization guide](/docs/guide/customization) for more theming options.

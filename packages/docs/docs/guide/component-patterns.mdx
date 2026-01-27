@@ -36,6 +36,8 @@ These components accept most Box props, letting you customize spacing, colors, l
 | [Radio](/docs/components/radio) | Radio button group |
 | [Switch](/docs/components/switch) | Toggle switch |
 
+Form components accept layout props (margin, sizing) but have their own styling for the input itself.
+
 ### Actions
 
 | Component | Description |
@@ -66,6 +68,50 @@ Simple components accept layout, spacing, and some visual props:
   <Text>Item 2</Text>
 </VStack>
 ```
+
+### Button and IconButton Props
+
+Button and IconButton accept these specific props:
+
+| Prop | Values | Default |
+|------|--------|---------|
+| `variant` | `"solid"`, `"outline"`, `"ghost"` | `"solid"` |
+| `size` | `"sm"`, `"md"`, `"lg"` | `"md"` |
+| `colorScheme` | `"primary"`, `"accent"`, `"success"`, `"warning"`, `"error"`, `"info"` | `"primary"` |
+| `disabled` | `boolean` | `false` |
+| `loading` | `boolean` | `false` |
+
+Button also accepts:
+- `fullWidth` - Makes button 100% width
+- `leftIcon` / `rightIcon` - Icon elements to display
+
+IconButton requires:
+- `icon` - The icon element to display
+- `aria-label` - Required accessibility label
+
+```tsx
+// Button variants
+<Button variant="solid">Solid</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+
+// Button sizes
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+
+// Color schemes
+<Button colorScheme="primary">Primary</Button>
+<Button colorScheme="error">Delete</Button>
+
+// With icons
+<Button leftIcon={<PlusIcon />}>Add Item</Button>
+
+// IconButton
+<IconButton icon={<SearchIcon />} aria-label="Search" />
+```
+
+Button and IconButton have built-in state styling (hover, active, focus, disabled). See [State Styling](/docs/guide/state-styling) for details.
 
 ## Complex Components
 
@@ -116,40 +162,54 @@ Complex components accept specific props for their behavior:
   </AccordionItem>
 </Accordion>
 
-// Tabs - tab selection
-<Tabs defaultValue="tab1">
+// Tabs - index-based selection
+<Tabs defaultIndex={0} onChange={(index) => console.log(index)}>
   <TabList>
-    <Tab value="tab1">Tab 1</Tab>
-    <Tab value="tab2">Tab 2</Tab>
+    <Tab index={0}>Tab 1</Tab>
+    <Tab index={1}>Tab 2</Tab>
   </TabList>
   <TabPanels>
-    <TabPanel value="tab1">Content 1</TabPanel>
-    <TabPanel value="tab2">Content 2</TabPanel>
+    <TabPanel index={0}>Content 1</TabPanel>
+    <TabPanel index={1}>Content 2</TabPanel>
   </TabPanels>
 </Tabs>
 ```
 
 ### Subcomponents
 
-Many complex components have subcomponents that render as styled Box elements:
+Many complex components have subcomponents with built-in styling:
+
+**Modal:**
+- `ModalHeader` - Title with bottom border
+- `ModalBody` - Content area with padding
+- `ModalFooter` - Actions area with top border
+
+**Card:**
+- `CardHeader` - Title area
+- `CardBody` - Content with padding
+- `CardFooter` - Actions area
+
+**Accordion:**
+- `AccordionItem` - Individual collapsible section
+
+**Tabs:**
+- `TabList` - Container for tab buttons
+- `Tab` - Individual tab button
+- `TabPanels` - Container for tab content
+- `TabPanel` - Individual tab content
 
 ```tsx
-// ModalBody and ModalFooter have built-in padding
-<Modal isOpen={true} onClose={onClose}>
-  <ModalHeader>Title</ModalHeader>
-  <ModalBody>
-    This has padding from ModalBody
-  </ModalBody>
-  <ModalFooter>
-    <Button>Action</Button>
-  </ModalFooter>
-</Modal>
-
-// CardBody has built-in padding
+// Subcomponents have built-in padding and styling
 <Card>
+  <CardHeader>
+    <Heading fontSize="lg">Card Title</Heading>
+  </CardHeader>
   <CardBody>
     Content with padding
   </CardBody>
+  <CardFooter>
+    <Button>Action</Button>
+  </CardFooter>
 </Card>
 ```
 

@@ -55,10 +55,16 @@ These props support responsive values:
 
 | Category | Props |
 |----------|-------|
-| Spacing | `p`, `px`, `py`, `pt`, `pr`, `pb`, `pl`, `m`, `mx`, `my`, `mt`, `mr`, `mb`, `ml`, `gap` |
+| Spacing | `p`, `px`, `py`, `pt`, `pr`, `pb`, `pl`, `m`, `mx`, `my`, `mt`, `mr`, `mb`, `ml`, `gap`, `gapRow`, `gapColumn` |
 | Sizing | `w`, `h`, `minW`, `maxW`, `minH`, `maxH` |
-| Layout | `display`, `flexDirection`, `justifyContent`, `alignItems`, `flexWrap` |
-| Grid | `gridTemplateColumns`, `gridTemplateRows` |
+| Layout | `display`, `position`, `overflow`, `zIndex` |
+| Flexbox | `flexDirection`, `justifyContent`, `alignItems`, `alignSelf`, `flexWrap` |
+| Grid | `gridTemplateColumns`, `gridTemplateRows`, `justifySelf` |
+| Typography | `fontSize`, `fontWeight`, `lineHeight`, `textAlign` |
+| Colors | `color`, `bg`, `borderColor` |
+| Borders | `border`, `borderTop`, `borderRight`, `borderBottom`, `borderLeft`, `borderX`, `borderY` |
+| Roundness | `rounded`, `roundedTop`, `roundedBottom`, `roundedLeft`, `roundedRight` |
+| Effects | `shadow`, `opacity` |
 
 ## Common Patterns
 
@@ -127,14 +133,20 @@ These props support responsive values:
 ### Responsive Width
 
 ```tsx
+// Using spacing multipliers (recommended)
 <Box w={{ base: "100%", md: "50%", lg: "33%" }}>
   Responsive width container
+</Box>
+
+// CSS values work for percentages and viewport units
+<Box w={{ base: "100%", md: "400px" }}>
+  Full width on mobile, fixed on tablet+
 </Box>
 ```
 
 ## Layout Components
 
-Stack components accept responsive props too:
+[Stack](/docs/components/stack), [HStack](/docs/components/hstack), and [VStack](/docs/components/vstack) are convenience components for common flex layouts. They accept responsive props:
 
 ```tsx
 <Stack
@@ -146,7 +158,28 @@ Stack components accept responsive props too:
 </Stack>
 ```
 
-This is equivalent to using HStack on larger screens and VStack on mobile.
+This is equivalent to using `HStack` on larger screens and `VStack` on mobile.
+
+- **Stack** - Flex container with configurable `direction`
+- **VStack** - Vertical stack (`direction="column"`)
+- **HStack** - Horizontal stack (`direction="row"`)
+
+## Responsive State Styling
+
+State props (`_hover`, `_focus`, `_active`, `_disabled`) also accept responsive values:
+
+```tsx
+<Box
+  bg="surface"
+  _hover={{
+    bg: { base: "primary-subtle", md: "primary-default" }
+  }}
+>
+  Different hover effect by screen size
+</Box>
+```
+
+See the [State Styling guide](/docs/guide/state-styling) for more details.
 
 ## Best Practices
 
@@ -154,3 +187,4 @@ This is equivalent to using HStack on larger screens and VStack on mobile.
 2. **Minimize breakpoints**: Only add breakpoints where the layout actually needs to change
 3. **Use semantic breakpoints**: Think "tablet and up" (`md`), not "768px"
 4. **Test all sizes**: Verify layouts at each breakpoint you use
+5. **Prefer design tokens**: Use spacing multipliers (`p={4}`) over raw values (`p="16px"`) when possible
