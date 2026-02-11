@@ -1,5 +1,6 @@
 import { type ElementType } from "react";
 import { type Polymorphic } from "@/types/Polymorphic";
+import type { ResponsiveValue } from "@/utils/breakpoints";
 import { Box, type BoxOwnProps } from "@/components/Box/Box";
 import type {
   JustifyContentValue,
@@ -22,10 +23,10 @@ export type GridOwnProps = Omit<
   | "justifyContent"
   | "alignItems"
 > & {
-  /** Grid template columns (CSS value) */
-  columns?: string;
-  /** Grid template rows (CSS value) */
-  rows?: string;
+  /** Grid template columns — CSS value or responsive object */
+  columns?: ResponsiveValue<string>;
+  /** Grid template rows — CSS value or responsive object */
+  rows?: ResponsiveValue<string>;
   /** Gap between grid items (0-32 spacing multiplier or string) */
   gap?: SpacingValue;
   /** Row gap between grid items (0-32 spacing multiplier or string) */

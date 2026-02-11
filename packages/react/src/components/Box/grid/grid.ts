@@ -1,4 +1,6 @@
+import type { ResponsiveValue } from "@/utils/breakpoints";
 import {
+  RESPONSIVE_KEYS,
   STATE_SUFFIXES,
   STATE_CLASS_SUFFIXES,
   type StateKey,
@@ -9,10 +11,12 @@ import clsx from "clsx";
 
 export type JustifySelfValue = "auto" | "start" | "end" | "center" | "stretch";
 
+type GridTemplateKey = "grid-cols" | "grid-rows";
+
 export type GridProps = {
   justifySelf?: JustifySelfValue;
-  gridTemplateColumns?: string;
-  gridTemplateRows?: string;
+  gridTemplateColumns?: ResponsiveValue<string>;
+  gridTemplateRows?: ResponsiveValue<string>;
 };
 
 export type GridStateProps = {
@@ -26,6 +30,56 @@ function getJustifySelfClass(value: JustifySelfValue, state: StateKey): string |
     : styles[`justify-self-${value}`];
 }
 
+function getGridTemplateProp(
+  key: GridTemplateKey,
+  varPrefix: string,
+  value: ResponsiveValue<string> | undefined,
+  state: StateKey = "base"
+): StyleResult {
+  const result: StyleResult = { className: "", style: {} };
+
+  if (value === undefined) return result;
+
+  const stateSuffix = STATE_SUFFIXES[state];
+  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
+
+  if (typeof value !== "object") {
+    const className = stateClassSuffix
+      ? styles[`${key}${stateClassSuffix}`]
+      : styles[key];
+    result.className = className || "";
+    result.style[`--t-${varPrefix}${stateSuffix}`] = value;
+    return result;
+  }
+
+  for (const responsiveKey of RESPONSIVE_KEYS) {
+    const val = value[responsiveKey];
+    if (val === undefined) continue;
+
+    let className: string | undefined;
+    let varName: string;
+
+    if (responsiveKey === "base") {
+      className = stateClassSuffix
+        ? styles[`${key}${stateClassSuffix}`]
+        : styles[key];
+      varName = `--t-${varPrefix}${stateSuffix}`;
+    } else {
+      className = stateClassSuffix
+        ? styles[`${key}_${responsiveKey}${stateClassSuffix}`]
+        : styles[`${key}_${responsiveKey}`];
+      varName = `--t-${varPrefix}_${responsiveKey}${stateSuffix}`;
+    }
+
+    if (className) {
+      result.className = clsx(result.className, className);
+    }
+    result.style[varName] = val;
+  }
+
+  return result;
+}
+
 function getGridStylesForState(
   props: GridProps | undefined,
   state: StateKey
@@ -36,31 +90,18 @@ function getGridStylesForState(
 
   const classes: string[] = [];
   const style: Record<string, string> = {};
-  const stateVarSuffix = STATE_SUFFIXES[state];
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
 
-  // Enumerated prop
   if (justifySelf) {
     const cls = getJustifySelfClass(justifySelf, state);
     if (cls) classes.push(cls);
   }
 
-  // Variable-based props
-  if (gridTemplateColumns !== undefined) {
-    const gridColsClass = stateClassSuffix ? styles[`grid-cols${stateClassSuffix}`] : styles["grid-cols"];
-    if (gridColsClass) classes.push(gridColsClass);
-    style[`--t-grid-cols${stateVarSuffix}`] = gridTemplateColumns;
-  }
-
-  if (gridTemplateRows !== undefined) {
-    const gridRowsClass = stateClassSuffix ? styles[`grid-rows${stateClassSuffix}`] : styles["grid-rows"];
-    if (gridRowsClass) classes.push(gridRowsClass);
-    style[`--t-grid-rows${stateVarSuffix}`] = gridTemplateRows;
-  }
+  const colsResult = getGridTemplateProp("grid-cols", "grid-cols", gridTemplateColumns, state);
+  const rowsResult = getGridTemplateProp("grid-rows", "grid-rows", gridTemplateRows, state);
 
   return {
-    className: clsx(...classes),
-    style,
+    className: clsx(...classes, colsResult.className, rowsResult.className),
+    style: { ...style, ...colsResult.style, ...rowsResult.style },
   };
 }
 
