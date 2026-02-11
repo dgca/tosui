@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "USE_SIMPLE_CSS_MINIFIER=true docusaurus build",
+    "build": "USE_SIMPLE_CSS_MINIFIER=true docusaurus build && node scripts/clean-llm-output.mjs",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

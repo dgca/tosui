@@ -1,3 +1,8 @@
+---
+title: Get Started
+description: "Install and set up Tosui in your React application with styles and optional fonts."
+---
+
 # Get Started
 
 ## Installation

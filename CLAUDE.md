@@ -310,9 +310,56 @@ type ResponsiveObject<T> = {
 
 Always use `toFullResponsiveObject()` helper to fill missing breakpoints for mobile-first cascade.
 
+## Documentation Site & LLM Output
+
+The docs site (`packages/docs`) uses Docusaurus with `docusaurus-plugin-llms` to generate LLM-friendly documentation files during build. The build command chains `docusaurus build` → `scripts/clean-llm-output.mjs` (post-build cleanup).
+
+### Generated LLM Files
+
+| File | Content |
+|------|---------|
+| `llms.txt` | Index with descriptions + links to individual `.md` files |
+| `llms-full.txt` | All docs concatenated into one file |
+| `llms-components.txt` | All 40 component docs only |
+| `llms-guide.txt` | Guide docs only (intro, get-started, styling guides) |
+| `*.md` (per doc) | Individual clean markdown files for each doc page |
+
+### Post-Build Cleanup Script
+
+`packages/docs/scripts/clean-llm-output.mjs` runs after the Docusaurus build to strip JSX noise from the generated LLM files:
+- Removes `<TabItem value="preview">` blocks (duplicated code examples used for live previews)
+- Strips `<Tabs>`, `<TabItem>` wrapper tags
+- Cleans empty code fences left by import stripping
+- Collapses excessive blank lines
+
+### Frontmatter Requirements
+
+**All doc files must have frontmatter** with `title` and `description`. The plugin uses `description` for the summary in `llms.txt`. Without it, descriptions fall back to the first line of content (which for MDX files is often an import statement).
+
+```yaml
+---
+title: ComponentName
+description: "One-line description of what the component does."
+---
+```
+
+### Plugin Configuration
+
+The plugin is configured in `docusaurus.config.ts` with:
+- `includeOrder` — Controls doc ordering (guides first, then components by category)
+- `rootContent` / `fullRootContent` — Custom intro text at the top of generated files (includes Box prop inheritance docs, quick reference, component categories)
+- `generateMarkdownFiles` — Individual `.md` files linked from `llms.txt`
+- `customLLMFiles` — Focused subsets (`llms-components.txt`, `llms-guide.txt`)
+- `excludeImports` / `removeDuplicateHeadings` — Content cleaning
+
+### Box Props Documentation in LLM Output
+
+The `rootContent` and `fullRootContent` in the plugin config contain critical information about which components accept Box styling props. **If you add or change components, update these lists** in `docusaurus.config.ts` to keep the LLM output accurate.
+
 ## Critical Rules
 
 1. **Path aliases compile correctly** - `@/*` is configured properly, use it throughout
 2. **Build before testing exports** - Run `pnpm f:lib build` to generate dist files before testing package exports
 3. **CSS Variables for dynamic values** - Use CSS Variables (e.g., `--t-pt`) set via inline styles, with CSS Modules providing the class names
 4. **Mobile-first responsive** - Use `toFullResponsiveObject()` to cascade breakpoint values
+5. **Doc frontmatter required** - All `.md`/`.mdx` files in `packages/docs/docs/` must have `title` and `description` frontmatter for proper LLM output generation
