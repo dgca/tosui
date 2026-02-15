@@ -14,6 +14,56 @@
 .grid-cols { grid-template-columns: var(--t-grid-cols); }
 .grid-cols\:h:hover { grid-template-columns: var(--t-grid-cols-h); }
 
+@media (min-width: 640px) {
+  .grid-cols_sm { grid-template-columns: var(--t-grid-cols_sm); }
+  .grid-cols_sm\:h:hover { grid-template-columns: var(--t-grid-cols_sm-h); }
+}
+
+@media (min-width: 768px) {
+  .grid-cols_md { grid-template-columns: var(--t-grid-cols_md); }
+  .grid-cols_md\:h:hover { grid-template-columns: var(--t-grid-cols_md-h); }
+}
+
+@media (min-width: 1024px) {
+  .grid-cols_lg { grid-template-columns: var(--t-grid-cols_lg); }
+  .grid-cols_lg\:h:hover { grid-template-columns: var(--t-grid-cols_lg-h); }
+}
+
+@media (min-width: 1280px) {
+  .grid-cols_xl { grid-template-columns: var(--t-grid-cols_xl); }
+  .grid-cols_xl\:h:hover { grid-template-columns: var(--t-grid-cols_xl-h); }
+}
+
+@media (min-width: 1536px) {
+  .grid-cols_2xl { grid-template-columns: var(--t-grid-cols_2xl); }
+  .grid-cols_2xl\:h:hover { grid-template-columns: var(--t-grid-cols_2xl-h); }
+}
+
 /* gridTemplateRows (variable-based) */
 .grid-rows { grid-template-rows: var(--t-grid-rows); }
 .grid-rows\:h:hover { grid-template-rows: var(--t-grid-rows-h); }
+
+@media (min-width: 640px) {
+  .grid-rows_sm { grid-template-rows: var(--t-grid-rows_sm); }
+  .grid-rows_sm\:h:hover { grid-template-rows: var(--t-grid-rows_sm-h); }
+}
+
+@media (min-width: 768px) {
+  .grid-rows_md { grid-template-rows: var(--t-grid-rows_md); }
+  .grid-rows_md\:h:hover { grid-template-rows: var(--t-grid-rows_md-h); }
+}
+
+@media (min-width: 1024px) {
+  .grid-rows_lg { grid-template-rows: var(--t-grid-rows_lg); }
+  .grid-rows_lg\:h:hover { grid-template-rows: var(--t-grid-rows_lg-h); }
+}
+
+@media (min-width: 1280px) {
+  .grid-rows_xl { grid-template-rows: var(--t-grid-rows_xl); }
+  .grid-rows_xl\:h:hover { grid-template-rows: var(--t-grid-rows_xl-h); }
+}
+
+@media (min-width: 1536px) {
+  .grid-rows_2xl { grid-template-rows: var(--t-grid-rows_2xl); }
+  .grid-rows_2xl\:h:hover { grid-template-rows: var(--t-grid-rows_2xl-h); }
+}
