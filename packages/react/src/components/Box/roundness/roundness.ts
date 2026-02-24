@@ -1,7 +1,9 @@
+import type { ResponsiveValue } from "@/utils/breakpoints";
 import {
-  STATE_CLASS_SUFFIXES,
   type StateKey,
+  type StateProps,
   type StyleResult,
+  getEnumResponsiveStyles,
 } from "../shared";
 import styles from "./roundness.module.css";
 import clsx from "clsx";
@@ -9,48 +11,16 @@ import clsx from "clsx";
 export type RoundedValue = "none" | "sm" | "md" | "lg" | "full";
 
 export type RoundnessProps = {
-  rounded?: RoundedValue;
-  roundedTop?: RoundedValue;
-  roundedBottom?: RoundedValue;
-  roundedLeft?: RoundedValue;
-  roundedRight?: RoundedValue;
-  roundedTopLeft?: RoundedValue;
-  roundedTopRight?: RoundedValue;
-  roundedBottomLeft?: RoundedValue;
-  roundedBottomRight?: RoundedValue;
+  rounded?: ResponsiveValue<RoundedValue>;
+  roundedTop?: ResponsiveValue<RoundedValue>;
+  roundedBottom?: ResponsiveValue<RoundedValue>;
+  roundedLeft?: ResponsiveValue<RoundedValue>;
+  roundedRight?: ResponsiveValue<RoundedValue>;
+  roundedTopLeft?: ResponsiveValue<RoundedValue>;
+  roundedTopRight?: ResponsiveValue<RoundedValue>;
+  roundedBottomLeft?: ResponsiveValue<RoundedValue>;
+  roundedBottomRight?: ResponsiveValue<RoundedValue>;
 };
-
-export type RoundnessStateProps = {
-  _hover?: RoundnessProps;
-};
-
-function getRoundedTopLeftClass(value: RoundedValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`rounded-tl-${value}${stateClassSuffix}`]
-    : styles[`rounded-tl-${value}`];
-}
-
-function getRoundedTopRightClass(value: RoundedValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`rounded-tr-${value}${stateClassSuffix}`]
-    : styles[`rounded-tr-${value}`];
-}
-
-function getRoundedBottomRightClass(value: RoundedValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`rounded-br-${value}${stateClassSuffix}`]
-    : styles[`rounded-br-${value}`];
-}
-
-function getRoundedBottomLeftClass(value: RoundedValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`rounded-bl-${value}${stateClassSuffix}`]
-    : styles[`rounded-bl-${value}`];
-}
 
 function getRoundnessStylesForState(
   props: RoundnessProps | undefined,
@@ -70,71 +40,47 @@ function getRoundnessStylesForState(
     roundedBottomRight,
   } = props;
 
-  const classes: string[] = [];
-
   // Cascading specificity: individual corner > side > all
   const topLeft = roundedTopLeft ?? roundedTop ?? roundedLeft ?? rounded;
   const topRight = roundedTopRight ?? roundedTop ?? roundedRight ?? rounded;
   const bottomRight = roundedBottomRight ?? roundedBottom ?? roundedRight ?? rounded;
   const bottomLeft = roundedBottomLeft ?? roundedBottom ?? roundedLeft ?? rounded;
 
-  if (topLeft) {
-    const cls = getRoundedTopLeftClass(topLeft, state);
-    if (cls) classes.push(cls);
-  }
+  const tlResult = getEnumResponsiveStyles(styles, "rounded-tl", topLeft, state);
+  const trResult = getEnumResponsiveStyles(styles, "rounded-tr", topRight, state);
+  const brResult = getEnumResponsiveStyles(styles, "rounded-br", bottomRight, state);
+  const blResult = getEnumResponsiveStyles(styles, "rounded-bl", bottomLeft, state);
 
-  if (topRight) {
-    const cls = getRoundedTopRightClass(topRight, state);
-    if (cls) classes.push(cls);
-  }
-
-  if (bottomRight) {
-    const cls = getRoundedBottomRightClass(bottomRight, state);
-    if (cls) classes.push(cls);
-  }
-
-  if (bottomLeft) {
-    const cls = getRoundedBottomLeftClass(bottomLeft, state);
-    if (cls) classes.push(cls);
-  }
-
-  return { className: clsx(...classes), style: {} };
+  return {
+    className: clsx(
+      tlResult.className,
+      trResult.className,
+      brResult.className,
+      blResult.className
+    ),
+    style: {},
+  };
 }
 
 export function getRoundnessStyles(
-  props: RoundnessProps & RoundnessStateProps
+  props: RoundnessProps & StateProps<RoundnessProps>
 ): StyleResult {
-  const {
-    rounded,
-    roundedTop,
-    roundedBottom,
-    roundedLeft,
-    roundedRight,
-    roundedTopLeft,
-    roundedTopRight,
-    roundedBottomLeft,
-    roundedBottomRight,
-    _hover,
-  } = props;
+  const { _hover, _focus, _active, _disabled, ...baseProps } = props;
 
-  const baseStyles = getRoundnessStylesForState(
-    {
-      rounded,
-      roundedTop,
-      roundedBottom,
-      roundedLeft,
-      roundedRight,
-      roundedTopLeft,
-      roundedTopRight,
-      roundedBottomLeft,
-      roundedBottomRight,
-    },
-    "base"
-  );
+  const baseStyles = getRoundnessStylesForState(baseProps, "base");
   const hoverStyles = getRoundnessStylesForState(_hover, "hover");
+  const focusStyles = getRoundnessStylesForState(_focus, "focus");
+  const activeStyles = getRoundnessStylesForState(_active, "active");
+  const disabledStyles = getRoundnessStylesForState(_disabled, "disabled");
 
   return {
-    className: clsx(baseStyles.className, hoverStyles.className),
+    className: clsx(
+      baseStyles.className,
+      hoverStyles.className,
+      focusStyles.className,
+      activeStyles.className,
+      disabledStyles.className
+    ),
     style: {},
   };
 }

@@ -1,3 +1,10 @@
+import type { ResponsiveValue } from "@/utils/breakpoints";
+import {
+  type StateKey,
+  type StateProps,
+  type StyleResult,
+  getEnumResponsiveStyles,
+} from "../shared";
 import styles from "./typography.module.css";
 import clsx from "clsx";
 
@@ -7,40 +14,53 @@ export type FontWeightValue = "normal" | "medium" | "semibold" | "bold";
 export type LineHeightValue = "tight" | "normal" | "relaxed";
 
 export type TypographyProps = {
-  fontSize?: FontSizeValue;
-  fontFamily?: FontFamilyValue;
-  fontWeight?: FontWeightValue;
-  lineHeight?: LineHeightValue;
+  fontSize?: ResponsiveValue<FontSizeValue>;
+  fontFamily?: ResponsiveValue<FontFamilyValue>;
+  fontWeight?: ResponsiveValue<FontWeightValue>;
+  lineHeight?: ResponsiveValue<LineHeightValue>;
 };
 
-type StyleResult = {
-  className: string;
-};
+function getTypographyStylesForState(
+  props: TypographyProps | undefined,
+  state: StateKey
+): StyleResult {
+  if (!props) return { className: "", style: {} };
 
-export function getTypographyStyles(props: TypographyProps): StyleResult {
-  const { fontSize, fontFamily, fontWeight, lineHeight } = props;
+  const fontSizeResult = getEnumResponsiveStyles(styles, "text", props.fontSize, state);
+  const fontFamilyResult = getEnumResponsiveStyles(styles, "font", props.fontFamily, state);
+  const fontWeightResult = getEnumResponsiveStyles(styles, "weight", props.fontWeight, state);
+  const lineHeightResult = getEnumResponsiveStyles(styles, "leading", props.lineHeight, state);
 
-  const classes: string[] = [];
+  return {
+    className: clsx(
+      fontSizeResult.className,
+      fontFamilyResult.className,
+      fontWeightResult.className,
+      lineHeightResult.className
+    ),
+    style: {},
+  };
+}
 
-  if (fontSize) {
-    const cls = styles[`text-${fontSize}`];
-    if (cls) classes.push(cls);
-  }
+export function getTypographyStyles(
+  props: TypographyProps & StateProps<TypographyProps>
+): StyleResult {
+  const { _hover, _focus, _active, _disabled, ...baseProps } = props;
 
-  if (fontFamily) {
-    const cls = styles[`font-${fontFamily}`];
-    if (cls) classes.push(cls);
-  }
+  const baseStyles = getTypographyStylesForState(baseProps, "base");
+  const hoverStyles = getTypographyStylesForState(_hover, "hover");
+  const focusStyles = getTypographyStylesForState(_focus, "focus");
+  const activeStyles = getTypographyStylesForState(_active, "active");
+  const disabledStyles = getTypographyStylesForState(_disabled, "disabled");
 
-  if (fontWeight) {
-    const cls = styles[`weight-${fontWeight}`];
-    if (cls) classes.push(cls);
-  }
-
-  if (lineHeight) {
-    const cls = styles[`leading-${lineHeight}`];
-    if (cls) classes.push(cls);
-  }
-
-  return { className: clsx(...classes) };
+  return {
+    className: clsx(
+      baseStyles.className,
+      hoverStyles.className,
+      focusStyles.className,
+      activeStyles.className,
+      disabledStyles.className
+    ),
+    style: {},
+  };
 }

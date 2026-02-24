@@ -1,7 +1,9 @@
+import type { ResponsiveValue } from "@/utils/breakpoints";
 import {
-  STATE_CLASS_SUFFIXES,
   type StateKey,
+  type StateProps,
   type StyleResult,
+  getEnumResponsiveStyles,
 } from "../shared";
 import styles from "./interactions.module.css";
 import clsx from "clsx";
@@ -25,35 +27,10 @@ export type PointerEventsValue = "auto" | "none" | "all";
 export type UserSelectValue = "auto" | "none" | "text" | "all";
 
 export type InteractionProps = {
-  cursor?: CursorValue;
-  pointerEvents?: PointerEventsValue;
-  userSelect?: UserSelectValue;
+  cursor?: ResponsiveValue<CursorValue>;
+  pointerEvents?: ResponsiveValue<PointerEventsValue>;
+  userSelect?: ResponsiveValue<UserSelectValue>;
 };
-
-export type InteractionStateProps = {
-  _hover?: InteractionProps;
-};
-
-function getCursorClass(value: CursorValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`cursor-${value}${stateClassSuffix}`]
-    : styles[`cursor-${value}`];
-}
-
-function getPointerEventsClass(value: PointerEventsValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`pointer-${value}${stateClassSuffix}`]
-    : styles[`pointer-${value}`];
-}
-
-function getUserSelectClass(value: UserSelectValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`select-${value}${stateClassSuffix}`]
-    : styles[`select-${value}`];
-}
 
 function getInteractionStylesForState(
   props: InteractionProps | undefined,
@@ -61,36 +38,35 @@ function getInteractionStylesForState(
 ): StyleResult {
   if (!props) return { className: "", style: {} };
 
-  const classes: string[] = [];
+  const cursorResult = getEnumResponsiveStyles(styles, "cursor", props.cursor, state);
+  const pointerResult = getEnumResponsiveStyles(styles, "pointer", props.pointerEvents, state);
+  const selectResult = getEnumResponsiveStyles(styles, "select", props.userSelect, state);
 
-  if (props.cursor) {
-    const cls = getCursorClass(props.cursor, state);
-    if (cls) classes.push(cls);
-  }
-
-  if (props.pointerEvents) {
-    const cls = getPointerEventsClass(props.pointerEvents, state);
-    if (cls) classes.push(cls);
-  }
-
-  if (props.userSelect) {
-    const cls = getUserSelectClass(props.userSelect, state);
-    if (cls) classes.push(cls);
-  }
-
-  return { className: clsx(...classes), style: {} };
+  return {
+    className: clsx(cursorResult.className, pointerResult.className, selectResult.className),
+    style: {},
+  };
 }
 
 export function getInteractionStyles(
-  props: InteractionProps & InteractionStateProps
+  props: InteractionProps & StateProps<InteractionProps>
 ): StyleResult {
-  const { cursor, pointerEvents, userSelect, _hover } = props;
+  const { _hover, _focus, _active, _disabled, ...baseProps } = props;
 
-  const baseStyles = getInteractionStylesForState({ cursor, pointerEvents, userSelect }, "base");
+  const baseStyles = getInteractionStylesForState(baseProps, "base");
   const hoverStyles = getInteractionStylesForState(_hover, "hover");
+  const focusStyles = getInteractionStylesForState(_focus, "focus");
+  const activeStyles = getInteractionStylesForState(_active, "active");
+  const disabledStyles = getInteractionStylesForState(_disabled, "disabled");
 
   return {
-    className: clsx(baseStyles.className, hoverStyles.className),
+    className: clsx(
+      baseStyles.className,
+      hoverStyles.className,
+      focusStyles.className,
+      activeStyles.className,
+      disabledStyles.className
+    ),
     style: {},
   };
 }

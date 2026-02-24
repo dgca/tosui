@@ -1,7 +1,9 @@
+import type { ResponsiveValue } from "@/utils/breakpoints";
 import {
-  STATE_CLASS_SUFFIXES,
   type StateKey,
+  type StateProps,
   type StyleResult,
+  getEnumResponsiveStyles,
 } from "../shared";
 import styles from "./text.module.css";
 import clsx from "clsx";
@@ -11,35 +13,10 @@ export type WhiteSpaceValue = "normal" | "nowrap" | "pre" | "pre-line" | "pre-wr
 export type TextDecorationValue = "none" | "underline" | "line-through";
 
 export type TextStyleProps = {
-  textAlign?: TextAlignValue;
-  whiteSpace?: WhiteSpaceValue;
-  textDecoration?: TextDecorationValue;
+  textAlign?: ResponsiveValue<TextAlignValue>;
+  whiteSpace?: ResponsiveValue<WhiteSpaceValue>;
+  textDecoration?: ResponsiveValue<TextDecorationValue>;
 };
-
-export type TextStyleStateProps = {
-  _hover?: TextStyleProps;
-};
-
-function getTextAlignClass(value: TextAlignValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`text-${value}${stateClassSuffix}`]
-    : styles[`text-${value}`];
-}
-
-function getWhiteSpaceClass(value: WhiteSpaceValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`whitespace-${value}${stateClassSuffix}`]
-    : styles[`whitespace-${value}`];
-}
-
-function getTextDecorationClass(value: TextDecorationValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`decoration-${value}${stateClassSuffix}`]
-    : styles[`decoration-${value}`];
-}
 
 function getTextStylesForState(
   props: TextStyleProps | undefined,
@@ -47,36 +24,39 @@ function getTextStylesForState(
 ): StyleResult {
   if (!props) return { className: "", style: {} };
 
-  const classes: string[] = [];
+  const textAlignResult = getEnumResponsiveStyles(styles, "text", props.textAlign, state);
+  const whiteSpaceResult = getEnumResponsiveStyles(styles, "whitespace", props.whiteSpace, state);
+  const textDecorationResult = getEnumResponsiveStyles(styles, "decoration", props.textDecoration, state);
 
-  if (props.textAlign) {
-    const cls = getTextAlignClass(props.textAlign, state);
-    if (cls) classes.push(cls);
-  }
-
-  if (props.whiteSpace) {
-    const cls = getWhiteSpaceClass(props.whiteSpace, state);
-    if (cls) classes.push(cls);
-  }
-
-  if (props.textDecoration) {
-    const cls = getTextDecorationClass(props.textDecoration, state);
-    if (cls) classes.push(cls);
-  }
-
-  return { className: clsx(...classes), style: {} };
+  return {
+    className: clsx(
+      textAlignResult.className,
+      whiteSpaceResult.className,
+      textDecorationResult.className
+    ),
+    style: {},
+  };
 }
 
 export function getTextStyles(
-  props: TextStyleProps & TextStyleStateProps
+  props: TextStyleProps & StateProps<TextStyleProps>
 ): StyleResult {
-  const { textAlign, whiteSpace, textDecoration, _hover } = props;
+  const { _hover, _focus, _active, _disabled, ...baseProps } = props;
 
-  const baseStyles = getTextStylesForState({ textAlign, whiteSpace, textDecoration }, "base");
+  const baseStyles = getTextStylesForState(baseProps, "base");
   const hoverStyles = getTextStylesForState(_hover, "hover");
+  const focusStyles = getTextStylesForState(_focus, "focus");
+  const activeStyles = getTextStylesForState(_active, "active");
+  const disabledStyles = getTextStylesForState(_disabled, "disabled");
 
   return {
-    className: clsx(baseStyles.className, hoverStyles.className),
+    className: clsx(
+      baseStyles.className,
+      hoverStyles.className,
+      focusStyles.className,
+      activeStyles.className,
+      disabledStyles.className
+    ),
     style: {},
   };
 }

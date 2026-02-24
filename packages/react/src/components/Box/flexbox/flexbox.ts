@@ -1,8 +1,11 @@
+import type { ResponsiveValue } from "@/utils/breakpoints";
 import {
-  STATE_SUFFIXES,
-  STATE_CLASS_SUFFIXES,
   type StateKey,
+  type StateProps,
   type StyleResult,
+  getRawValue,
+  getResponsiveVarStyles,
+  getEnumResponsiveStyles,
 } from "../shared";
 import styles from "./flexbox.module.css";
 import clsx from "clsx";
@@ -15,65 +18,19 @@ export type FlexWrapValue = "nowrap" | "wrap" | "wrap-reverse";
 export type SpacingValue = number | string;
 
 export type FlexboxProps = {
-  flexDirection?: FlexDirectionValue;
-  justifyContent?: JustifyContentValue;
-  alignItems?: AlignItemsValue;
-  alignSelf?: AlignSelfValue;
-  flexWrap?: FlexWrapValue;
-  gap?: SpacingValue;
-  gapRow?: SpacingValue;
-  gapColumn?: SpacingValue;
-  flex?: string;
+  flexDirection?: ResponsiveValue<FlexDirectionValue>;
+  justifyContent?: ResponsiveValue<JustifyContentValue>;
+  alignItems?: ResponsiveValue<AlignItemsValue>;
+  alignSelf?: ResponsiveValue<AlignSelfValue>;
+  flexWrap?: ResponsiveValue<FlexWrapValue>;
+  gap?: ResponsiveValue<SpacingValue>;
+  gapRow?: ResponsiveValue<SpacingValue>;
+  gapColumn?: ResponsiveValue<SpacingValue>;
+  flex?: ResponsiveValue<string>;
   flexGrow?: number;
   flexShrink?: number;
   flexBasis?: string;
 };
-
-export type FlexboxStateProps = {
-  _hover?: FlexboxProps;
-};
-
-function getFlexDirectionClass(value: FlexDirectionValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`flex-${value}${stateClassSuffix}`]
-    : styles[`flex-${value}`];
-}
-
-function getJustifyContentClass(value: JustifyContentValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`justify-${value}${stateClassSuffix}`]
-    : styles[`justify-${value}`];
-}
-
-function getAlignItemsClass(value: AlignItemsValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`items-${value}${stateClassSuffix}`]
-    : styles[`items-${value}`];
-}
-
-function getAlignSelfClass(value: AlignSelfValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`self-${value}${stateClassSuffix}`]
-    : styles[`self-${value}`];
-}
-
-function getFlexWrapClass(value: FlexWrapValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`flex-${value}${stateClassSuffix}`]
-    : styles[`flex-${value}`];
-}
-
-function getSpacingValue(value?: SpacingValue): string {
-  if (value === undefined) return "normal";
-  if (typeof value === "string") return value;
-  if (value === 0) return "0";
-  return `calc(var(--t-spacing-unit) * ${value})`;
-}
 
 function getFlexboxStylesForState(
   props: FlexboxProps | undefined,
@@ -98,60 +55,41 @@ function getFlexboxStylesForState(
 
   const classes: string[] = [];
   const style: Record<string, string> = {};
-  const stateVarSuffix = STATE_SUFFIXES[state];
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
 
-  // Enumerated props
-  if (flexDirection) {
-    const cls = getFlexDirectionClass(flexDirection, state);
-    if (cls) classes.push(cls);
-  }
+  const dirResult = getEnumResponsiveStyles(styles, "flex", flexDirection, state);
+  if (dirResult.className) classes.push(dirResult.className);
 
-  if (justifyContent) {
-    const cls = getJustifyContentClass(justifyContent, state);
-    if (cls) classes.push(cls);
-  }
+  const justifyResult = getEnumResponsiveStyles(styles, "justify", justifyContent, state);
+  if (justifyResult.className) classes.push(justifyResult.className);
 
-  if (alignItems) {
-    const cls = getAlignItemsClass(alignItems, state);
-    if (cls) classes.push(cls);
-  }
+  const itemsResult = getEnumResponsiveStyles(styles, "items", alignItems, state);
+  if (itemsResult.className) classes.push(itemsResult.className);
 
-  if (alignSelf) {
-    const cls = getAlignSelfClass(alignSelf, state);
-    if (cls) classes.push(cls);
-  }
+  const selfResult = getEnumResponsiveStyles(styles, "self", alignSelf, state);
+  if (selfResult.className) classes.push(selfResult.className);
 
-  if (flexWrap) {
-    const cls = getFlexWrapClass(flexWrap, state);
-    if (cls) classes.push(cls);
-  }
+  const wrapResult = getEnumResponsiveStyles(styles, "flex", flexWrap, state);
+  if (wrapResult.className) classes.push(wrapResult.className);
 
-  // Variable-based props: gap
-  if (gap !== undefined || gapRow !== undefined || gapColumn !== undefined) {
-    const row = gapRow ?? gap;
-    const column = gapColumn ?? gap;
-    const rowValue = getSpacingValue(row);
-    const columnValue = getSpacingValue(column);
-    const gapValue = rowValue === columnValue ? rowValue : `${rowValue} ${columnValue}`;
+  const resolvedGapRow = gapRow ?? gap;
+  const resolvedGapCol = gapColumn ?? gap;
 
-    const gapClass = stateClassSuffix ? styles[`gap${stateClassSuffix}`] : styles.gap;
-    if (gapClass) classes.push(gapClass);
-    style[`--t-gap${stateVarSuffix}`] = gapValue;
-  }
+  const gapRowResult = getResponsiveVarStyles(styles, "gap-row", "gap-row", resolvedGapRow, state, getRawValue);
+  const gapColResult = getResponsiveVarStyles(styles, "gap-col", "gap-col", resolvedGapCol, state, getRawValue);
 
-  // Variable-based props: flex
+  if (gapRowResult.className) classes.push(gapRowResult.className);
+  if (gapColResult.className) classes.push(gapColResult.className);
+  Object.assign(style, gapRowResult.style, gapColResult.style);
+
   if (flex !== undefined) {
-    const flexClass = stateClassSuffix ? styles[`flex${stateClassSuffix}`] : styles.flex;
-    if (flexClass) classes.push(flexClass);
-    style[`--t-flex${stateVarSuffix}`] = flex;
+    const flexResult = getResponsiveVarStyles(styles, "flex", "flex", flex, state);
+    if (flexResult.className) classes.push(flexResult.className);
+    Object.assign(style, flexResult.style);
   } else if (flexGrow !== undefined || flexShrink !== undefined || flexBasis !== undefined) {
-    const grow = flexGrow ?? 0;
-    const shrink = flexShrink ?? 1;
-    const basis = flexBasis ?? "auto";
-    const flexClass = stateClassSuffix ? styles[`flex${stateClassSuffix}`] : styles.flex;
-    if (flexClass) classes.push(flexClass);
-    style[`--t-flex${stateVarSuffix}`] = `${grow} ${shrink} ${basis}`;
+    const composedFlex = `${flexGrow ?? 0} ${flexShrink ?? 1} ${flexBasis ?? "auto"}`;
+    const flexResult = getResponsiveVarStyles(styles, "flex", "flex", composedFlex, state);
+    if (flexResult.className) classes.push(flexResult.className);
+    Object.assign(style, flexResult.style);
   }
 
   return {
@@ -161,45 +99,24 @@ function getFlexboxStylesForState(
 }
 
 export function getFlexboxStyles(
-  props: FlexboxProps & FlexboxStateProps
+  props: FlexboxProps & StateProps<FlexboxProps>
 ): StyleResult {
-  const {
-    flexDirection,
-    justifyContent,
-    alignItems,
-    alignSelf,
-    flexWrap,
-    gap,
-    gapRow,
-    gapColumn,
-    flex,
-    flexGrow,
-    flexShrink,
-    flexBasis,
-    _hover,
-  } = props;
+  const { _hover, _focus, _active, _disabled, ...baseProps } = props;
 
-  const baseStyles = getFlexboxStylesForState(
-    {
-      flexDirection,
-      justifyContent,
-      alignItems,
-      alignSelf,
-      flexWrap,
-      gap,
-      gapRow,
-      gapColumn,
-      flex,
-      flexGrow,
-      flexShrink,
-      flexBasis,
-    },
-    "base"
-  );
+  const baseStyles = getFlexboxStylesForState(baseProps, "base");
   const hoverStyles = getFlexboxStylesForState(_hover, "hover");
+  const focusStyles = getFlexboxStylesForState(_focus, "focus");
+  const activeStyles = getFlexboxStylesForState(_active, "active");
+  const disabledStyles = getFlexboxStylesForState(_disabled, "disabled");
 
   return {
-    className: clsx(baseStyles.className, hoverStyles.className),
-    style: { ...baseStyles.style, ...hoverStyles.style } as Record<string, string>,
+    className: clsx(
+      baseStyles.className,
+      hoverStyles.className,
+      focusStyles.className,
+      activeStyles.className,
+      disabledStyles.className
+    ),
+    style: { ...baseStyles.style, ...hoverStyles.style, ...focusStyles.style, ...activeStyles.style, ...disabledStyles.style } as Record<string, string>,
   };
 }
