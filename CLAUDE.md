@@ -88,46 +88,74 @@ Tosui uses **CSS Modules** for component styling with **CSS Variables** for desi
 - CSS Variables for theming and dynamic values
 
 **Key concepts:**
+- Each style part exports a getter function (e.g., `getPaddingStyles()`) that returns `{ className: string; style: Record<string, string> }`
+- Two shared utilities in `Box/shared/responsive.ts` handle all responsive + state logic (see below)
+- CSS Modules provide the class names, CSS Variables provide dynamic values
 
-- Style parts in `packages/react/src/components/Box/*/` have both `.ts` (logic) and `.module.css` (styles)
-- Each style part exports a getter function (e.g., `getPaddingStyles()`) that returns `{ className: string; style: CSSProperties }`
-- CSS Variables set inline via style prop (e.g., `--t-pt: calc(var(--t-spacing-unit) * 4)`)
-- CSS Modules provide the class names, CSS Variables provide the values
+### Two Responsive Styling Patterns
 
-### Responsive Styling Pattern
+Style props fall into two categories, each with a different zero-cost responsive strategy:
 
-All style parts use CSS Variables for responsive values:
+#### 1. Variable-based props (padding, margin, sizing, inset, grid, gap, flex)
+
+These props accept arbitrary values (numbers, CSS strings). They use **CSS variable fallback chains** — one CSS class per prop, with `var()` fallbacks handling breakpoint cascading in pure CSS. JS only sets the CSS variables for specified breakpoints.
 
 ```css
-/* padding.module.css */
+/* padding.module.css — one class handles all breakpoints via fallback chains */
 .pt { padding-top: var(--t-pt); }
-.pt_sm { padding-top: var(--t-pt_sm); }
-
 @media (min-width: 640px) {
-  .pt_sm { padding-top: var(--t-pt_sm); }
+  .pt { padding-top: var(--t-pt_sm, var(--t-pt)); }
 }
 @media (min-width: 768px) {
-  .pt_md { padding-top: var(--t-pt_md); }
+  .pt { padding-top: var(--t-pt_md, var(--t-pt_sm, var(--t-pt))); }
 }
 /* ... etc for each breakpoint */
 ```
 
 ```tsx
-// padding.ts - getter function
-export function getPaddingStyles(props: PaddingProps): StyleResult {
-  // Returns className (from CSS module) + style object (CSS variables)
-  return {
-    className: clsx(styles.pt, props.pt && styles.pt_sm),
-    style: { '--t-pt': `calc(var(--t-spacing-unit) * ${props.pt})` }
-  };
-}
+// Uses shared utility: getResponsiveVarStyles(styles, classKey, varPrefix, value, state, transform)
+getResponsiveVarStyles(styles, "pt", "pt", props.pt, "base", getRawValue);
+// → { className: "pt", style: { "--t-pt": "calc(var(--t-spacing-unit) * 4)" } }
 ```
 
-**Why this pattern?**
+#### 2. Enum-based props (display, position, colors, typography, borders, roundness, shadows, etc.)
 
-- Mobile-first responsive design via media queries in CSS
-- CSS Variables allow dynamic values without generating static variants
-- Uses `toFullResponsiveObject()` helper to cascade missing breakpoints
+These props accept a fixed set of string values. They use **per-breakpoint CSS classes** — each (value, breakpoint, state) combination maps to a unique class. No inline styles, pure class-name lookup, zero runtime cost.
+
+```css
+/* colors.module.css — one class per (value, breakpoint, state) */
+.color-foreground { color: var(--t-color-foreground); }
+.color-foreground_sm { color: var(--t-color-foreground); }
+.color-foreground\:h:hover { color: var(--t-color-foreground); }
+.color-foreground_sm\:h:hover { color: var(--t-color-foreground); }
+
+@media (min-width: 640px) {
+  .color-foreground_sm { color: var(--t-color-foreground); }
+  .color-foreground_sm\:h:hover { color: var(--t-color-foreground); }
+}
+/* ... etc for each breakpoint + state */
+```
+
+```tsx
+// Uses shared utility: getEnumResponsiveStyles(styles, classPrefix, value, state)
+getEnumResponsiveStyles(styles, "color", props.color, "base");
+// → { className: "color-foreground", style: {} }
+```
+
+### State Props
+
+All style props support interaction states via `_hover`, `_focus`, `_active`, and `_disabled` props. These are typed using a shared `StateProps<T>` generic in `Box/shared/types.ts`.
+
+```tsx
+<Box
+  bg="surface"
+  color="foreground"
+  _hover={{ bg: "primary-subtle", color: "primary-default" }}
+  _disabled={{ opacity: "faint", cursor: "not-allowed" }}
+/>
+```
+
+State props within each `_hover`/`_focus`/`_active`/`_disabled` object also accept responsive values.
 
 ### Component Architecture
 
@@ -152,7 +180,7 @@ export function getPaddingStyles(props: PaddingProps): StyleResult {
 - Interactions: `cursor`, `pointerEvents`, `userSelect`
 - Text: `textAlign`, `whiteSpace`
 
-**Responsive support:** Most props accept either a simple value OR a responsive object:
+**Responsive support:** All style props accept either a simple value OR a responsive object:
 
 ```tsx
 <Box p={4} />                              // Simple: 16px padding
@@ -163,6 +191,7 @@ export function getPaddingStyles(props: PaddingProps): StyleResult {
 
 Component styling is split into modular "style parts" in `packages/react/src/components/Box/`:
 
+- `shared/` - Shared utilities, types, and constants (see below)
 - `reset/` - CSS reset styles
 - `display/`, `position/`, `overflow/`, `zIndex/` - Layout
 - `padding/`, `margin/`, `sizing/` - Box model
@@ -170,11 +199,17 @@ Component styling is split into modular "style parts" in `packages/react/src/com
 - `typography/`, `colors/` - Visual
 - `borders/`, `roundness/`, `shadows/` - Surface
 - `interactions/`, `text/`, `opacity/` - Behavior
-
 Each style part directory contains:
-
 1. `{name}.ts` - Type definitions and getter function (e.g., `getPaddingStyles()`)
-2. `{name}.module.css` - CSS classes with responsive breakpoints
+2. `{name}.module.css` - CSS classes with responsive breakpoints and state variants
+
+### Shared Utilities (`Box/shared/`)
+
+- `responsive.ts` - `getResponsiveVarStyles()` (variable-based) and `getEnumResponsiveStyles()` (enum-based)
+- `types.ts` - `StyleResult`, `StateProps<T>`, `StateKey`
+- `constants.ts` - `RESPONSIVE_KEYS`, `STATE_SUFFIXES`, `STATE_CLASS_SUFFIXES`
+- `spacing.ts` - `getRawValue()` helper for spacing multiplier → CSS calc conversion
+- `index.ts` - Re-exports
 
 ### Build Configuration
 
@@ -293,9 +328,7 @@ Props follow cascading specificity rules (more specific overrides less specific)
 ```
 
 ### Responsive Values
-
-Use `ResponsiveValue<T>` type for props that support responsive objects:
-
+All style props use `ResponsiveValue<T>` to support responsive objects:
 ```tsx
 type ResponsiveValue<T> = T | ResponsiveObject<T>;
 type ResponsiveObject<T> = {
@@ -305,14 +338,17 @@ type ResponsiveObject<T> = {
   lg?: T;
   xl?: T;
   "2xl"?: T;
-};
-```
+  };
+  ```
 
-Always use `toFullResponsiveObject()` helper to fill missing breakpoints for mobile-first cascade.
+Mobile-first cascade is handled differently per pattern:
+- **Variable-based**: CSS `var()` fallback chains cascade automatically (e.g., `var(--t-pt_md, var(--t-pt_sm, var(--t-pt)))`)
+- **Enum-based**: Each specified breakpoint gets its own CSS class; unspecified breakpoints inherit via CSS media query ordering
 
 ## Critical Rules
 
 1. **Path aliases compile correctly** - `@/*` is configured properly, use it throughout
 2. **Build before testing exports** - Run `pnpm f:lib build` to generate dist files before testing package exports
-3. **CSS Variables for dynamic values** - Use CSS Variables (e.g., `--t-pt`) set via inline styles, with CSS Modules providing the class names
-4. **Mobile-first responsive** - Use `toFullResponsiveObject()` to cascade breakpoint values
+3. **Two responsive patterns** - Variable-based props use `getResponsiveVarStyles()` (CSS fallback chains + inline vars). Enum-based props use `getEnumResponsiveStyles()` (per-breakpoint classes, zero runtime).
+4. **State props via shared generic** - Use `StateProps<T>` from `Box/shared/types.ts`. All props support `_hover`, `_focus`, `_active`, `_disabled`.
+5. **Mobile-first responsive** - Variable-based props cascade via nested `var()` fallbacks. Enum-based props cascade via CSS media query ordering.

@@ -106,6 +106,43 @@ import { Grid } from "@tosui/react";
   </TabItem>
 </Tabs>
 
+
+## Responsive Columns and Rows
+
+`columns` and `rows` accept responsive objects, making it easy to change grid layouts at different breakpoints:
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Grid
+      columns={{
+        base: "1fr",
+        md: "repeat(2, 1fr)",
+        lg: "repeat(3, 1fr)"
+      }}
+      gap={4}
+    >
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+      <Box p={4} bg="warning-subtle">Item 4</Box>
+      <Box p={4} bg="error-subtle">Item 5</Box>
+      <Box p={4} bg="info-subtle">Item 6</Box>
+    </Grid>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Grid columns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+      <Box p={4} bg="warning-subtle">Item 4</Box>
+      <Box p={4} bg="error-subtle">Item 5</Box>
+      <Box p={4} bg="info-subtle">Item 6</Box>
+    </Grid>
+  </TabItem>
+</Tabs>
+
 ## Separate Row and Column Gaps
 
 <Tabs>
@@ -158,8 +195,8 @@ import { Grid } from "@tosui/react";
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| columns | `string` | - | Grid template columns (CSS value) |
-| rows | `string` | - | Grid template rows (CSS value) |
+| columns | `string \| ResponsiveObject<string>` | - | Grid template columns (CSS value) |
+| rows | `string \| ResponsiveObject<string>` | - | Grid template rows (CSS value) |
 | gap | `0-32` | - | Gap between grid items |
 | gapRow | `0-32` | - | Row gap |
 | gapColumn | `0-32` | - | Column gap |
