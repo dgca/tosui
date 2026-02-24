@@ -7,6 +7,12 @@
  * Components use CSS Modules for scoped styling and consistent resets.
  */
 
+/* === BASE STYLES === */
+:root {
+  color: var(--t-color-foreground);
+  background-color: var(--t-color-background);
+}
+
 /* === DESIGN TOKENS === */
 :root {
   /* Surface & Text Colors (Light Mode) */

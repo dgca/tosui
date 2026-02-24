@@ -1,6 +1,7 @@
 import { type ElementType } from "react";
 import { type Polymorphic } from "@/types/Polymorphic";
 import { Box, type BoxOwnProps } from "@/components/Box/Box";
+import type { ResponsiveValue } from "@/utils/breakpoints";
 import type {
   FlexDirectionValue,
   JustifyContentValue,
@@ -37,14 +38,13 @@ export type FlexOwnProps = Omit<
   justify?: JustifyContentValue;
   /** Align items along the cross axis */
   align?: AlignItemsValue;
-  /** Align content when there are multiple lines */
-  alignContent?: JustifyContentValue;
+
   /** Gap between children (0-32 spacing multiplier or string) */
-  gap?: SpacingValue;
+  gap?: ResponsiveValue<SpacingValue>;
   /** Row gap between children (0-32 spacing multiplier or string) */
-  gapRow?: SpacingValue;
+  gapRow?: ResponsiveValue<SpacingValue>;
   /** Column gap between children (0-32 spacing multiplier or string) */
-  gapColumn?: SpacingValue;
+  gapColumn?: ResponsiveValue<SpacingValue>;
   /** Flex basis of the container */
   basis?: string;
   /** Flex grow of the container */
@@ -83,7 +83,7 @@ export function Flex<T extends ElementType = "div">({
   wrap,
   justify,
   align,
-  alignContent,
+
   gap,
   gapRow,
   gapColumn,

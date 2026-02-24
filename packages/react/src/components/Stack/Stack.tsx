@@ -1,6 +1,7 @@
 import { type ElementType } from "react";
 import { type Polymorphic } from "@/types/Polymorphic";
 import { Box, type BoxOwnProps } from "@/components/Box/Box";
+import type { ResponsiveValue } from "@/utils/breakpoints";
 import type {
   FlexDirectionValue,
   JustifyContentValue,
@@ -19,7 +20,7 @@ export type StackOwnProps = Omit<
   /** Stack direction: row, column, row-reverse, column-reverse */
   direction?: FlexDirectionValue;
   /** Gap between children (0-32 spacing multiplier) */
-  gap?: SpacingValue;
+  gap?: ResponsiveValue<SpacingValue>;
   /** Align items along the cross axis */
   align?: AlignItemsValue;
   /** Justify content along the main axis */
