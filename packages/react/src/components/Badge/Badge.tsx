@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import type { BackgroundColorValue, ColorValue } from "@/components/Box/colors/colors";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
 import styles from "./badge.module.css";
@@ -121,8 +122,8 @@ export function Badge({
       fontWeight="medium"
       lineHeight="tight"
       rounded="full"
-      bg={colorConfig.bg as any}
-      color={colorConfig.color as any}
+      bg={colorConfig.bg as BackgroundColorValue}
+      color={colorConfig.color as ColorValue}
       className={clsx(styles.badge, className)}
     >
       {children}

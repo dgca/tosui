@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import type { BackgroundColorValue, ColorValue } from "@/components/Box/colors/colors";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
 import { HStack } from "@/components/HStack/HStack";
@@ -112,7 +113,7 @@ export function Alert({
       role="alert"
       p={4}
       rounded="md"
-      bg={`${status}-subtle` as any}
+      bg={`${status}-subtle` as BackgroundColorValue}
       className={clsx(styles.alert, styles[status], className)}
     >
       <HStack gap={3} align="start">
@@ -122,7 +123,7 @@ export function Alert({
           display="inline-flex"
           alignItems="center"
           flexShrink={0}
-          color={status as any}
+          color={status as ColorValue}
           aria-hidden="true"
         >
           {displayIcon}

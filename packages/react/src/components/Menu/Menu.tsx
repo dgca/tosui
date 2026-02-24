@@ -7,6 +7,7 @@ import {
   useState,
   useRef,
   useEffect,
+  useCallback,
 } from "react";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
@@ -95,7 +96,7 @@ export function Menu({
 
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
-  const setOpen = (open: boolean) => {
+  const setOpen = useCallback((open: boolean) => {
     if (!isControlled) {
       setInternalIsOpen(open);
     }
@@ -104,7 +105,7 @@ export function Menu({
     } else {
       onClose?.();
     }
-  };
+  }, [isControlled, onOpen, onClose]);
 
   // Close on outside click
   useEffect(() => {
@@ -117,7 +118,7 @@ export function Menu({
 
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
-  }, [isOpen]);
+  }, [isOpen, setOpen]);
 
   // Close on Escape
   useEffect(() => {
@@ -129,7 +130,7 @@ export function Menu({
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen]);
+  }, [isOpen, setOpen]);
 
   return (
     <MenuContext.Provider value={{ isOpen, setIsOpen: setOpen, buttonRef }}>
