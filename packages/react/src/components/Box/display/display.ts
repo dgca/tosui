@@ -1,9 +1,9 @@
 import type { ResponsiveValue } from "@/utils/breakpoints";
 import {
-  RESPONSIVE_KEYS,
-  STATE_CLASS_SUFFIXES,
   type StateKey,
+  type StateProps,
   type StyleResult,
+  getEnumResponsiveStyles,
 } from "../shared";
 import styles from "./display.module.css";
 import clsx from "clsx";
@@ -22,72 +22,25 @@ export type DisplayProps = {
   display?: ResponsiveValue<DisplayValue>;
 };
 
-export type DisplayStateProps = {
-  _hover?: DisplayProps;
-  _focus?: DisplayProps;
-  _active?: DisplayProps;
-  _disabled?: DisplayProps;
-};
-
-function getDisplayClass(
-  value: DisplayValue,
-  responsiveKey: (typeof RESPONSIVE_KEYS)[number],
-  state: StateKey
-): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-
-  if (responsiveKey === "base") {
-    return stateClassSuffix
-      ? styles[`${value}${stateClassSuffix}`]
-      : styles[value];
-  }
-
-  return stateClassSuffix
-    ? styles[`${value}_${responsiveKey}${stateClassSuffix}`]
-    : styles[`${value}_${responsiveKey}`];
-}
-
-function getDisplayStylesForValue(
-  value: ResponsiveValue<DisplayValue> | undefined,
+function getDisplayStylesForState(
+  props: DisplayProps | undefined,
   state: StateKey
 ): StyleResult {
-  const result: StyleResult = { className: "", style: {} };
+  if (!props) return { className: "", style: {} };
 
-  if (value === undefined) return result;
-
-  // Simple value (non-responsive)
-  if (typeof value === "string") {
-    const className = getDisplayClass(value, "base", state);
-    if (className) {
-      result.className = className;
-    }
-    return result;
-  }
-
-  // Responsive value
-  for (const responsiveKey of RESPONSIVE_KEYS) {
-    const displayValue = value[responsiveKey];
-    if (displayValue === undefined) continue;
-
-    const className = getDisplayClass(displayValue, responsiveKey, state);
-    if (className) {
-      result.className = clsx(result.className, className);
-    }
-  }
-
-  return result;
+  return getEnumResponsiveStyles(styles, "", props.display, state);
 }
 
 export function getDisplayStyles(
-  props: DisplayProps & DisplayStateProps
+  props: DisplayProps & StateProps<DisplayProps>
 ): StyleResult {
-  const { display, _hover, _focus, _active, _disabled } = props;
+  const { _hover, _focus, _active, _disabled, ...baseProps } = props;
 
-  const baseStyles = getDisplayStylesForValue(display, "base");
-  const hoverStyles = getDisplayStylesForValue(_hover?.display, "hover");
-  const focusStyles = getDisplayStylesForValue(_focus?.display, "focus");
-  const activeStyles = getDisplayStylesForValue(_active?.display, "active");
-  const disabledStyles = getDisplayStylesForValue(_disabled?.display, "disabled");
+  const baseStyles = getDisplayStylesForState(baseProps, "base");
+  const hoverStyles = getDisplayStylesForState(_hover, "hover");
+  const focusStyles = getDisplayStylesForState(_focus, "focus");
+  const activeStyles = getDisplayStylesForState(_active, "active");
+  const disabledStyles = getDisplayStylesForState(_disabled, "disabled");
 
   return {
     className: clsx(

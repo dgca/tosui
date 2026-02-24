@@ -28,11 +28,11 @@ export type GridOwnProps = Omit<
   /** Grid template rows — CSS value or responsive object */
   rows?: ResponsiveValue<string>;
   /** Gap between grid items (0-32 spacing multiplier or string) */
-  gap?: SpacingValue;
+  gap?: ResponsiveValue<SpacingValue>;
   /** Row gap between grid items (0-32 spacing multiplier or string) */
-  gapRow?: SpacingValue;
+  gapRow?: ResponsiveValue<SpacingValue>;
   /** Column gap between grid items (0-32 spacing multiplier or string) */
-  gapColumn?: SpacingValue;
+  gapColumn?: ResponsiveValue<SpacingValue>;
   /** Justify items along the inline (row) axis */
   justify?: JustifyContentValue;
   /** Align items along the block (column) axis */

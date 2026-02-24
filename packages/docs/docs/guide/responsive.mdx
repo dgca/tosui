@@ -5,7 +5,7 @@ description: "Mobile-first responsive styling through breakpoint-aware props wit
 
 # Responsive
 
-Tosui supports responsive styling through breakpoint-aware props. Most Box props can accept either a single value or a responsive object.
+Tosui supports responsive styling through breakpoint-aware props. All Box style props accept either a single value or a responsive object.
 
 ## Breakpoints
 
@@ -22,7 +22,7 @@ Tosui uses a mobile-first breakpoint system:
 
 ## Simple vs Responsive Values
 
-Most props accept either a simple value or a responsive object:
+All style props accept either a simple value or a responsive object:
 
 ```tsx
 // Simple - applies to all screen sizes
@@ -55,21 +55,22 @@ This produces:
 - **2xl**: 24px (inherits from lg)
 
 ## Responsive Props
-
-These props support responsive values:
-
+All Box style props support responsive values:
 | Category | Props |
 |----------|-------|
 | Spacing | `p`, `px`, `py`, `pt`, `pr`, `pb`, `pl`, `m`, `mx`, `my`, `mt`, `mr`, `mb`, `ml`, `gap`, `gapRow`, `gapColumn` |
 | Sizing | `w`, `h`, `minW`, `maxW`, `minH`, `maxH` |
-| Layout | `display`, `position`, `overflow`, `zIndex` |
-| Flexbox | `flexDirection`, `justifyContent`, `alignItems`, `alignSelf`, `flexWrap` |
+| Layout | `display`, `position`, `overflow`, `overflowX`, `overflowY`, `zIndex` |
+| Flexbox | `flexDirection`, `justifyContent`, `alignItems`, `alignSelf`, `flexWrap`, `flex`, `flexGrow`, `flexShrink`, `flexBasis` |
 | Grid | `gridTemplateColumns`, `gridTemplateRows`, `justifySelf` |
-| Typography | `fontSize`, `fontWeight`, `lineHeight`, `textAlign` |
+| Typography | `fontSize`, `fontFamily`, `fontWeight`, `lineHeight` |
 | Colors | `color`, `bg`, `borderColor` |
-| Borders | `border`, `borderTop`, `borderRight`, `borderBottom`, `borderLeft`, `borderX`, `borderY` |
-| Roundness | `rounded`, `roundedTop`, `roundedBottom`, `roundedLeft`, `roundedRight` |
+| Borders | `border`, `borderTop`, `borderRight`, `borderBottom`, `borderLeft`, `borderX`, `borderY`, `borderStyle` |
+| Roundness | `rounded`, `roundedTop`, `roundedBottom`, `roundedLeft`, `roundedRight`, `roundedTopLeft`, `roundedTopRight`, `roundedBottomLeft`, `roundedBottomRight` |
 | Effects | `shadow`, `opacity` |
+| Interactions | `cursor`, `pointerEvents`, `userSelect` |
+| Text | `textAlign`, `whiteSpace` |
+| Inset | `top`, `right`, `bottom`, `left`, `inset`, `insetX`, `insetY` |
 
 ## Common Patterns
 

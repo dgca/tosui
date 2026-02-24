@@ -1,4 +1,5 @@
 import { type CSSProperties } from "react";
+import type { BackgroundColorValue } from "@/components/Box/colors/colors";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
 import styles from "./progress.module.css";
@@ -86,7 +87,7 @@ export function Progress({
         position="absolute"
         inset={0}
         rounded="full"
-        bg={`${colorScheme}-default` as any}
+        bg={`${colorScheme}-default` as BackgroundColorValue}
         className={clsx(
           styles.fill,
           isIndeterminate && styles.indeterminate

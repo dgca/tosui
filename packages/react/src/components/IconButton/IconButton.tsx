@@ -1,4 +1,5 @@
 import { forwardRef, type CSSProperties, type ReactNode } from "react";
+import type { BackgroundColorValue, BorderColorValue, ColorValue } from "@/components/Box/colors/colors";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
 import { Spinner } from "@/components/Spinner/Spinner";
@@ -147,10 +148,10 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         fontSize={sizeProps.fontSize}
         rounded="md"
         // Colors (type assertions for computed values)
-        bg={colorConfig.bg as any}
-        color={colorConfig.color as any}
+        bg={colorConfig.bg as BackgroundColorValue}
+        color={colorConfig.color as ColorValue}
         border={variantBorderConfig[variant]}
-        borderColor={colorConfig.borderColor as any}
+        borderColor={colorConfig.borderColor as BorderColorValue | undefined}
         // Interaction states
         cursor={isDisabled ? "not-allowed" : "pointer"}
         pointerEvents={isDisabled ? "none" : undefined}

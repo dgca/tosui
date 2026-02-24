@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, useState, useRef, useEffect } from "react";
+import { type ReactNode, useState, useRef, useEffect, useCallback, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
@@ -77,7 +77,7 @@ export function Popover({
   const triggerRef = useRef<HTMLElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
 
-  const setOpen = (open: boolean) => {
+  const setOpen = useCallback((open: boolean) => {
     if (!isControlled) {
       setInternalIsOpen(open);
     }
@@ -86,9 +86,9 @@ export function Popover({
     } else {
       onClose?.();
     }
-  };
+  }, [isControlled, onOpen, onClose]);
 
-  const updatePosition = () => {
+  const updatePosition = useCallback(() => {
     if (!triggerRef.current || !popoverRef.current) return;
 
     const triggerRect = triggerRef.current.getBoundingClientRect();
@@ -118,11 +118,12 @@ export function Popover({
     }
 
     setPosition({ top: top + window.scrollY, left: left + window.scrollX });
-  };
+  }, [placement]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- useLayoutEffect for DOM measurement before paint
     if (isOpen) updatePosition();
-  }, [isOpen, placement]);
+  }, [isOpen, updatePosition]);
 
   // Close on outside click
   useEffect(() => {
@@ -139,7 +140,7 @@ export function Popover({
 
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
-  }, [isOpen, closeOnBlur]);
+  }, [isOpen, closeOnBlur, setOpen]);
 
   // Close on Escape
   useEffect(() => {
@@ -151,7 +152,7 @@ export function Popover({
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen]);
+  }, [isOpen, setOpen]);
 
   const handleTriggerClick = () => {
     setOpen(!isOpen);

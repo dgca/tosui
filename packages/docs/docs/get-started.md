@@ -25,6 +25,22 @@ Import the base styles in your application entry point (e.g., `main.tsx` or `App
 import "@tosui/react/styles.css";
 ```
 
+This stylesheet defines all of Tosui's design token CSS variables and sets two global styles on `:root`:
+
+- `color: var(--t-color-foreground)`
+- `background-color: var(--t-color-background)`
+
+This ensures that plain text and non-Tosui elements inherit theme-aware colors (including dark mode) without any extra setup. **No other global styles are applied** — there are no CSS resets, no `*` selectors, and no element-level styles.
+
+If you need to opt out of this behavior, override the two variables on `:root`:
+
+```css
+:root {
+  color: unset;
+  background-color: unset;
+}
+```
+
 ### Optional: Font Styles
 
 Tosui includes optional IBM Plex font styles. To use them, import the fonts CSS:

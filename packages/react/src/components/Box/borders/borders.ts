@@ -1,7 +1,9 @@
+import type { ResponsiveValue } from "@/utils/breakpoints";
 import {
-  STATE_CLASS_SUFFIXES,
   type StateKey,
+  type StateProps,
   type StyleResult,
+  getEnumResponsiveStyles,
 } from "../shared";
 import styles from "./borders.module.css";
 import clsx from "clsx";
@@ -10,54 +12,15 @@ export type BorderWidthValue = "none" | "thin" | "medium" | "thick";
 export type BorderStyleValue = "none" | "solid" | "dashed" | "dotted";
 
 export type BorderProps = {
-  border?: BorderWidthValue;
-  borderX?: BorderWidthValue;
-  borderY?: BorderWidthValue;
-  borderTop?: BorderWidthValue;
-  borderRight?: BorderWidthValue;
-  borderBottom?: BorderWidthValue;
-  borderLeft?: BorderWidthValue;
-  borderStyle?: BorderStyleValue;
+  border?: ResponsiveValue<BorderWidthValue>;
+  borderX?: ResponsiveValue<BorderWidthValue>;
+  borderY?: ResponsiveValue<BorderWidthValue>;
+  borderTop?: ResponsiveValue<BorderWidthValue>;
+  borderRight?: ResponsiveValue<BorderWidthValue>;
+  borderBottom?: ResponsiveValue<BorderWidthValue>;
+  borderLeft?: ResponsiveValue<BorderWidthValue>;
+  borderStyle?: ResponsiveValue<BorderStyleValue>;
 };
-
-export type BorderStateProps = {
-  _hover?: BorderProps;
-};
-
-function getBorderTopClass(value: BorderWidthValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`border-top-${value}${stateClassSuffix}`]
-    : styles[`border-top-${value}`];
-}
-
-function getBorderRightClass(value: BorderWidthValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`border-right-${value}${stateClassSuffix}`]
-    : styles[`border-right-${value}`];
-}
-
-function getBorderBottomClass(value: BorderWidthValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`border-bottom-${value}${stateClassSuffix}`]
-    : styles[`border-bottom-${value}`];
-}
-
-function getBorderLeftClass(value: BorderWidthValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`border-left-${value}${stateClassSuffix}`]
-    : styles[`border-left-${value}`];
-}
-
-function getBorderStyleClass(value: BorderStyleValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`border-style-${value}${stateClassSuffix}`]
-    : styles[`border-style-${value}`];
-}
 
 function getBorderStylesForState(
   props: BorderProps | undefined,
@@ -76,69 +39,52 @@ function getBorderStylesForState(
     borderStyle,
   } = props;
 
-  const classes: string[] = [];
-
   // Cascading specificity: individual > axis > all
   const topWidth = borderTop ?? borderY ?? border;
   const rightWidth = borderRight ?? borderX ?? border;
   const bottomWidth = borderBottom ?? borderY ?? border;
   const leftWidth = borderLeft ?? borderX ?? border;
 
-  if (topWidth) {
-    const cls = getBorderTopClass(topWidth, state);
-    if (cls) classes.push(cls);
-  }
-
-  if (rightWidth) {
-    const cls = getBorderRightClass(rightWidth, state);
-    if (cls) classes.push(cls);
-  }
-
-  if (bottomWidth) {
-    const cls = getBorderBottomClass(bottomWidth, state);
-    if (cls) classes.push(cls);
-  }
-
-  if (leftWidth) {
-    const cls = getBorderLeftClass(leftWidth, state);
-    if (cls) classes.push(cls);
-  }
+  const topResult = getEnumResponsiveStyles(styles, "border-top", topWidth, state);
+  const rightResult = getEnumResponsiveStyles(styles, "border-right", rightWidth, state);
+  const bottomResult = getEnumResponsiveStyles(styles, "border-bottom", bottomWidth, state);
+  const leftResult = getEnumResponsiveStyles(styles, "border-left", leftWidth, state);
 
   // Apply borderStyle, default to solid if any width is set
-  if (borderStyle) {
-    const cls = getBorderStyleClass(borderStyle, state);
-    if (cls) classes.push(cls);
-  } else if (topWidth || rightWidth || bottomWidth || leftWidth) {
-    const cls = getBorderStyleClass("solid", state);
-    if (cls) classes.push(cls);
-  }
+  const resolvedStyle = borderStyle ?? (topWidth || rightWidth || bottomWidth || leftWidth ? "solid" as const : undefined);
+  const styleResult = getEnumResponsiveStyles(styles, "border-style", resolvedStyle, state);
 
-  return { className: clsx(...classes), style: {} };
+  return {
+    className: clsx(
+      topResult.className,
+      rightResult.className,
+      bottomResult.className,
+      leftResult.className,
+      styleResult.className
+    ),
+    style: {},
+  };
 }
 
 export function getBorderStyles(
-  props: BorderProps & BorderStateProps
+  props: BorderProps & StateProps<BorderProps>
 ): StyleResult {
-  const {
-    border,
-    borderX,
-    borderY,
-    borderTop,
-    borderRight,
-    borderBottom,
-    borderLeft,
-    borderStyle,
-    _hover,
-  } = props;
+  const { _hover, _focus, _active, _disabled, ...baseProps } = props;
 
-  const baseStyles = getBorderStylesForState(
-    { border, borderX, borderY, borderTop, borderRight, borderBottom, borderLeft, borderStyle },
-    "base"
-  );
+  const baseStyles = getBorderStylesForState(baseProps, "base");
   const hoverStyles = getBorderStylesForState(_hover, "hover");
+  const focusStyles = getBorderStylesForState(_focus, "focus");
+  const activeStyles = getBorderStylesForState(_active, "active");
+  const disabledStyles = getBorderStylesForState(_disabled, "disabled");
 
   return {
-    className: clsx(baseStyles.className, hoverStyles.className),
+    className: clsx(
+      baseStyles.className,
+      hoverStyles.className,
+      focusStyles.className,
+      activeStyles.className,
+      disabledStyles.className
+    ),
     style: {},
   };
 }

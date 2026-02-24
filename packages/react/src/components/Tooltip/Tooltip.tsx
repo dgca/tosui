@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, useState, useRef, useEffect } from "react";
+import { type ReactNode, useState, useRef, useEffect, useCallback, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
@@ -71,7 +71,7 @@ export function Tooltip({
   const openTimeoutRef = useRef<number | null>(null);
   const closeTimeoutRef = useRef<number | null>(null);
 
-  const updatePosition = () => {
+  const updatePosition = useCallback(() => {
     if (!triggerRef.current || !tooltipRef.current) return;
 
     const triggerRect = triggerRef.current.getBoundingClientRect();
@@ -101,11 +101,12 @@ export function Tooltip({
     }
 
     setPosition({ top: top + window.scrollY, left: left + window.scrollX });
-  };
+  }, [placement]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- useLayoutEffect for DOM measurement before paint
     if (isOpen) updatePosition();
-  }, [isOpen, placement]);
+  }, [isOpen, updatePosition]);
 
   const setOpen = (open: boolean) => {
     if (!isControlled) {

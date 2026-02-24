@@ -1,11 +1,9 @@
 import type { ResponsiveValue } from "@/utils/breakpoints";
 import {
-  RESPONSIVE_KEYS,
-  STATE_SUFFIXES,
-  STATE_CLASS_SUFFIXES,
   type StateKey,
   type StyleResult,
   getRawValue,
+  getResponsiveVarStyles,
 } from "../shared";
 import styles from "./margin.module.css";
 import clsx from "clsx";
@@ -31,58 +29,6 @@ export type MarginStateProps = {
   _disabled?: MarginProps;
 };
 
-function getSpacingProps(
-  key: MarginKey,
-  value: ResponsiveValue<SpacingValue> | undefined,
-  state: StateKey = "base"
-): StyleResult {
-  const result: StyleResult = { className: "", style: {} };
-
-  if (value === undefined) return result;
-
-  const stateSuffix = STATE_SUFFIXES[state];
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-
-  if (typeof value !== "object") {
-    const rawValue = getRawValue(value);
-    if (rawValue !== undefined) {
-      const className = stateClassSuffix
-        ? styles[`${key}${stateClassSuffix}`]
-        : styles[key];
-      result.className = className || "";
-      result.style[`--t-${key}${stateSuffix}`] = rawValue;
-    }
-    return result;
-  }
-
-  for (const responsiveKey of RESPONSIVE_KEYS) {
-    const rawValue = getRawValue(value[responsiveKey]);
-    if (rawValue === undefined) continue;
-
-    let className: string | undefined;
-    let varName: string;
-
-    if (responsiveKey === "base") {
-      className = stateClassSuffix
-        ? styles[`${key}${stateClassSuffix}`]
-        : styles[key];
-      varName = `--t-${key}${stateSuffix}`;
-    } else {
-      className = stateClassSuffix
-        ? styles[`${key}_${responsiveKey}${stateClassSuffix}`]
-        : styles[`${key}_${responsiveKey}`];
-      varName = `--t-${key}_${responsiveKey}${stateSuffix}`;
-    }
-
-    if (className) {
-      result.className = clsx(result.className, className);
-    }
-    result.style[varName] = rawValue;
-  }
-
-  return result;
-}
-
 function resolveMarginValue(
   key: MarginKey,
   props: MarginProps
@@ -100,28 +46,16 @@ function getMarginStylesForState(
   props: MarginProps | undefined,
   state: StateKey
 ): StyleResult {
-  const result: StyleResult = { className: "", style: {} };
+  if (!props) return { className: "", style: {} };
 
-  if (!props) return result;
-
-  const marginTop = getSpacingProps("mt", resolveMarginValue("mt", props), state);
-  const marginRight = getSpacingProps("mr", resolveMarginValue("mr", props), state);
-  const marginBottom = getSpacingProps("mb", resolveMarginValue("mb", props), state);
-  const marginLeft = getSpacingProps("ml", resolveMarginValue("ml", props), state);
+  const keys: MarginKey[] = ["mt", "mr", "mb", "ml"];
+  const results = keys.map((key) =>
+    getResponsiveVarStyles(styles, key, key, resolveMarginValue(key, props), state, getRawValue)
+  );
 
   return {
-    className: clsx(
-      marginTop.className,
-      marginRight.className,
-      marginBottom.className,
-      marginLeft.className
-    ),
-    style: {
-      ...marginTop.style,
-      ...marginRight.style,
-      ...marginBottom.style,
-      ...marginLeft.style,
-    },
+    className: clsx(...results.map((r) => r.className)),
+    style: Object.assign({}, ...results.map((r) => r.style)),
   };
 }
 

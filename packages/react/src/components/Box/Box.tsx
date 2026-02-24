@@ -1,6 +1,7 @@
 import { type ElementType, type ReactNode, type CSSProperties } from "react";
 import { type Polymorphic } from "@/types/Polymorphic";
 import { clsx } from "clsx";
+import { type StateProps } from "./shared";
 import { resetClass } from "./reset/reset";
 import { getMarginStyles, type MarginProps } from "./margin/margin";
 import { getPaddingStyles, type PaddingProps } from "./padding/padding";
@@ -47,13 +48,6 @@ type StateStyleProps = MarginProps &
   FlexboxProps &
   GridProps;
 
-type StateProps = {
-  _hover?: StateStyleProps;
-  _focus?: StateStyleProps;
-  _active?: StateStyleProps;
-  _disabled?: StateStyleProps;
-};
-
 export type BoxOwnProps = MarginProps &
   PaddingProps &
   SizingProps &
@@ -72,7 +66,7 @@ export type BoxOwnProps = MarginProps &
   RoundnessProps &
   FlexboxProps &
   GridProps &
-  StateProps & {
+  StateProps<StateStyleProps> & {
     className?: string;
     children?: ReactNode;
   };
@@ -222,7 +216,7 @@ export function Box<T extends ElementType = "div">({
     getOpacityStyles({ opacity, ...stateProps }),
     getInteractionStyles({ cursor, pointerEvents, userSelect, ...stateProps }),
     getTextStyles({ textAlign, whiteSpace, textDecoration, ...stateProps }),
-    getTypographyStyles({ fontSize, fontFamily, fontWeight, lineHeight }),
+    getTypographyStyles({ fontSize, fontFamily, fontWeight, lineHeight, ...stateProps }),
     getColorStyles({ color, bg, borderColor, ...stateProps }),
     getBorderStyles({
       border,

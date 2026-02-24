@@ -8,3 +8,10 @@ export type StyleResult = {
   className: string;
   style: Record<string, string>;
 };
+
+export type StateProps<T> = {
+  _hover?: T;
+  _focus?: T;
+  _active?: T;
+  _disabled?: T;
+};

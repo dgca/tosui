@@ -50,24 +50,21 @@ Apply multiple state styles to a single element:
 When multiple states apply simultaneously (e.g., hover + active), they combine with later states taking precedence for conflicting properties.
 
 ## Supported Properties by State
-
-Different style properties support different states. Here's what's available:
-
+All style properties support all four states:
 | Category | `_hover` | `_focus` | `_active` | `_disabled` |
 |----------|:--------:|:--------:|:---------:|:-----------:|
 | Colors (`color`, `bg`, `borderColor`) | Yes | Yes | Yes | Yes |
 | Spacing (`p`, `m`, etc.) | Yes | Yes | Yes | Yes |
 | Sizing (`w`, `h`, etc.) | Yes | Yes | Yes | Yes |
 | Layout (`display`, `position`, etc.) | Yes | Yes | Yes | Yes |
-| Typography (`fontSize`, etc.) | Yes | Yes | Yes | Yes |
+| Typography (`fontSize`, `fontWeight`, etc.) | Yes | Yes | Yes | Yes |
 | Opacity | Yes | Yes | Yes | Yes |
 | Shadow | Yes | Yes | Yes | Yes |
-| Interactions (`cursor`, `pointerEvents`) | Yes | Yes | Yes | Yes |
-| Borders | Yes | - | - | - |
-| Roundness | Yes | - | - | - |
-| Flexbox/Grid | Yes | - | - | - |
-
-**Note**: Borders, roundness, and flexbox/grid only support `_hover`. For full state control of these properties, use CSS modules.
+| Interactions (`cursor`, `pointerEvents`, `userSelect`) | Yes | Yes | Yes | Yes |
+| Borders (`border`, `borderX`, `borderY`, etc.) | Yes | Yes | Yes | Yes |
+| Roundness (`rounded`, `roundedTop`, etc.) | Yes | Yes | Yes | Yes |
+| Flexbox/Grid | Yes | Yes | Yes | Yes |
+| Text (`textAlign`, `whiteSpace`) | Yes | Yes | Yes | Yes |
 
 ## Disabled State
 

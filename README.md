@@ -66,7 +66,8 @@ Tosui is built on **constraint-driven simplicity**. By intentionally limiting op
 
 - **40 components** covering primitives, layout, forms, navigation, feedback, data display, and overlays
 - **CSS Modules styling** with zero runtime CSS generation
-- **Responsive props** with mobile-first breakpoints
+- **Responsive props** — all style props accept mobile-first breakpoint objects
+- **State styling** — `_hover`, `_focus`, `_active`, `_disabled` props on all style properties
 - **TypeScript-first** with full type safety and autocomplete
 - **Polymorphic components** that render as any HTML element
 - **Accessible** with proper ARIA attributes and keyboard navigation
@@ -138,7 +139,7 @@ Tosui uses **mobile-first** breakpoints:
 | `xl` | 1280px |
 | `2xl` | 1536px |
 
-Most props accept responsive objects:
+All style props accept responsive objects:
 
 ```tsx
 <Box p={{ base: 2, md: 4, lg: 6 }}>

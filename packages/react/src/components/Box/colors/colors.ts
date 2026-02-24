@@ -1,7 +1,9 @@
+import type { ResponsiveValue } from "@/utils/breakpoints";
 import {
-  STATE_CLASS_SUFFIXES,
   type StateKey,
+  type StateProps,
   type StyleResult,
+  getEnumResponsiveStyles,
 } from "../shared";
 import styles from "./colors.module.css";
 import clsx from "clsx";
@@ -67,35 +69,10 @@ export type BorderColorValue =
   | "warning";
 
 export type ColorProps = {
-  color?: ColorValue;
-  bg?: BackgroundColorValue;
-  borderColor?: BorderColorValue;
+  color?: ResponsiveValue<ColorValue>;
+  bg?: ResponsiveValue<BackgroundColorValue>;
+  borderColor?: ResponsiveValue<BorderColorValue>;
 };
-
-export type ColorStateProps = {
-  _hover?: ColorProps;
-};
-
-function getColorClass(value: ColorValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`color-${value}${stateClassSuffix}`]
-    : styles[`color-${value}`];
-}
-
-function getBgClass(value: BackgroundColorValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`bg-${value}${stateClassSuffix}`]
-    : styles[`bg-${value}`];
-}
-
-function getBorderColorClass(value: BorderColorValue, state: StateKey): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-  return stateClassSuffix
-    ? styles[`border-color-${value}${stateClassSuffix}`]
-    : styles[`border-color-${value}`];
-}
 
 function getColorStylesForState(
   props: ColorProps | undefined,
@@ -103,36 +80,35 @@ function getColorStylesForState(
 ): StyleResult {
   if (!props) return { className: "", style: {} };
 
-  const classes: string[] = [];
+  const colorResult = getEnumResponsiveStyles(styles, "color", props.color, state);
+  const bgResult = getEnumResponsiveStyles(styles, "bg", props.bg, state);
+  const borderColorResult = getEnumResponsiveStyles(styles, "border-color", props.borderColor, state);
 
-  if (props.color) {
-    const cls = getColorClass(props.color, state);
-    if (cls) classes.push(cls);
-  }
-
-  if (props.bg) {
-    const cls = getBgClass(props.bg, state);
-    if (cls) classes.push(cls);
-  }
-
-  if (props.borderColor) {
-    const cls = getBorderColorClass(props.borderColor, state);
-    if (cls) classes.push(cls);
-  }
-
-  return { className: clsx(...classes), style: {} };
+  return {
+    className: clsx(colorResult.className, bgResult.className, borderColorResult.className),
+    style: {},
+  };
 }
 
 export function getColorStyles(
-  props: ColorProps & ColorStateProps
+  props: ColorProps & StateProps<ColorProps>
 ): StyleResult {
-  const { color, bg, borderColor, _hover } = props;
+  const { _hover, _focus, _active, _disabled, ...baseProps } = props;
 
-  const baseStyles = getColorStylesForState({ color, bg, borderColor }, "base");
+  const baseStyles = getColorStylesForState(baseProps, "base");
   const hoverStyles = getColorStylesForState(_hover, "hover");
+  const focusStyles = getColorStylesForState(_focus, "focus");
+  const activeStyles = getColorStylesForState(_active, "active");
+  const disabledStyles = getColorStylesForState(_disabled, "disabled");
 
   return {
-    className: clsx(baseStyles.className, hoverStyles.className),
+    className: clsx(
+      baseStyles.className,
+      hoverStyles.className,
+      focusStyles.className,
+      activeStyles.className,
+      disabledStyles.className
+    ),
     style: {},
   };
 }
