@@ -1,11 +1,9 @@
 import type { ResponsiveValue } from "@/utils/breakpoints";
 import {
-  RESPONSIVE_KEYS,
-  STATE_SUFFIXES,
-  STATE_CLASS_SUFFIXES,
   type StateKey,
   type StyleResult,
   getRawValue,
+  getResponsiveVarStyles,
 } from "../shared";
 import styles from "./padding.module.css";
 import clsx from "clsx";
@@ -31,58 +29,6 @@ export type PaddingStateProps = {
   _disabled?: PaddingProps;
 };
 
-function getSpacingProps(
-  key: PaddingKey,
-  value: ResponsiveValue<SpacingValue> | undefined,
-  state: StateKey = "base"
-): StyleResult {
-  const result: StyleResult = { className: "", style: {} };
-
-  if (value === undefined) return result;
-
-  const stateSuffix = STATE_SUFFIXES[state];
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-
-  if (typeof value !== "object") {
-    const rawValue = getRawValue(value);
-    if (rawValue !== undefined) {
-      const className = stateClassSuffix
-        ? styles[`${key}${stateClassSuffix}`]
-        : styles[key];
-      result.className = className || "";
-      result.style[`--t-${key}${stateSuffix}`] = rawValue;
-    }
-    return result;
-  }
-
-  for (const responsiveKey of RESPONSIVE_KEYS) {
-    const rawValue = getRawValue(value[responsiveKey]);
-    if (rawValue === undefined) continue;
-
-    let className: string | undefined;
-    let varName: string;
-
-    if (responsiveKey === "base") {
-      className = stateClassSuffix
-        ? styles[`${key}${stateClassSuffix}`]
-        : styles[key];
-      varName = `--t-${key}${stateSuffix}`;
-    } else {
-      className = stateClassSuffix
-        ? styles[`${key}_${responsiveKey}${stateClassSuffix}`]
-        : styles[`${key}_${responsiveKey}`];
-      varName = `--t-${key}_${responsiveKey}${stateSuffix}`;
-    }
-
-    if (className) {
-      result.className = clsx(result.className, className);
-    }
-    result.style[varName] = rawValue;
-  }
-
-  return result;
-}
-
 function resolvePaddingValue(
   key: PaddingKey,
   props: PaddingProps
@@ -100,28 +46,16 @@ function getPaddingStylesForState(
   props: PaddingProps | undefined,
   state: StateKey
 ): StyleResult {
-  const result: StyleResult = { className: "", style: {} };
+  if (!props) return { className: "", style: {} };
 
-  if (!props) return result;
-
-  const paddingTop = getSpacingProps("pt", resolvePaddingValue("pt", props), state);
-  const paddingRight = getSpacingProps("pr", resolvePaddingValue("pr", props), state);
-  const paddingBottom = getSpacingProps("pb", resolvePaddingValue("pb", props), state);
-  const paddingLeft = getSpacingProps("pl", resolvePaddingValue("pl", props), state);
+  const keys: PaddingKey[] = ["pt", "pr", "pb", "pl"];
+  const results = keys.map((key) =>
+    getResponsiveVarStyles(styles, key, key, resolvePaddingValue(key, props), state, getRawValue)
+  );
 
   return {
-    className: clsx(
-      paddingTop.className,
-      paddingRight.className,
-      paddingBottom.className,
-      paddingLeft.className
-    ),
-    style: {
-      ...paddingTop.style,
-      ...paddingRight.style,
-      ...paddingBottom.style,
-      ...paddingLeft.style,
-    },
+    className: clsx(...results.map((r) => r.className)),
+    style: Object.assign({}, ...results.map((r) => r.style)),
   };
 }
 
