@@ -1,9 +1,9 @@
 import type { ResponsiveValue } from "@/utils/breakpoints";
 import {
-  RESPONSIVE_KEYS,
-  STATE_CLASS_SUFFIXES,
   type StateKey,
+  type StateProps,
   type StyleResult,
+  getEnumResponsiveStyles,
 } from "../shared";
 import styles from "./zIndex.module.css";
 import clsx from "clsx";
@@ -14,70 +14,25 @@ export type ZIndexProps = {
   zIndex?: ResponsiveValue<ZIndexValue>;
 };
 
-export type ZIndexStateProps = {
-  _hover?: ZIndexProps;
-  _focus?: ZIndexProps;
-  _active?: ZIndexProps;
-  _disabled?: ZIndexProps;
-};
-
-function getZIndexClass(
-  value: ZIndexValue,
-  responsiveKey: (typeof RESPONSIVE_KEYS)[number],
-  state: StateKey
-): string | undefined {
-  const stateClassSuffix = STATE_CLASS_SUFFIXES[state];
-
-  if (responsiveKey === "base") {
-    return stateClassSuffix
-      ? styles[`${value}${stateClassSuffix}`]
-      : styles[value];
-  }
-
-  return stateClassSuffix
-    ? styles[`${value}_${responsiveKey}${stateClassSuffix}`]
-    : styles[`${value}_${responsiveKey}`];
-}
-
-function getZIndexStylesForValue(
-  value: ResponsiveValue<ZIndexValue> | undefined,
+function getZIndexStylesForState(
+  props: ZIndexProps | undefined,
   state: StateKey
 ): StyleResult {
-  const result: StyleResult = { className: "", style: {} };
+  if (!props) return { className: "", style: {} };
 
-  if (value === undefined) return result;
-
-  if (typeof value === "string") {
-    const className = getZIndexClass(value, "base", state);
-    if (className) {
-      result.className = className;
-    }
-    return result;
-  }
-
-  for (const responsiveKey of RESPONSIVE_KEYS) {
-    const zIndexValue = value[responsiveKey];
-    if (zIndexValue === undefined) continue;
-
-    const className = getZIndexClass(zIndexValue, responsiveKey, state);
-    if (className) {
-      result.className = clsx(result.className, className);
-    }
-  }
-
-  return result;
+  return getEnumResponsiveStyles(styles, "", props.zIndex, state);
 }
 
 export function getZIndexStyles(
-  props: ZIndexProps & ZIndexStateProps
+  props: ZIndexProps & StateProps<ZIndexProps>
 ): StyleResult {
-  const { zIndex, _hover, _focus, _active, _disabled } = props;
+  const { _hover, _focus, _active, _disabled, ...baseProps } = props;
 
-  const baseStyles = getZIndexStylesForValue(zIndex, "base");
-  const hoverStyles = getZIndexStylesForValue(_hover?.zIndex, "hover");
-  const focusStyles = getZIndexStylesForValue(_focus?.zIndex, "focus");
-  const activeStyles = getZIndexStylesForValue(_active?.zIndex, "active");
-  const disabledStyles = getZIndexStylesForValue(_disabled?.zIndex, "disabled");
+  const baseStyles = getZIndexStylesForState(baseProps, "base");
+  const hoverStyles = getZIndexStylesForState(_hover, "hover");
+  const focusStyles = getZIndexStylesForState(_focus, "focus");
+  const activeStyles = getZIndexStylesForState(_active, "active");
+  const disabledStyles = getZIndexStylesForState(_disabled, "disabled");
 
   return {
     className: clsx(
