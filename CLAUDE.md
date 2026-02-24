@@ -345,6 +345,52 @@ Mobile-first cascade is handled differently per pattern:
 - **Variable-based**: CSS `var()` fallback chains cascade automatically (e.g., `var(--t-pt_md, var(--t-pt_sm, var(--t-pt)))`)
 - **Enum-based**: Each specified breakpoint gets its own CSS class; unspecified breakpoints inherit via CSS media query ordering
 
+## Documentation Site & LLM Output
+
+The docs site (`packages/docs`) uses Docusaurus with `docusaurus-plugin-llms` to generate LLM-friendly documentation files during build. The build command chains `docusaurus build` → `scripts/clean-llm-output.mjs` (post-build cleanup).
+
+### Generated LLM Files
+
+| File | Content |
+|------|---------|
+| `llms.txt` | Index with descriptions + links to individual `.md` files |
+| `llms-full.txt` | All docs concatenated into one file |
+| `llms-components.txt` | All 40 component docs only |
+| `llms-guide.txt` | Guide docs only (intro, get-started, styling guides) |
+| `*.md` (per doc) | Individual clean markdown files for each doc page |
+
+### Post-Build Cleanup Script
+
+`packages/docs/scripts/clean-llm-output.mjs` runs after the Docusaurus build to strip JSX noise from the generated LLM files:
+- Removes `<TabItem value="preview">` blocks (duplicated code examples used for live previews)
+- Strips `<Tabs>`, `<TabItem>` wrapper tags
+- Cleans empty code fences left by import stripping
+- Collapses excessive blank lines
+
+### Frontmatter Requirements
+
+**All doc files must have frontmatter** with `title` and `description`. The plugin uses `description` for the summary in `llms.txt`. Without it, descriptions fall back to the first line of content (which for MDX files is often an import statement).
+
+```yaml
+---
+title: ComponentName
+description: "One-line description of what the component does."
+---
+```
+
+### Plugin Configuration
+
+The plugin is configured in `docusaurus.config.ts` with:
+- `includeOrder` — Controls doc ordering (guides first, then components by category)
+- `rootContent` / `fullRootContent` — Custom intro text at the top of generated files (includes Box prop inheritance docs, quick reference, component categories)
+- `generateMarkdownFiles` — Individual `.md` files linked from `llms.txt`
+- `customLLMFiles` — Focused subsets (`llms-components.txt`, `llms-guide.txt`)
+- `excludeImports` / `removeDuplicateHeadings` — Content cleaning
+
+### Box Props Documentation in LLM Output
+
+The `rootContent` and `fullRootContent` in the plugin config contain critical information about which components accept Box styling props. **If you add or change components, update these lists** in `docusaurus.config.ts` to keep the LLM output accurate.
+
 ## Critical Rules
 
 1. **Path aliases compile correctly** - `@/*` is configured properly, use it throughout
@@ -352,3 +398,4 @@ Mobile-first cascade is handled differently per pattern:
 3. **Two responsive patterns** - Variable-based props use `getResponsiveVarStyles()` (CSS fallback chains + inline vars). Enum-based props use `getEnumResponsiveStyles()` (per-breakpoint classes, zero runtime).
 4. **State props via shared generic** - Use `StateProps<T>` from `Box/shared/types.ts`. All props support `_hover`, `_focus`, `_active`, `_disabled`.
 5. **Mobile-first responsive** - Variable-based props cascade via nested `var()` fallbacks. Enum-based props cascade via CSS media query ordering.
+6. **Doc frontmatter required** - All `.md`/`.mdx` files in `packages/docs/docs/` must have `title` and `description` frontmatter for proper LLM output generation

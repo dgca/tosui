@@ -1,5 +1,17 @@
 # @tosui/react
 
+## 0.1.4
+
+### Patch Changes
+
+- 0351e66: Make grid style props responsive
+
+## 0.1.3
+
+### Patch Changes
+
+- b97f7d3: Explicitly import CSS reset
+
 ## 0.1.2
 
 ### Patch Changes
