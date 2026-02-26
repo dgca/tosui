@@ -34,13 +34,13 @@ export type GridOwnProps = Omit<
   /** Column gap between grid items (0-32 spacing multiplier or string) */
   gapColumn?: ResponsiveValue<SpacingValue>;
   /** Justify items along the inline (row) axis */
-  justify?: JustifyContentValue;
+  justify?: ResponsiveValue<JustifyContentValue>;
   /** Align items along the block (column) axis */
-  align?: AlignItemsValue;
+  align?: ResponsiveValue<AlignItemsValue>;
   /** Justify content (distribute rows) */
-  justifyContent?: JustifyContentValue;
+  justifyContent?: ResponsiveValue<JustifyContentValue>;
   /** Align content (distribute columns) */
-  alignContent?: JustifyContentValue;
+  alignContent?: ResponsiveValue<JustifyContentValue>;
 };
 
 export type GridProps<T extends ElementType = "div"> = Polymorphic<

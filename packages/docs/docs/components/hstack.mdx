@@ -108,12 +108,14 @@ import { HStack } from "@tosui/react";
 
 ## Props Reference
 
+All convenience props (`align`, `justify`, `wrap`) accept responsive objects in addition to simple values.
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| gap | `0-32` | - | Gap between children (spacing multiplier) |
-| align | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"stretch"` \| `"baseline"` | - | Cross-axis alignment |
-| justify | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Main-axis alignment |
-| wrap | `boolean` | `false` | Enable flex wrapping |
+| gap | `ResponsiveValue<0-32>` | - | Gap between children (spacing multiplier) |
+| align | `ResponsiveValue<"start" \| "center" \| "end" \| "stretch" \| "baseline">` | - | Cross-axis alignment |
+| justify | `ResponsiveValue<"start" \| "center" \| "end" \| "space-between" \| "space-around" \| "space-evenly">` | - | Main-axis alignment |
+| wrap | `ResponsiveValue<boolean>` | `false` | Enable flex wrapping |
 | as | `ElementType` | `"div"` | HTML element to render |
 
 HStack accepts all [Stack](/docs/components/stack) props except `direction`.
