@@ -1,5 +1,11 @@
 # @tosui/react
 
+## 0.1.6
+
+### Patch Changes
+
+- 1224e6f: Fix cascading for enum based rules
+
 ## 0.1.5
 
 ### Patch Changes
