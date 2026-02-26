@@ -87,6 +87,25 @@ import { Flex } from "@tosui/react";
   </TabItem>
 </Tabs>
 
+## Responsive Direction
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Flex direction={{ base: "column", md: "row" }} gap={4} align={{ base: "stretch", md: "center" }}>
+      <Box p={4} bg="primary-subtle">First</Box>
+      <Box p={4} bg="accent-subtle" grow={1}>Second (grows on desktop)</Box>
+    </Flex>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Flex direction={{ base: "column", md: "row" }} gap={4} align={{ base: "stretch", md: "center" }}>
+      <Box p={4} bg="primary-subtle">First</Box>
+      <Box p={4} bg="accent-subtle" flexGrow={1}>Second (grows on desktop)</Box>
+    </Flex>
+  </TabItem>
+</Tabs>
+
 ## Wrapping
 
 <Tabs>
@@ -147,20 +166,22 @@ Flex supports `grow`, `shrink`, and `basis` for controlling the flex container i
 
 ## Props Reference
 
+All convenience props (`direction`, `align`, `justify`, `wrap`, `alignSelf`) accept responsive objects in addition to simple values.
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| direction | `"row"` \| `"column"` \| `"row-reverse"` \| `"column-reverse"` | `"row"` | Flex direction |
-| wrap | `"nowrap"` \| `"wrap"` \| `"wrap-reverse"` | `"nowrap"` | Flex wrap behavior |
-| justify | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Main-axis alignment |
-| align | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"stretch"` \| `"baseline"` | - | Cross-axis alignment |
-| alignContent | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Multi-line alignment |
-| gap | `0-32` | - | Gap between children |
-| gapRow | `0-32` | - | Row gap |
-| gapColumn | `0-32` | - | Column gap |
+| direction | `ResponsiveValue<"row" \| "column" \| "row-reverse" \| "column-reverse">` | `"row"` | Flex direction |
+| wrap | `ResponsiveValue<"nowrap" \| "wrap" \| "wrap-reverse">` | `"nowrap"` | Flex wrap behavior |
+| justify | `ResponsiveValue<"start" \| "center" \| "end" \| "space-between" \| "space-around" \| "space-evenly">` | - | Main-axis alignment |
+| align | `ResponsiveValue<"start" \| "center" \| "end" \| "stretch" \| "baseline">` | - | Cross-axis alignment |
+| alignContent | `ResponsiveValue<"start" \| "center" \| "end" \| "space-between" \| "space-around" \| "space-evenly">` | - | Multi-line alignment |
+| gap | `ResponsiveValue<0-32>` | - | Gap between children |
+| gapRow | `ResponsiveValue<0-32>` | - | Row gap |
+| gapColumn | `ResponsiveValue<0-32>` | - | Column gap |
 | basis | `string` | - | Flex basis |
 | grow | `number` | - | Flex grow |
 | shrink | `number` | - | Flex shrink |
-| alignSelf | `"auto"` \| `"flex-start"` \| `"center"` \| `"flex-end"` \| `"stretch"` \| `"baseline"` | - | Self alignment in parent flex |
+| alignSelf | `ResponsiveValue<"auto" \| "start" \| "center" \| "end" \| "stretch" \| "baseline">` | - | Self alignment in parent flex |
 | as | `ElementType` | `"div"` | HTML element to render |
 
 ## TypeScript

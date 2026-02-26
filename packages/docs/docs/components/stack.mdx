@@ -95,6 +95,27 @@ Use `align` and `justify` to control item alignment.
   </TabItem>
 </Tabs>
 
+## Responsive Direction
+
+Use responsive objects to change direction at different breakpoints. This is a common pattern for layouts that stack vertically on mobile and horizontally on desktop.
+
+<Tabs>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Stack direction={{ base: "column", md: "row" }} gap={4} align={{ base: "stretch", md: "center" }}>
+      <Box p={4} bg="primary-subtle">Sidebar</Box>
+      <Box p={4} bg="accent-subtle" flexGrow={1}>Main Content</Box>
+    </Stack>
+    ```
+  </TabItem>
+  <TabItem value="preview" label="Preview">
+    <Stack direction={{ base: "column", md: "row" }} gap={4} align={{ base: "stretch", md: "center" }}>
+      <Box p={4} bg="primary-subtle">Sidebar</Box>
+      <Box p={4} bg="accent-subtle" flexGrow={1}>Main Content</Box>
+    </Stack>
+  </TabItem>
+</Tabs>
+
 ## Wrapping
 
 Enable wrapping with the `wrap` prop for responsive layouts.
@@ -141,13 +162,15 @@ Stack can render as any HTML element using the `as` prop.
 
 ## Props Reference
 
+All convenience props (`direction`, `align`, `justify`, `wrap`) accept responsive objects in addition to simple values.
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| direction | `"row"` \| `"column"` \| `"row-reverse"` \| `"column-reverse"` | `"column"` | Stack direction |
-| gap | `0-32` | - | Gap between children (spacing multiplier) |
-| align | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"stretch"` \| `"baseline"` | - | Cross-axis alignment |
-| justify | `"flex-start"` \| `"center"` \| `"flex-end"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Main-axis alignment |
-| wrap | `boolean` | `false` | Enable flex wrapping |
+| direction | `ResponsiveValue<"row" \| "column" \| "row-reverse" \| "column-reverse">` | `"column"` | Stack direction |
+| gap | `ResponsiveValue<0-32>` | - | Gap between children (spacing multiplier) |
+| align | `ResponsiveValue<"start" \| "center" \| "end" \| "stretch" \| "baseline">` | - | Cross-axis alignment |
+| justify | `ResponsiveValue<"start" \| "center" \| "end" \| "space-between" \| "space-around" \| "space-evenly">` | - | Main-axis alignment |
+| wrap | `ResponsiveValue<boolean>` | `false` | Enable flex wrapping |
 | as | `ElementType` | `"div"` | HTML element to render |
 
 Stack also accepts all [Box](/docs/components/box) props except `display`, `flexDirection`, `justifyContent`, `alignItems`, `flexWrap`, and `gap`.

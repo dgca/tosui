@@ -31,13 +31,13 @@ export type FlexOwnProps = Omit<
   | "flexShrink"
 > & {
   /** Flex direction: row (default), column, row-reverse, column-reverse */
-  direction?: FlexDirectionValue;
+  direction?: ResponsiveValue<FlexDirectionValue>;
   /** Flex wrapping: nowrap (default), wrap, wrap-reverse */
-  wrap?: FlexWrapValue;
+  wrap?: ResponsiveValue<FlexWrapValue>;
   /** Justify content along the main axis */
-  justify?: JustifyContentValue;
+  justify?: ResponsiveValue<JustifyContentValue>;
   /** Align items along the cross axis */
-  align?: AlignItemsValue;
+  align?: ResponsiveValue<AlignItemsValue>;
 
   /** Gap between children (0-32 spacing multiplier or string) */
   gap?: ResponsiveValue<SpacingValue>;
@@ -52,7 +52,7 @@ export type FlexOwnProps = Omit<
   /** Flex shrink of the container */
   shrink?: number;
   /** Align self within parent flex container */
-  alignSelf?: AlignSelfValue;
+  alignSelf?: ResponsiveValue<AlignSelfValue>;
 };
 
 export type FlexProps<T extends ElementType = "div"> = Polymorphic<

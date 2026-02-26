@@ -198,17 +198,19 @@ import { Grid } from "@tosui/react";
 
 ## Props Reference
 
+All layout props (`columns`, `rows`, `gap`, `justify`, `align`, `justifyContent`, `alignContent`) accept responsive objects in addition to simple values.
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| columns | `string \| ResponsiveObject<string>` | - | Grid template columns (CSS value) |
-| rows | `string \| ResponsiveObject<string>` | - | Grid template rows (CSS value) |
-| gap | `0-32` | - | Gap between grid items |
-| gapRow | `0-32` | - | Row gap |
-| gapColumn | `0-32` | - | Column gap |
-| justify | `"start"` \| `"center"` \| `"end"` \| `"stretch"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Justify items |
-| align | `"start"` \| `"center"` \| `"end"` \| `"stretch"` \| `"baseline"` | - | Align items |
-| justifyContent | `"start"` \| `"center"` \| `"end"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Distribute tracks horizontally |
-| alignContent | `"start"` \| `"center"` \| `"end"` \| `"space-between"` \| `"space-around"` \| `"space-evenly"` | - | Distribute tracks vertically |
+| columns | `ResponsiveValue<string>` | - | Grid template columns (CSS value) |
+| rows | `ResponsiveValue<string>` | - | Grid template rows (CSS value) |
+| gap | `ResponsiveValue<0-32>` | - | Gap between grid items |
+| gapRow | `ResponsiveValue<0-32>` | - | Row gap |
+| gapColumn | `ResponsiveValue<0-32>` | - | Column gap |
+| justify | `ResponsiveValue<"start" \| "center" \| "end" \| "space-between" \| "space-around" \| "space-evenly">` | - | Justify items |
+| align | `ResponsiveValue<"start" \| "center" \| "end" \| "stretch" \| "baseline">` | - | Align items |
+| justifyContent | `ResponsiveValue<"start" \| "center" \| "end" \| "space-between" \| "space-around" \| "space-evenly">` | - | Distribute tracks horizontally |
+| alignContent | `ResponsiveValue<"start" \| "center" \| "end" \| "space-between" \| "space-around" \| "space-evenly">` | - | Distribute tracks vertically |
 | as | `ElementType` | `"div"` | HTML element to render |
 
 ## TypeScript

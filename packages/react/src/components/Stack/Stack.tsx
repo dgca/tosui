@@ -1,11 +1,12 @@
 import { type ElementType } from "react";
 import { type Polymorphic } from "@/types/Polymorphic";
 import { Box, type BoxOwnProps } from "@/components/Box/Box";
-import type { ResponsiveValue } from "@/utils/breakpoints";
+import type { ResponsiveValue, ResponsiveObject } from "@/utils/breakpoints";
 import type {
   FlexDirectionValue,
   JustifyContentValue,
   AlignItemsValue,
+  FlexWrapValue,
   SpacingValue,
 } from "@/components/Box/flexbox/flexbox";
 
@@ -18,15 +19,15 @@ export type StackOwnProps = Omit<
   "display" | "flexDirection" | "justifyContent" | "alignItems" | "flexWrap" | "gap"
 > & {
   /** Stack direction: row, column, row-reverse, column-reverse */
-  direction?: FlexDirectionValue;
+  direction?: ResponsiveValue<FlexDirectionValue>;
   /** Gap between children (0-32 spacing multiplier) */
   gap?: ResponsiveValue<SpacingValue>;
   /** Align items along the cross axis */
-  align?: AlignItemsValue;
+  align?: ResponsiveValue<AlignItemsValue>;
   /** Justify content along the main axis */
-  justify?: JustifyContentValue;
+  justify?: ResponsiveValue<JustifyContentValue>;
   /** Enable flex wrapping */
-  wrap?: boolean;
+  wrap?: ResponsiveValue<boolean>;
 };
 
 export type StackProps<T extends ElementType = "div"> = Polymorphic<
@@ -59,6 +60,15 @@ export function Stack<T extends ElementType = "div">({
   children,
   ...rest
 }: StackProps<T>) {
+  const resolvedWrap: ResponsiveValue<FlexWrapValue> | undefined =
+    wrap === undefined
+      ? undefined
+      : typeof wrap === "boolean"
+        ? wrap ? "wrap" : "nowrap"
+        : Object.fromEntries(
+            Object.entries(wrap as ResponsiveObject<boolean>).map(([k, v]) => [k, v ? "wrap" : "nowrap"])
+          ) as ResponsiveValue<FlexWrapValue>;
+
   return (
     // @ts-expect-error - Polymorphic component type forwarding
     <Box
@@ -68,7 +78,7 @@ export function Stack<T extends ElementType = "div">({
       gap={gap}
       alignItems={align}
       justifyContent={justify}
-      flexWrap={wrap ? "wrap" : undefined}
+      flexWrap={resolvedWrap}
       {...rest}
     >
       {children}

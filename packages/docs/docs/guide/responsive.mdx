@@ -152,23 +152,55 @@ All Box style props support responsive values:
 
 ## Layout Components
 
-[Stack](/docs/components/stack), [HStack](/docs/components/hstack), and [VStack](/docs/components/vstack) are convenience components for common flex layouts. They accept responsive props:
+Layout components ([Stack](/docs/components/stack), [HStack](/docs/components/hstack), [VStack](/docs/components/vstack), [Flex](/docs/components/flex), [Grid](/docs/components/grid)) accept responsive values on their convenience props — not just on inherited Box props.
+
+### Responsive Stack Direction
 
 ```tsx
 <Stack
   direction={{ base: "column", md: "row" }}
   gap={{ base: 4, lg: 8 }}
+  align={{ base: "stretch", md: "center" }}
 >
-  <Box>Item 1</Box>
-  <Box>Item 2</Box>
+  <Box>Sidebar</Box>
+  <Box>Main Content</Box>
 </Stack>
 ```
 
-This is equivalent to using `HStack` on larger screens and `VStack` on mobile.
+This is equivalent to using `VStack` on mobile and `HStack` on desktop.
 
-- **Stack** - Flex container with configurable `direction`
-- **VStack** - Vertical stack (`direction="column"`)
-- **HStack** - Horizontal stack (`direction="row"`)
+### Responsive Flex
+
+```tsx
+<Flex
+  direction={{ base: "column", md: "row" }}
+  wrap={{ base: "nowrap", lg: "wrap" }}
+  justify={{ base: "center", md: "space-between" }}
+  gap={4}
+>
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+</Flex>
+```
+
+### Responsive Grid Alignment
+
+```tsx
+<Grid
+  columns={{ base: "1fr", md: "repeat(3, 1fr)" }}
+  justify={{ base: "center", lg: "start" }}
+  gap={4}
+>
+  <Box>Card 1</Box>
+  <Box>Card 2</Box>
+  <Box>Card 3</Box>
+</Grid>
+```
+
+- **Stack** — `direction`, `align`, `justify`, `wrap`, `gap`
+- **HStack / VStack** — `align`, `justify`, `wrap`, `gap`
+- **Flex** — `direction`, `align`, `justify`, `wrap`, `alignSelf`, `gap`
+- **Grid** — `columns`, `rows`, `justify`, `align`, `justifyContent`, `alignContent`, `gap`
 
 ## Responsive State Styling
 
