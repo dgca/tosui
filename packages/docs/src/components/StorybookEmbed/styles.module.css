@@ -1,0 +1,15 @@
+.wrapper {
+  margin: 1.5rem 0;
+}
+
+.frame {
+  width: 100%;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+}
+
+.meta {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}

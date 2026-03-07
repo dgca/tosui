@@ -6,6 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "USE_SIMPLE_CSS_MINIFIER=true docusaurus build && node scripts/clean-llm-output.mjs",
+    "copy-storybook": "node scripts/copy-storybook.mjs",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
