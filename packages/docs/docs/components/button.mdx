@@ -3,16 +3,35 @@ title: Button
 description: "Interactive button with solid, outline, and ghost variants, six color schemes, three sizes, and loading states."
 ---
 
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-import { Button, HStack, VStack, Box } from "@tosui/react";
-import StorybookEmbed from "@site/src/components/StorybookEmbed";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Button
 
 Button is an interactive button component with variants, sizes, color schemes, and loading states.
 
-## Storybook Preview
+<StorybookLink storyId="components-button--basic">
+  Open the full Button stories in Storybook
+</StorybookLink>
+
+## Quick Start
+
+Import the component:
+
+```tsx
+import { Button } from "@tosui/react";
+```
+
+Use Button for the primary action in a view or form:
+
+```tsx
+<Button>Click me</Button>
+```
+
+## Playground
+
+Use the embedded story for a quick sanity check, then open Storybook when you want controls and the full set of examples.
 
 <StorybookEmbed
   storyId="components-button--basic"
@@ -20,151 +39,67 @@ Button is an interactive button component with variants, sizes, color schemes, a
   height={180}
 />
 
-## Import
+## Common Patterns
+
+### Variants
+
+Use `variant` to change the visual weight of the action.
+
+<StorybookEmbed
+  storyId="components-button--variants"
+  title="Tosui Button variants"
+  height={180}
+/>
 
 ```tsx
-import { Button } from "@tosui/react";
+<HStack gap={4}>
+  <Button variant="solid">Save</Button>
+  <Button variant="outline">Preview</Button>
+  <Button variant="ghost">Cancel</Button>
+</HStack>
 ```
 
-## Basic Usage
+### States
 
-<Tabs>
-  <TabItem value="code" label="Code">
-    ```tsx
-    <Button>Click me</Button>
-    ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Button>Click me</Button>
-  </TabItem>
-</Tabs>
+Use `disabled` and `loading` to communicate unavailable or in-progress actions.
 
-## Variants
+<StorybookEmbed
+  storyId="components-button--states"
+  title="Tosui Button states"
+  height={180}
+/>
 
-<Tabs>
-  <TabItem value="code" label="Code">
-    ```tsx
-    <HStack gap={4}>
-      <Button variant="solid">Solid</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-    </HStack>
-    ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4}>
-      <Button variant="solid">Solid</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-    </HStack>
-  </TabItem>
-</Tabs>
+```tsx
+<HStack gap={4}>
+  <Button>Normal</Button>
+  <Button disabled>Disabled</Button>
+  <Button loading>Saving...</Button>
+</HStack>
+```
 
-## Sizes
+### Sizing and Color
 
-<Tabs>
-  <TabItem value="code" label="Code">
-    ```tsx
-    <HStack gap={4} align="center">
-      <Button size="sm">Small</Button>
-      <Button size="md">Medium</Button>
-      <Button size="lg">Large</Button>
-    </HStack>
-    ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4} align="center">
-      <Button size="sm">Small</Button>
-      <Button size="md">Medium</Button>
-      <Button size="lg">Large</Button>
-    </HStack>
-  </TabItem>
-</Tabs>
+Button supports three sizes and six built-in color schemes. Use Storybook for the full combinations matrix.
 
-## Color Schemes
+<StorybookLink storyId="components-button--basic">
+  Explore sizes, color schemes, and controls in Storybook
+</StorybookLink>
 
-<Tabs>
-  <TabItem value="code" label="Code">
-    ```tsx
-    <HStack gap={4} wrap>
-      <Button colorScheme="primary">Primary</Button>
-      <Button colorScheme="accent">Accent</Button>
-      <Button colorScheme="success">Success</Button>
-      <Button colorScheme="warning">Warning</Button>
-      <Button colorScheme="error">Error</Button>
-      <Button colorScheme="info">Info</Button>
-    </HStack>
-    ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4} wrap>
-      <Button colorScheme="primary">Primary</Button>
-      <Button colorScheme="accent">Accent</Button>
-      <Button colorScheme="success">Success</Button>
-      <Button colorScheme="warning">Warning</Button>
-      <Button colorScheme="error">Error</Button>
-      <Button colorScheme="info">Info</Button>
-    </HStack>
-  </TabItem>
-</Tabs>
+```tsx
+<HStack gap={4} align="center">
+  <Button size="sm">Small</Button>
+  <Button size="md" colorScheme="accent">
+    Medium
+  </Button>
+  <Button size="lg" colorScheme="success">
+    Large
+  </Button>
+</HStack>
+```
 
-## Variants with Color Schemes
+### Common Composition
 
-<Tabs>
-  <TabItem value="code" label="Code">
-    ```tsx
-    <VStack gap={4}>
-      <HStack gap={4}>
-        <Button variant="solid" colorScheme="success">Solid</Button>
-        <Button variant="outline" colorScheme="success">Outline</Button>
-        <Button variant="ghost" colorScheme="success">Ghost</Button>
-      </HStack>
-      <HStack gap={4}>
-        <Button variant="solid" colorScheme="error">Solid</Button>
-        <Button variant="outline" colorScheme="error">Outline</Button>
-        <Button variant="ghost" colorScheme="error">Ghost</Button>
-      </HStack>
-    </VStack>
-    ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <HStack gap={4}>
-        <Button variant="solid" colorScheme="success">Solid</Button>
-        <Button variant="outline" colorScheme="success">Outline</Button>
-        <Button variant="ghost" colorScheme="success">Ghost</Button>
-      </HStack>
-      <HStack gap={4}>
-        <Button variant="solid" colorScheme="error">Solid</Button>
-        <Button variant="outline" colorScheme="error">Outline</Button>
-        <Button variant="ghost" colorScheme="error">Ghost</Button>
-      </HStack>
-    </VStack>
-  </TabItem>
-</Tabs>
-
-## States
-
-<Tabs>
-  <TabItem value="code" label="Code">
-    ```tsx
-    <HStack gap={4}>
-      <Button>Normal</Button>
-      <Button disabled>Disabled</Button>
-      <Button loading>Loading</Button>
-    </HStack>
-    ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4}>
-      <Button>Normal</Button>
-      <Button disabled>Disabled</Button>
-      <Button loading>Loading</Button>
-    </HStack>
-  </TabItem>
-</Tabs>
-
-## With Icons
+Use Button with icons, as links, or as form actions. These patterns stay simple in docs and are easier to explore interactively in Storybook as the story set grows.
 
 ```tsx
 import { ArrowRightIcon, DownloadIcon } from "your-icon-library";
@@ -186,20 +121,9 @@ When loading, the left icon is replaced with a spinner:
 </Button>
 ```
 
-## Full Width
-
-<Tabs>
-  <TabItem value="code" label="Code">
-    ```tsx
-    <Button fullWidth>Full Width Button</Button>
-    ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Button fullWidth>Full Width Button</Button>
-  </TabItem>
-</Tabs>
-
-## As Link
+```tsx
+<Button fullWidth>Continue</Button>
+```
 
 Button can render as any element using the `as` prop.
 
@@ -209,9 +133,7 @@ Button can render as any element using the `as` prop.
 </Button>
 ```
 
-## Common Patterns
-
-### Form Actions
+For common form actions:
 
 ```tsx
 <HStack gap={4} justify="flex-end">
@@ -220,7 +142,7 @@ Button can render as any element using the `as` prop.
 </HStack>
 ```
 
-### Destructive Action
+For destructive actions:
 
 ```tsx
 <HStack gap={4}>
@@ -229,7 +151,7 @@ Button can render as any element using the `as` prop.
 </HStack>
 ```
 
-### Button Group
+For button groups:
 
 ```tsx
 <HStack gap={0}>
@@ -239,7 +161,9 @@ Button can render as any element using the `as` prop.
 </HStack>
 ```
 
-## Props Reference
+## API
+
+### Props Reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -255,8 +179,26 @@ Button can render as any element using the `as` prop.
 
 Button also accepts all [Box](/docs/components/box) styling props.
 
+## Accessibility and Behavior
+
+- Use `disabled` for unavailable actions.
+- Use `loading` for in-progress actions; Tosui also disables the button while loading.
+- If you render Button as a link with `as="a"`, ensure the destination and disabled behavior are both handled intentionally.
+
+## Styling and Customization
+
+- Use `variant`, `size`, and `colorScheme` for the built-in API.
+- Use inherited Box props like `mt`, `w`, `rounded`, `px`, and responsive values for layout and visual adjustments.
+- Reach for Storybook when validating combined states like `variant + colorScheme + size`.
+
 ## TypeScript
 
 ```tsx
 import { Button, type ButtonVariant, type ButtonSize, type ButtonColorScheme, type ButtonProps } from "@tosui/react";
 ```
+
+## Related
+
+- [IconButton](/docs/components/icon-button)
+- [Link](/docs/components/link)
+- [Spinner](/docs/components/spinner)

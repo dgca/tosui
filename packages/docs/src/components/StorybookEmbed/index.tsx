@@ -8,15 +8,39 @@ type StorybookEmbedProps = {
   height?: number;
 };
 
+type StorybookLinkProps = {
+  storyId?: string;
+  children?: string;
+};
+
+function useStorybookBaseUrl() {
+  const isDevelopment = process.env.NODE_ENV === "development";
+
+  return isDevelopment ? "http://localhost:6006/" : useBaseUrl("/storybook/");
+}
+
+export function StorybookLink({
+  storyId,
+  children = "Open in Storybook",
+}: StorybookLinkProps) {
+  const storybookBaseUrl = useStorybookBaseUrl();
+  const href = storyId
+    ? `${storybookBaseUrl}?path=/story/${encodeURIComponent(storyId)}`
+    : storybookBaseUrl;
+
+  return (
+    <a href={href} target="_blank" rel="noreferrer">
+      {children}
+    </a>
+  );
+}
+
 export default function StorybookEmbed({
   storyId,
   title = "Storybook example",
   height = 220,
 }: StorybookEmbedProps) {
-  const isDevelopment = process.env.NODE_ENV === "development";
-  const storybookBaseUrl = isDevelopment
-    ? "http://localhost:6006/"
-    : useBaseUrl("/storybook/");
+  const storybookBaseUrl = useStorybookBaseUrl();
   const iframeUrl = `${storybookBaseUrl}iframe.html?id=${encodeURIComponent(
     storyId
   )}&viewMode=story`;
