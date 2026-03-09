@@ -3,6 +3,11 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+const baseUrl = "/tosui/";
+const storybookSiteUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:6006/"
+    : "https://dgca.github.io/tosui/storybook/";
 
 const config: Config = {
   title: "Tosui",
@@ -18,7 +23,7 @@ const config: Config = {
   url: "https://dgca.github.io",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/tosui/",
+  baseUrl,
 
   // GitHub pages deployment config.
   projectName: "tosui", // Usually your repo name.
@@ -277,6 +282,11 @@ Examples:
           to: "/playground",
           position: "left",
           label: "Playground",
+        },
+        {
+          href: storybookSiteUrl,
+          position: "left",
+          label: "Storybook",
         },
         {
           href: "https://github.com/dgca/tosui",

@@ -5,11 +5,18 @@ description: "Interactive button with solid, outline, and ghost variants, six co
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import { Button, HStack, VStack, Box } from "@tosui/react";
+import { Button, HStack, VStack } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Button
 
 Button is an interactive button component with variants, sizes, color schemes, and loading states.
+
+<StorybookLink storyId="components-button--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,19 +27,32 @@ import { Button } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--basic"
+      title="Tosui button basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Button>Click me</Button>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Button>Click me</Button>
   </TabItem>
 </Tabs>
 
 ## Variants
 
+Use `variant` to change the visual weight of the action.
+
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--variants"
+      title="Tosui Button variants story"
+      height={180}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4}>
@@ -41,19 +61,19 @@ import { Button } from "@tosui/react";
       <Button variant="ghost">Ghost</Button>
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4}>
-      <Button variant="solid">Solid</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-    </HStack>
   </TabItem>
 </Tabs>
 
 ## Sizes
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--sizes"
+      title="Tosui Button sizes story"
+      height={180}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4} align="center">
@@ -62,19 +82,19 @@ import { Button } from "@tosui/react";
       <Button size="lg">Large</Button>
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4} align="center">
-      <Button size="sm">Small</Button>
-      <Button size="md">Medium</Button>
-      <Button size="lg">Large</Button>
-    </HStack>
   </TabItem>
 </Tabs>
 
 ## Color Schemes
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--color-schemes"
+      title="Tosui Button color schemes story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4} wrap>
@@ -86,22 +106,19 @@ import { Button } from "@tosui/react";
       <Button colorScheme="info">Info</Button>
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4} wrap>
-      <Button colorScheme="primary">Primary</Button>
-      <Button colorScheme="accent">Accent</Button>
-      <Button colorScheme="success">Success</Button>
-      <Button colorScheme="warning">Warning</Button>
-      <Button colorScheme="error">Error</Button>
-      <Button colorScheme="info">Info</Button>
-    </HStack>
   </TabItem>
 </Tabs>
 
 ## Variants with Color Schemes
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--variants-with-color-schemes"
+      title="Tosui Button variants with color schemes story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -117,26 +134,21 @@ import { Button } from "@tosui/react";
       </HStack>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <HStack gap={4}>
-        <Button variant="solid" colorScheme="success">Solid</Button>
-        <Button variant="outline" colorScheme="success">Outline</Button>
-        <Button variant="ghost" colorScheme="success">Ghost</Button>
-      </HStack>
-      <HStack gap={4}>
-        <Button variant="solid" colorScheme="error">Solid</Button>
-        <Button variant="outline" colorScheme="error">Outline</Button>
-        <Button variant="ghost" colorScheme="error">Ghost</Button>
-      </HStack>
-    </VStack>
   </TabItem>
 </Tabs>
 
 ## States
 
+Use `disabled` and `loading` to communicate unavailable or in-progress actions.
+
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--states"
+      title="Tosui Button states story"
+      height={180}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4}>
@@ -145,48 +157,63 @@ import { Button } from "@tosui/react";
       <Button loading>Loading</Button>
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4}>
-      <Button>Normal</Button>
-      <Button disabled>Disabled</Button>
-      <Button loading>Loading</Button>
-    </HStack>
   </TabItem>
 </Tabs>
 
 ## With Icons
 
-```tsx
-import { ArrowRightIcon, DownloadIcon } from "your-icon-library";
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--with-icons"
+      title="Tosui Button with icons story"
+      height={180}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    import { ArrowRightIcon, DownloadIcon } from "your-icon-library";
 
-<HStack gap={4}>
-  <Button leftIcon={<DownloadIcon />}>Download</Button>
-  <Button rightIcon={<ArrowRightIcon />}>Continue</Button>
-  <Button leftIcon={<DownloadIcon />} rightIcon={<ArrowRightIcon />}>
-    Both Icons
-  </Button>
-</HStack>
-```
+    <HStack gap={4}>
+      <Button leftIcon={<DownloadIcon />}>Download</Button>
+      <Button rightIcon={<ArrowRightIcon />}>Continue</Button>
+      <Button leftIcon={<DownloadIcon />} rightIcon={<ArrowRightIcon />}>
+        Both Icons
+      </Button>
+    </HStack>
+    ```
+  </TabItem>
+</Tabs>
 
 When loading, the left icon is replaced with a spinner:
 
-```tsx
-<Button leftIcon={<DownloadIcon />} loading>
-  Downloading
-</Button>
-```
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Button loading>Downloading</Button>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Button leftIcon={<DownloadIcon />} loading>
+      Downloading
+    </Button>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Full Width
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--full-width"
+      title="Tosui Button full width story"
+      height={180}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Button fullWidth>Full Width Button</Button>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Button fullWidth>Full Width Button</Button>
   </TabItem>
 </Tabs>
 
@@ -194,41 +221,83 @@ When loading, the left icon is replaced with a spinner:
 
 Button can render as any element using the `as` prop.
 
-```tsx
-<Button as="a" href="/signup">
-  Sign Up
-</Button>
-```
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--as-link"
+      title="Tosui Button as link story"
+      height={180}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Button as="a" href="/signup">
+      Sign Up
+    </Button>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Common Patterns
 
 ### Form Actions
 
-```tsx
-<HStack gap={4} justify="flex-end">
-  <Button variant="ghost">Cancel</Button>
-  <Button>Submit</Button>
-</HStack>
-```
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={4} justify="flex-end">
+      <Button variant="ghost">Cancel</Button>
+      <Button>Submit</Button>
+    </HStack>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4} justify="flex-end">
+      <Button variant="ghost">Cancel</Button>
+      <Button>Submit</Button>
+    </HStack>
+    ```
+  </TabItem>
+</Tabs>
 
 ### Destructive Action
 
-```tsx
-<HStack gap={4}>
-  <Button variant="outline">Cancel</Button>
-  <Button colorScheme="error">Delete</Button>
-</HStack>
-```
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={4}>
+      <Button variant="outline">Cancel</Button>
+      <Button colorScheme="error">Delete</Button>
+    </HStack>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Button variant="outline">Cancel</Button>
+      <Button colorScheme="error">Delete</Button>
+    </HStack>
+    ```
+  </TabItem>
+</Tabs>
 
 ### Button Group
 
-```tsx
-<HStack gap={0}>
-  <Button rounded="md" roundedRight="none" borderRight="none">Left</Button>
-  <Button rounded="none" borderRight="none">Middle</Button>
-  <Button rounded="md" roundedLeft="none">Right</Button>
-</HStack>
-```
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={0}>
+      <Button rounded="md" roundedRight="none" borderRight="none">Left</Button>
+      <Button rounded="none" borderRight="none">Middle</Button>
+      <Button rounded="md" roundedLeft="none">Right</Button>
+    </HStack>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={0}>
+      <Button rounded="md" roundedRight="none" borderRight="none">Left</Button>
+      <Button rounded="none" borderRight="none">Middle</Button>
+      <Button rounded="md" roundedLeft="none">Right</Button>
+    </HStack>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Props Reference
 

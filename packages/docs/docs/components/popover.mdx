@@ -7,10 +7,17 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Popover, PopoverHeader, PopoverBody, Button, HStack, VStack, Box, Text } from "@tosui/react";
 import { useState } from "react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Popover
 
 Popover displays rich content in a floating panel triggered by a click.
+
+<StorybookLink storyId="components-popover--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -21,6 +28,13 @@ import { Popover, PopoverHeader, PopoverBody } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-popover--basic"
+      title="Tosui popover basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Popover
@@ -33,23 +47,26 @@ import { Popover, PopoverHeader, PopoverBody } from "@tosui/react";
       <Button>Click me</Button>
     </Popover>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Popover
-      content={
-        <PopoverBody>
-          This is the popover content.
-        </PopoverBody>
-      }
-    >
-      <Button>Click me</Button>
-    </Popover>
   </TabItem>
 </Tabs>
 
 ## With Header
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Popover
+      content={
+        <>
+          <PopoverHeader>Popover Title</PopoverHeader>
+          <PopoverBody>
+            This popover has a header and body.
+          </PopoverBody>
+        </>
+      }
+    >
+      <Button>With Header</Button>
+    </Popover>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Popover
@@ -65,26 +82,28 @@ import { Popover, PopoverHeader, PopoverBody } from "@tosui/react";
       <Button>With Header</Button>
     </Popover>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Popover
-      content={
-        <>
-          <PopoverHeader>Popover Title</PopoverHeader>
-          <PopoverBody>
-            This popover has a header and body.
-          </PopoverBody>
-        </>
-      }
-    >
-      <Button>With Header</Button>
-    </Popover>
   </TabItem>
 </Tabs>
 
 ## Placement
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={4}>
+      <Popover placement="top" content={<PopoverBody>Top</PopoverBody>}>
+        <Button>Top</Button>
+      </Popover>
+      <Popover placement="bottom" content={<PopoverBody>Bottom</PopoverBody>}>
+        <Button>Bottom</Button>
+      </Popover>
+      <Popover placement="left" content={<PopoverBody>Left</PopoverBody>}>
+        <Button>Left</Button>
+      </Popover>
+      <Popover placement="right" content={<PopoverBody>Right</PopoverBody>}>
+        <Button>Right</Button>
+      </Popover>
+    </HStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4}>
@@ -102,22 +121,6 @@ import { Popover, PopoverHeader, PopoverBody } from "@tosui/react";
       </Popover>
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4}>
-      <Popover placement="top" content={<PopoverBody>Top</PopoverBody>}>
-        <Button>Top</Button>
-      </Popover>
-      <Popover placement="bottom" content={<PopoverBody>Bottom</PopoverBody>}>
-        <Button>Bottom</Button>
-      </Popover>
-      <Popover placement="left" content={<PopoverBody>Left</PopoverBody>}>
-        <Button>Left</Button>
-      </Popover>
-      <Popover placement="right" content={<PopoverBody>Right</PopoverBody>}>
-        <Button>Right</Button>
-      </Popover>
-    </HStack>
   </TabItem>
 </Tabs>
 

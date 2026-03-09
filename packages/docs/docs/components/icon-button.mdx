@@ -6,10 +6,17 @@ description: "Compact icon-only button component with variants, sizes, and color
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { IconButton, HStack, VStack, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # IconButton
 
 IconButton is a compact, icon-only button component. It requires an `aria-label` for accessibility.
+
+<StorybookLink storyId="components-icon-button--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -19,11 +26,22 @@ import { IconButton } from "@tosui/react";
 
 ## Basic Usage
 
-```tsx
-import { EditIcon } from "your-icon-library";
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-icon-button--basic"
+      title="Tosui IconButton basic story"
+      height={180}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    import { EditIcon } from "your-icon-library";
 
-<IconButton icon={<EditIcon />} aria-label="Edit item" />
-```
+    <IconButton icon={<EditIcon />} aria-label="Edit item" />
+    ```
+  </TabItem>
+</Tabs>
 
 ## Variants
 

@@ -6,10 +6,17 @@ description: "User or entity display with image, initials fallback, or placehold
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Avatar, HStack, VStack, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Avatar
 
 Avatar displays a user or entity with an image, initials fallback, or placeholder icon.
+
+<StorybookLink storyId="components-avatar--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,19 +27,31 @@ import { Avatar } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-avatar--basic"
+      title="Tosui avatar basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Avatar src="https://i.pravatar.cc/150?img=1" name="John Doe" />
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Avatar src="https://i.pravatar.cc/150?img=1" name="John Doe" />
   </TabItem>
 </Tabs>
 
 ## Sizes
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={4} align="center">
+      <Avatar size="sm" name="John Doe" />
+      <Avatar size="md" name="John Doe" />
+      <Avatar size="lg" name="John Doe" />
+      <Avatar size="xl" name="John Doe" />
+    </HStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4} align="center">
@@ -42,14 +61,6 @@ import { Avatar } from "@tosui/react";
       <Avatar size="xl" name="John Doe" />
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4} align="center">
-      <Avatar size="sm" name="John Doe" />
-      <Avatar size="md" name="John Doe" />
-      <Avatar size="lg" name="John Doe" />
-      <Avatar size="xl" name="John Doe" />
-    </HStack>
   </TabItem>
 </Tabs>
 
@@ -58,6 +69,14 @@ import { Avatar } from "@tosui/react";
 When no image is provided, Avatar shows initials from the name.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={4}>
+      <Avatar name="John Doe" />
+      <Avatar name="Jane Smith" />
+      <Avatar name="Alice" />
+      <Avatar name="Bob Builder" />
+    </HStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4}>
@@ -67,14 +86,6 @@ When no image is provided, Avatar shows initials from the name.
       <Avatar name="Bob Builder" />
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4}>
-      <Avatar name="John Doe" />
-      <Avatar name="Jane Smith" />
-      <Avatar name="Alice" />
-      <Avatar name="Bob Builder" />
-    </HStack>
   </TabItem>
 </Tabs>
 
@@ -83,19 +94,25 @@ When no image is provided, Avatar shows initials from the name.
 When no name or image is provided, a placeholder icon is shown.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Avatar />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Avatar />
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Avatar />
   </TabItem>
 </Tabs>
 
 ## Rounded Variants
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={4}>
+      <Avatar rounded="full" name="John Doe" />
+      <Avatar rounded="md" name="Jane Smith" />
+    </HStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4}>
@@ -103,12 +120,6 @@ When no name or image is provided, a placeholder icon is shown.
       <Avatar rounded="md" name="Jane Smith" />
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4}>
-      <Avatar rounded="full" name="John Doe" />
-      <Avatar rounded="md" name="Jane Smith" />
-    </HStack>
   </TabItem>
 </Tabs>
 
@@ -129,6 +140,15 @@ If the image fails to load, Avatar falls back to initials.
 ### Avatar with Name
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={3} align="center">
+      <Avatar size="md" name="John Doe" />
+      <VStack gap={0} align="flex-start">
+        <Box fontWeight="medium">John Doe</Box>
+        <Box fontSize="sm" color="foreground-muted">john@example.com</Box>
+      </VStack>
+    </HStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={3} align="center">
@@ -140,20 +160,19 @@ If the image fails to load, Avatar falls back to initials.
     </HStack>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={3} align="center">
-      <Avatar size="md" name="John Doe" />
-      <VStack gap={0} align="flex-start">
-        <Box fontWeight="medium">John Doe</Box>
-        <Box fontSize="sm" color="foreground-muted">john@example.com</Box>
-      </VStack>
-    </HStack>
-  </TabItem>
 </Tabs>
 
 ### Avatar Group
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Box display="flex" style={{ marginLeft: '8px' }}>
+      <Avatar name="Alice" size="md" />
+      <Box ml={-2}><Avatar name="Bob" size="md" /></Box>
+      <Box ml={-2}><Avatar name="Carol" size="md" /></Box>
+      <Box ml={-2}><Avatar name="Dan" size="md" /></Box>
+    </Box>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={-2}>
@@ -163,14 +182,6 @@ If the image fails to load, Avatar falls back to initials.
       <Avatar name="Dan" size="md" />
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Box display="flex" style={{ marginLeft: '8px' }}>
-      <Avatar name="Alice" size="md" />
-      <Box ml={-2}><Avatar name="Bob" size="md" /></Box>
-      <Box ml={-2}><Avatar name="Carol" size="md" /></Box>
-      <Box ml={-2}><Avatar name="Dan" size="md" /></Box>
-    </Box>
   </TabItem>
 </Tabs>
 

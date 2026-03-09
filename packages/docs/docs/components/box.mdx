@@ -6,10 +6,17 @@ description: "Foundational layout primitive with comprehensive styling props for
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Box
 
 The Box component is Tosui's foundational primitive for layout and styling. It's a polymorphic component that can render as any HTML element while providing a comprehensive set of styling props.
+
+<StorybookLink storyId="components-box--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -19,11 +26,22 @@ import { Box } from "@tosui/react";
 
 ## Basic Usage
 
-```tsx
-<Box p={4} bg="surface" rounded="md">
-  Content goes here
-</Box>
-```
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-box--basic"
+      title="Tosui Box basic story"
+      height={180}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Box p={4} bg="surface" rounded="md">
+      Content goes here
+    </Box>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Polymorphic Rendering
 
@@ -50,6 +68,17 @@ Box supports Tosui's multiplier-based spacing system (4px base unit):
 ### Padding
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Box p={4} bg="surface" border="thin" borderColor="border" mb={2}>
+      <span>All sides: 16px</span>
+    </Box>
+    <Box px={6} py={3} bg="surface" border="thin" borderColor="border" mb={2}>
+      Horizontal: 24px, Vertical: 12px
+    </Box>
+    <Box pt={2} pb={4} bg="surface" border="thin" borderColor="border">
+      Top: 8px, Bottom: 16px
+    </Box>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Box p={4} bg="surface" border="thin" borderColor="border">
@@ -62,17 +91,6 @@ Box supports Tosui's multiplier-based spacing system (4px base unit):
       Top: 8px, Bottom: 16px
     </Box>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Box p={4} bg="surface" border="thin" borderColor="border" mb={2}>
-      <span>All sides: 16px</span>
-    </Box>
-    <Box px={6} py={3} bg="surface" border="thin" borderColor="border" mb={2}>
-      Horizontal: 24px, Vertical: 12px
-    </Box>
-    <Box pt={2} pb={4} bg="surface" border="thin" borderColor="border">
-      Top: 8px, Bottom: 16px
-    </Box>
   </TabItem>
 </Tabs>
 
@@ -122,6 +140,18 @@ Size props: `w`, `h`, `minW`, `maxW`, `minH`, `maxH`
 Box provides comprehensive flexbox support:
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Box display="flex" flexDirection="column" gap={4} p={4} bg="surface" border="thin" borderColor="border" mb={2}>
+      <Box p={2} bg="primary-subtle">Item 1</Box>
+      <Box p={2} bg="accent-subtle">Item 2</Box>
+    </Box>
+
+    <Box display="flex" justifyContent="space-between" alignItems="center" p={4} bg="surface" border="thin" borderColor="border">
+      <Box>Left</Box>
+      <Box>Right</Box>
+    </Box>
+
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Box display="flex" flexDirection="column" gap={4} p={4} bg="surface" border="thin" borderColor="border">
@@ -134,18 +164,6 @@ Box provides comprehensive flexbox support:
       <Box>Right</Box>
     </Box>
     ```
-
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Box display="flex" flexDirection="column" gap={4} p={4} bg="surface" border="thin" borderColor="border" mb={2}>
-      <Box p={2} bg="primary-subtle">Item 1</Box>
-      <Box p={2} bg="accent-subtle">Item 2</Box>
-    </Box>
-
-    <Box display="flex" justifyContent="space-between" alignItems="center" p={4} bg="surface" border="thin" borderColor="border">
-      <Box>Left</Box>
-      <Box>Right</Box>
-    </Box>
 
   </TabItem>
 </Tabs>
@@ -187,6 +205,20 @@ Color props: `color`, `bg`, `borderColor`
 ## Borders
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Box border="thin" borderColor="border" p={4} mb={2}>
+      All borders
+    </Box>
+
+    <Box borderLeft="medium" borderColor="primary-default" p={4} mb={2}>
+      Left border accent
+    </Box>
+
+    <Box borderY="thin" borderStyle="dashed" borderColor="border" p={4}>
+      Dashed top and bottom borders
+    </Box>
+
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Box border="thin" borderColor="border" p={4}>
@@ -203,20 +235,6 @@ Color props: `color`, `bg`, `borderColor`
     ```
 
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Box border="thin" borderColor="border" p={4} mb={2}>
-      All borders
-    </Box>
-
-    <Box borderLeft="medium" borderColor="primary-default" p={4} mb={2}>
-      Left border accent
-    </Box>
-
-    <Box borderY="thin" borderStyle="dashed" borderColor="border" p={4}>
-      Dashed top and bottom borders
-    </Box>
-
-  </TabItem>
 </Tabs>
 
 Border props: `border`, `borderX`, `borderY`, `borderTop`, `borderRight`, `borderBottom`, `borderLeft`, `borderStyle`
@@ -226,6 +244,20 @@ Border widths: `none`, `thin` (1px), `medium` (2px), `thick` (4px)
 ## Roundness
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Box rounded="md" p={4} bg="surface" border="thin" borderColor="border" mb={2}>
+      Standard rounded corners
+    </Box>
+
+    <Box rounded="lg" roundedTopLeft="none" p={4} bg="surface" border="thin" borderColor="border" mb={2}>
+      Sharp top-left corner
+    </Box>
+
+    <Box rounded="full" px={6} py={2} bg="primary-default" color="white" display="inline-block">
+      Fully rounded (pill shape)
+    </Box>
+
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Box rounded="md" p={4} bg="surface" border="thin" borderColor="border">
@@ -242,20 +274,6 @@ Border widths: `none`, `thin` (1px), `medium` (2px), `thick` (4px)
     ```
 
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Box rounded="md" p={4} bg="surface" border="thin" borderColor="border" mb={2}>
-      Standard rounded corners
-    </Box>
-
-    <Box rounded="lg" roundedTopLeft="none" p={4} bg="surface" border="thin" borderColor="border" mb={2}>
-      Sharp top-left corner
-    </Box>
-
-    <Box rounded="full" px={6} py={2} bg="primary-default" color="white" display="inline-block">
-      Fully rounded (pill shape)
-    </Box>
-
-  </TabItem>
 </Tabs>
 
 Roundness props: `rounded`, `roundedTop`, `roundedBottom`, `roundedLeft`, `roundedRight`, `roundedTopLeft`, `roundedTopRight`, `roundedBottomLeft`, `roundedBottomRight`
@@ -265,6 +283,20 @@ Values: `none`, `sm`, `md`, `lg`, `full`
 ## Shadows
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Box shadow="sm" p={4} bg="surface" rounded="md" mb={3}>
+      Subtle elevation
+    </Box>
+
+    <Box shadow="md" p={4} bg="surface" rounded="md" mb={3}>
+      Card with medium elevation
+    </Box>
+
+    <Box shadow="lg" p={4} bg="surface" rounded="md">
+      Modal with high elevation
+    </Box>
+
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Box shadow="sm" p={4} bg="surface" rounded="md">
@@ -279,20 +311,6 @@ Values: `none`, `sm`, `md`, `lg`, `full`
       Modal with high elevation
     </Box>
     ```
-
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Box shadow="sm" p={4} bg="surface" rounded="md" mb={3}>
-      Subtle elevation
-    </Box>
-
-    <Box shadow="md" p={4} bg="surface" rounded="md" mb={3}>
-      Card with medium elevation
-    </Box>
-
-    <Box shadow="lg" p={4} bg="surface" rounded="md">
-      Modal with high elevation
-    </Box>
 
   </TabItem>
 </Tabs>

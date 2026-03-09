@@ -6,10 +6,17 @@ description: "Semantic heading component (h1-h6) with automatic font size defaul
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Heading, Box, Text } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Heading
 
 The Heading component is a semantic heading component built on top of Text, designed specifically for headings with sensible defaults for each heading level.
+
+<StorybookLink storyId="components-heading--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -19,9 +26,20 @@ import { Heading } from "@tosui/react";
 
 ## Basic Usage
 
-```tsx
-<Heading>Default h1 heading</Heading>
-```
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-heading--basic"
+      title="Tosui Heading basic story"
+      height={180}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Heading>Default h1 heading</Heading>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Key Features
 
@@ -37,6 +55,14 @@ import { Heading } from "@tosui/react";
 The `level` prop controls both the HTML element and default font size:
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Heading level={1}>Heading 1 (30px, 3xl)</Heading>
+    <Heading level={2}>Heading 2 (24px, 2xl)</Heading>
+    <Heading level={3}>Heading 3 (20px, xl)</Heading>
+    <Heading level={4}>Heading 4 (18px, lg)</Heading>
+    <Heading level={5}>Heading 5 (16px, md)</Heading>
+    <Heading level={6}>Heading 6 (14px, sm)</Heading>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Heading level={1}>Heading 1 (30px, 3xl)</Heading>
@@ -46,14 +72,6 @@ The `level` prop controls both the HTML element and default font size:
     <Heading level={5}>Heading 5 (16px, md)</Heading>
     <Heading level={6}>Heading 6 (14px, sm)</Heading>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Heading level={1}>Heading 1 (30px, 3xl)</Heading>
-    <Heading level={2}>Heading 2 (24px, 2xl)</Heading>
-    <Heading level={3}>Heading 3 (20px, xl)</Heading>
-    <Heading level={4}>Heading 4 (18px, lg)</Heading>
-    <Heading level={5}>Heading 5 (16px, md)</Heading>
-    <Heading level={6}>Heading 6 (14px, sm)</Heading>
   </TabItem>
 </Tabs>
 
@@ -87,6 +105,12 @@ You can override the default size for any heading level:
 Headings default to `bold` weight, but can be customized:
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Heading weight="bold">Bold heading (default)</Heading>
+    <Heading weight="semibold">Semibold heading</Heading>
+    <Heading weight="medium">Medium heading</Heading>
+    <Heading weight="normal">Normal weight heading</Heading>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Heading weight="bold">Bold heading (default)</Heading>
@@ -94,12 +118,6 @@ Headings default to `bold` weight, but can be customized:
     <Heading weight="medium">Medium heading</Heading>
     <Heading weight="normal">Normal weight heading</Heading>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Heading weight="bold">Bold heading (default)</Heading>
-    <Heading weight="semibold">Semibold heading</Heading>
-    <Heading weight="medium">Medium heading</Heading>
-    <Heading weight="normal">Normal weight heading</Heading>
   </TabItem>
 </Tabs>
 
@@ -110,6 +128,12 @@ Available weights: `normal` | `medium` | `semibold` | `bold`
 Use semantic color tokens:
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Heading color="foreground">Default foreground</Heading>
+    <Heading color="primary">Primary brand color</Heading>
+    <Heading color="accent">Accent color</Heading>
+    <Heading color="foreground-muted">Muted heading</Heading>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Heading color="foreground">Default foreground</Heading>
@@ -117,12 +141,6 @@ Use semantic color tokens:
     <Heading color="accent">Accent color</Heading>
     <Heading color="foreground-muted">Muted heading</Heading>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Heading color="foreground">Default foreground</Heading>
-    <Heading color="primary">Primary brand color</Heading>
-    <Heading color="accent">Accent color</Heading>
-    <Heading color="foreground-muted">Muted heading</Heading>
   </TabItem>
 </Tabs>
 

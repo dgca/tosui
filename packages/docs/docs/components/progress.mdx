@@ -6,10 +6,17 @@ description: "Visual indicator showing completion percentage or loading state wi
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Progress, VStack, HStack, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Progress
 
 Progress is a visual indicator showing completion percentage or loading state.
+
+<StorybookLink storyId="components-progress--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,19 +27,32 @@ import { Progress } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-progress--basic"
+      title="Tosui progress basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Progress value={60} />
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Progress value={60} />
   </TabItem>
 </Tabs>
 
 ## Values
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4}>
+      <Progress value={0} />
+      <Progress value={25} />
+      <Progress value={50} />
+      <Progress value={75} />
+      <Progress value={100} />
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -44,20 +64,18 @@ import { Progress } from "@tosui/react";
     </VStack>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <Progress value={0} />
-      <Progress value={25} />
-      <Progress value={50} />
-      <Progress value={75} />
-      <Progress value={100} />
-    </VStack>
-  </TabItem>
 </Tabs>
 
 ## Sizes
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4}>
+      <Box><Box fontSize="xs" color="foreground-muted" mb={1}>sm (4px)</Box><Progress value={60} size="sm" /></Box>
+      <Box><Box fontSize="xs" color="foreground-muted" mb={1}>md (8px)</Box><Progress value={60} size="md" /></Box>
+      <Box><Box fontSize="xs" color="foreground-muted" mb={1}>lg (12px)</Box><Progress value={60} size="lg" /></Box>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -67,18 +85,21 @@ import { Progress } from "@tosui/react";
     </VStack>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <Box><Box fontSize="xs" color="foreground-muted" mb={1}>sm (4px)</Box><Progress value={60} size="sm" /></Box>
-      <Box><Box fontSize="xs" color="foreground-muted" mb={1}>md (8px)</Box><Progress value={60} size="md" /></Box>
-      <Box><Box fontSize="xs" color="foreground-muted" mb={1}>lg (12px)</Box><Progress value={60} size="lg" /></Box>
-    </VStack>
-  </TabItem>
 </Tabs>
 
 ## Color Schemes
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4}>
+      <Progress value={60} colorScheme="primary" />
+      <Progress value={60} colorScheme="accent" />
+      <Progress value={60} colorScheme="success" />
+      <Progress value={60} colorScheme="warning" />
+      <Progress value={60} colorScheme="error" />
+      <Progress value={60} colorScheme="info" />
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -90,16 +111,6 @@ import { Progress } from "@tosui/react";
       <Progress value={60} colorScheme="info" />
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <Progress value={60} colorScheme="primary" />
-      <Progress value={60} colorScheme="accent" />
-      <Progress value={60} colorScheme="success" />
-      <Progress value={60} colorScheme="warning" />
-      <Progress value={60} colorScheme="error" />
-      <Progress value={60} colorScheme="info" />
-    </VStack>
   </TabItem>
 </Tabs>
 
@@ -108,29 +119,29 @@ import { Progress } from "@tosui/react";
 Use `isIndeterminate` for loading states where progress is unknown.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Progress isIndeterminate />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Progress isIndeterminate />
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Progress isIndeterminate />
   </TabItem>
 </Tabs>
 
 ## Custom Max Value
 
 <Tabs>
-  <TabItem value="code" label="Code">
-    ```tsx
-    <Progress value={3} max={10} />
-    ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
+  <TabItem value="preview" label="Preview" default>
     <Box>
       <Box fontSize="xs" color="foreground-muted" mb={1}>3 of 10 complete</Box>
       <Progress value={3} max={10} />
     </Box>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Progress value={3} max={10} />
+    ```
   </TabItem>
 </Tabs>
 

@@ -7,6 +7,7 @@
   "scripts": {
     "f:lib": "pnpm -F @tosui/react",
     "f:docs": "pnpm -F docs",
+    "build:site": "pnpm -F @tosui/react build && pnpm -F @tosui/react storybook:build && pnpm -F docs build && pnpm -F docs copy-storybook",
     "test": "echo \"Error: no test specified\" && exit 1",
     "changeset": "changeset",
     "version-packages": "changeset version",

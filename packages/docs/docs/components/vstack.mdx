@@ -6,10 +6,17 @@ description: "Convenience wrapper around Stack with a fixed vertical (column) di
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { VStack, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # VStack
 
 VStack is a convenience wrapper around Stack with a fixed vertical (column) direction. Use it for vertical layouts.
+
+<StorybookLink storyId="components-vstack--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,6 +27,13 @@ import { VStack } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-vstack--basic"
+      title="Tosui vstack basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -28,19 +42,19 @@ import { VStack } from "@tosui/react";
       <Box p={4} bg="success-subtle">Item 3</Box>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <Box p={4} bg="primary-subtle">Item 1</Box>
-      <Box p={4} bg="accent-subtle">Item 2</Box>
-      <Box p={4} bg="success-subtle">Item 3</Box>
-    </VStack>
   </TabItem>
 </Tabs>
 
 ## Alignment
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4} align="center" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={4} bg="primary-subtle" w="200px">Centered</Box>
+      <Box p={4} bg="accent-subtle" w="150px">Items</Box>
+      <Box p={4} bg="success-subtle" w="100px">Here</Box>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4} align="center" p={4} bg="surface" border="thin" borderColor="border">
@@ -49,13 +63,6 @@ import { VStack } from "@tosui/react";
       <Box p={4} bg="success-subtle" w="100px">Here</Box>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4} align="center" p={4} bg="surface" border="thin" borderColor="border">
-      <Box p={4} bg="primary-subtle" w="200px">Centered</Box>
-      <Box p={4} bg="accent-subtle" w="150px">Items</Box>
-      <Box p={4} bg="success-subtle" w="100px">Here</Box>
-    </VStack>
   </TabItem>
 </Tabs>
 

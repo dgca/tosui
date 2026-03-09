@@ -6,10 +6,17 @@ description: "Text input field with sm, md, and lg sizes, outline and filled var
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Input, VStack, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Input
 
 Input is a text input field component with size variants, visual styles, and validation states.
+
+<StorybookLink storyId="components-input--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,19 +27,30 @@ import { Input } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-input--basic"
+      title="Tosui input basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Input placeholder="Enter your name" />
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Input placeholder="Enter your name" />
   </TabItem>
 </Tabs>
 
 ## Sizes
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4}>
+      <Input size="sm" placeholder="Small input" />
+      <Input size="md" placeholder="Medium input (default)" />
+      <Input size="lg" placeholder="Large input" />
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -41,19 +59,18 @@ import { Input } from "@tosui/react";
       <Input size="lg" placeholder="Large input" />
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <Input size="sm" placeholder="Small input" />
-      <Input size="md" placeholder="Medium input (default)" />
-      <Input size="lg" placeholder="Large input" />
-    </VStack>
   </TabItem>
 </Tabs>
 
 ## Variants
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4}>
+      <Input variant="outline" placeholder="Outline variant (default)" />
+      <Input variant="filled" placeholder="Filled variant" />
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -61,18 +78,19 @@ import { Input } from "@tosui/react";
       <Input variant="filled" placeholder="Filled variant" />
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <Input variant="outline" placeholder="Outline variant (default)" />
-      <Input variant="filled" placeholder="Filled variant" />
-    </VStack>
   </TabItem>
 </Tabs>
 
 ## States
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4}>
+      <Input placeholder="Normal input" />
+      <Input disabled placeholder="Disabled input" />
+      <Input isInvalid placeholder="Invalid input" />
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -81,13 +99,6 @@ import { Input } from "@tosui/react";
       <Input isInvalid placeholder="Invalid input" />
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <Input placeholder="Normal input" />
-      <Input disabled placeholder="Disabled input" />
-      <Input isInvalid placeholder="Invalid input" />
-    </VStack>
   </TabItem>
 </Tabs>
 
@@ -96,6 +107,15 @@ import { Input } from "@tosui/react";
 Input supports all native HTML input types.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4}>
+      <Input type="text" placeholder="Text input" />
+      <Input type="email" placeholder="Email input" />
+      <Input type="password" placeholder="Password input" />
+      <Input type="number" placeholder="Number input" />
+      <Input type="date" />
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -106,15 +126,6 @@ Input supports all native HTML input types.
       <Input type="date" />
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <Input type="text" placeholder="Text input" />
-      <Input type="email" placeholder="Email input" />
-      <Input type="password" placeholder="Password input" />
-      <Input type="number" placeholder="Number input" />
-      <Input type="date" />
-    </VStack>
   </TabItem>
 </Tabs>
 

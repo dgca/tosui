@@ -6,10 +6,17 @@ description: "Max-width centered content wrapper with preset sizes for constrain
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Container, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Container
 
 Container provides a max-width centered content wrapper with preset sizes. Use it to constrain page content to readable widths.
+
+<StorybookLink storyId="components-container--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,6 +27,13 @@ import { Container } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-container--basic"
+      title="Tosui container basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Container>
@@ -28,19 +42,32 @@ import { Container } from "@tosui/react";
       </Box>
     </Container>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Container>
-      <Box p={4} bg="surface" border="thin" borderColor="border">
-        Content constrained to max-width (default: lg = 1024px)
-      </Box>
-    </Container>
   </TabItem>
 </Tabs>
 
 ## Sizes
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Container size="sm">
+      <Box p={4} bg="primary-subtle" mb={2}>sm: 640px max-width</Box>
+    </Container>
+    <Container size="md">
+      <Box p={4} bg="accent-subtle" mb={2}>md: 768px max-width</Box>
+    </Container>
+    <Container size="lg">
+      <Box p={4} bg="success-subtle" mb={2}>lg: 1024px max-width (default)</Box>
+    </Container>
+    <Container size="xl">
+      <Box p={4} bg="warning-subtle" mb={2}>xl: 1280px max-width</Box>
+    </Container>
+    <Container size="2xl">
+      <Box p={4} bg="error-subtle" mb={2}>2xl: 1536px max-width</Box>
+    </Container>
+    <Container size="full">
+      <Box p={4} bg="info-subtle">full: 100% width</Box>
+    </Container>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Container size="sm">
@@ -62,26 +89,6 @@ import { Container } from "@tosui/react";
       <Box p={4} bg="info-subtle">full: 100% width</Box>
     </Container>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Container size="sm">
-      <Box p={4} bg="primary-subtle" mb={2}>sm: 640px max-width</Box>
-    </Container>
-    <Container size="md">
-      <Box p={4} bg="accent-subtle" mb={2}>md: 768px max-width</Box>
-    </Container>
-    <Container size="lg">
-      <Box p={4} bg="success-subtle" mb={2}>lg: 1024px max-width (default)</Box>
-    </Container>
-    <Container size="xl">
-      <Box p={4} bg="warning-subtle" mb={2}>xl: 1280px max-width</Box>
-    </Container>
-    <Container size="2xl">
-      <Box p={4} bg="error-subtle" mb={2}>2xl: 1536px max-width</Box>
-    </Container>
-    <Container size="full">
-      <Box p={4} bg="info-subtle">full: 100% width</Box>
-    </Container>
   </TabItem>
 </Tabs>
 
@@ -90,6 +97,13 @@ import { Container } from "@tosui/react";
 Use `centerContent` to center children both horizontally and vertically.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Container size="md" centerContent>
+      <Box p={4} bg="primary-subtle">
+        Centered content
+      </Box>
+    </Container>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Container size="md" centerContent>
@@ -98,13 +112,6 @@ Use `centerContent` to center children both horizontally and vertically.
       </Box>
     </Container>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Container size="md" centerContent>
-      <Box p={4} bg="primary-subtle">
-        Centered content
-      </Box>
-    </Container>
   </TabItem>
 </Tabs>
 
@@ -113,6 +120,13 @@ Use `centerContent` to center children both horizontally and vertically.
 The default horizontal padding is 16px (px={4}). Override it as needed.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Container px={8}>
+      <Box p={4} bg="surface" border="thin" borderColor="border">
+        Container with 32px horizontal padding
+      </Box>
+    </Container>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Container px={8}>
@@ -121,13 +135,6 @@ The default horizontal padding is 16px (px={4}). Override it as needed.
       </Box>
     </Container>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Container px={8}>
-      <Box p={4} bg="surface" border="thin" borderColor="border">
-        Container with 32px horizontal padding
-      </Box>
-    </Container>
   </TabItem>
 </Tabs>
 

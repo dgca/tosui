@@ -6,10 +6,17 @@ description: "Semantic list component for displaying ordered or unordered items 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { List, ListItem, ListIcon, VStack, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # List
 
 List is a semantic list component for displaying ordered or unordered items.
+
+<StorybookLink storyId="components-list--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,6 +27,13 @@ import { List, ListItem, ListIcon } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-list--basic"
+      title="Tosui list basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <List>
@@ -28,19 +42,19 @@ import { List, ListItem, ListIcon } from "@tosui/react";
       <ListItem>Third item</ListItem>
     </List>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <List>
-      <ListItem>First item</ListItem>
-      <ListItem>Second item</ListItem>
-      <ListItem>Third item</ListItem>
-    </List>
   </TabItem>
 </Tabs>
 
 ## Ordered List
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <List as="ol">
+      <ListItem>Step one</ListItem>
+      <ListItem>Step two</ListItem>
+      <ListItem>Step three</ListItem>
+    </List>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <List as="ol">
@@ -49,19 +63,37 @@ import { List, ListItem, ListIcon } from "@tosui/react";
       <ListItem>Step three</ListItem>
     </List>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <List as="ol">
-      <ListItem>Step one</ListItem>
-      <ListItem>Step two</ListItem>
-      <ListItem>Step three</ListItem>
-    </List>
   </TabItem>
 </Tabs>
 
 ## Style Types
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={6} align="flex-start">
+      <Box>
+        <Box fontWeight="medium" mb={2}>None (default for ul)</Box>
+        <List styleType="none">
+          <ListItem>Item without bullet</ListItem>
+          <ListItem>Another item</ListItem>
+        </List>
+      </Box>
+      <Box>
+        <Box fontWeight="medium" mb={2}>Disc</Box>
+        <List styleType="disc">
+          <ListItem>Item with bullet</ListItem>
+          <ListItem>Another item</ListItem>
+        </List>
+      </Box>
+      <Box>
+        <Box fontWeight="medium" mb={2}>Decimal (default for ol)</Box>
+        <List as="ol" styleType="decimal">
+          <ListItem>Numbered item</ListItem>
+          <ListItem>Another item</ListItem>
+        </List>
+      </Box>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={6} align="flex-start">
@@ -90,37 +122,32 @@ import { List, ListItem, ListIcon } from "@tosui/react";
       </Box>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={6} align="flex-start">
-      <Box>
-        <Box fontWeight="medium" mb={2}>None (default for ul)</Box>
-        <List styleType="none">
-          <ListItem>Item without bullet</ListItem>
-          <ListItem>Another item</ListItem>
-        </List>
-      </Box>
-      <Box>
-        <Box fontWeight="medium" mb={2}>Disc</Box>
-        <List styleType="disc">
-          <ListItem>Item with bullet</ListItem>
-          <ListItem>Another item</ListItem>
-        </List>
-      </Box>
-      <Box>
-        <Box fontWeight="medium" mb={2}>Decimal (default for ol)</Box>
-        <List as="ol" styleType="decimal">
-          <ListItem>Numbered item</ListItem>
-          <ListItem>Another item</ListItem>
-        </List>
-      </Box>
-    </VStack>
   </TabItem>
 </Tabs>
 
 ## Spacing
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={6}>
+      <Box>
+        <Box fontWeight="medium" mb={2}>No spacing (default)</Box>
+        <List styleType="disc" spacing={0}>
+          <ListItem>First item</ListItem>
+          <ListItem>Second item</ListItem>
+          <ListItem>Third item</ListItem>
+        </List>
+      </Box>
+      <Box>
+        <Box fontWeight="medium" mb={2}>With spacing</Box>
+        <List styleType="disc" spacing={2}>
+          <ListItem>First item</ListItem>
+          <ListItem>Second item</ListItem>
+          <ListItem>Third item</ListItem>
+        </List>
+      </Box>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={6}>
@@ -143,26 +170,6 @@ import { List, ListItem, ListIcon } from "@tosui/react";
       </Box>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={6}>
-      <Box>
-        <Box fontWeight="medium" mb={2}>No spacing (default)</Box>
-        <List styleType="disc" spacing={0}>
-          <ListItem>First item</ListItem>
-          <ListItem>Second item</ListItem>
-          <ListItem>Third item</ListItem>
-        </List>
-      </Box>
-      <Box>
-        <Box fontWeight="medium" mb={2}>With spacing</Box>
-        <List styleType="disc" spacing={2}>
-          <ListItem>First item</ListItem>
-          <ListItem>Second item</ListItem>
-          <ListItem>Third item</ListItem>
-        </List>
-      </Box>
-    </VStack>
   </TabItem>
 </Tabs>
 

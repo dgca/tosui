@@ -6,10 +6,17 @@ description: "Wrapper component providing labels, helper text, error messages, a
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { FormField, Input, Select, Textarea, Checkbox, VStack, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # FormField
 
 FormField is a wrapper component that provides labels, helper text, error messages, and accessibility features for form controls.
+
+<StorybookLink storyId="components-form-field--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,51 +27,53 @@ import { FormField } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-form-field--basic"
+      title="Tosui form-field basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <FormField label="Email">
       <Input type="email" placeholder="you@example.com" />
     </FormField>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <FormField label="Email">
-      <Input type="email" placeholder="you@example.com" />
-    </FormField>
   </TabItem>
 </Tabs>
 
 ## Helper Text
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <FormField label="Password" helperText="Must be at least 8 characters">
+      <Input type="password" placeholder="Enter password" />
+    </FormField>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <FormField label="Password" helperText="Must be at least 8 characters">
       <Input type="password" placeholder="Enter password" />
     </FormField>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <FormField label="Password" helperText="Must be at least 8 characters">
-      <Input type="password" placeholder="Enter password" />
-    </FormField>
   </TabItem>
 </Tabs>
 
 ## Required Field
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <FormField label="Username" isRequired>
+      <Input placeholder="Enter username" />
+    </FormField>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <FormField label="Username" isRequired>
       <Input placeholder="Enter username" />
     </FormField>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <FormField label="Username" isRequired>
-      <Input placeholder="Enter username" />
-    </FormField>
   </TabItem>
 </Tabs>
 
@@ -73,6 +82,16 @@ import { FormField } from "@tosui/react";
 When `isInvalid` is true, the error message replaces the helper text.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <FormField
+      label="Email"
+      errorMessage="Please enter a valid email address"
+      isInvalid
+      isRequired
+    >
+      <Input type="email" placeholder="you@example.com" />
+    </FormField>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <FormField
@@ -84,33 +103,23 @@ When `isInvalid` is true, the error message replaces the helper text.
       <Input type="email" placeholder="you@example.com" />
     </FormField>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <FormField
-      label="Email"
-      errorMessage="Please enter a valid email address"
-      isInvalid
-      isRequired
-    >
-      <Input type="email" placeholder="you@example.com" />
-    </FormField>
   </TabItem>
 </Tabs>
 
 ## Disabled State
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <FormField label="Disabled Field" disabled>
+      <Input placeholder="Cannot edit" />
+    </FormField>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <FormField label="Disabled Field" disabled>
       <Input placeholder="Cannot edit" />
     </FormField>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <FormField label="Disabled Field" disabled>
-      <Input placeholder="Cannot edit" />
-    </FormField>
   </TabItem>
 </Tabs>
 
@@ -119,6 +128,29 @@ When `isInvalid` is true, the error message replaces the helper text.
 FormField works with any form control.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={6}>
+      <FormField label="Country" isRequired>
+        <Select>
+          <option value="">Select a country</option>
+          <option value="us">United States</option>
+          <option value="uk">United Kingdom</option>
+        </Select>
+      </FormField>
+
+      <FormField label="Bio" helperText="Tell us about yourself">
+        <Textarea rows={4} placeholder="Your bio..." />
+      </FormField>
+
+      <FormField
+        label="Terms"
+        errorMessage="You must accept the terms"
+        isInvalid
+      >
+        <Checkbox label="I accept the terms and conditions" />
+      </FormField>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={6}>
@@ -143,29 +175,6 @@ FormField works with any form control.
       </FormField>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={6}>
-      <FormField label="Country" isRequired>
-        <Select>
-          <option value="">Select a country</option>
-          <option value="us">United States</option>
-          <option value="uk">United Kingdom</option>
-        </Select>
-      </FormField>
-
-      <FormField label="Bio" helperText="Tell us about yourself">
-        <Textarea rows={4} placeholder="Your bio..." />
-      </FormField>
-
-      <FormField
-        label="Terms"
-        errorMessage="You must accept the terms"
-        isInvalid
-      >
-        <Checkbox label="I accept the terms and conditions" />
-      </FormField>
-    </VStack>
   </TabItem>
 </Tabs>
 

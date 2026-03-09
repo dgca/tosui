@@ -6,10 +6,17 @@ description: "Inline code styling component with monospace font and optional bac
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Code, VStack, HStack, Box, Text } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Code
 
 Code is an inline code styling component with monospace font and optional background.
+
+<StorybookLink storyId="components-code--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,23 +27,31 @@ import { Code } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-code--basic"
+      title="Tosui code basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Text>
       Run <Code>npm install</Code> to install dependencies.
     </Text>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Text>
-      Run <Code>npm install</Code> to install dependencies.
-    </Text>
   </TabItem>
 </Tabs>
 
 ## Variants
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4} align="flex-start">
+      <Text>Plain variant: <Code variant="plain">code here</Code></Text>
+      <Text>Subtle variant: <Code variant="subtle">code here</Code></Text>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4} align="flex-start">
@@ -44,18 +59,21 @@ import { Code } from "@tosui/react";
       <Text>Subtle variant: <Code variant="subtle">code here</Code></Text>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4} align="flex-start">
-      <Text>Plain variant: <Code variant="plain">code here</Code></Text>
-      <Text>Subtle variant: <Code variant="subtle">code here</Code></Text>
-    </VStack>
   </TabItem>
 </Tabs>
 
 ## Colors
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={2} align="flex-start">
+      <Code variant="subtle">Default color</Code>
+      <Code variant="subtle" color="primary">Primary color</Code>
+      <Code variant="subtle" color="accent">Accent color</Code>
+      <Code variant="subtle" color="success">Success color</Code>
+      <Code variant="subtle" color="error">Error color</Code>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={2} align="flex-start">
@@ -66,21 +84,20 @@ import { Code } from "@tosui/react";
       <Code variant="subtle" color="error">Error color</Code>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={2} align="flex-start">
-      <Code variant="subtle">Default color</Code>
-      <Code variant="subtle" color="primary">Primary color</Code>
-      <Code variant="subtle" color="accent">Accent color</Code>
-      <Code variant="subtle" color="success">Success color</Code>
-      <Code variant="subtle" color="error">Error color</Code>
-    </VStack>
   </TabItem>
 </Tabs>
 
 ## Sizes
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={2} align="flex-start">
+      <Code variant="subtle" size="xs">Extra small</Code>
+      <Code variant="subtle" size="sm">Small</Code>
+      <Code variant="subtle" size="md">Medium</Code>
+      <Code variant="subtle" size="lg">Large</Code>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={2} align="flex-start">
@@ -90,14 +107,6 @@ import { Code } from "@tosui/react";
       <Code variant="subtle" size="lg">Large</Code>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={2} align="flex-start">
-      <Code variant="subtle" size="xs">Extra small</Code>
-      <Code variant="subtle" size="sm">Small</Code>
-      <Code variant="subtle" size="md">Medium</Code>
-      <Code variant="subtle" size="lg">Large</Code>
-    </VStack>
   </TabItem>
 </Tabs>
 
@@ -106,6 +115,12 @@ import { Code } from "@tosui/react";
 ### Inline Code in Documentation
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Text>
+      Use the <Code variant="subtle">useState</Code> hook to manage component state.
+      Import it from <Code variant="subtle">react</Code>.
+    </Text>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Text>
@@ -113,46 +128,40 @@ import { Code } from "@tosui/react";
       Import it from <Code variant="subtle">react</Code>.
     </Text>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Text>
-      Use the <Code variant="subtle">useState</Code> hook to manage component state.
-      Import it from <Code variant="subtle">react</Code>.
-    </Text>
   </TabItem>
 </Tabs>
 
 ### Keyboard Shortcuts
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Text>
+      Press <Code variant="subtle">Ctrl</Code> + <Code variant="subtle">C</Code> to copy.
+    </Text>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Text>
       Press <Code variant="subtle">Ctrl</Code> + <Code variant="subtle">C</Code> to copy.
     </Text>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Text>
-      Press <Code variant="subtle">Ctrl</Code> + <Code variant="subtle">C</Code> to copy.
-    </Text>
   </TabItem>
 </Tabs>
 
 ### File Paths
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Text>
+      Edit the configuration in <Code variant="subtle">src/config/settings.ts</Code>
+    </Text>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Text>
       Edit the configuration in <Code variant="subtle">src/config/settings.ts</Code>
     </Text>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Text>
-      Edit the configuration in <Code variant="subtle">src/config/settings.ts</Code>
-    </Text>
   </TabItem>
 </Tabs>
 

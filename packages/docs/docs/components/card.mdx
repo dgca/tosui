@@ -6,10 +6,17 @@ description: "Flexible content container with optional header, body, and footer 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Card, CardHeader, CardBody, CardFooter, Button, HStack, VStack, Box, Heading, Text } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Card
 
 Card is a flexible content container with optional header, body, and footer sections.
+
+<StorybookLink storyId="components-card--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,6 +27,13 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-card--basic"
+      title="Tosui card basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Card>
@@ -28,19 +42,22 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
       </CardBody>
     </Card>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Card>
-      <CardBody>
-        This is the card content.
-      </CardBody>
-    </Card>
   </TabItem>
 </Tabs>
 
 ## With Header
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Card>
+      <CardHeader>
+        <Heading fontSize="lg">Card Title</Heading>
+      </CardHeader>
+      <CardBody>
+        Card content goes here.
+      </CardBody>
+    </Card>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Card>
@@ -52,22 +69,28 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
       </CardBody>
     </Card>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Card>
-      <CardHeader>
-        <Heading fontSize="lg">Card Title</Heading>
-      </CardHeader>
-      <CardBody>
-        Card content goes here.
-      </CardBody>
-    </Card>
   </TabItem>
 </Tabs>
 
 ## With Footer
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Card>
+      <CardHeader>
+        <Heading fontSize="lg">Confirm Action</Heading>
+      </CardHeader>
+      <CardBody>
+        Are you sure you want to proceed with this action?
+      </CardBody>
+      <CardFooter>
+        <HStack justify="flex-end" gap={2}>
+          <Button variant="ghost">Cancel</Button>
+          <Button>Confirm</Button>
+        </HStack>
+      </CardFooter>
+    </Card>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Card>
@@ -86,27 +109,27 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
     </Card>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Card>
-      <CardHeader>
-        <Heading fontSize="lg">Confirm Action</Heading>
-      </CardHeader>
-      <CardBody>
-        Are you sure you want to proceed with this action?
-      </CardBody>
-      <CardFooter>
-        <HStack justify="flex-end" gap={2}>
-          <Button variant="ghost">Cancel</Button>
-          <Button>Confirm</Button>
-        </HStack>
-      </CardFooter>
-    </Card>
-  </TabItem>
 </Tabs>
 
 ## Shadow Variants
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={4} wrap>
+      <Card shadow="none">
+        <CardBody>No shadow</CardBody>
+      </Card>
+      <Card shadow="sm">
+        <CardBody>Small shadow</CardBody>
+      </Card>
+      <Card shadow="md">
+        <CardBody>Medium shadow</CardBody>
+      </Card>
+      <Card shadow="lg">
+        <CardBody>Large shadow</CardBody>
+      </Card>
+    </HStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4} wrap>
@@ -124,22 +147,6 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
       </Card>
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4} wrap>
-      <Card shadow="none">
-        <CardBody>No shadow</CardBody>
-      </Card>
-      <Card shadow="sm">
-        <CardBody>Small shadow</CardBody>
-      </Card>
-      <Card shadow="md">
-        <CardBody>Medium shadow</CardBody>
-      </Card>
-      <Card shadow="lg">
-        <CardBody>Large shadow</CardBody>
-      </Card>
-    </HStack>
   </TabItem>
 </Tabs>
 

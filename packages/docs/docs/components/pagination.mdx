@@ -6,10 +6,17 @@ description: "Navigation for paginated content with page numbers, previous/next 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Pagination, Box, VStack } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Pagination
 
 Pagination provides navigation for paginated content with page numbers, previous/next buttons, and ellipsis for large page ranges.
+
+<StorybookLink storyId="components-pagination--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -19,19 +26,30 @@ import { Pagination } from "@tosui/react";
 
 ## Basic Usage
 
-```tsx
-function PaginatedContent() {
-  const [page, setPage] = useState(1);
-
-  return (
-    <Pagination
-      page={page}
-      totalPages={10}
-      onPageChange={setPage}
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-pagination--basic"
+      title="Tosui Pagination basic story"
+      height={180}
     />
-  );
-}
-```
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    function PaginatedContent() {
+      const [page, setPage] = useState(1);
+
+      return (
+        <Pagination
+          page={page}
+          totalPages={10}
+          onPageChange={setPage}
+        />
+      );
+    }
+    ```
+  </TabItem>
+</Tabs>
 
 ## Page Ranges
 
