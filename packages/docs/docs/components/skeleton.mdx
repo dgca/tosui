@@ -6,10 +6,17 @@ description: "Loading placeholder with shimmer animation to show content structu
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Skeleton, VStack, HStack, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Skeleton
 
 Skeleton is a loading placeholder with a shimmer animation. Use it to show content structure while data is loading.
+
+<StorybookLink storyId="components-skeleton--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,19 +27,30 @@ import { Skeleton } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-skeleton--basic"
+      title="Tosui skeleton basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Skeleton w="200px" h="20px" />
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Skeleton w="200px" h="20px" />
   </TabItem>
 </Tabs>
 
 ## Sizes
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4} align="stretch">
+      <Skeleton w="100%" h="12px" />
+      <Skeleton w="80%" h="12px" />
+      <Skeleton w="60%" h="12px" />
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4} align="stretch">
@@ -41,19 +59,19 @@ import { Skeleton } from "@tosui/react";
       <Skeleton w="60%" h="12px" />
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4} align="stretch">
-      <Skeleton w="100%" h="12px" />
-      <Skeleton w="80%" h="12px" />
-      <Skeleton w="60%" h="12px" />
-    </VStack>
   </TabItem>
 </Tabs>
 
 ## Rounded Variants
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={4}>
+      <Skeleton w="48px" h="48px" rounded="full" />
+      <Skeleton w="48px" h="48px" rounded="md" />
+      <Skeleton w="48px" h="48px" rounded="none" />
+    </HStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4}>
@@ -62,13 +80,6 @@ import { Skeleton } from "@tosui/react";
       <Skeleton w="48px" h="48px" rounded="none" />
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4}>
-      <Skeleton w="48px" h="48px" rounded="full" />
-      <Skeleton w="48px" h="48px" rounded="md" />
-      <Skeleton w="48px" h="48px" rounded="none" />
-    </HStack>
   </TabItem>
 </Tabs>
 
@@ -101,6 +112,16 @@ function UserCard({ isLoading, user }) {
 ### Card Skeleton
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Box p={4} bg="surface" rounded="md" border="thin" borderColor="border" w="300px">
+      <Skeleton w="100%" h="150px" rounded="md" />
+      <VStack gap={3} mt={4} align="stretch">
+        <Skeleton w="70%" h="16px" />
+        <Skeleton w="100%" h="12px" />
+        <Skeleton w="90%" h="12px" />
+      </VStack>
+    </Box>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Box p={4} bg="surface" rounded="md" border="thin" borderColor="border" w="300px">
@@ -113,21 +134,36 @@ function UserCard({ isLoading, user }) {
     </Box>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Box p={4} bg="surface" rounded="md" border="thin" borderColor="border" w="300px">
-      <Skeleton w="100%" h="150px" rounded="md" />
-      <VStack gap={3} mt={4} align="stretch">
-        <Skeleton w="70%" h="16px" />
-        <Skeleton w="100%" h="12px" />
-        <Skeleton w="90%" h="12px" />
-      </VStack>
-    </Box>
-  </TabItem>
 </Tabs>
 
 ### List Skeleton
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4} align="stretch">
+      <HStack gap={4}>
+        <Skeleton w="48px" h="48px" rounded="full" />
+        <VStack gap={2} align="stretch" flex={1}>
+          <Skeleton w="60%" h="14px" />
+          <Skeleton w="40%" h="12px" />
+        </VStack>
+      </HStack>
+      <HStack gap={4}>
+        <Skeleton w="48px" h="48px" rounded="full" />
+        <VStack gap={2} align="stretch" flex={1}>
+          <Skeleton w="60%" h="14px" />
+          <Skeleton w="40%" h="12px" />
+        </VStack>
+      </HStack>
+      <HStack gap={4}>
+        <Skeleton w="48px" h="48px" rounded="full" />
+        <VStack gap={2} align="stretch" flex={1}>
+          <Skeleton w="60%" h="14px" />
+          <Skeleton w="40%" h="12px" />
+        </VStack>
+      </HStack>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4} align="stretch">
@@ -143,36 +179,19 @@ function UserCard({ isLoading, user }) {
     </VStack>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4} align="stretch">
-      <HStack gap={4}>
-        <Skeleton w="48px" h="48px" rounded="full" />
-        <VStack gap={2} align="stretch" flex={1}>
-          <Skeleton w="60%" h="14px" />
-          <Skeleton w="40%" h="12px" />
-        </VStack>
-      </HStack>
-      <HStack gap={4}>
-        <Skeleton w="48px" h="48px" rounded="full" />
-        <VStack gap={2} align="stretch" flex={1}>
-          <Skeleton w="60%" h="14px" />
-          <Skeleton w="40%" h="12px" />
-        </VStack>
-      </HStack>
-      <HStack gap={4}>
-        <Skeleton w="48px" h="48px" rounded="full" />
-        <VStack gap={2} align="stretch" flex={1}>
-          <Skeleton w="60%" h="14px" />
-          <Skeleton w="40%" h="12px" />
-        </VStack>
-      </HStack>
-    </VStack>
-  </TabItem>
 </Tabs>
 
 ### Text Block
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={2} align="stretch">
+      <Skeleton w="100%" h="14px" />
+      <Skeleton w="100%" h="14px" />
+      <Skeleton w="100%" h="14px" />
+      <Skeleton w="75%" h="14px" />
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={2} align="stretch">
@@ -182,14 +201,6 @@ function UserCard({ isLoading, user }) {
       <Skeleton w="75%" h="14px" />
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={2} align="stretch">
-      <Skeleton w="100%" h="14px" />
-      <Skeleton w="100%" h="14px" />
-      <Skeleton w="100%" h="14px" />
-      <Skeleton w="75%" h="14px" />
-    </VStack>
   </TabItem>
 </Tabs>
 

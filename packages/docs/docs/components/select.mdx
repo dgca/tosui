@@ -6,10 +6,17 @@ description: "Dropdown select component with size variants, visual styles, and v
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Select, VStack, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Select
 
 Select is a dropdown select component with size variants, visual styles, and validation states.
+
+<StorybookLink storyId="components-select--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,6 +27,13 @@ import { Select } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-select--basic"
+      title="Tosui select basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Select>
@@ -29,20 +43,25 @@ import { Select } from "@tosui/react";
       <option value="3">Option 3</option>
     </Select>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Select>
-      <option value="">Select an option</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </Select>
   </TabItem>
 </Tabs>
 
 ## Sizes
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4}>
+      <Select size="sm">
+        <option>Small select</option>
+      </Select>
+      <Select size="md">
+        <option>Medium select (default)</option>
+      </Select>
+      <Select size="lg">
+        <option>Large select</option>
+      </Select>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -57,25 +76,22 @@ import { Select } from "@tosui/react";
       </Select>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <Select size="sm">
-        <option>Small select</option>
-      </Select>
-      <Select size="md">
-        <option>Medium select (default)</option>
-      </Select>
-      <Select size="lg">
-        <option>Large select</option>
-      </Select>
-    </VStack>
   </TabItem>
 </Tabs>
 
 ## Variants
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4}>
+      <Select variant="outline">
+        <option>Outline variant (default)</option>
+      </Select>
+      <Select variant="filled">
+        <option>Filled variant</option>
+      </Select>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -87,22 +103,25 @@ import { Select } from "@tosui/react";
       </Select>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <Select variant="outline">
-        <option>Outline variant (default)</option>
-      </Select>
-      <Select variant="filled">
-        <option>Filled variant</option>
-      </Select>
-    </VStack>
   </TabItem>
 </Tabs>
 
 ## States
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4}>
+      <Select>
+        <option>Normal select</option>
+      </Select>
+      <Select disabled>
+        <option>Disabled select</option>
+      </Select>
+      <Select isInvalid>
+        <option>Invalid select</option>
+      </Select>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -117,19 +136,6 @@ import { Select } from "@tosui/react";
       </Select>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <Select>
-        <option>Normal select</option>
-      </Select>
-      <Select disabled>
-        <option>Disabled select</option>
-      </Select>
-      <Select isInvalid>
-        <option>Invalid select</option>
-      </Select>
-    </VStack>
   </TabItem>
 </Tabs>
 

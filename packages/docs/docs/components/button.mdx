@@ -3,6 +3,9 @@ title: Button
 description: "Interactive button with solid, outline, and ghost variants, six color schemes, three sizes, and loading states."
 ---
 
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { Button, HStack, VStack } from "@tosui/react";
 import StorybookEmbed, {
   StorybookLink,
 } from "@site/src/components/StorybookEmbed";
@@ -12,158 +15,291 @@ import StorybookEmbed, {
 Button is an interactive button component with variants, sizes, color schemes, and loading states.
 
 <StorybookLink storyId="components-button--basic">
-  Open the full Button stories in Storybook
+  Open in Storybook
 </StorybookLink>
 
-## Quick Start
-
-Import the component:
+## Import
 
 ```tsx
 import { Button } from "@tosui/react";
 ```
 
-Use Button for the primary action in a view or form:
+## Basic Usage
 
-```tsx
-<Button>Click me</Button>
-```
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--basic"
+      title="Tosui button basic story"
+      height={220}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Button>Click me</Button>
+    ```
+  </TabItem>
+</Tabs>
 
-## Playground
-
-Use the embedded story for a quick sanity check, then open Storybook when you want controls and the full set of examples.
-
-<StorybookEmbed
-  storyId="components-button--basic"
-  title="Tosui Button story"
-  height={180}
-/>
-
-## Common Patterns
-
-### Variants
+## Variants
 
 Use `variant` to change the visual weight of the action.
 
-<StorybookEmbed
-  storyId="components-button--variants"
-  title="Tosui Button variants"
-  height={180}
-/>
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--variants"
+      title="Tosui Button variants story"
+      height={180}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Button variant="solid">Solid</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+    </HStack>
+    ```
+  </TabItem>
+</Tabs>
 
-```tsx
-<HStack gap={4}>
-  <Button variant="solid">Save</Button>
-  <Button variant="outline">Preview</Button>
-  <Button variant="ghost">Cancel</Button>
-</HStack>
-```
+## Sizes
 
-### States
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--sizes"
+      title="Tosui Button sizes story"
+      height={180}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4} align="center">
+      <Button size="sm">Small</Button>
+      <Button size="md">Medium</Button>
+      <Button size="lg">Large</Button>
+    </HStack>
+    ```
+  </TabItem>
+</Tabs>
+
+## Color Schemes
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--color-schemes"
+      title="Tosui Button color schemes story"
+      height={220}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4} wrap>
+      <Button colorScheme="primary">Primary</Button>
+      <Button colorScheme="accent">Accent</Button>
+      <Button colorScheme="success">Success</Button>
+      <Button colorScheme="warning">Warning</Button>
+      <Button colorScheme="error">Error</Button>
+      <Button colorScheme="info">Info</Button>
+    </HStack>
+    ```
+  </TabItem>
+</Tabs>
+
+## Variants with Color Schemes
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--variants-with-color-schemes"
+      title="Tosui Button variants with color schemes story"
+      height={220}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <VStack gap={4}>
+      <HStack gap={4}>
+        <Button variant="solid" colorScheme="success">Solid</Button>
+        <Button variant="outline" colorScheme="success">Outline</Button>
+        <Button variant="ghost" colorScheme="success">Ghost</Button>
+      </HStack>
+      <HStack gap={4}>
+        <Button variant="solid" colorScheme="error">Solid</Button>
+        <Button variant="outline" colorScheme="error">Outline</Button>
+        <Button variant="ghost" colorScheme="error">Ghost</Button>
+      </HStack>
+    </VStack>
+    ```
+  </TabItem>
+</Tabs>
+
+## States
 
 Use `disabled` and `loading` to communicate unavailable or in-progress actions.
 
-<StorybookEmbed
-  storyId="components-button--states"
-  title="Tosui Button states"
-  height={180}
-/>
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--states"
+      title="Tosui Button states story"
+      height={180}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Button>Normal</Button>
+      <Button disabled>Disabled</Button>
+      <Button loading>Loading</Button>
+    </HStack>
+    ```
+  </TabItem>
+</Tabs>
 
-```tsx
-<HStack gap={4}>
-  <Button>Normal</Button>
-  <Button disabled>Disabled</Button>
-  <Button loading>Saving...</Button>
-</HStack>
-```
+## With Icons
 
-### Sizing and Color
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--with-icons"
+      title="Tosui Button with icons story"
+      height={180}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    import { ArrowRightIcon, DownloadIcon } from "your-icon-library";
 
-Button supports three sizes and six built-in color schemes. Use Storybook for the full combinations matrix.
-
-<StorybookLink storyId="components-button--basic">
-  Explore sizes, color schemes, and controls in Storybook
-</StorybookLink>
-
-```tsx
-<HStack gap={4} align="center">
-  <Button size="sm">Small</Button>
-  <Button size="md" colorScheme="accent">
-    Medium
-  </Button>
-  <Button size="lg" colorScheme="success">
-    Large
-  </Button>
-</HStack>
-```
-
-### Common Composition
-
-Use Button with icons, as links, or as form actions. These patterns stay simple in docs and are easier to explore interactively in Storybook as the story set grows.
-
-```tsx
-import { ArrowRightIcon, DownloadIcon } from "your-icon-library";
-
-<HStack gap={4}>
-  <Button leftIcon={<DownloadIcon />}>Download</Button>
-  <Button rightIcon={<ArrowRightIcon />}>Continue</Button>
-  <Button leftIcon={<DownloadIcon />} rightIcon={<ArrowRightIcon />}>
-    Both Icons
-  </Button>
-</HStack>
-```
+    <HStack gap={4}>
+      <Button leftIcon={<DownloadIcon />}>Download</Button>
+      <Button rightIcon={<ArrowRightIcon />}>Continue</Button>
+      <Button leftIcon={<DownloadIcon />} rightIcon={<ArrowRightIcon />}>
+        Both Icons
+      </Button>
+    </HStack>
+    ```
+  </TabItem>
+</Tabs>
 
 When loading, the left icon is replaced with a spinner:
 
-```tsx
-<Button leftIcon={<DownloadIcon />} loading>
-  Downloading
-</Button>
-```
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Button loading>Downloading</Button>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Button leftIcon={<DownloadIcon />} loading>
+      Downloading
+    </Button>
+    ```
+  </TabItem>
+</Tabs>
 
-```tsx
-<Button fullWidth>Continue</Button>
-```
+## Full Width
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--full-width"
+      title="Tosui Button full width story"
+      height={180}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Button fullWidth>Full Width Button</Button>
+    ```
+  </TabItem>
+</Tabs>
+
+## As Link
 
 Button can render as any element using the `as` prop.
 
-```tsx
-<Button as="a" href="/signup">
-  Sign Up
-</Button>
-```
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-button--as-link"
+      title="Tosui Button as link story"
+      height={180}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Button as="a" href="/signup">
+      Sign Up
+    </Button>
+    ```
+  </TabItem>
+</Tabs>
 
-For common form actions:
+## Common Patterns
 
-```tsx
-<HStack gap={4} justify="flex-end">
-  <Button variant="ghost">Cancel</Button>
-  <Button>Submit</Button>
-</HStack>
-```
+### Form Actions
 
-For destructive actions:
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={4} justify="flex-end">
+      <Button variant="ghost">Cancel</Button>
+      <Button>Submit</Button>
+    </HStack>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4} justify="flex-end">
+      <Button variant="ghost">Cancel</Button>
+      <Button>Submit</Button>
+    </HStack>
+    ```
+  </TabItem>
+</Tabs>
 
-```tsx
-<HStack gap={4}>
-  <Button variant="outline">Cancel</Button>
-  <Button colorScheme="error">Delete</Button>
-</HStack>
-```
+### Destructive Action
 
-For button groups:
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={4}>
+      <Button variant="outline">Cancel</Button>
+      <Button colorScheme="error">Delete</Button>
+    </HStack>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={4}>
+      <Button variant="outline">Cancel</Button>
+      <Button colorScheme="error">Delete</Button>
+    </HStack>
+    ```
+  </TabItem>
+</Tabs>
 
-```tsx
-<HStack gap={0}>
-  <Button rounded="md" roundedRight="none" borderRight="none">Left</Button>
-  <Button rounded="none" borderRight="none">Middle</Button>
-  <Button rounded="md" roundedLeft="none">Right</Button>
-</HStack>
-```
+### Button Group
 
-## API
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={0}>
+      <Button rounded="md" roundedRight="none" borderRight="none">Left</Button>
+      <Button rounded="none" borderRight="none">Middle</Button>
+      <Button rounded="md" roundedLeft="none">Right</Button>
+    </HStack>
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <HStack gap={0}>
+      <Button rounded="md" roundedRight="none" borderRight="none">Left</Button>
+      <Button rounded="none" borderRight="none">Middle</Button>
+      <Button rounded="md" roundedLeft="none">Right</Button>
+    </HStack>
+    ```
+  </TabItem>
+</Tabs>
 
-### Props Reference
+## Props Reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -179,26 +315,8 @@ For button groups:
 
 Button also accepts all [Box](/docs/components/box) styling props.
 
-## Accessibility and Behavior
-
-- Use `disabled` for unavailable actions.
-- Use `loading` for in-progress actions; Tosui also disables the button while loading.
-- If you render Button as a link with `as="a"`, ensure the destination and disabled behavior are both handled intentionally.
-
-## Styling and Customization
-
-- Use `variant`, `size`, and `colorScheme` for the built-in API.
-- Use inherited Box props like `mt`, `w`, `rounded`, `px`, and responsive values for layout and visual adjustments.
-- Reach for Storybook when validating combined states like `variant + colorScheme + size`.
-
 ## TypeScript
 
 ```tsx
 import { Button, type ButtonVariant, type ButtonSize, type ButtonColorScheme, type ButtonProps } from "@tosui/react";
 ```
-
-## Related
-
-- [IconButton](/docs/components/icon-button)
-- [Link](/docs/components/link)
-- [Spinner](/docs/components/spinner)

@@ -6,10 +6,17 @@ description: "Semantic text component built on Box for body copy, labels, and ca
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Text, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Text
 
 The Text component is a semantic text component built on top of Box, designed for body copy, labels, captions, and other inline text content.
+
+<StorybookLink storyId="components-text--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -19,9 +26,20 @@ import { Text } from "@tosui/react";
 
 ## Basic Usage
 
-```tsx
-<Text>Default text content</Text>
-```
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-text--basic"
+      title="Tosui Text basic story"
+      height={180}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    <Text>Default text content</Text>
+    ```
+  </TabItem>
+</Tabs>
 
 ## Key Features
 
@@ -36,6 +54,17 @@ import { Text } from "@tosui/react";
 Text uses Tosui's font size scale:
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Text size="5xl">5XL (48px)</Text>
+    <Text size="4xl">4XL (36px)</Text>
+    <Text size="3xl">3XL (30px)</Text>
+    <Text size="2xl">2XL (24px)</Text>
+    <Text size="xl">Extra large (20px)</Text>
+    <Text size="lg">Large text (18px)</Text>
+    <Text size="md">Default text (16px)</Text>
+    <Text size="sm">Small text (14px)</Text>
+    <Text size="xs">Extra small text (12px)</Text>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Text size="5xl">5XL (48px)</Text>
@@ -48,17 +77,6 @@ Text uses Tosui's font size scale:
     <Text size="sm">Small text (14px)</Text>
     <Text size="xs">Extra small text (12px)</Text>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Text size="5xl">5XL (48px)</Text>
-    <Text size="4xl">4XL (36px)</Text>
-    <Text size="3xl">3XL (30px)</Text>
-    <Text size="2xl">2XL (24px)</Text>
-    <Text size="xl">Extra large (20px)</Text>
-    <Text size="lg">Large text (18px)</Text>
-    <Text size="md">Default text (16px)</Text>
-    <Text size="sm">Small text (14px)</Text>
-    <Text size="xs">Extra small text (12px)</Text>
   </TabItem>
 </Tabs>
 
@@ -69,6 +87,15 @@ Default: `md`
 Font weight options:
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Text weight="normal">Normal weight (400)</Text>
+    <br />
+    <Text weight="medium">Medium weight (500)</Text>
+    <br />
+    <Text weight="semibold">Semibold weight (600)</Text>
+    <br />
+    <Text weight="bold">Bold weight (700)</Text>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Text weight="normal">Normal weight (400)</Text>
@@ -76,15 +103,6 @@ Font weight options:
     <Text weight="semibold">Semibold weight (600)</Text>
     <Text weight="bold">Bold weight (700)</Text>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Text weight="normal">Normal weight (400)</Text>
-    <br />
-    <Text weight="medium">Medium weight (500)</Text>
-    <br />
-    <Text weight="semibold">Semibold weight (600)</Text>
-    <br />
-    <Text weight="bold">Bold weight (700)</Text>
   </TabItem>
 </Tabs>
 
@@ -104,6 +122,27 @@ Default: `normal`
 Text supports Tosui's semantic color tokens:
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Text color="foreground">Primary text color</Text>
+    <br />
+    <Text color="foreground-muted">Secondary/muted text</Text>
+    <br />
+    <Text color="foreground-subtle">Tertiary/subtle text</Text>
+    <br />
+    <Text color="primary">Primary brand color</Text>
+    <br />
+    <Text color="primary-emphasis">Primary emphasis</Text>
+    <br />
+    <Text color="accent">Accent color</Text>
+    <br />
+    <Text color="accent-emphasis">Accent emphasis</Text>
+    <br />
+    <Text color="success">Success color</Text>
+    <br />
+    <Text color="warning">Warning color</Text>
+    <br />
+    <Text color="error">Error color</Text>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Text color="foreground">Primary text color</Text>
@@ -117,27 +156,6 @@ Text supports Tosui's semantic color tokens:
     <Text color="warning">Warning color</Text>
     <Text color="error">Error color</Text>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Text color="foreground">Primary text color</Text>
-    <br />
-    <Text color="foreground-muted">Secondary/muted text</Text>
-    <br />
-    <Text color="foreground-subtle">Tertiary/subtle text</Text>
-    <br />
-    <Text color="primary">Primary brand color</Text>
-    <br />
-    <Text color="primary-emphasis">Primary emphasis</Text>
-    <br />
-    <Text color="accent">Accent color</Text>
-    <br />
-    <Text color="accent-emphasis">Accent emphasis</Text>
-    <br />
-    <Text color="success">Success color</Text>
-    <br />
-    <Text color="warning">Warning color</Text>
-    <br />
-    <Text color="error">Error color</Text>
   </TabItem>
 </Tabs>
 

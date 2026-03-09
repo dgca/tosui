@@ -6,10 +6,17 @@ description: "Styled anchor element with variants for different use cases."
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Link, VStack, HStack, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Link
 
 Link is a styled anchor element with variants for different use cases.
+
+<StorybookLink storyId="components-link--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,19 +27,30 @@ import { Link } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-link--basic"
+      title="Tosui link basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Link href="/docs">Documentation</Link>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Link href="/docs">Documentation</Link>
   </TabItem>
 </Tabs>
 
 ## Variants
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4} align="flex-start">
+      <Link variant="default" href="#">Default (underline on hover)</Link>
+      <Link variant="underline" href="#">Underline (always underlined)</Link>
+      <Link variant="subtle" href="#">Subtle (inherits color)</Link>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4} align="flex-start">
@@ -41,13 +59,6 @@ import { Link } from "@tosui/react";
       <Link variant="subtle" href="#">Subtle (inherits color)</Link>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4} align="flex-start">
-      <Link variant="default" href="#">Default (underline on hover)</Link>
-      <Link variant="underline" href="#">Underline (always underlined)</Link>
-      <Link variant="subtle" href="#">Subtle (inherits color)</Link>
-    </VStack>
   </TabItem>
 </Tabs>
 
@@ -56,23 +67,29 @@ import { Link } from "@tosui/react";
 Use `external` for links that open in a new tab. This automatically adds `target="_blank"` and `rel="noopener noreferrer"`.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Link href="https://github.com" external>
+      GitHub (opens in new tab)
+    </Link>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Link href="https://github.com" external>
       GitHub (opens in new tab)
     </Link>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Link href="https://github.com" external>
-      GitHub (opens in new tab)
-    </Link>
   </TabItem>
 </Tabs>
 
 ## Inline Links
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Box>
+      Read our <Link href="#">documentation</Link> for more information,
+      or check out the <Link href="#">getting started guide</Link>.
+    </Box>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Box>
@@ -80,12 +97,6 @@ Use `external` for links that open in a new tab. This automatically adds `target
       or check out the <Link href="#">getting started guide</Link>.
     </Box>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Box>
-      Read our <Link href="#">documentation</Link> for more information,
-      or check out the <Link href="#">getting started guide</Link>.
-    </Box>
   </TabItem>
 </Tabs>
 
@@ -112,6 +123,14 @@ import NextLink from "next/link";
 ## Navigation List
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack as="nav" gap={2} align="flex-start">
+      <Link href="#">Home</Link>
+      <Link href="#">Products</Link>
+      <Link href="#">About</Link>
+      <Link href="#">Contact</Link>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack as="nav" gap={2} align="flex-start">
@@ -121,14 +140,6 @@ import NextLink from "next/link";
       <Link href="#">Contact</Link>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack as="nav" gap={2} align="flex-start">
-      <Link href="#">Home</Link>
-      <Link href="#">Products</Link>
-      <Link href="#">About</Link>
-      <Link href="#">Contact</Link>
-    </VStack>
   </TabItem>
 </Tabs>
 

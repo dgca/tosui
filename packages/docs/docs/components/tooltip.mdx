@@ -6,10 +6,17 @@ description: "Informative text overlay displayed on hover or focus, with configu
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Tooltip, Button, HStack, VStack, Box, Text } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Tooltip
 
 Tooltip displays informative text when hovering or focusing on an element.
+
+<StorybookLink storyId="components-tooltip--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,23 +27,41 @@ import { Tooltip } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-tooltip--basic"
+      title="Tosui tooltip basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Tooltip label="This is a tooltip">
       <Button>Hover me</Button>
     </Tooltip>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Tooltip label="This is a tooltip">
-      <Button>Hover me</Button>
-    </Tooltip>
   </TabItem>
 </Tabs>
 
 ## Placement
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={4}>
+      <Tooltip label="Top tooltip" placement="top">
+        <Button>Top</Button>
+      </Tooltip>
+      <Tooltip label="Bottom tooltip" placement="bottom">
+        <Button>Bottom</Button>
+      </Tooltip>
+      <Tooltip label="Left tooltip" placement="left">
+        <Button>Left</Button>
+      </Tooltip>
+      <Tooltip label="Right tooltip" placement="right">
+        <Button>Right</Button>
+      </Tooltip>
+    </HStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4}>
@@ -54,22 +79,6 @@ import { Tooltip } from "@tosui/react";
       </Tooltip>
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4}>
-      <Tooltip label="Top tooltip" placement="top">
-        <Button>Top</Button>
-      </Tooltip>
-      <Tooltip label="Bottom tooltip" placement="bottom">
-        <Button>Bottom</Button>
-      </Tooltip>
-      <Tooltip label="Left tooltip" placement="left">
-        <Button>Left</Button>
-      </Tooltip>
-      <Tooltip label="Right tooltip" placement="right">
-        <Button>Right</Button>
-      </Tooltip>
-    </HStack>
   </TabItem>
 </Tabs>
 
@@ -78,6 +87,16 @@ import { Tooltip } from "@tosui/react";
 Control when the tooltip appears and disappears.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={4}>
+      <Tooltip label="Opens after 500ms" openDelay={500}>
+        <Button>Open delay</Button>
+      </Tooltip>
+      <Tooltip label="Closes after 300ms" closeDelay={300}>
+        <Button>Close delay</Button>
+      </Tooltip>
+    </HStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4}>
@@ -89,33 +108,23 @@ Control when the tooltip appears and disappears.
       </Tooltip>
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4}>
-      <Tooltip label="Opens after 500ms" openDelay={500}>
-        <Button>Open delay</Button>
-      </Tooltip>
-      <Tooltip label="Closes after 300ms" closeDelay={300}>
-        <Button>Close delay</Button>
-      </Tooltip>
-    </HStack>
   </TabItem>
 </Tabs>
 
 ## Disabled State
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Tooltip label="This won't show" disabled>
+      <Button>Disabled tooltip</Button>
+    </Tooltip>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Tooltip label="This won't show" disabled>
       <Button>Disabled tooltip</Button>
     </Tooltip>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Tooltip label="This won't show" disabled>
-      <Button>Disabled tooltip</Button>
-    </Tooltip>
   </TabItem>
 </Tabs>
 

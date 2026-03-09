@@ -6,10 +6,17 @@ description: "Dropdown menu component with keyboard navigation and click-outside
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Menu, MenuButton, MenuList, MenuItem, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Menu
 
 Menu is a dropdown menu component with keyboard navigation and click-outside closing.
+
+<StorybookLink storyId="components-menu--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,6 +27,13 @@ import { Menu, MenuButton, MenuList, MenuItem } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-menu--basic"
+      title="Tosui menu basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Menu>
@@ -32,16 +46,6 @@ import { Menu, MenuButton, MenuList, MenuItem } from "@tosui/react";
     </Menu>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Menu>
-      <MenuButton>Actions</MenuButton>
-      <MenuList>
-        <MenuItem onClick={() => console.log("Edit")}>Edit</MenuItem>
-        <MenuItem onClick={() => console.log("Duplicate")}>Duplicate</MenuItem>
-        <MenuItem onClick={() => console.log("Delete")}>Delete</MenuItem>
-      </MenuList>
-    </Menu>
-  </TabItem>
 </Tabs>
 
 ## Button Variants
@@ -49,6 +53,24 @@ import { Menu, MenuButton, MenuList, MenuItem } from "@tosui/react";
 MenuButton accepts all Button props.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Box display="flex" gap={4}>
+      <Menu>
+        <MenuButton variant="outline">Outline Menu</MenuButton>
+        <MenuList>
+          <MenuItem>Option 1</MenuItem>
+          <MenuItem>Option 2</MenuItem>
+        </MenuList>
+      </Menu>
+      <Menu>
+        <MenuButton variant="ghost" colorScheme="accent">Ghost Menu</MenuButton>
+        <MenuList>
+          <MenuItem>Option 1</MenuItem>
+          <MenuItem>Option 2</MenuItem>
+        </MenuList>
+      </Menu>
+    </Box>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Menu>
@@ -68,29 +90,21 @@ MenuButton accepts all Button props.
     </Menu>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Box display="flex" gap={4}>
-      <Menu>
-        <MenuButton variant="outline">Outline Menu</MenuButton>
-        <MenuList>
-          <MenuItem>Option 1</MenuItem>
-          <MenuItem>Option 2</MenuItem>
-        </MenuList>
-      </Menu>
-      <Menu>
-        <MenuButton variant="ghost" colorScheme="accent">Ghost Menu</MenuButton>
-        <MenuList>
-          <MenuItem>Option 1</MenuItem>
-          <MenuItem>Option 2</MenuItem>
-        </MenuList>
-      </Menu>
-    </Box>
-  </TabItem>
 </Tabs>
 
 ## Disabled Items
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Menu>
+      <MenuButton>Options</MenuButton>
+      <MenuList>
+        <MenuItem>Available</MenuItem>
+        <MenuItem disabled>Disabled</MenuItem>
+        <MenuItem>Another Option</MenuItem>
+      </MenuList>
+    </Menu>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Menu>
@@ -102,16 +116,6 @@ MenuButton accepts all Button props.
       </MenuList>
     </Menu>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Menu>
-      <MenuButton>Options</MenuButton>
-      <MenuList>
-        <MenuItem>Available</MenuItem>
-        <MenuItem disabled>Disabled</MenuItem>
-        <MenuItem>Another Option</MenuItem>
-      </MenuList>
-    </Menu>
   </TabItem>
 </Tabs>
 

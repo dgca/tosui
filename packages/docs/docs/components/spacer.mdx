@@ -6,10 +6,17 @@ description: "Flexible space filler for flex layouts that expands to fill availa
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Spacer, Box, HStack, VStack } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Spacer
 
 Spacer is a flexible space filler for flex layouts. It expands to fill available space, useful for pushing items apart.
+
+<StorybookLink storyId="components-spacer--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,6 +27,13 @@ import { Spacer } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-spacer--basic"
+      title="Tosui spacer basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack p={4} bg="surface" border="thin" borderColor="border">
@@ -28,13 +42,6 @@ import { Spacer } from "@tosui/react";
       <Box p={2} bg="accent-subtle">Right</Box>
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack p={4} bg="surface" border="thin" borderColor="border">
-      <Box p={2} bg="primary-subtle">Left</Box>
-      <Spacer />
-      <Box p={2} bg="accent-subtle">Right</Box>
-    </HStack>
   </TabItem>
 </Tabs>
 
@@ -43,6 +50,15 @@ import { Spacer } from "@tosui/react";
 Use multiple spacers to distribute items evenly.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Left</Box>
+      <Spacer />
+      <Box p={2} bg="accent-subtle">Center</Box>
+      <Spacer />
+      <Box p={2} bg="success-subtle">Right</Box>
+    </HStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack p={4} bg="surface" border="thin" borderColor="border">
@@ -53,21 +69,19 @@ Use multiple spacers to distribute items evenly.
       <Box p={2} bg="success-subtle">Right</Box>
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack p={4} bg="surface" border="thin" borderColor="border">
-      <Box p={2} bg="primary-subtle">Left</Box>
-      <Spacer />
-      <Box p={2} bg="accent-subtle">Center</Box>
-      <Spacer />
-      <Box p={2} bg="success-subtle">Right</Box>
-    </HStack>
   </TabItem>
 </Tabs>
 
 ## Vertical Spacer
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack h="200px" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={2} bg="primary-subtle">Top</Box>
+      <Spacer />
+      <Box p={2} bg="accent-subtle">Bottom</Box>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack h="200px" p={4} bg="surface" border="thin" borderColor="border">
@@ -76,13 +90,6 @@ Use multiple spacers to distribute items evenly.
       <Box p={2} bg="accent-subtle">Bottom</Box>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack h="200px" p={4} bg="surface" border="thin" borderColor="border">
-      <Box p={2} bg="primary-subtle">Top</Box>
-      <Spacer />
-      <Box p={2} bg="accent-subtle">Bottom</Box>
-    </VStack>
   </TabItem>
 </Tabs>
 

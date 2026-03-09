@@ -6,10 +6,17 @@ description: "Navigation trail showing the user's location in a hierarchical str
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Breadcrumb, BreadcrumbItem, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Breadcrumb
 
 Breadcrumb is a navigation trail that shows the user's location in a hierarchical structure.
+
+<StorybookLink storyId="components-breadcrumb--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,6 +27,13 @@ import { Breadcrumb, BreadcrumbItem } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-breadcrumb--basic"
+      title="Tosui breadcrumb basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Breadcrumb>
@@ -29,18 +43,25 @@ import { Breadcrumb, BreadcrumbItem } from "@tosui/react";
     </Breadcrumb>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Breadcrumb>
-      <BreadcrumbItem href="#">Home</BreadcrumbItem>
-      <BreadcrumbItem href="#">Products</BreadcrumbItem>
-      <BreadcrumbItem>Electronics</BreadcrumbItem>
-    </Breadcrumb>
-  </TabItem>
 </Tabs>
 
 ## Custom Separator
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Box mb={4}>
+      <Breadcrumb separator=">">
+        <BreadcrumbItem href="#">Home</BreadcrumbItem>
+        <BreadcrumbItem href="#">Docs</BreadcrumbItem>
+        <BreadcrumbItem>Components</BreadcrumbItem>
+      </Breadcrumb>
+    </Box>
+    <Breadcrumb separator="-">
+      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+      <BreadcrumbItem href="#">Docs</BreadcrumbItem>
+      <BreadcrumbItem>Components</BreadcrumbItem>
+    </Breadcrumb>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Breadcrumb separator=">">
@@ -55,20 +76,6 @@ import { Breadcrumb, BreadcrumbItem } from "@tosui/react";
       <BreadcrumbItem>Components</BreadcrumbItem>
     </Breadcrumb>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Box mb={4}>
-      <Breadcrumb separator=">">
-        <BreadcrumbItem href="#">Home</BreadcrumbItem>
-        <BreadcrumbItem href="#">Docs</BreadcrumbItem>
-        <BreadcrumbItem>Components</BreadcrumbItem>
-      </Breadcrumb>
-    </Box>
-    <Breadcrumb separator="-">
-      <BreadcrumbItem href="#">Home</BreadcrumbItem>
-      <BreadcrumbItem href="#">Docs</BreadcrumbItem>
-      <BreadcrumbItem>Components</BreadcrumbItem>
-    </Breadcrumb>
   </TabItem>
 </Tabs>
 
@@ -89,6 +96,14 @@ import { ChevronRightIcon } from "your-icon-library";
 The last item is automatically marked as the current page. It renders as text instead of a link.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Breadcrumb>
+      <BreadcrumbItem href="#">Home</BreadcrumbItem>
+      <BreadcrumbItem href="#">Users</BreadcrumbItem>
+      <BreadcrumbItem href="#">John Doe</BreadcrumbItem>
+      <BreadcrumbItem>Edit Profile</BreadcrumbItem>
+    </Breadcrumb>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Breadcrumb>
@@ -98,14 +113,6 @@ The last item is automatically marked as the current page. It renders as text in
       <BreadcrumbItem>Edit Profile</BreadcrumbItem>
     </Breadcrumb>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Breadcrumb>
-      <BreadcrumbItem href="#">Home</BreadcrumbItem>
-      <BreadcrumbItem href="#">Users</BreadcrumbItem>
-      <BreadcrumbItem href="#">John Doe</BreadcrumbItem>
-      <BreadcrumbItem>Edit Profile</BreadcrumbItem>
-    </Breadcrumb>
   </TabItem>
 </Tabs>
 

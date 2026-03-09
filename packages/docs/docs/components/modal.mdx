@@ -7,10 +7,17 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button, HStack, VStack, Box, Heading, Text } from "@tosui/react";
 import { useState } from "react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Modal
 
 Modal is a dialog overlay component for focused interactions that require user attention.
+
+<StorybookLink storyId="components-modal--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -22,29 +29,40 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "@tosui/react";
 
 Modal is a controlled component that requires `isOpen` and `onClose` props.
 
-```tsx
-function BasicModal() {
-  const [isOpen, setIsOpen] = useState(false);
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-modal--basic"
+      title="Tosui Modal basic story"
+      height={260}
+    />
+  </TabItem>
+  <TabItem value="code" label="Code">
+    ```tsx
+    function BasicModal() {
+      const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <>
-      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <ModalHeader>
-          <Heading fontSize="lg">Modal Title</Heading>
-        </ModalHeader>
-        <ModalBody>
-          This is the modal content.
-        </ModalBody>
-        <ModalFooter>
-          <Button variant="ghost" onClick={() => setIsOpen(false)}>Cancel</Button>
-          <Button onClick={() => setIsOpen(false)}>Confirm</Button>
-        </ModalFooter>
-      </Modal>
-    </>
-  );
-}
-```
+      return (
+        <>
+          <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+          <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+            <ModalHeader>
+              <Heading fontSize="lg">Modal Title</Heading>
+            </ModalHeader>
+            <ModalBody>
+              This is the modal content.
+            </ModalBody>
+            <ModalFooter>
+              <Button variant="ghost" onClick={() => setIsOpen(false)}>Cancel</Button>
+              <Button onClick={() => setIsOpen(false)}>Confirm</Button>
+            </ModalFooter>
+          </Modal>
+        </>
+      );
+    }
+    ```
+  </TabItem>
+</Tabs>
 
 ## Sizes
 

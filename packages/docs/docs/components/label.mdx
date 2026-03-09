@@ -6,10 +6,17 @@ description: "Form label component with size variants and optional required indi
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Label, Input, VStack, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Label
 
 Label is a form label component with size variants and optional required indicator. Use it for standalone labels or when building custom form layouts.
+
+<StorybookLink storyId="components-label--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,6 +27,13 @@ import { Label } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-label--basic"
+      title="Tosui label basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={1} align="stretch">
@@ -27,18 +41,18 @@ import { Label } from "@tosui/react";
       <Input id="email" type="email" placeholder="you@example.com" />
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={1} align="stretch">
-      <Label htmlFor="email">Email</Label>
-      <Input id="email" type="email" placeholder="you@example.com" />
-    </VStack>
   </TabItem>
 </Tabs>
 
 ## Required Indicator
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={1} align="stretch">
+      <Label htmlFor="username" required>Username</Label>
+      <Input id="username" placeholder="Enter username" />
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={1} align="stretch">
@@ -46,18 +60,20 @@ import { Label } from "@tosui/react";
       <Input id="username" placeholder="Enter username" />
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={1} align="stretch">
-      <Label htmlFor="username" required>Username</Label>
-      <Input id="username" placeholder="Enter username" />
-    </VStack>
   </TabItem>
 </Tabs>
 
 ## Sizes
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4} align="flex-start">
+      <Label size="xs">Extra small label</Label>
+      <Label size="sm">Small label (default)</Label>
+      <Label size="md">Medium label</Label>
+      <Label size="lg">Large label</Label>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4} align="flex-start">
@@ -67,20 +83,20 @@ import { Label } from "@tosui/react";
       <Label size="lg">Large label</Label>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4} align="flex-start">
-      <Label size="xs">Extra small label</Label>
-      <Label size="sm">Small label (default)</Label>
-      <Label size="md">Medium label</Label>
-      <Label size="lg">Large label</Label>
-    </VStack>
   </TabItem>
 </Tabs>
 
 ## Weights
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4} align="flex-start">
+      <Label weight="normal">Normal weight</Label>
+      <Label weight="medium">Medium weight (default)</Label>
+      <Label weight="semibold">Semibold weight</Label>
+      <Label weight="bold">Bold weight</Label>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4} align="flex-start">
@@ -90,14 +106,6 @@ import { Label } from "@tosui/react";
       <Label weight="bold">Bold weight</Label>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4} align="flex-start">
-      <Label weight="normal">Normal weight</Label>
-      <Label weight="medium">Medium weight (default)</Label>
-      <Label weight="semibold">Semibold weight</Label>
-      <Label weight="bold">Bold weight</Label>
-    </VStack>
   </TabItem>
 </Tabs>
 

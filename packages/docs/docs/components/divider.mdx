@@ -6,10 +6,17 @@ description: "Visual separator for content sections with horizontal and vertical
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Divider, Box, VStack, HStack } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Divider
 
 Divider is a visual separator for content sections. It supports horizontal and vertical orientations with customizable colors.
+
+<StorybookLink storyId="components-divider--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,6 +27,13 @@ import { Divider } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-divider--basic"
+      title="Tosui divider basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -29,18 +43,21 @@ import { Divider } from "@tosui/react";
     </VStack>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <Box>Content above</Box>
-      <Divider />
-      <Box>Content below</Box>
-    </VStack>
-  </TabItem>
 </Tabs>
 
 ## Orientation
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Box mb={4}>
+      <Divider orientation="horizontal" />
+    </Box>
+    <HStack gap={4} h="60px" align="center">
+      <Box>Left</Box>
+      <Divider orientation="vertical" />
+      <Box>Right</Box>
+    </HStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     {/* Horizontal (default) */}
@@ -54,21 +71,23 @@ import { Divider } from "@tosui/react";
     </HStack>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Box mb={4}>
-      <Divider orientation="horizontal" />
-    </Box>
-    <HStack gap={4} h="60px" align="center">
-      <Box>Left</Box>
-      <Divider orientation="vertical" />
-      <Box>Right</Box>
-    </HStack>
-  </TabItem>
 </Tabs>
 
 ## Colors
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4}>
+      <Box><Divider color="border" /><Box fontSize="xs" color="foreground-muted">border</Box></Box>
+      <Box><Divider color="border-muted" /><Box fontSize="xs" color="foreground-muted">border-muted (default)</Box></Box>
+      <Box><Divider color="primary" /><Box fontSize="xs" color="foreground-muted">primary</Box></Box>
+      <Box><Divider color="accent" /><Box fontSize="xs" color="foreground-muted">accent</Box></Box>
+      <Box><Divider color="success" /><Box fontSize="xs" color="foreground-muted">success</Box></Box>
+      <Box><Divider color="warning" /><Box fontSize="xs" color="foreground-muted">warning</Box></Box>
+      <Box><Divider color="error" /><Box fontSize="xs" color="foreground-muted">error</Box></Box>
+      <Box><Divider color="info" /><Box fontSize="xs" color="foreground-muted">info</Box></Box>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -83,23 +102,19 @@ import { Divider } from "@tosui/react";
     </VStack>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <Box><Divider color="border" /><Box fontSize="xs" color="foreground-muted">border</Box></Box>
-      <Box><Divider color="border-muted" /><Box fontSize="xs" color="foreground-muted">border-muted (default)</Box></Box>
-      <Box><Divider color="primary" /><Box fontSize="xs" color="foreground-muted">primary</Box></Box>
-      <Box><Divider color="accent" /><Box fontSize="xs" color="foreground-muted">accent</Box></Box>
-      <Box><Divider color="success" /><Box fontSize="xs" color="foreground-muted">success</Box></Box>
-      <Box><Divider color="warning" /><Box fontSize="xs" color="foreground-muted">warning</Box></Box>
-      <Box><Divider color="error" /><Box fontSize="xs" color="foreground-muted">error</Box></Box>
-      <Box><Divider color="info" /><Box fontSize="xs" color="foreground-muted">info</Box></Box>
-    </VStack>
-  </TabItem>
 </Tabs>
 
 ## Thickness
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4}>
+      <Box><Divider thickness={1} /><Box fontSize="xs" color="foreground-muted">1px (default)</Box></Box>
+      <Box><Divider thickness={2} /><Box fontSize="xs" color="foreground-muted">2px</Box></Box>
+      <Box><Divider thickness={3} /><Box fontSize="xs" color="foreground-muted">3px</Box></Box>
+      <Box><Divider thickness={4} /><Box fontSize="xs" color="foreground-muted">4px</Box></Box>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4}>
@@ -109,14 +124,6 @@ import { Divider } from "@tosui/react";
       <Divider thickness={4} />
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4}>
-      <Box><Divider thickness={1} /><Box fontSize="xs" color="foreground-muted">1px (default)</Box></Box>
-      <Box><Divider thickness={2} /><Box fontSize="xs" color="foreground-muted">2px</Box></Box>
-      <Box><Divider thickness={3} /><Box fontSize="xs" color="foreground-muted">3px</Box></Box>
-      <Box><Divider thickness={4} /><Box fontSize="xs" color="foreground-muted">4px</Box></Box>
-    </VStack>
   </TabItem>
 </Tabs>
 

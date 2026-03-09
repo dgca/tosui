@@ -6,10 +6,17 @@ description: "Toggle switch component with size variants, sliding animation, and
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Switch, VStack, HStack, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Switch
 
 Switch is a toggle switch component with size variants, sliding animation, and optional inline labels. Use it for on/off settings.
+
+<StorybookLink storyId="components-switch--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,32 +27,43 @@ import { Switch } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-switch--basic"
+      title="Tosui switch basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Switch label="Enable notifications" />
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Switch label="Enable notifications" />
   </TabItem>
 </Tabs>
 
 ## Without Label
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Switch aria-label="Toggle option" />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Switch aria-label="Toggle option" />
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Switch aria-label="Toggle option" />
   </TabItem>
 </Tabs>
 
 ## Sizes
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4} align="flex-start">
+      <Switch size="sm" label="Small switch" />
+      <Switch size="md" label="Medium switch (default)" />
+      <Switch size="lg" label="Large switch" />
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4} align="flex-start">
@@ -54,19 +72,20 @@ import { Switch } from "@tosui/react";
       <Switch size="lg" label="Large switch" />
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4} align="flex-start">
-      <Switch size="sm" label="Small switch" />
-      <Switch size="md" label="Medium switch (default)" />
-      <Switch size="lg" label="Large switch" />
-    </VStack>
   </TabItem>
 </Tabs>
 
 ## States
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4} align="flex-start">
+      <Switch label="Off" />
+      <Switch label="On" defaultChecked />
+      <Switch label="Disabled off" disabled />
+      <Switch label="Disabled on" disabled defaultChecked />
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4} align="flex-start">
@@ -76,14 +95,6 @@ import { Switch } from "@tosui/react";
       <Switch label="Disabled on" disabled defaultChecked />
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4} align="flex-start">
-      <Switch label="Off" />
-      <Switch label="On" defaultChecked />
-      <Switch label="Disabled off" disabled />
-      <Switch label="Disabled on" disabled defaultChecked />
-    </VStack>
   </TabItem>
 </Tabs>
 
@@ -108,6 +119,31 @@ function ControlledSwitch() {
 ## Settings List
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <VStack gap={4} align="stretch">
+      <HStack justify="space-between">
+        <Box>
+          <Box fontWeight="medium">Email notifications</Box>
+          <Box fontSize="sm" color="foreground-muted">Receive email updates</Box>
+        </Box>
+        <Switch defaultChecked />
+      </HStack>
+      <HStack justify="space-between">
+        <Box>
+          <Box fontWeight="medium">Push notifications</Box>
+          <Box fontSize="sm" color="foreground-muted">Receive push updates</Box>
+        </Box>
+        <Switch />
+      </HStack>
+      <HStack justify="space-between">
+        <Box>
+          <Box fontWeight="medium">Marketing emails</Box>
+          <Box fontSize="sm" color="foreground-muted">Receive marketing content</Box>
+        </Box>
+        <Switch />
+      </HStack>
+    </VStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <VStack gap={4} align="stretch">
@@ -134,31 +170,6 @@ function ControlledSwitch() {
       </HStack>
     </VStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <VStack gap={4} align="stretch">
-      <HStack justify="space-between">
-        <Box>
-          <Box fontWeight="medium">Email notifications</Box>
-          <Box fontSize="sm" color="foreground-muted">Receive email updates</Box>
-        </Box>
-        <Switch defaultChecked />
-      </HStack>
-      <HStack justify="space-between">
-        <Box>
-          <Box fontWeight="medium">Push notifications</Box>
-          <Box fontSize="sm" color="foreground-muted">Receive push updates</Box>
-        </Box>
-        <Switch />
-      </HStack>
-      <HStack justify="space-between">
-        <Box>
-          <Box fontWeight="medium">Marketing emails</Box>
-          <Box fontSize="sm" color="foreground-muted">Receive marketing content</Box>
-        </Box>
-        <Switch />
-      </HStack>
-    </VStack>
   </TabItem>
 </Tabs>
 

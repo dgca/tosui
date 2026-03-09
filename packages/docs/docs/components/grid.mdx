@@ -6,10 +6,17 @@ description: "CSS Grid layout component with shorthand props for template column
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Grid, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Grid
 
 Grid is a CSS Grid layout component with shorthand props for common grid properties.
+
+<StorybookLink storyId="components-grid--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,6 +27,13 @@ import { Grid } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-grid--basic"
+      title="Tosui grid basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Grid columns="repeat(3, 1fr)" gap={4}>
@@ -32,21 +46,27 @@ import { Grid } from "@tosui/react";
     </Grid>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Grid columns="repeat(3, 1fr)" gap={4}>
-      <Box p={4} bg="primary-subtle">Item 1</Box>
-      <Box p={4} bg="accent-subtle">Item 2</Box>
-      <Box p={4} bg="success-subtle">Item 3</Box>
-      <Box p={4} bg="warning-subtle">Item 4</Box>
-      <Box p={4} bg="error-subtle">Item 5</Box>
-      <Box p={4} bg="info-subtle">Item 6</Box>
-    </Grid>
-  </TabItem>
 </Tabs>
 
 ## Column Patterns
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Grid columns="1fr 1fr" gap={4} mb={4}>
+      <Box p={4} bg="primary-subtle">Half</Box>
+      <Box p={4} bg="accent-subtle">Half</Box>
+    </Grid>
+    <Grid columns="200px 1fr" gap={4} mb={4}>
+      <Box p={4} bg="primary-subtle">Sidebar (200px)</Box>
+      <Box p={4} bg="accent-subtle">Main (flexible)</Box>
+    </Grid>
+    <Grid columns="repeat(auto-fit, minmax(150px, 1fr))" gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+      <Box p={4} bg="warning-subtle">Item 4</Box>
+    </Grid>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     {/* Equal columns */}
@@ -70,27 +90,19 @@ import { Grid } from "@tosui/react";
     </Grid>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Grid columns="1fr 1fr" gap={4} mb={4}>
-      <Box p={4} bg="primary-subtle">Half</Box>
-      <Box p={4} bg="accent-subtle">Half</Box>
-    </Grid>
-    <Grid columns="200px 1fr" gap={4} mb={4}>
-      <Box p={4} bg="primary-subtle">Sidebar (200px)</Box>
-      <Box p={4} bg="accent-subtle">Main (flexible)</Box>
-    </Grid>
-    <Grid columns="repeat(auto-fit, minmax(150px, 1fr))" gap={4}>
-      <Box p={4} bg="primary-subtle">Item 1</Box>
-      <Box p={4} bg="accent-subtle">Item 2</Box>
-      <Box p={4} bg="success-subtle">Item 3</Box>
-      <Box p={4} bg="warning-subtle">Item 4</Box>
-    </Grid>
-  </TabItem>
 </Tabs>
 
 ## Rows
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Grid columns="1fr 1fr" rows="100px 200px" gap={4}>
+      <Box p={4} bg="primary-subtle">Row 1 (100px)</Box>
+      <Box p={4} bg="accent-subtle">Row 1 (100px)</Box>
+      <Box p={4} bg="success-subtle">Row 2 (200px)</Box>
+      <Box p={4} bg="warning-subtle">Row 2 (200px)</Box>
+    </Grid>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Grid columns="1fr 1fr" rows="100px 200px" gap={4}>
@@ -101,14 +113,6 @@ import { Grid } from "@tosui/react";
     </Grid>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Grid columns="1fr 1fr" rows="100px 200px" gap={4}>
-      <Box p={4} bg="primary-subtle">Row 1 (100px)</Box>
-      <Box p={4} bg="accent-subtle">Row 1 (100px)</Box>
-      <Box p={4} bg="success-subtle">Row 2 (200px)</Box>
-      <Box p={4} bg="warning-subtle">Row 2 (200px)</Box>
-    </Grid>
-  </TabItem>
 </Tabs>
 
 
@@ -117,6 +121,16 @@ import { Grid } from "@tosui/react";
 `columns` and `rows` accept responsive objects, making it easy to change grid layouts at different breakpoints:
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Grid columns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} gap={4}>
+      <Box p={4} bg="primary-subtle">Item 1</Box>
+      <Box p={4} bg="accent-subtle">Item 2</Box>
+      <Box p={4} bg="success-subtle">Item 3</Box>
+      <Box p={4} bg="warning-subtle">Item 4</Box>
+      <Box p={4} bg="error-subtle">Item 5</Box>
+      <Box p={4} bg="info-subtle">Item 6</Box>
+    </Grid>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Grid
@@ -136,8 +150,13 @@ import { Grid } from "@tosui/react";
     </Grid>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Grid columns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} gap={4}>
+</Tabs>
+
+## Separate Row and Column Gaps
+
+<Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Grid columns="repeat(3, 1fr)" gapRow={2} gapColumn={8}>
       <Box p={4} bg="primary-subtle">Item 1</Box>
       <Box p={4} bg="accent-subtle">Item 2</Box>
       <Box p={4} bg="success-subtle">Item 3</Box>
@@ -146,11 +165,6 @@ import { Grid } from "@tosui/react";
       <Box p={4} bg="info-subtle">Item 6</Box>
     </Grid>
   </TabItem>
-</Tabs>
-
-## Separate Row and Column Gaps
-
-<Tabs>
   <TabItem value="code" label="Code">
     ```tsx
     <Grid columns="repeat(3, 1fr)" gapRow={2} gapColumn={8}>
@@ -162,22 +176,19 @@ import { Grid } from "@tosui/react";
       <Box p={4} bg="info-subtle">Item 6</Box>
     </Grid>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Grid columns="repeat(3, 1fr)" gapRow={2} gapColumn={8}>
-      <Box p={4} bg="primary-subtle">Item 1</Box>
-      <Box p={4} bg="accent-subtle">Item 2</Box>
-      <Box p={4} bg="success-subtle">Item 3</Box>
-      <Box p={4} bg="warning-subtle">Item 4</Box>
-      <Box p={4} bg="error-subtle">Item 5</Box>
-      <Box p={4} bg="info-subtle">Item 6</Box>
-    </Grid>
   </TabItem>
 </Tabs>
 
 ## Alignment
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Grid columns="repeat(3, 100px)" gap={4} justify="center" p={4} bg="surface" border="thin" borderColor="border">
+      <Box p={4} bg="primary-subtle">1</Box>
+      <Box p={4} bg="accent-subtle">2</Box>
+      <Box p={4} bg="success-subtle">3</Box>
+    </Grid>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Grid columns="repeat(3, 100px)" gap={4} justify="center" p={4} bg="surface" border="thin" borderColor="border">
@@ -186,13 +197,6 @@ import { Grid } from "@tosui/react";
       <Box p={4} bg="success-subtle">3</Box>
     </Grid>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Grid columns="repeat(3, 100px)" gap={4} justify="center" p={4} bg="surface" border="thin" borderColor="border">
-      <Box p={4} bg="primary-subtle">1</Box>
-      <Box p={4} bg="accent-subtle">2</Box>
-      <Box p={4} bg="success-subtle">3</Box>
-    </Grid>
   </TabItem>
 </Tabs>
 

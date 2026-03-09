@@ -44,9 +44,6 @@ export default function StorybookEmbed({
   const iframeUrl = `${storybookBaseUrl}iframe.html?id=${encodeURIComponent(
     storyId
   )}&viewMode=story`;
-  const storyUrl = `${storybookBaseUrl}?path=/story/${encodeURIComponent(
-    storyId
-  )}`;
 
   return (
     <div className={styles.wrapper}>
@@ -57,11 +54,6 @@ export default function StorybookEmbed({
         loading="lazy"
         style={{ height }}
       />
-      <div className={styles.meta}>
-        <a href={storyUrl} target="_blank" rel="noreferrer">
-          Open in Storybook
-        </a>
-      </div>
     </div>
   );
 }

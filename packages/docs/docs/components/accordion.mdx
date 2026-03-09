@@ -6,10 +6,17 @@ description: "Collapsible content sections for organizing information, with sing
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Accordion, AccordionItem, VStack, Box, Text } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Accordion
 
 Accordion displays collapsible content sections for organizing information.
+
+<StorybookLink storyId="components-accordion--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,6 +27,13 @@ import { Accordion, AccordionItem } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-accordion--basic"
+      title="Tosui accordion basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Accordion>
@@ -34,25 +48,22 @@ import { Accordion, AccordionItem } from "@tosui/react";
       </AccordionItem>
     </Accordion>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Accordion>
-      <AccordionItem index={0} title="Section 1">
-        Content for section 1
-      </AccordionItem>
-      <AccordionItem index={1} title="Section 2">
-        Content for section 2
-      </AccordionItem>
-      <AccordionItem index={2} title="Section 3">
-        Content for section 3
-      </AccordionItem>
-    </Accordion>
   </TabItem>
 </Tabs>
 
 ## Default Expanded
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Accordion defaultIndex={0}>
+      <AccordionItem index={0} title="Initially Open">
+        This section is open by default.
+      </AccordionItem>
+      <AccordionItem index={1} title="Closed">
+        This section starts closed.
+      </AccordionItem>
+    </Accordion>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Accordion defaultIndex={0}>
@@ -64,16 +75,6 @@ import { Accordion, AccordionItem } from "@tosui/react";
       </AccordionItem>
     </Accordion>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Accordion defaultIndex={0}>
-      <AccordionItem index={0} title="Initially Open">
-        This section is open by default.
-      </AccordionItem>
-      <AccordionItem index={1} title="Closed">
-        This section starts closed.
-      </AccordionItem>
-    </Accordion>
   </TabItem>
 </Tabs>
 
@@ -82,6 +83,19 @@ import { Accordion, AccordionItem } from "@tosui/react";
 Enable multiple sections to be open simultaneously.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Accordion allowMultiple defaultIndex={[0, 1]}>
+      <AccordionItem index={0} title="Section A">
+        This can stay open
+      </AccordionItem>
+      <AccordionItem index={1} title="Section B">
+        While this is also open
+      </AccordionItem>
+      <AccordionItem index={2} title="Section C">
+        Open all three at once!
+      </AccordionItem>
+    </Accordion>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Accordion allowMultiple defaultIndex={[0, 1]}>
@@ -96,25 +110,25 @@ Enable multiple sections to be open simultaneously.
       </AccordionItem>
     </Accordion>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Accordion allowMultiple defaultIndex={[0, 1]}>
-      <AccordionItem index={0} title="Section A">
-        This can stay open
-      </AccordionItem>
-      <AccordionItem index={1} title="Section B">
-        While this is also open
-      </AccordionItem>
-      <AccordionItem index={2} title="Section C">
-        Open all three at once!
-      </AccordionItem>
-    </Accordion>
   </TabItem>
 </Tabs>
 
 ## Disabled Items
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <Accordion>
+      <AccordionItem index={0} title="Available">
+        This section can be toggled.
+      </AccordionItem>
+      <AccordionItem index={1} title="Disabled Section" disabled>
+        This section cannot be opened.
+      </AccordionItem>
+      <AccordionItem index={2} title="Also Available">
+        This section can be toggled too.
+      </AccordionItem>
+    </Accordion>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Accordion>
@@ -129,19 +143,6 @@ Enable multiple sections to be open simultaneously.
       </AccordionItem>
     </Accordion>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Accordion>
-      <AccordionItem index={0} title="Available">
-        This section can be toggled.
-      </AccordionItem>
-      <AccordionItem index={1} title="Disabled Section" disabled>
-        This section cannot be opened.
-      </AccordionItem>
-      <AccordionItem index={2} title="Also Available">
-        This section can be toggled too.
-      </AccordionItem>
-    </Accordion>
   </TabItem>
 </Tabs>
 

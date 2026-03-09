@@ -6,10 +6,17 @@ description: "Enhanced img element with loading states, error fallback, and obje
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { Image, HStack, VStack, Box } from "@tosui/react";
+import StorybookEmbed, {
+  StorybookLink,
+} from "@site/src/components/StorybookEmbed";
 
 # Image
 
 Image is an enhanced img element with loading states, error fallback, and object-fit options.
+
+<StorybookLink storyId="components-image--basic">
+  Open in Storybook
+</StorybookLink>
 
 ## Import
 
@@ -20,6 +27,13 @@ import { Image } from "@tosui/react";
 ## Basic Usage
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <StorybookEmbed
+      storyId="components-image--basic"
+      title="Tosui image basic story"
+      height={220}
+    />
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <Image
@@ -30,14 +44,6 @@ import { Image } from "@tosui/react";
     />
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <Image
-      src="https://picsum.photos/300/200"
-      alt="Sample image"
-      w="300px"
-      h="200px"
-    />
-  </TabItem>
 </Tabs>
 
 ## Object Fit
@@ -45,6 +51,22 @@ import { Image } from "@tosui/react";
 Control how the image fits within its container.
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={4}>
+      <VStack gap={2}>
+        <Box bg="surface" p={1}><Image src="https://picsum.photos/400/300" alt="Cover" w="150px" h="100px" objectFit="cover" /></Box>
+        <Box fontSize="sm">cover</Box>
+      </VStack>
+      <VStack gap={2}>
+        <Box bg="surface" p={1}><Image src="https://picsum.photos/400/300" alt="Contain" w="150px" h="100px" objectFit="contain" /></Box>
+        <Box fontSize="sm">contain</Box>
+      </VStack>
+      <VStack gap={2}>
+        <Box bg="surface" p={1}><Image src="https://picsum.photos/400/300" alt="Fill" w="150px" h="100px" objectFit="fill" /></Box>
+        <Box fontSize="sm">fill</Box>
+      </VStack>
+    </HStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4}>
@@ -63,27 +85,20 @@ Control how the image fits within its container.
     </HStack>
     ```
   </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4}>
-      <VStack gap={2}>
-        <Box bg="surface" p={1}><Image src="https://picsum.photos/400/300" alt="Cover" w="150px" h="100px" objectFit="cover" /></Box>
-        <Box fontSize="sm">cover</Box>
-      </VStack>
-      <VStack gap={2}>
-        <Box bg="surface" p={1}><Image src="https://picsum.photos/400/300" alt="Contain" w="150px" h="100px" objectFit="contain" /></Box>
-        <Box fontSize="sm">contain</Box>
-      </VStack>
-      <VStack gap={2}>
-        <Box bg="surface" p={1}><Image src="https://picsum.photos/400/300" alt="Fill" w="150px" h="100px" objectFit="fill" /></Box>
-        <Box fontSize="sm">fill</Box>
-      </VStack>
-    </HStack>
-  </TabItem>
 </Tabs>
 
 ## Rounded Variants
 
 <Tabs>
+  <TabItem value="preview" label="Preview" default>
+    <HStack gap={4}>
+      <Image src="https://picsum.photos/100" alt="None" w="100px" h="100px" rounded="none" />
+      <Image src="https://picsum.photos/100" alt="Small" w="100px" h="100px" rounded="sm" />
+      <Image src="https://picsum.photos/100" alt="Medium" w="100px" h="100px" rounded="md" />
+      <Image src="https://picsum.photos/100" alt="Large" w="100px" h="100px" rounded="lg" />
+      <Image src="https://picsum.photos/100" alt="Full" w="100px" h="100px" rounded="full" />
+    </HStack>
+  </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4}>
@@ -94,15 +109,6 @@ Control how the image fits within its container.
       <Image src="https://picsum.photos/100" alt="Full" w="100px" h="100px" rounded="full" />
     </HStack>
     ```
-  </TabItem>
-  <TabItem value="preview" label="Preview">
-    <HStack gap={4}>
-      <Image src="https://picsum.photos/100" alt="None" w="100px" h="100px" rounded="none" />
-      <Image src="https://picsum.photos/100" alt="Small" w="100px" h="100px" rounded="sm" />
-      <Image src="https://picsum.photos/100" alt="Medium" w="100px" h="100px" rounded="md" />
-      <Image src="https://picsum.photos/100" alt="Large" w="100px" h="100px" rounded="lg" />
-      <Image src="https://picsum.photos/100" alt="Full" w="100px" h="100px" rounded="full" />
-    </HStack>
   </TabItem>
 </Tabs>
 
