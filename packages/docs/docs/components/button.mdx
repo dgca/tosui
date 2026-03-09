@@ -47,11 +47,11 @@ Use `variant` to change the visual weight of the action.
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <StorybookEmbed
-      storyId="components-button--variants"
-      title="Tosui Button variants story"
-      height={180}
-    />
+    <HStack gap={4}>
+      <Button variant="solid">Solid</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+    </HStack>
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
@@ -68,11 +68,11 @@ Use `variant` to change the visual weight of the action.
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <StorybookEmbed
-      storyId="components-button--sizes"
-      title="Tosui Button sizes story"
-      height={180}
-    />
+    <HStack gap={4} align="center">
+      <Button size="sm">Small</Button>
+      <Button size="md">Medium</Button>
+      <Button size="lg">Large</Button>
+    </HStack>
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
@@ -89,11 +89,14 @@ Use `variant` to change the visual weight of the action.
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <StorybookEmbed
-      storyId="components-button--color-schemes"
-      title="Tosui Button color schemes story"
-      height={220}
-    />
+    <HStack gap={4} wrap>
+      <Button colorScheme="primary">Primary</Button>
+      <Button colorScheme="accent">Accent</Button>
+      <Button colorScheme="success">Success</Button>
+      <Button colorScheme="warning">Warning</Button>
+      <Button colorScheme="error">Error</Button>
+      <Button colorScheme="info">Info</Button>
+    </HStack>
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
@@ -113,11 +116,18 @@ Use `variant` to change the visual weight of the action.
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <StorybookEmbed
-      storyId="components-button--variants-with-color-schemes"
-      title="Tosui Button variants with color schemes story"
-      height={220}
-    />
+    <VStack gap={4}>
+      <HStack gap={4}>
+        <Button variant="solid" colorScheme="success">Solid</Button>
+        <Button variant="outline" colorScheme="success">Outline</Button>
+        <Button variant="ghost" colorScheme="success">Ghost</Button>
+      </HStack>
+      <HStack gap={4}>
+        <Button variant="solid" colorScheme="error">Solid</Button>
+        <Button variant="outline" colorScheme="error">Outline</Button>
+        <Button variant="ghost" colorScheme="error">Ghost</Button>
+      </HStack>
+    </VStack>
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
@@ -143,11 +153,11 @@ Use `disabled` and `loading` to communicate unavailable or in-progress actions.
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <StorybookEmbed
-      storyId="components-button--states"
-      title="Tosui Button states story"
-      height={180}
-    />
+    <HStack gap={4}>
+      <Button>Normal</Button>
+      <Button disabled>Disabled</Button>
+      <Button loading>Loading</Button>
+    </HStack>
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
@@ -204,11 +214,7 @@ When loading, the left icon is replaced with a spinner:
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <StorybookEmbed
-      storyId="components-button--full-width"
-      title="Tosui Button full width story"
-      height={180}
-    />
+    <Button fullWidth>Full Width Button</Button>
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
@@ -223,11 +229,9 @@ Button can render as any element using the `as` prop.
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <StorybookEmbed
-      storyId="components-button--as-link"
-      title="Tosui Button as link story"
-      height={180}
-    />
+    <Button as="a" href="/signup">
+      Sign Up
+    </Button>
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx

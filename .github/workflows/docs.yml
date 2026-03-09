@@ -27,8 +27,12 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Build library
         run: pnpm f:lib build
+      - name: Build Storybook
+        run: pnpm -F @tosui/react storybook:build
       - name: Build docs website
         run: pnpm f:docs build
+      - name: Copy Storybook into docs build
+        run: pnpm -F docs copy-storybook
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
