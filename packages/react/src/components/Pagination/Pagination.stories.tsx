@@ -6,6 +6,11 @@ const meta = {
   title: "Components/Pagination",
   id: "components-pagination",
   component: Pagination,
+  args: {
+    page: 1,
+    totalPages: 10,
+    onPageChange: () => undefined,
+  },
 } satisfies Meta<typeof Pagination>;
 
 export default meta;

@@ -5,6 +5,10 @@ const meta = {
   title: "Components/Tooltip",
   id: "components-tooltip",
   component: Tooltip,
+  args: {
+    label: "This is a tooltip",
+    children: undefined,
+  },
 } satisfies Meta<typeof Tooltip>;
 
 export default meta;

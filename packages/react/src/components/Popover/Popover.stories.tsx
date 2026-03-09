@@ -5,6 +5,10 @@ const meta = {
   title: "Components/Popover",
   id: "components-popover",
   component: Popover,
+  args: {
+    content: undefined,
+    children: undefined,
+  },
 } satisfies Meta<typeof Popover>;
 
 export default meta;

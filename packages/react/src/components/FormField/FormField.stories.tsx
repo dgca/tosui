@@ -5,6 +5,10 @@ const meta = {
   title: "Components/FormField",
   id: "components-form-field",
   component: FormField,
+  args: {
+    label: "Email",
+    children: undefined,
+  },
 } satisfies Meta<typeof FormField>;
 
 export default meta;

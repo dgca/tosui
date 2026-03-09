@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   render: () => (
-    <VStack gap={2} align="flex-start">
+    <VStack gap={2} align="start">
       <Radio name="fruit" label="Apple" value="apple" />
       <Radio name="fruit" label="Banana" value="banana" />
       <Radio name="fruit" label="Orange" value="orange" />

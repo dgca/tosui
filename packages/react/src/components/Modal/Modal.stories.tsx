@@ -6,6 +6,11 @@ const meta = {
   title: "Components/Modal",
   id: "components-modal",
   component: Modal,
+  args: {
+    isOpen: false,
+    onClose: () => undefined,
+    children: undefined,
+  },
 } satisfies Meta<typeof Modal>;
 
 export default meta;
@@ -20,7 +25,7 @@ export const Basic: Story = {
           <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
           <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
             <ModalHeader>
-              <Heading fontSize="lg">Modal Title</Heading>
+              <Heading size="lg">Modal Title</Heading>
             </ModalHeader>
             <ModalBody>This is the modal content.</ModalBody>
             <ModalFooter>
