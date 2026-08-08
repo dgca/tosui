@@ -95,9 +95,13 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           justifyContent="center"
           rounded="sm"
           border="thin"
-          borderColor={isInvalid ? "error" : "border"}
+          borderColor={isInvalid ? "error" : isChecked ? "primary" : "border"}
           flexShrink={0}
-          className={clsx(styles.box, isInvalid && styles.invalid)}
+          className={clsx(
+            styles.box,
+            isChecked && styles.checked,
+            isInvalid && styles.invalid
+          )}
           style={{
             width: sizeProps.box,
             height: sizeProps.box,

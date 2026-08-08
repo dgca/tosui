@@ -91,9 +91,12 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
         justifyContent="center"
         rounded="full"
         border="thin"
-        borderColor="border"
+        borderColor={isChecked ? "primary" : "border"}
         flexShrink={0}
-        className={styles.circle}
+        className={clsx(
+          styles.circle,
+          isChecked && styles.checked
+        )}
         style={{
           width: sizeProps.circle,
           height: sizeProps.circle,

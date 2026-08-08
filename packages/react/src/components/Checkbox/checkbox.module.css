@@ -44,6 +44,15 @@
   display: block;
 }
 
+.box.checked::before {
+  display: block;
+}
+
+.box.checked {
+  background-color: var(--t-color-primary-default);
+  border-color: var(--t-color-primary-default);
+}
+
 /* Invalid state */
 .box.invalid {
   border-color: var(--t-color-error-default);

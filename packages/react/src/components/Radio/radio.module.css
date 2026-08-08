@@ -42,6 +42,15 @@
   display: block;
 }
 
+/* Visual checked state (independent of input) */
+.circle.checked {
+  border-color: var(--t-color-primary-default);
+}
+
+.circle.checked::before {
+  display: block;
+}
+
 /* Disabled state (handled via opacity on wrapper) */
 .input:disabled ~ .circle {
   cursor: not-allowed;
