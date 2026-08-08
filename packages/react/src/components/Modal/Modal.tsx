@@ -4,6 +4,7 @@ import { type ReactNode, useEffect, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 import styles from "./modal.module.css";
 
 // ============================================================================
@@ -87,6 +88,9 @@ export function Modal({
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+
+  // Focus trap within modal when open
+  useFocusTrap(modalRef, isOpen);
 
   // Store previous focus and focus modal when open
   useEffect(() => {

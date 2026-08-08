@@ -12,6 +12,7 @@ import {
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
 import { Button, type ButtonProps } from "@/components/Button";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 import styles from "./menu.module.css";
 
 // ============================================================================
@@ -174,12 +175,17 @@ export function MenuButton({ children, className, ...rest }: MenuButtonProps) {
  */
 export function MenuList({ className, children }: MenuListProps) {
   const { isOpen } = useMenuContext();
+  const menuListRef = useRef<HTMLDivElement>(null);
 
   if (!isOpen) return null;
+
+  // Focus trap within menu list when open
+  useFocusTrap(menuListRef, isOpen);
 
   return (
     <Box
       role="menu"
+      ref={menuListRef}
       position="absolute"
       top="100%"
       left={0}
