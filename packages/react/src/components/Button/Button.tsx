@@ -165,7 +165,6 @@ export function Button<T extends ElementType = "button">({
   ) : null;
 
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Box
       as={Component}
       // Layout

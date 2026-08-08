@@ -66,7 +66,6 @@ export function Text<T extends ElementType = "span">({
   ...rest
 }: TextProps<T>) {
   return (
-    // @ts-expect-error - Polymorphic component prop forwarding
     <Box
       as={as}
       fontSize={size}

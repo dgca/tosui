@@ -70,8 +70,6 @@ export function Stack<T extends ElementType = "div">({
           ) as ResponsiveValue<FlexWrapValue>;
 
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
-    <Box
       as={as || "div"}
       display="flex"
       flexDirection={direction}

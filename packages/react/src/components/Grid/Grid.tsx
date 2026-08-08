@@ -80,7 +80,6 @@ export function Grid<T extends ElementType = "div">({
   ...rest
 }: GridProps<T>) {
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Box
       as={as || "div"}
       display="grid"

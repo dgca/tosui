@@ -30,7 +30,6 @@ export function Spacer<T extends ElementType = "div">({
   ...rest
 }: SpacerProps<T>) {
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Box as={as || "div"} flex={1} {...rest} />
   );
 }

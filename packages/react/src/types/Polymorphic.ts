@@ -1,4 +1,4 @@
-import { type ComponentPropsWithRef, type ElementType } from "react";
+import { type ComponentProps, type ElementType } from "react";
 
 /**
  * Polymorphic component type helper
