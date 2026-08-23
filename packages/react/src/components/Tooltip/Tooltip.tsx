@@ -1,10 +1,11 @@
 "use client";
 
-import { type ReactNode, useState, useRef, useEffect, useCallback, useLayoutEffect } from "react";
+import { type ReactNode, useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
 import { useIsClient } from "@/hooks/useIsClient";
+import { useOverlayPosition } from "@/hooks/useOverlayPosition";
 import styles from "./tooltip.module.css";
 
 // ============================================================================
@@ -67,48 +68,17 @@ export function Tooltip({
   const isControlled = controlledIsOpen !== undefined;
   const isOpen = isControlled ? controlledIsOpen : internalIsOpen;
 
-  const [position, setPosition] = useState({ top: 0, left: 0 });
   const triggerRef = useRef<HTMLElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const openTimeoutRef = useRef<number | null>(null);
   const closeTimeoutRef = useRef<number | null>(null);
 
-  const updatePosition = useCallback(() => {
-    if (!triggerRef.current || !tooltipRef.current) return;
-
-    const triggerRect = triggerRef.current.getBoundingClientRect();
-    const tooltipRect = tooltipRef.current.getBoundingClientRect();
-    const gap = 8;
-
-    let top = 0;
-    let left = 0;
-
-    switch (placement) {
-      case "top":
-        top = triggerRect.top - tooltipRect.height - gap;
-        left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
-        break;
-      case "bottom":
-        top = triggerRect.bottom + gap;
-        left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
-        break;
-      case "left":
-        top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2;
-        left = triggerRect.left - tooltipRect.width - gap;
-        break;
-      case "right":
-        top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2;
-        left = triggerRect.right + gap;
-        break;
-    }
-
-    setPosition({ top: top + window.scrollY, left: left + window.scrollX });
-  }, [placement]);
-
-  useLayoutEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- useLayoutEffect for DOM measurement before paint
-    if (isOpen) updatePosition();
-  }, [isOpen, updatePosition]);
+  const position = useOverlayPosition({
+    isOpen,
+    placement,
+    triggerRef,
+    overlayRef: tooltipRef,
+  });
 
   const setOpen = (open: boolean) => {
     if (!isControlled) {
