@@ -1,6 +1,7 @@
 import { type InputHTMLAttributes, forwardRef } from "react";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
+import { useFormFieldControl } from "@/components/FormField/FormFieldContext";
 import styles from "./radio.module.css";
 
 // ============================================================================
@@ -17,6 +18,8 @@ export type RadioProps = Omit<
   size?: RadioSize;
   /** Whether the radio is disabled */
   disabled?: boolean;
+  /** Whether the radio is in an invalid state */
+  isInvalid?: boolean;
   /** Controlled checked state */
   isChecked?: boolean;
   /** Optional label text displayed to the right */
@@ -52,6 +55,11 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
   {
     size = "md",
     disabled = false,
+    isInvalid = false,
+    id,
+    required,
+    "aria-describedby": ariaDescribedBy,
+    "aria-invalid": ariaInvalid,
     isChecked,
     label,
     className,
@@ -61,6 +69,14 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
   ref
 ) {
   const sizeProps = sizeConfig[size];
+  const control = useFormFieldControl({
+    id,
+    disabled,
+    required,
+    isInvalid,
+    ariaDescribedBy,
+    ariaInvalid,
+  });
 
   return (
     <Box
@@ -68,8 +84,8 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
       display="inline-flex"
       alignItems="center"
       gap={2}
-      cursor={disabled ? "not-allowed" : "pointer"}
-      opacity={disabled ? "faint" : undefined}
+      cursor={control.disabled ? "not-allowed" : "pointer"}
+      opacity={control.disabled ? "faint" : undefined}
       className={clsx(styles.wrapper, className)}
       style={style}
     >
@@ -78,7 +94,11 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
         type="radio"
         ref={ref}
         checked={isChecked}
-        disabled={disabled}
+        id={control.id}
+        disabled={control.disabled}
+        required={control.required}
+        aria-describedby={control.ariaDescribedBy}
+        aria-invalid={control.ariaInvalid}
         className={styles.input}
         {...rest}
       />

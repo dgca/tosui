@@ -125,7 +125,8 @@ When `isInvalid` is true, the error message replaces the helper text.
 
 ## With Different Controls
 
-FormField works with any form control.
+Tosui form controls consume FormField state automatically. Each FormField
+represents one semantic form control.
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -178,6 +179,32 @@ FormField works with any form control.
   </TabItem>
 </Tabs>
 
+## Native and Custom Controls
+
+Use the render-function form to adapt FormField's accessible control props to
+a native element or custom control. Spread the props onto the element that
+receives focus:
+
+```tsx
+<FormField
+  label="Email"
+  helperText="We'll only use this for account notifications"
+  isRequired
+>
+  {(controlProps) => (
+    <input
+      type="email"
+      placeholder="you@example.com"
+      {...controlProps}
+    />
+  )}
+</FormField>
+```
+
+The adapter receives `id`, `disabled`, `required`, `aria-describedby`, and
+`aria-invalid`. This keeps FormField from adding component-only props to
+arbitrary child elements.
+
 ## Complete Form Example
 
 ```tsx
@@ -222,27 +249,37 @@ FormField works with any form control.
 | isInvalid | `boolean` | `false` | Show invalid state |
 | disabled | `boolean` | `false` | Disable the control |
 | id | `string` | auto-generated | Custom ID for the field |
-| children | `ReactNode` | - | The form control |
+| children | `ReactElement \| (controlProps => ReactElement)` | - | One Tosui control, or an adapter for a native/custom control |
 
 ## Accessibility
 
 FormField provides:
 - Proper `<label>` element linked to the control via `htmlFor`
 - `aria-describedby` linking the control to helper/error text
+- Existing `aria-describedby` IDs are preserved when helper/error text is added
 - `aria-invalid` attribute when in error state
+- Native `required` and `disabled` attributes when requested
 - Auto-generated unique IDs when not provided
 
 ## State Propagation
 
-FormField automatically passes these props to child controls:
+Tosui controls automatically consume this field state through context:
 - `id` - for label association
-- `isInvalid` - for visual error state
+- invalid state - for visual and accessible error state
 - `disabled` - for disabled state
+- `required` - for native constraint validation
 - `aria-describedby` - for accessibility
 - `aria-invalid` - for accessibility
+
+Because context travels through component and layout boundaries, wrapping a
+Tosui control in layout markup does not move these props onto the wrapper.
 
 ## TypeScript
 
 ```tsx
-import { FormField, type FormFieldProps } from "@tosui/react";
+import {
+  FormField,
+  type FormFieldControlProps,
+  type FormFieldProps,
+} from "@tosui/react";
 ```

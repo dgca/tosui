@@ -1,6 +1,7 @@
 import { type InputHTMLAttributes, forwardRef } from "react";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
+import { useFormFieldControl } from "@/components/FormField/FormFieldContext";
 import styles from "./switch.module.css";
 
 // ============================================================================
@@ -17,6 +18,8 @@ export type SwitchProps = Omit<
   size?: SwitchSize;
   /** Whether the switch is disabled */
   disabled?: boolean;
+  /** Whether the switch is in an invalid state */
+  isInvalid?: boolean;
   /** Controlled checked state */
   isChecked?: boolean;
   /** Optional label text displayed to the right */
@@ -51,6 +54,11 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   {
     size = "md",
     disabled = false,
+    isInvalid = false,
+    id,
+    required,
+    "aria-describedby": ariaDescribedBy,
+    "aria-invalid": ariaInvalid,
     isChecked,
     label,
     className,
@@ -60,6 +68,14 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   ref
 ) {
   const sizeProps = sizeConfig[size];
+  const control = useFormFieldControl({
+    id,
+    disabled,
+    required,
+    isInvalid,
+    ariaDescribedBy,
+    ariaInvalid,
+  });
 
   return (
     <Box
@@ -67,8 +83,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
       display="inline-flex"
       alignItems="center"
       gap={2}
-      cursor={disabled ? "not-allowed" : "pointer"}
-      opacity={disabled ? "faint" : undefined}
+      cursor={control.disabled ? "not-allowed" : "pointer"}
+      opacity={control.disabled ? "faint" : undefined}
       className={clsx(styles.wrapper, className)}
       style={style}
     >
@@ -78,7 +94,11 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
         role="switch"
         ref={ref}
         checked={isChecked}
-        disabled={disabled}
+        id={control.id}
+        disabled={control.disabled}
+        required={control.required}
+        aria-describedby={control.ariaDescribedBy}
+        aria-invalid={control.ariaInvalid}
         className={styles.input}
         {...rest}
       />

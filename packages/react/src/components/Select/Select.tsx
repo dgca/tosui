@@ -2,6 +2,7 @@ import { type ElementType } from "react";
 import clsx from "clsx";
 import { type Polymorphic } from "@/types/Polymorphic";
 import { Box, type BoxOwnProps } from "@/components/Box/Box";
+import { useFormFieldControl } from "@/components/FormField/FormFieldContext";
 import styles from "./select.module.css";
 
 // ============================================================================
@@ -61,11 +62,23 @@ export function Select<T extends ElementType = "select">({
   variant = "outline",
   disabled = false,
   isInvalid = false,
+  id,
+  required,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalid,
   className,
   ...rest
 }: SelectProps<T>) {
   const Component = as || "select";
   const sizeProps = sizeConfig[size];
+  const control = useFormFieldControl({
+    id,
+    disabled,
+    required,
+    isInvalid,
+    ariaDescribedBy,
+    ariaInvalid,
+  });
 
   // Variant-specific styling
   const variantStyles =
@@ -98,10 +111,17 @@ export function Select<T extends ElementType = "select">({
       // Colors
       color="foreground"
       // CSS module for states and custom arrow
-      className={clsx(styles.select, isInvalid && styles.invalid, className)}
+      className={clsx(
+        styles.select,
+        control.isInvalid && styles.invalid,
+        className
+      )}
       // Native disabled
-      disabled={disabled}
-      aria-invalid={isInvalid || undefined}
+      id={control.id}
+      disabled={control.disabled}
+      required={control.required}
+      aria-describedby={control.ariaDescribedBy}
+      aria-invalid={control.ariaInvalid}
       {...rest}
     />
   );
