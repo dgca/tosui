@@ -28,9 +28,35 @@
 }
 
 .content {
-  /* Content panel */
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows 0.2s ease,
+    visibility 0s linear 0.2s;
+}
+
+.contentExpanded {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition:
+    grid-template-rows 0.2s ease,
+    visibility 0s linear 0s;
+}
+
+.contentInner {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .disabled {
   opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content,
+  .contentExpanded,
+  .icon {
+    transition: none;
+  }
 }

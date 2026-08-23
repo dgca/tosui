@@ -37,13 +37,13 @@ import { Accordion, AccordionItem } from "@tosui/react";
   <TabItem value="code" label="Code">
     ```tsx
     <Accordion>
-      <AccordionItem index={0} title="Section 1">
+      <AccordionItem title="Section 1">
         Content for section 1
       </AccordionItem>
-      <AccordionItem index={1} title="Section 2">
+      <AccordionItem title="Section 2">
         Content for section 2
       </AccordionItem>
-      <AccordionItem index={2} title="Section 3">
+      <AccordionItem title="Section 3">
         Content for section 3
       </AccordionItem>
     </Accordion>
@@ -112,6 +112,18 @@ Enable multiple sections to be open simultaneously.
     ```
   </TabItem>
 </Tabs>
+
+## Responding to Changes
+
+`onChange` receives the expanded item index in single mode, or all expanded
+indexes when `allowMultiple` is enabled.
+
+```tsx
+<Accordion onChange={(index) => console.log(index)}>
+  <AccordionItem title="Account">Account settings</AccordionItem>
+  <AccordionItem title="Security">Security settings</AccordionItem>
+</Accordion>
+```
 
 ## Disabled Items
 
@@ -226,6 +238,7 @@ Enable multiple sections to be open simultaneously.
 |------|------|---------|-------------|
 | defaultIndex | `number` \| `number[]` | - | Default expanded index(es) |
 | allowMultiple | `boolean` | `false` | Allow multiple items expanded |
+| onChange | `(index: number \| number[] \| null) => void` | - | Called after an item is toggled |
 | className | `string` | - | Additional CSS class |
 | children | `ReactNode` | - | AccordionItem children |
 
@@ -233,7 +246,7 @@ Enable multiple sections to be open simultaneously.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| index | `number` | - | Item index (required) |
+| index | `number` | Item position | Optional item index override |
 | title | `ReactNode` | - | Item header (required) |
 | disabled | `boolean` | `false` | Whether item is disabled |
 | className | `string` | - | Additional CSS class |
@@ -242,6 +255,8 @@ Enable multiple sections to be open simultaneously.
 ## Accessibility
 
 - Uses `aria-expanded` on trigger buttons
+- Associates each trigger and panel with `aria-controls` and `aria-labelledby`
+- Removes collapsed panel content from interaction while preserving its transition
 - Uses `aria-disabled` for disabled items
 - Keyboard accessible via Tab and Enter/Space
 

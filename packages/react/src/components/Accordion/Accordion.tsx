@@ -1,6 +1,13 @@
 "use client";
 
-import { type ReactNode, createContext, useContext, useState } from "react";
+import {
+  Children,
+  type ReactNode,
+  createContext,
+  useContext,
+  useId,
+  useState,
+} from "react";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
 import styles from "./accordion.module.css";
@@ -16,6 +23,7 @@ type AccordionContextValue = {
 };
 
 const AccordionContext = createContext<AccordionContextValue | null>(null);
+const AccordionItemIndexContext = createContext<number | null>(null);
 
 function useAccordionContext() {
   const context = useContext(AccordionContext);
@@ -33,6 +41,8 @@ export type AccordionProps = {
   defaultIndex?: number | number[];
   /** Allow multiple items expanded */
   allowMultiple?: boolean;
+  /** Called with the expanded index or indexes after a user toggle */
+  onChange?: (index: number | number[] | null) => void;
   /** Additional class name */
   className?: string;
   /** Accordion items */
@@ -40,8 +50,8 @@ export type AccordionProps = {
 };
 
 export type AccordionItemProps = {
-  /** Item index (set manually) */
-  index: number;
+  /** Optional item index override; defaults to the item's position */
+  index?: number;
   /** Item title */
   title: ReactNode;
   /** Whether disabled */
@@ -67,6 +77,7 @@ export type AccordionItemProps = {
 export function Accordion({
   defaultIndex,
   allowMultiple = false,
+  onChange,
   className,
   children,
 }: AccordionProps) {
@@ -81,8 +92,11 @@ export function Accordion({
         ? current.filter((i) => i !== index)
         : [...current, index];
       setExpandedIndex(newExpanded);
+      onChange?.(newExpanded);
     } else {
-      setExpandedIndex(expandedIndex === index ? null : index);
+      const newExpanded = expandedIndex === index ? null : index;
+      setExpandedIndex(newExpanded);
+      onChange?.(newExpanded);
     }
   };
 
@@ -97,7 +111,11 @@ export function Accordion({
         overflow="hidden"
         className={clsx(styles.accordion, className)}
       >
-        {children}
+        {Children.toArray(children).map((child, index) => (
+          <AccordionItemIndexContext.Provider value={index} key={index}>
+            {child}
+          </AccordionItemIndexContext.Provider>
+        ))}
       </Box>
     </AccordionContext.Provider>
   );
@@ -114,10 +132,18 @@ export function AccordionItem({
   children,
 }: AccordionItemProps) {
   const { expandedIndex, toggleIndex, allowMultiple } = useAccordionContext();
+  const automaticIndex = useContext(AccordionItemIndexContext);
+  const itemIndex = index ?? automaticIndex;
+  if (itemIndex === null) {
+    throw new Error("AccordionItem must be a direct child of Accordion");
+  }
 
   const isExpanded = allowMultiple
-    ? ((expandedIndex as number[]) || []).includes(index)
-    : expandedIndex === index;
+    ? ((expandedIndex as number[]) || []).includes(itemIndex)
+    : expandedIndex === itemIndex;
+  const id = useId();
+  const triggerId = `accordion-trigger-${id}`;
+  const panelId = `accordion-panel-${id}`;
 
   return (
     <Box
@@ -142,9 +168,11 @@ export function AccordionItem({
         borderColor="border"
         cursor={disabled ? "not-allowed" : "pointer"}
         opacity={disabled ? "faint" : undefined}
-        onClick={() => !disabled && toggleIndex(index)}
+        onClick={() => !disabled && toggleIndex(itemIndex)}
+        id={triggerId}
         aria-expanded={isExpanded}
         aria-disabled={disabled}
+        aria-controls={panelId}
         className={styles.button}
       >
         <Box fontWeight="medium">{title}</Box>
@@ -152,14 +180,37 @@ export function AccordionItem({
           as="span"
           className={clsx(styles.icon, isExpanded && styles.rotated)}
         >
-          ▾
+          <svg
+            viewBox="0 0 16 16"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="m4 6 4 4 4-4" />
+          </svg>
         </Box>
       </Box>
-      {isExpanded && (
-        <Box p={4} className={styles.content}>
-          {children}
+      <Box
+        id={panelId}
+        role="region"
+        aria-labelledby={triggerId}
+        aria-hidden={!isExpanded}
+        inert={!isExpanded}
+        className={clsx(
+          styles.content,
+          isExpanded && styles.contentExpanded
+        )}
+      >
+        <Box className={styles.contentInner}>
+          <Box p={4}>{children}</Box>
         </Box>
-      )}
+      </Box>
     </Box>
   );
 }
