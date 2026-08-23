@@ -82,7 +82,6 @@ export function Select<T extends ElementType = "select">({
         };
 
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Box
       as={Component}
       // Size props

@@ -931,3 +931,32 @@
   .flex { flex: var(--t-flex_2xl, var(--t-flex_xl, var(--t-flex_lg, var(--t-flex_md, var(--t-flex_sm, var(--t-flex)))))); }
   .flex\:h:hover { flex: var(--t-flex_2xl-h, var(--t-flex_xl-h, var(--t-flex_lg-h, var(--t-flex_md-h, var(--t-flex_sm-h, var(--t-flex-h)))))); }
 }
+
+/* align-content (variable-based, responsive) */
+.content { align-content: var(--t-align-content); }
+.content\:h:hover { align-content: var(--t-align-content-h); }
+
+@media (min-width: 640px) {
+  .content { align-content: var(--t-align-content_sm, var(--t-align-content)); }
+  .content\:h:hover { align-content: var(--t-align-content_sm-h, var(--t-align-content-h)); }
+}
+
+@media (min-width: 768px) {
+  .content { align-content: var(--t-align-content_md, var(--t-align-content_sm, var(--t-align-content))); }
+  .content\:h:hover { align-content: var(--t-align-content_md-h, var(--t-align-content_sm-h, var(--t-align-content-h))); }
+}
+
+@media (min-width: 1024px) {
+  .content { align-content: var(--t-align-content_lg, var(--t-align-content_md, var(--t-align-content_sm, var(--t-align-content)))); }
+  .content\:h:hover { align-content: var(--t-align-content_lg-h, var(--t-align-content_md-h, var(--t-align-content_sm-h, var(--t-align-content-h)))); }
+}
+
+@media (min-width: 1280px) {
+  .content { align-content: var(--t-align-content_xl, var(--t-align-content_lg, var(--t-align-content_md, var(--t-align-content_sm, var(--t-align-content))))); }
+  .content\:h:hover { align-content: var(--t-align-content_xl-h, var(--t-align-content_lg-h, var(--t-align-content_md-h, var(--t-align-content_sm-h, var(--t-align-content-h))))); }
+}
+
+@media (min-width: 1536px) {
+  .content { align-content: var(--t-align-content_2xl, var(--t-align-content_xl, var(--t-align-content_lg, var(--t-align-content_md, var(--t-align-content_sm, var(--t-align-content)))))); }
+  .content\:h:hover { align-content: var(--t-align-content_2xl-h, var(--t-align-content_xl-h, var(--t-align-content_lg-h, var(--t-align-content_md-h, var(--t-align-content_sm-h, var(--t-align-content-h)))))); }
+}

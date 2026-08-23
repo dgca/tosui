@@ -81,7 +81,6 @@ export function Input<T extends ElementType = "input">({
         };
 
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Box
       as={Component}
       // Size props

@@ -34,7 +34,6 @@ export function HStack<T extends ElementType = "div">({
   ...rest
 }: HStackProps<T>) {
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Stack as={as || "div"} direction="row" {...rest}>
       {children}
     </Stack>

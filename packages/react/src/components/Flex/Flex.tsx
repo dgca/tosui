@@ -95,7 +95,6 @@ export function Flex<T extends ElementType = "div">({
   ...rest
 }: FlexProps<T>) {
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Box
       as={as || "div"}
       display="flex"

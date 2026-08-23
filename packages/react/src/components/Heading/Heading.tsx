@@ -67,7 +67,6 @@ export function Heading<T extends ElementType = "h1">({
   const element = as ?? headingElement;
 
   return (
-    // @ts-expect-error - Polymorphic component prop forwarding
     <Text
       as={element}
       size={size ?? defaultSize}

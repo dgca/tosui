@@ -50,7 +50,6 @@ export function Spinner<T extends ElementType = "span">({
   const sizeProps = sizeConfig[size];
 
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Box
       as={Component}
       display="inline-block"
