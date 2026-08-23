@@ -4,6 +4,7 @@ import { type ReactNode, useState, useRef, useEffect, useCallback, useLayoutEffe
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 import styles from "./popover.module.css";
 
 // ============================================================================
@@ -125,6 +126,12 @@ export function Popover({
     if (isOpen) updatePosition();
   }, [isOpen, updatePosition]);
 
+  useFocusTrap({
+    isActive: isOpen,
+    containerRef: popoverRef,
+    onEscape: () => setOpen(false),
+  });
+
   // Close on outside click
   useEffect(() => {
     if (!isOpen || !closeOnBlur) return;
@@ -141,18 +148,6 @@ export function Popover({
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
   }, [isOpen, closeOnBlur, setOpen]);
-
-  // Close on Escape
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, setOpen]);
 
   const handleTriggerClick = () => {
     setOpen(!isOpen);
@@ -175,6 +170,7 @@ export function Popover({
         createPortal(
           <Box
             ref={popoverRef}
+            tabIndex={-1}
             position="absolute"
             bg="surface"
             border="thin"

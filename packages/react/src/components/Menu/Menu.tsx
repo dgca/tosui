@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  type KeyboardEvent as ReactKeyboardEvent,
   type ReactNode,
   createContext,
   useContext,
@@ -12,6 +13,7 @@ import {
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
 import { Button, type ButtonProps } from "@/components/Button";
+import { getTabbableElements } from "@/utils/focus";
 import styles from "./menu.module.css";
 
 // ============================================================================
@@ -125,7 +127,11 @@ export function Menu({
     if (!isOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
     };
 
     document.addEventListener("keydown", handleKeyDown);
@@ -173,13 +179,53 @@ export function MenuButton({ children, className, ...rest }: MenuButtonProps) {
  * Only renders when menu is open.
  */
 export function MenuList({ className, children }: MenuListProps) {
-  const { isOpen } = useMenuContext();
+  const { isOpen, setIsOpen, buttonRef } = useMenuContext();
+  const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    listRef.current
+      ?.querySelector<HTMLElement>('[role="menuitem"]:not([disabled])')
+      ?.focus();
+  }, [isOpen]);
+
+  const handleKeyDown = (e: ReactKeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Tab") {
+      const tabbable = getTabbableElements(document);
+      const triggerIndex = buttonRef.current
+        ? tabbable.indexOf(buttonRef.current)
+        : -1;
+      const target = tabbable[triggerIndex + (e.shiftKey ? -1 : 1)];
+
+      if (target) e.preventDefault();
+      setIsOpen(false);
+      target?.focus();
+      return;
+    }
+
+    if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+
+    const items = Array.from(
+      listRef.current?.querySelectorAll<HTMLElement>(
+        '[role="menuitem"]:not([disabled])'
+      ) ?? []
+    );
+    if (items.length === 0) return;
+
+    e.preventDefault();
+    const currentIndex = items.indexOf(document.activeElement as HTMLElement);
+    const direction = e.key === "ArrowDown" ? 1 : -1;
+    const nextIndex = (currentIndex + direction + items.length) % items.length;
+    items[nextIndex]?.focus();
+  };
 
   if (!isOpen) return null;
 
   return (
     <Box
+      ref={listRef}
       role="menu"
+      onKeyDown={handleKeyDown}
       position="absolute"
       top="100%"
       left={0}
@@ -223,6 +269,7 @@ export function MenuItem({
       as="button"
       type="button"
       role="menuitem"
+      tabIndex={-1}
       onClick={handleClick}
       disabled={disabled}
       display="flex"

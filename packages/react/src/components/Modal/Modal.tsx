@@ -4,6 +4,7 @@ import { type ReactNode, useEffect, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 import styles from "./modal.module.css";
 
 // ============================================================================
@@ -86,29 +87,11 @@ export function Modal({
   children,
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
-  const previousFocusRef = useRef<HTMLElement | null>(null);
-
-  // Store previous focus and focus modal when open
-  useEffect(() => {
-    if (isOpen) {
-      previousFocusRef.current = document.activeElement as HTMLElement;
-      modalRef.current?.focus();
-    } else if (previousFocusRef.current) {
-      previousFocusRef.current.focus();
-    }
-  }, [isOpen]);
-
-  // Handle Escape key
-  useEffect(() => {
-    if (!isOpen || !closeOnEsc) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, closeOnEsc, onClose]);
+  useFocusTrap({
+    isActive: isOpen,
+    containerRef: modalRef,
+    onEscape: closeOnEsc ? onClose : undefined,
+  });
 
   // Prevent body scroll when modal is open
   useEffect(() => {
