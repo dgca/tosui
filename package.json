@@ -12,7 +12,7 @@
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck",
     "lint": "pnpm -r --if-present lint",
-    "verify": "pnpm test && pnpm typecheck && pnpm lint && pnpm build:site",
+    "verify": "pnpm test && pnpm f:lib build && pnpm typecheck && pnpm lint && pnpm f:lib storybook:build && pnpm f:docs build && pnpm f:docs copy-storybook",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "pnpm f:lib build && changeset publish"
