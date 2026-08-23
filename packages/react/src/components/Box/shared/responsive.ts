@@ -41,6 +41,10 @@ export function getResponsiveVarStyles<T>(
     const raw = transform ? transform(value) : String(value);
     if (raw === undefined) return result;
     result.className = className;
+    for (const key of RESPONSIVE_KEYS) {
+      const bpSuffix = key === "base" ? "" : `_${key}`;
+      result.style[`--t-${varPrefix}${bpSuffix}${stateSuffix}`] = "initial";
+    }
     result.style[`--t-${varPrefix}${stateSuffix}`] = raw;
     return result;
   }
@@ -59,6 +63,13 @@ export function getResponsiveVarStyles<T>(
   }
 
   if (hasAnyValue) {
+    for (const key of RESPONSIVE_KEYS) {
+      const bpSuffix = key === "base" ? "" : `_${key}`;
+      const variable = `--t-${varPrefix}${bpSuffix}${stateSuffix}`;
+      if (!(variable in result.style)) {
+        result.style[variable] = "initial";
+      }
+    }
     result.className = className;
   }
 

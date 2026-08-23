@@ -25,7 +25,5 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Build library
-        run: pnpm f:lib build
-      - name: Test build docs website
-        run: pnpm f:docs build
+      - name: Verify library and documentation
+        run: pnpm verify

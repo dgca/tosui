@@ -9,7 +9,10 @@
     "f:docs": "pnpm -F docs",
     "dev:docs": "concurrently -n docs,storybook -c blue,magenta \"pnpm -F docs start\" \"pnpm -F @tosui/react storybook\"",
     "build:site": "pnpm -F @tosui/react build && pnpm -F @tosui/react storybook:build && pnpm -F docs build && pnpm -F docs copy-storybook",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "pnpm -r --if-present test",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "lint": "pnpm -r --if-present lint",
+    "verify": "pnpm test && pnpm f:lib build && pnpm typecheck && pnpm lint && pnpm f:lib storybook:build && pnpm f:docs build && pnpm f:docs copy-storybook",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "pnpm f:lib build && changeset publish"
