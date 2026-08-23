@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { useIsClient } from "@/hooks/useIsClient";
 import styles from "./modal.module.css";
 
 // ============================================================================
@@ -86,6 +87,7 @@ export function Modal({
   className,
   children,
 }: ModalProps) {
+  const isClient = useIsClient();
   const modalRef = useRef<HTMLDivElement>(null);
   useFocusTrap({
     isActive: isOpen,
@@ -114,7 +116,7 @@ export function Modal({
     [closeOnOverlayClick, onClose]
   );
 
-  if (!isOpen) return null;
+  if (!isOpen || !isClient) return null;
 
   return createPortal(
     <Box

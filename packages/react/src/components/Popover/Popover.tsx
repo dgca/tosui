@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { useIsClient } from "@/hooks/useIsClient";
 import { useOverlayPosition } from "@/hooks/useOverlayPosition";
 import styles from "./popover.module.css";
 
@@ -71,6 +72,7 @@ export function Popover({
   className,
   children,
 }: PopoverProps) {
+  const isClient = useIsClient();
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const isControlled = controlledIsOpen !== undefined;
   const isOpen = isControlled ? controlledIsOpen : internalIsOpen;
@@ -137,6 +139,7 @@ export function Popover({
         {children}
       </Box>
       {isOpen &&
+        isClient &&
         createPortal(
           <Box
             ref={popoverRef}
