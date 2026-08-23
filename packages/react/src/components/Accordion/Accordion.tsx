@@ -36,18 +36,36 @@ function useAccordionContext() {
 // Types
 // ============================================================================
 
-export type AccordionProps = {
-  /** Default expanded index(es) */
-  defaultIndex?: number | number[];
-  /** Allow multiple items expanded */
-  allowMultiple?: boolean;
-  /** Called with the expanded index or indexes after a user toggle */
-  onChange?: (index: number | number[] | null) => void;
+type AccordionBaseProps = {
   /** Additional class name */
   className?: string;
   /** Accordion items */
   children?: ReactNode;
 };
+
+type AccordionSingleProps = AccordionBaseProps & {
+  /** Use single-item expansion */
+  allowMultiple?: false;
+  /** Expanded index for controlled usage, or null when collapsed */
+  index?: number | null;
+  /** Default expanded index for uncontrolled usage */
+  defaultIndex?: number;
+  /** Called with the requested expanded index after a user toggle */
+  onChange?: (index: number | null) => void;
+};
+
+type AccordionMultipleProps = AccordionBaseProps & {
+  /** Allow multiple items expanded */
+  allowMultiple: true;
+  /** Expanded indexes for controlled usage */
+  index?: number[];
+  /** Default expanded indexes for uncontrolled usage */
+  defaultIndex?: number[];
+  /** Called with the requested expanded indexes after a user toggle */
+  onChange?: (index: number[]) => void;
+};
+
+export type AccordionProps = AccordionSingleProps | AccordionMultipleProps;
 
 export type AccordionItemProps = {
   /** Optional item index override; defaults to the item's position */
@@ -74,29 +92,29 @@ export type AccordionItemProps = {
  * - Uses context for state management
  * - Animated expand/collapse
  */
-export function Accordion({
-  defaultIndex,
-  allowMultiple = false,
-  onChange,
-  className,
-  children,
-}: AccordionProps) {
-  const [expandedIndex, setExpandedIndex] = useState<
+export function Accordion(props: AccordionProps) {
+  const { index: controlledIndex, defaultIndex, className, children } = props;
+  const allowMultiple = props.allowMultiple ?? false;
+  const [internalExpandedIndex, setInternalExpandedIndex] = useState<
     number | number[] | null
   >(defaultIndex ?? (allowMultiple ? [] : null));
+  const isControlled = controlledIndex !== undefined;
+  const expandedIndex = isControlled
+    ? controlledIndex
+    : internalExpandedIndex;
 
   const toggleIndex = (index: number) => {
-    if (allowMultiple) {
-      const current = (expandedIndex as number[]) || [];
+    if (props.allowMultiple) {
+      const current = Array.isArray(expandedIndex) ? expandedIndex : [];
       const newExpanded = current.includes(index)
         ? current.filter((i) => i !== index)
         : [...current, index];
-      setExpandedIndex(newExpanded);
-      onChange?.(newExpanded);
+      if (!isControlled) setInternalExpandedIndex(newExpanded);
+      props.onChange?.(newExpanded);
     } else {
       const newExpanded = expandedIndex === index ? null : index;
-      setExpandedIndex(newExpanded);
-      onChange?.(newExpanded);
+      if (!isControlled) setInternalExpandedIndex(newExpanded);
+      props.onChange?.(newExpanded);
     }
   };
 
