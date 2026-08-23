@@ -71,7 +71,6 @@ export function Divider<T extends ElementType = "hr">({
   const defaultElement = isHorizontal ? "hr" : "div";
 
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Box
       as={as || defaultElement}
       role="separator"

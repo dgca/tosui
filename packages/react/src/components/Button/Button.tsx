@@ -50,9 +50,9 @@ const sizeConfig = {
 // ============================================================================
 
 type ColorConfig = {
-  bg: string;
-  color: string;
-  borderColor: string | undefined;
+  bg: BoxOwnProps["bg"];
+  color: BoxOwnProps["color"];
+  borderColor: BoxOwnProps["borderColor"];
   hoverBg: string;
 };
 
@@ -165,7 +165,6 @@ export function Button<T extends ElementType = "button">({
   ) : null;
 
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Box
       as={Component}
       // Layout

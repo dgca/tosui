@@ -1,5 +1,9 @@
 import { type ComponentPropsWithRef, type ElementType } from "react";
 
+type DistributiveOmit<T, K extends PropertyKey> = T extends unknown
+  ? Omit<T, K>
+  : never;
+
 /**
  * Polymorphic component type helper
  *
@@ -25,4 +29,4 @@ export type Polymorphic<
 > = {
   as?: T;
 } & P &
-  Omit<ComponentPropsWithRef<T>, keyof P | "as">;
+  DistributiveOmit<ComponentPropsWithRef<T>, keyof P | "as">;

@@ -99,7 +99,6 @@ export function Textarea<T extends ElementType = "textarea">({
         };
 
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Box
       as={Component}
       // Size props

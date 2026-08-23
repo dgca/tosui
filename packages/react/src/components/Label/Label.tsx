@@ -50,7 +50,6 @@ export function Label<T extends ElementType = "label">({
   const Component = as || "label";
 
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Box
       as={Component}
       fontSize={size}

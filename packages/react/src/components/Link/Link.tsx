@@ -52,7 +52,6 @@ export function Link<T extends ElementType = "a">({
     : {};
 
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Box
       as={Component}
       color={variant === "subtle" ? undefined : "primary"}

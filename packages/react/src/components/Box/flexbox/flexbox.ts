@@ -21,6 +21,7 @@ export type FlexboxProps = {
   flexDirection?: ResponsiveValue<FlexDirectionValue>;
   justifyContent?: ResponsiveValue<JustifyContentValue>;
   alignItems?: ResponsiveValue<AlignItemsValue>;
+  alignContent?: ResponsiveValue<JustifyContentValue>;
   alignSelf?: ResponsiveValue<AlignSelfValue>;
   flexWrap?: ResponsiveValue<FlexWrapValue>;
   gap?: ResponsiveValue<SpacingValue>;
@@ -42,6 +43,7 @@ function getFlexboxStylesForState(
     flexDirection,
     justifyContent,
     alignItems,
+    alignContent,
     alignSelf,
     flexWrap,
     gap,
@@ -64,6 +66,16 @@ function getFlexboxStylesForState(
 
   const itemsResult = getEnumResponsiveStyles(styles, "items", alignItems, state);
   if (itemsResult.className) classes.push(itemsResult.className);
+
+  const contentResult = getResponsiveVarStyles(
+    styles,
+    "content",
+    "align-content",
+    alignContent,
+    state
+  );
+  if (contentResult.className) classes.push(contentResult.className);
+  Object.assign(style, contentResult.style);
 
   const selfResult = getEnumResponsiveStyles(styles, "self", alignSelf, state);
   if (selfResult.className) classes.push(selfResult.className);

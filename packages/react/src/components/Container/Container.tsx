@@ -59,7 +59,6 @@ export function Container<T extends ElementType = "div">({
   ...rest
 }: ContainerProps<T>) {
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Box
       as={as || "div"}
       w="100%"

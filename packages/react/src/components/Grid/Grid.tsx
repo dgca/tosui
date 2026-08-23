@@ -22,6 +22,7 @@ export type GridOwnProps = Omit<
   | "gapColumn"
   | "justifyContent"
   | "alignItems"
+  | "alignContent"
 > & {
   /** Grid template columns — CSS value or responsive object */
   columns?: ResponsiveValue<string>;
@@ -80,7 +81,6 @@ export function Grid<T extends ElementType = "div">({
   ...rest
 }: GridProps<T>) {
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Box
       as={as || "div"}
       display="grid"
@@ -90,7 +90,8 @@ export function Grid<T extends ElementType = "div">({
       gapRow={gapRow}
       gapColumn={gapColumn}
       justifyContent={justify ?? justifyContent}
-      alignItems={align ?? alignContent}
+      alignItems={align}
+      alignContent={alignContent}
       {...rest}
     >
       {children}

@@ -34,7 +34,6 @@ export function VStack<T extends ElementType = "div">({
   ...rest
 }: VStackProps<T>) {
   return (
-    // @ts-expect-error - Polymorphic component type forwarding
     <Stack as={as || "div"} direction="column" {...rest}>
       {children}
     </Stack>

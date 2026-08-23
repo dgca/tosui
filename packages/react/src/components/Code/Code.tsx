@@ -61,7 +61,6 @@ export function Code<T extends ElementType = "code">({
   const isSubtle = variant === "subtle";
 
   return (
-    // @ts-expect-error - Polymorphic component prop forwarding
     <Box
       as={as || "code"}
       fontSize={size}
