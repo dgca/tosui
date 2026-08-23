@@ -4,6 +4,7 @@ import { type ReactNode, useState, useRef, useEffect, useCallback, useLayoutEffe
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
+import { useIsClient } from "@/hooks/useIsClient";
 import styles from "./tooltip.module.css";
 
 // ============================================================================
@@ -61,6 +62,7 @@ export function Tooltip({
   className,
   children,
 }: TooltipProps) {
+  const isClient = useIsClient();
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const isControlled = controlledIsOpen !== undefined;
   const isOpen = isControlled ? controlledIsOpen : internalIsOpen;
@@ -164,6 +166,7 @@ export function Tooltip({
         {children}
       </Box>
       {isOpen &&
+        isClient &&
         createPortal(
           <Box
             ref={tooltipRef}
