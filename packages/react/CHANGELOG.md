@@ -1,5 +1,29 @@
 # @tosui/react
 
+## 0.2.0
+
+### Minor Changes
+
+- 6bb1aaa: Prepare the 0.2 release with controlled Accordion state and the following migration notes:
+
+  - FormField now accepts one Tosui control or a render function. Adapt native and custom controls with `{(controlProps) => <input {...controlProps} />}` so label, disabled, required, and ARIA state reach the focusable element.
+  - FormField `isRequired` now applies the native `required` attribute in addition to rendering the required indicator.
+  - Accordion panels remain mounted while collapsed so transitions can run and local panel state is preserved. Collapsed panels are `aria-hidden` and inert.
+  - Accordion supports caller-owned state through `index` and `onChange`; continue using `defaultIndex` for uncontrolled state.
+  - Text now renders a `span` by default, matching its documented interface. Pass `as="div"` to retain the previous runtime element.
+  - Polymorphic component props and refs are now checked against the selected element. Code that passed element-incompatible props may require correction.
+
+### Patch Changes
+
+- 191ac9f: Keep keyboard focus inside Modal and interactive Popover overlays, restore focus when they close, and add standards-based keyboard navigation to Menu.
+- 60e660e: Prevent responsive CSS variables from leaking from parent components into nested Box-based components.
+- f69cb58: Prevent open Modal, Tooltip, and Popover portals from being created during server rendering.
+- 2212a67: Add automatic Accordion item indexes and change callbacks, animate panel expansion, and replace the text indicator with an accessible SVG chevron.
+- a1e319a: Keep Tooltip and Popover portals aligned with their triggers while ancestor containers scroll or the viewport resizes.
+- aa4b594: Fix polymorphic prop forwarding and element-specific ref types, remove internal TypeScript suppressions, and correct default Text and responsive Grid alignment behavior.
+- 390500b: Support uncontrolled Pagination usage with defaultPage while preserving the existing controlled interface.
+- 64632a9: Replace FormField and Breadcrumb child prop injection with context-based composition, add a render-function adapter for native and custom form controls, and preserve existing accessible descriptions.
+
 ## 0.1.7
 
 ### Patch Changes
