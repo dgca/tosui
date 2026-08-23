@@ -1,8 +1,8 @@
 import {
   type ReactNode,
   Children,
-  isValidElement,
-  cloneElement,
+  createContext,
+  useContext,
 } from "react";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
@@ -36,6 +36,8 @@ export type BreadcrumbItemProps = {
 // Components
 // ============================================================================
 
+const BreadcrumbItemContext = createContext<boolean | null>(null);
+
 /**
  * Breadcrumb - Navigation trail container
  *
@@ -62,14 +64,9 @@ export function Breadcrumb({
 
           return (
             <Box as="li" key={index} display="flex" alignItems="center" gap={2}>
-              {isValidElement(child)
-                ? cloneElement(
-                    child as React.ReactElement<BreadcrumbItemProps>,
-                    {
-                      isCurrentPage: isLast,
-                    }
-                  )
-                : child}
+              <BreadcrumbItemContext.Provider value={isLast}>
+                {child}
+              </BreadcrumbItemContext.Provider>
               {!isLast && (
                 <Box
                   as="span"
@@ -100,13 +97,16 @@ export function BreadcrumbItem({
   className,
   children,
 }: BreadcrumbItemProps) {
-  if (isCurrentPage || !href) {
+  const automaticIsCurrentPage = useContext(BreadcrumbItemContext);
+  const currentPage = automaticIsCurrentPage ?? isCurrentPage;
+
+  if (currentPage || !href) {
     return (
       <Box
         as="span"
-        color={isCurrentPage ? "foreground" : "foreground-muted"}
+        color={currentPage ? "foreground" : "foreground-muted"}
         fontSize="sm"
-        aria-current={isCurrentPage ? "page" : undefined}
+        aria-current={currentPage ? "page" : undefined}
         className={clsx(styles.item, styles.current, className)}
       >
         {children}

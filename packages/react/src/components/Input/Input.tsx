@@ -2,6 +2,7 @@ import { type ElementType } from "react";
 import clsx from "clsx";
 import { type Polymorphic } from "@/types/Polymorphic";
 import { Box, type BoxOwnProps } from "@/components/Box/Box";
+import { useFormFieldControl } from "@/components/FormField/FormFieldContext";
 import styles from "./input.module.css";
 
 // ============================================================================
@@ -60,11 +61,23 @@ export function Input<T extends ElementType = "input">({
   variant = "outline",
   disabled = false,
   isInvalid = false,
+  id,
+  required,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalid,
   className,
   ...rest
 }: InputProps<T>) {
   const Component = as || "input";
   const sizeProps = sizeConfig[size];
+  const control = useFormFieldControl({
+    id,
+    disabled,
+    required,
+    isInvalid,
+    ariaDescribedBy,
+    ariaInvalid,
+  });
 
   // Variant-specific styling
   const variantStyles =
@@ -97,10 +110,17 @@ export function Input<T extends ElementType = "input">({
       // Colors
       color="foreground"
       // CSS module for states
-      className={clsx(styles.input, isInvalid && styles.invalid, className)}
+      className={clsx(
+        styles.input,
+        control.isInvalid && styles.invalid,
+        className
+      )}
       // Native disabled
-      disabled={disabled}
-      aria-invalid={isInvalid || undefined}
+      id={control.id}
+      disabled={control.disabled}
+      required={control.required}
+      aria-describedby={control.ariaDescribedBy}
+      aria-invalid={control.ariaInvalid}
       {...rest}
     />
   );

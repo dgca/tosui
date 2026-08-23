@@ -21,3 +21,21 @@ export const Basic: Story = {
     </FormField>
   ),
 };
+
+export const NativeControl: Story = {
+  render: () => (
+    <FormField
+      label="Email"
+      helperText="We'll only use this for account notifications"
+      isRequired
+    >
+      {(controlProps) => (
+        <input
+          type="email"
+          placeholder="you@example.com"
+          {...controlProps}
+        />
+      )}
+    </FormField>
+  ),
+};

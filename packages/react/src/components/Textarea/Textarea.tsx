@@ -2,6 +2,7 @@ import { type ElementType } from "react";
 import clsx from "clsx";
 import { type Polymorphic } from "@/types/Polymorphic";
 import { Box, type BoxOwnProps } from "@/components/Box/Box";
+import { useFormFieldControl } from "@/components/FormField/FormFieldContext";
 import styles from "./textarea.module.css";
 
 // ============================================================================
@@ -76,6 +77,10 @@ export function Textarea<T extends ElementType = "textarea">({
   variant = "outline",
   disabled = false,
   isInvalid = false,
+  id,
+  required,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalid,
   rows = 3,
   resize = "vertical",
   className,
@@ -83,6 +88,14 @@ export function Textarea<T extends ElementType = "textarea">({
 }: TextareaProps<T>) {
   const Component = as || "textarea";
   const sizeProps = sizeConfig[size];
+  const control = useFormFieldControl({
+    id,
+    disabled,
+    required,
+    isInvalid,
+    ariaDescribedBy,
+    ariaInvalid,
+  });
 
   // Variant-specific styling
   const variantStyles =
@@ -118,13 +131,16 @@ export function Textarea<T extends ElementType = "textarea">({
       // CSS module for states and resize
       className={clsx(
         styles.textarea,
-        isInvalid && styles.invalid,
+        control.isInvalid && styles.invalid,
         resizeClassMap[resize],
         className
       )}
       // Native disabled
-      disabled={disabled}
-      aria-invalid={isInvalid || undefined}
+      id={control.id}
+      disabled={control.disabled}
+      required={control.required}
+      aria-describedby={control.ariaDescribedBy}
+      aria-invalid={control.ariaInvalid}
       {...rest}
     />
   );

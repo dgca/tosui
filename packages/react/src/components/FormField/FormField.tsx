@@ -1,7 +1,11 @@
-import { type ReactNode, useId, cloneElement, isValidElement, Children } from "react";
+import { type ReactElement, useId } from "react";
 import { Box } from "@/components/Box/Box";
 import { Label } from "@/components/Label/Label";
 import { VStack } from "@/components/VStack/VStack";
+import {
+  FormFieldContext,
+  type FormFieldControlProps,
+} from "./FormFieldContext";
 
 // ============================================================================
 // Types
@@ -22,8 +26,10 @@ export type FormFieldProps = {
   disabled?: boolean;
   /** Custom ID for the field (auto-generated if not provided) */
   id?: string;
-  /** The form control to render */
-  children: ReactNode;
+  /** A Tosui control, or an adapter function for a native/custom control */
+  children:
+    | ReactElement
+    | ((controlProps: FormFieldControlProps) => ReactElement);
 };
 
 // ============================================================================
@@ -37,7 +43,8 @@ export type FormFieldProps = {
  * - Label with required indicator
  * - Helper text for descriptions
  * - Error message for validation
- * - State propagation to child controls (isInvalid, disabled)
+ * - State propagation to Tosui controls through context
+ * - A render adapter for native and custom controls
  * - Accessible aria-describedby linking
  */
 export function FormField({
@@ -60,43 +67,37 @@ export function FormField({
   const message = showError ? errorMessage : helperText;
   const hasMessage = Boolean(message);
 
-  // Clone child to pass props and aria attributes
-  const enhancedChild = Children.map(children, (child) => {
-    if (!isValidElement(child)) {
-      return child;
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return cloneElement(child as React.ReactElement<any>, {
-      id: fieldId,
-      isInvalid,
-      disabled,
-      "aria-describedby": hasMessage ? helperId : undefined,
-      "aria-invalid": isInvalid || undefined,
-    });
-  });
+  const controlProps: FormFieldControlProps = {
+    id: fieldId,
+    disabled: disabled || undefined,
+    required: isRequired || undefined,
+    "aria-describedby": hasMessage ? helperId : undefined,
+    "aria-invalid": isInvalid || undefined,
+  };
 
   return (
-    <VStack gap={1} align="stretch">
-      {/* Label */}
-      <Label htmlFor={fieldId} required={isRequired}>
-        {label}
-      </Label>
+    <FormFieldContext.Provider value={{ ...controlProps, isInvalid }}>
+      <VStack gap={1} align="stretch">
+        {/* Label */}
+        <Label htmlFor={fieldId} required={isRequired}>
+          {label}
+        </Label>
 
-      {/* Form control */}
-      {enhancedChild}
+        {/* Form control */}
+        {typeof children === "function" ? children(controlProps) : children}
 
-      {/* Helper text or error message */}
-      {hasMessage && (
-        <Box
-          as="span"
-          id={helperId}
-          fontSize="sm"
-          color={showError ? "error" : "foreground-muted"}
-        >
-          {message}
-        </Box>
-      )}
-    </VStack>
+        {/* Helper text or error message */}
+        {hasMessage && (
+          <Box
+            as="span"
+            id={helperId}
+            fontSize="sm"
+            color={showError ? "error" : "foreground-muted"}
+          >
+            {message}
+          </Box>
+        )}
+      </VStack>
+    </FormFieldContext.Provider>
   );
 }
