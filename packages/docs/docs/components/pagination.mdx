@@ -36,20 +36,24 @@ import { Pagination } from "@tosui/react";
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
-    function PaginatedContent() {
-      const [page, setPage] = useState(1);
-
-      return (
-        <Pagination
-          page={page}
-          totalPages={10}
-          onPageChange={setPage}
-        />
-      );
-    }
+    <Pagination defaultPage={1} totalPages={10} />
     ```
   </TabItem>
 </Tabs>
+
+## Controlled Usage
+
+Pass `page` when application state or data loading controls the current page.
+
+```tsx
+function PaginatedContent() {
+  const [page, setPage] = useState(1);
+
+  return (
+    <Pagination page={page} totalPages={10} onPageChange={setPage} />
+  );
+}
+```
 
 ## Page Ranges
 
@@ -130,9 +134,10 @@ function ProductList() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| page | `number` | - | Current page (1-indexed, required) |
+| page | `number` | - | Current page for controlled usage (1-indexed) |
+| defaultPage | `number` | `1` | Initial page for uncontrolled usage |
 | totalPages | `number` | - | Total number of pages (required) |
-| onPageChange | `(page: number) => void` | - | Page change callback (required) |
+| onPageChange | `(page: number) => void` | - | Optional page change callback |
 | siblings | `number` | `1` | Number of page numbers on each side of current |
 | showEdges | `boolean` | `true` | Show first/last page buttons |
 

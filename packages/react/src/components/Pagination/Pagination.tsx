@@ -1,3 +1,4 @@
+import { useState } from "react";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
 import { Button } from "@/components/Button";
@@ -9,12 +10,14 @@ import styles from "./pagination.module.css";
 // ============================================================================
 
 export type PaginationProps = {
-  /** Current page (1-indexed) */
-  page: number;
+  /** Current page for controlled usage (1-indexed) */
+  page?: number;
+  /** Initial page for uncontrolled usage (1-indexed) */
+  defaultPage?: number;
   /** Total number of pages */
   totalPages: number;
   /** Callback when page changes */
-  onPageChange: (page: number) => void;
+  onPageChange?: (page: number) => void;
   /** Number of sibling pages to show */
   siblings?: number;
   /** Show first/last page buttons */
@@ -77,14 +80,22 @@ function getPaginationRange(
  * - Sibling page configuration
  */
 export function Pagination({
-  page,
+  page: controlledPage,
+  defaultPage = 1,
   totalPages,
   onPageChange,
   siblings = 1,
   showEdges = true,
   className,
 }: PaginationProps) {
+  const [internalPage, setInternalPage] = useState(defaultPage);
+  const page = controlledPage ?? internalPage;
   const pages = getPaginationRange(page, totalPages, siblings);
+
+  const changePage = (nextPage: number) => {
+    if (controlledPage === undefined) setInternalPage(nextPage);
+    onPageChange?.(nextPage);
+  };
 
   const canGoPrev = page > 1;
   const canGoNext = page < totalPages;
@@ -101,7 +112,7 @@ export function Pagination({
             variant="ghost"
             size="sm"
             disabled={!canGoPrev}
-            onClick={() => onPageChange(1)}
+            onClick={() => changePage(1)}
             aria-label="First page"
           >
             ««
@@ -112,7 +123,7 @@ export function Pagination({
           variant="ghost"
           size="sm"
           disabled={!canGoPrev}
-          onClick={() => onPageChange(page - 1)}
+          onClick={() => changePage(page - 1)}
           aria-label="Previous page"
         >
           «
@@ -136,7 +147,7 @@ export function Pagination({
               key={p}
               variant={p === page ? "solid" : "ghost"}
               size="sm"
-              onClick={() => onPageChange(p)}
+              onClick={() => changePage(p)}
               aria-label={`Page ${p}`}
               aria-current={p === page ? "page" : undefined}
             >
@@ -149,7 +160,7 @@ export function Pagination({
           variant="ghost"
           size="sm"
           disabled={!canGoNext}
-          onClick={() => onPageChange(page + 1)}
+          onClick={() => changePage(page + 1)}
           aria-label="Next page"
         >
           »
@@ -160,7 +171,7 @@ export function Pagination({
             variant="ghost"
             size="sm"
             disabled={!canGoNext}
-            onClick={() => onPageChange(totalPages)}
+            onClick={() => changePage(totalPages)}
             aria-label="Last page"
           >
             »»
