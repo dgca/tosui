@@ -125,6 +125,39 @@ indexes when `allowMultiple` is enabled.
 </Accordion>
 ```
 
+## Controlled State
+
+Use `index` with `onChange` when the expanded state belongs to your
+application. A controlled Accordion reports the requested change but does not
+update until you pass the new index back.
+
+```tsx
+function ControlledAccordion() {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+
+  return (
+    <Accordion index={expandedIndex} onChange={setExpandedIndex}>
+      <AccordionItem title="Account">Account settings</AccordionItem>
+      <AccordionItem title="Security">Security settings</AccordionItem>
+    </Accordion>
+  );
+}
+```
+
+For multiple expanded items, pass an array together with `allowMultiple`:
+
+```tsx
+const [expandedIndexes, setExpandedIndexes] = useState<number[]>([0]);
+
+<Accordion
+  allowMultiple
+  index={expandedIndexes}
+  onChange={setExpandedIndexes}
+>
+  {/* AccordionItem children */}
+</Accordion>
+```
+
 ## Disabled Items
 
 <Tabs>
@@ -236,9 +269,10 @@ indexes when `allowMultiple` is enabled.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| index | `number` \| `number[]` \| `null` | - | Expanded index(es) for controlled usage |
 | defaultIndex | `number` \| `number[]` | - | Default expanded index(es) |
 | allowMultiple | `boolean` | `false` | Allow multiple items expanded |
-| onChange | `(index: number \| number[] \| null) => void` | - | Called after an item is toggled |
+| onChange | `(index: number \| number[] \| null) => void` | - | Called with the requested expanded state after an item is toggled |
 | className | `string` | - | Additional CSS class |
 | children | `ReactNode` | - | AccordionItem children |
 
