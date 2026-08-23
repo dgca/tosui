@@ -1,10 +1,11 @@
 "use client";
 
-import { type ReactNode, useState, useRef, useEffect, useCallback, useLayoutEffect } from "react";
+import { type ReactNode, useState, useRef, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { useOverlayPosition } from "@/hooks/useOverlayPosition";
 import styles from "./popover.module.css";
 
 // ============================================================================
@@ -74,7 +75,6 @@ export function Popover({
   const isControlled = controlledIsOpen !== undefined;
   const isOpen = isControlled ? controlledIsOpen : internalIsOpen;
 
-  const [position, setPosition] = useState({ top: 0, left: 0 });
   const triggerRef = useRef<HTMLElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
 
@@ -89,42 +89,12 @@ export function Popover({
     }
   }, [isControlled, onOpen, onClose]);
 
-  const updatePosition = useCallback(() => {
-    if (!triggerRef.current || !popoverRef.current) return;
-
-    const triggerRect = triggerRef.current.getBoundingClientRect();
-    const popoverRect = popoverRef.current.getBoundingClientRect();
-    const gap = 8;
-
-    let top = 0;
-    let left = 0;
-
-    switch (placement) {
-      case "top":
-        top = triggerRect.top - popoverRect.height - gap;
-        left = triggerRect.left + (triggerRect.width - popoverRect.width) / 2;
-        break;
-      case "bottom":
-        top = triggerRect.bottom + gap;
-        left = triggerRect.left + (triggerRect.width - popoverRect.width) / 2;
-        break;
-      case "left":
-        top = triggerRect.top + (triggerRect.height - popoverRect.height) / 2;
-        left = triggerRect.left - popoverRect.width - gap;
-        break;
-      case "right":
-        top = triggerRect.top + (triggerRect.height - popoverRect.height) / 2;
-        left = triggerRect.right + gap;
-        break;
-    }
-
-    setPosition({ top: top + window.scrollY, left: left + window.scrollX });
-  }, [placement]);
-
-  useLayoutEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- useLayoutEffect for DOM measurement before paint
-    if (isOpen) updatePosition();
-  }, [isOpen, updatePosition]);
+  const position = useOverlayPosition({
+    isOpen,
+    placement,
+    triggerRef,
+    overlayRef: popoverRef,
+  });
 
   useFocusTrap({
     isActive: isOpen,
