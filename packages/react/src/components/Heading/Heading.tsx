@@ -2,23 +2,7 @@ import { type ElementType } from "react";
 import { Text, type TextOwnProps } from "../Text/Text";
 import { type Polymorphic } from "@/types/Polymorphic";
 
-// Import types from Box styleParts
-type FontSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
-type FontWeight = "normal" | "medium" | "semibold" | "bold";
-type Color =
-  | "foreground"
-  | "foreground-muted"
-  | "foreground-subtle"
-  | "accent"
-  | "accent-emphasis"
-  | "primary"
-  | "primary-emphasis"
-  | "success"
-  | "success-emphasis"
-  | "warning"
-  | "warning-emphasis"
-  | "error"
-  | "error-emphasis";
+type FontSize = NonNullable<TextOwnProps["size"]>;
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -34,8 +18,8 @@ const defaultSizes: Record<HeadingLevel, FontSize> = {
 type HeadingOwnProps = Omit<TextOwnProps, "size" | "weight" | "color"> & {
   level?: HeadingLevel;
   size?: FontSize;
-  weight?: FontWeight;
-  color?: Color;
+  weight?: TextOwnProps["weight"];
+  color?: TextOwnProps["color"];
 };
 
 export type HeadingProps<T extends ElementType = "h1"> = Polymorphic<

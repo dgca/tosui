@@ -12,8 +12,8 @@ export type {
 } from "./utils/breakpoints";
 
 export { Box, type BoxOwnProps, type BoxProps } from "./components/Box/Box";
-export { Text } from "./components/Text";
-export { Heading } from "./components/Heading";
+export { Text, type TextProps, type TextOwnProps } from "./components/Text";
+export { Heading, type HeadingProps } from "./components/Heading";
 export {
   Button,
   type ButtonColorScheme,

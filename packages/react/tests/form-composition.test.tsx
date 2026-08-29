@@ -15,6 +15,24 @@ import {
 afterEach(cleanup);
 
 describe("FormField composition", () => {
+  test("the stack exclusively owns spacing around its internal label", () => {
+    render(
+      <FormField label="Email" helperText="Used for receipts">
+        <Input type="email" />
+      </FormField>
+    );
+
+    const label = screen.getByText("Email");
+    const stackStyle = label.parentElement!.style;
+    expect(label.style.getPropertyValue("--t-mb")).toBe("0");
+    expect(stackStyle.getPropertyValue("--t-gap-row")).toBe(
+      "calc(var(--t-spacing-unit) * 1)"
+    );
+    expect(stackStyle.getPropertyValue("--t-gap-col")).toBe(
+      "calc(var(--t-spacing-unit) * 1)"
+    );
+  });
+
   test("a built-in control remains associated through layout markup", () => {
     render(
       <FormField label="Email" helperText="Used for receipts">

@@ -59,7 +59,7 @@ export function Text<T extends ElementType = "span">({
   size,
   weight,
   align,
-  color = "foreground",
+  color,
   truncate,
   italic,
   className,
@@ -73,6 +73,7 @@ export function Text<T extends ElementType = "span">({
       textAlign={align}
       color={color}
       className={clsx(
+        styles.text,
         truncate && styles.truncate,
         italic && styles.italic,
         className
