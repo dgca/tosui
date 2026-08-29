@@ -3,10 +3,22 @@ import {
   Box,
   Button,
   Grid,
+  Heading,
   Link,
   Text,
   type ButtonProps,
+  type HeadingProps,
+  type TextOwnProps,
 } from "../src";
+
+type Equal<A, B> =
+  (<T>() => T extends A ? 1 : 2) extends
+  (<T>() => T extends B ? 1 : 2) ? true : false;
+
+const headingSupportsEveryTextColor: Equal<
+  HeadingProps["color"],
+  TextOwnProps["color"]
+> = true;
 
 /**
  * A consumer-defined adapter can combine Box styles with forwarded
@@ -56,6 +68,7 @@ export function PolymorphicTypeFixtures() {
   void invalidDefaultButtonProp;
   void invalidTextProp;
   void invalidCustomComponentProp;
+  void headingSupportsEveryTextColor;
 
   return (
     <>
@@ -71,6 +84,8 @@ export function PolymorphicTypeFixtures() {
         Email
       </Text>
       <Grid alignContent={{ base: "start", lg: "space-between" }} />
+      <Heading color="foreground-inverted">Inverted heading</Heading>
+      <Heading color="info-emphasis">Informational heading</Heading>
     </>
   );
 }

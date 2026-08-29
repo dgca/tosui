@@ -1,11 +1,19 @@
 "use client";
 
-import { type ReactNode, useState, useRef, useEffect } from "react";
+import {
+  type ReactNode,
+  useState,
+  useRef,
+  useEffect,
+  useId,
+  useCallback,
+} from "react";
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
 import { useIsClient } from "@/hooks/useIsClient";
 import { useOverlayPosition } from "@/hooks/useOverlayPosition";
+import { getTabbableElements } from "@/utils/focus";
 import styles from "./tooltip.module.css";
 
 // ============================================================================
@@ -64,7 +72,11 @@ export function Tooltip({
   children,
 }: TooltipProps) {
   const isClient = useIsClient();
+  const tooltipId = useId();
   const [internalIsOpen, setInternalIsOpen] = useState(false);
+  const [hasFocusableChild, setHasFocusableChild] = useState<boolean | null>(
+    null
+  );
   const isControlled = controlledIsOpen !== undefined;
   const isOpen = isControlled ? controlledIsOpen : internalIsOpen;
 
@@ -72,6 +84,13 @@ export function Tooltip({
   const tooltipRef = useRef<HTMLDivElement>(null);
   const openTimeoutRef = useRef<number | null>(null);
   const closeTimeoutRef = useRef<number | null>(null);
+
+  const setTriggerElement = useCallback((element: HTMLElement | null) => {
+    triggerRef.current = element;
+    if (element) {
+      setHasFocusableChild(getTabbableElements(element).length > 0);
+    }
+  }, []);
 
   const position = useOverlayPosition({
     isOpen,
@@ -122,16 +141,58 @@ export function Tooltip({
     };
   }, []);
 
+  useEffect(() => {
+    if (!isOpen || disabled) return;
+
+    const trigger = triggerRef.current;
+    if (!trigger) return;
+
+    const focusableChildren = getTabbableElements(trigger);
+    const describedElements = focusableChildren.length
+      ? focusableChildren
+      : [trigger];
+
+    for (const element of describedElements) {
+      const descriptionIds = new Set(
+        element.getAttribute("aria-describedby")?.split(/\s+/).filter(Boolean)
+      );
+      descriptionIds.add(tooltipId);
+      element.setAttribute(
+        "aria-describedby",
+        Array.from(descriptionIds).join(" ")
+      );
+    }
+
+    return () => {
+      for (const element of describedElements) {
+        const descriptionIds = new Set(
+          element.getAttribute("aria-describedby")?.split(/\s+/).filter(Boolean)
+        );
+        descriptionIds.delete(tooltipId);
+
+        if (descriptionIds.size) {
+          element.setAttribute(
+            "aria-describedby",
+            Array.from(descriptionIds).join(" ")
+          );
+        } else {
+          element.removeAttribute("aria-describedby");
+        }
+      }
+    };
+  }, [disabled, hasFocusableChild, isOpen, tooltipId]);
+
   return (
     <>
       <Box
         as="span"
-        ref={triggerRef}
+        ref={setTriggerElement}
         display="inline-block"
         onMouseEnter={handleOpen}
         onMouseLeave={handleClose}
         onFocus={handleOpen}
         onBlur={handleClose}
+        tabIndex={!disabled && hasFocusableChild === false ? 0 : undefined}
       >
         {children}
       </Box>
@@ -151,6 +212,7 @@ export function Tooltip({
             zIndex="tooltip"
             className={clsx(styles.tooltip, styles[placement], className)}
             style={{ top: position.top, left: position.left }}
+            id={tooltipId}
             role="tooltip"
           >
             {label}

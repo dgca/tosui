@@ -79,7 +79,7 @@ export function FormField({
     <FormFieldContext.Provider value={{ ...controlProps, isInvalid }}>
       <VStack gap={1} align="stretch">
         {/* Label */}
-        <Label htmlFor={fieldId} required={isRequired}>
+        <Label htmlFor={fieldId} required={isRequired} mb={0}>
           {label}
         </Label>
 
