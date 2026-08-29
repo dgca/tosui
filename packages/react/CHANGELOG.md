@@ -1,5 +1,11 @@
 # @tosui/react
 
+## 0.2.1
+
+### Patch Changes
+
+- 6c6b002: Add accessible Tooltip trigger associations and keyboard fallback behavior, align Heading color support and polymorphic color precedence with Text, and remove duplicate FormField label spacing.
+
 ## 0.2.0
 
 ### Minor Changes
