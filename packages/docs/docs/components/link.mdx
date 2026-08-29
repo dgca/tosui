@@ -24,7 +24,7 @@ Link is a styled anchor element with variants for different use cases.
 import { Link } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -45,7 +45,7 @@ import { Link } from "@tosui/react";
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <VStack gap={4} align="flex-start">
+    <VStack gap={4} align="start">
       <Link variant="default" href="#">Default (underline on hover)</Link>
       <Link variant="underline" href="#">Underline (always underlined)</Link>
       <Link variant="subtle" href="#">Subtle (inherits color)</Link>
@@ -53,7 +53,7 @@ import { Link } from "@tosui/react";
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
-    <VStack gap={4} align="flex-start">
+    <VStack gap={4} align="start">
       <Link variant="default" href="#">Default (underline on hover)</Link>
       <Link variant="underline" href="#">Underline (always underlined)</Link>
       <Link variant="subtle" href="#">Subtle (inherits color)</Link>
@@ -62,7 +62,7 @@ import { Link } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## External Links
+## External links
 
 Use `external` for links that open in a new tab. This automatically adds `target="_blank"` and `rel="noopener noreferrer"`.
 
@@ -81,7 +81,7 @@ Use `external` for links that open in a new tab. This automatically adds `target
   </TabItem>
 </Tabs>
 
-## Inline Links
+## Inline links
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -100,7 +100,7 @@ Use `external` for links that open in a new tab. This automatically adds `target
   </TabItem>
 </Tabs>
 
-## With Router Libraries
+## With router libraries
 
 Link is polymorphic and works with router libraries like React Router or Next.js.
 
@@ -120,11 +120,11 @@ import NextLink from "next/link";
 </Link>
 ```
 
-## Navigation List
+## Navigation list
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <VStack as="nav" gap={2} align="flex-start">
+    <VStack as="nav" gap={2} align="start">
       <Link href="#">Home</Link>
       <Link href="#">Products</Link>
       <Link href="#">About</Link>
@@ -133,7 +133,7 @@ import NextLink from "next/link";
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
-    <VStack as="nav" gap={2} align="flex-start">
+    <VStack as="nav" gap={2} align="start">
       <Link href="#">Home</Link>
       <Link href="#">Products</Link>
       <Link href="#">About</Link>
@@ -143,7 +143,7 @@ import NextLink from "next/link";
   </TabItem>
 </Tabs>
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|

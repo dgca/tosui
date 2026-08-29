@@ -24,7 +24,7 @@ Divider is a visual separator for content sections. It supports horizontal and v
 import { Divider } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -127,9 +127,9 @@ import { Divider } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Common Patterns
+## Common patterns
 
-### Section Separator
+### Section separator
 
 ```tsx
 <VStack gap={6}>
@@ -145,7 +145,7 @@ import { Divider } from "@tosui/react";
 </VStack>
 ```
 
-### Vertical in Navigation
+### Vertical in navigation
 
 ```tsx
 <HStack gap={4} align="center">
@@ -157,18 +157,19 @@ import { Divider } from "@tosui/react";
 </HStack>
 ```
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | orientation | `"horizontal"` \| `"vertical"` | `"horizontal"` | Divider orientation |
 | color | `"border"` \| `"border-muted"` \| `"primary"` \| `"accent"` \| `"success"` \| `"warning"` \| `"error"` \| `"info"` | `"border-muted"` | Divider color |
 | thickness | `1` \| `2` \| `3` \| `4` | `1` | Thickness in pixels |
-| as | `ElementType` | `"hr"` (horizontal) / `"div"` (vertical) | HTML element to render |
+| as | `ElementType` | `"hr"` for horizontal; `"div"` for vertical | HTML element to render |
 
 ## Accessibility
 
-Divider includes proper ARIA attributes:
+Divider exposes these ARIA attributes:
+
 - `role="separator"`
 - `aria-orientation` matching the orientation prop
 

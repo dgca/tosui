@@ -1,13 +1,13 @@
 ---
 title: Customization
-description: "Customize Tosui via CSS variables — override design tokens for colors, spacing, typography, borders, and shadows."
+description: "Override Tosui CSS variables for colors, spacing, typography, borders, and shadows."
 ---
 
 # Customization
 
-Tosui is fully customizable via CSS variables. Override any design token to match your brand, and the entire component library adapts automatically.
+Tosui exposes its design tokens as CSS custom properties. Override a token after importing the library styles to change every component that uses it.
 
-## Quick Start
+## Quick start
 
 Customize your brand colors for both light and dark modes in one place:
 
@@ -33,31 +33,31 @@ import "@tosui/react/styles.css";
 import "./custom-theme.css";
 ```
 
-That's it—Tosui's theme switching handles the rest automatically.
+Tosui maps these primitive values to the active light or dark theme.
 
-## How Theming Works
+## How theming works
 
 Tosui uses a **two-tier variable system** for colors:
 
 1. **Primitive variables** (`--t-light-*`, `--t-dark-*`) hold the actual color values for each mode
-2. **Semantic variables** (`--t-color-*`) reference the appropriate primitive based on the active theme
+2. **Semantic variables** (`--t-color-*`) reference the matching primitive for the active theme
 
 For example, `--t-color-primary-default` automatically resolves to `--t-light-primary-default` in light mode and `--t-dark-primary-default` in dark mode.
 
-### When to Use Which
+### When to use which
 
-| Use Case | Variable Type | Example |
+| Use case | Variable type | Example |
 |----------|---------------|---------|
 | Theme customization (both modes) | Primitives | `--t-light-primary-default`, `--t-dark-primary-default` |
 | Scoped overrides | Semantic | `--t-color-primary-default` |
 | Single element styling | Semantic | `--t-color-primary-default` |
 | Single-mode-only changes | Semantic | `--t-color-primary-default` |
 
-**Rule of thumb:** Use primitives for theming, semantic for overrides.
+Use primitive variables to define a theme. Use semantic variables for a scoped override in the active theme.
 
-## Customizing Colors
+## Customizing colors
 
-### Brand Colors
+### Brand colors
 
 Primary and accent colors each have three variants:
 
@@ -89,7 +89,7 @@ Primary and accent colors each have three variants:
 }
 ```
 
-### Feedback Colors
+### Feedback colors
 
 Success, warning, error, and info follow the same `-default`, `-emphasis`, `-subtle` pattern:
 
@@ -106,7 +106,7 @@ Success, warning, error, and info follow the same `-default`, `-emphasis`, `-sub
 }
 ```
 
-### Surface Colors
+### Surface colors
 
 These control text, borders, and backgrounds:
 
@@ -122,7 +122,7 @@ These control text, borders, and backgrounds:
 
 Replace `{mode}` with `light` or `dark`.
 
-## Other Tokens
+## Other tokens
 
 ### Spacing
 
@@ -143,7 +143,7 @@ Changing this scales all spacing proportionally. With `5px`, `p={4}` becomes `20
 | `--t-font-weight-normal` through `--t-font-weight-bold` | Font weights (400 to 700) |
 | `--t-line-height-tight` through `--t-line-height-relaxed` | Line heights (1.25 to 1.75) |
 
-### Borders & Shadows
+### Borders & shadows
 
 | Variable | Description |
 |----------|-------------|
@@ -160,7 +160,7 @@ Changing this scales all spacing proportionally. With `5px`, `p={4}` becomes `20
 | `--t-transition-slow` | `350ms` | Slow transitions |
 | `--t-transition-easing` | `ease-in-out` | Easing function |
 
-## Override Scopes
+## Override scopes
 
 CSS variables cascade, so you can override at any level:
 
@@ -176,16 +176,9 @@ CSS variables cascade, so you can override at any level:
 }
 ```
 
-```tsx
-{/* Inline: affects only this element and children */}
-<Box style={{ '--t-color-primary-default': '#f59e0b' }}>
-  <Button>Uses amber primary</Button>
-</Box>
-```
+Scoped overrides use semantic variables (`--t-color-*`) because they apply to the active theme only.
 
-Note: Scoped and inline overrides use semantic variables (`--t-color-*`) since they apply to the current theme only.
-
-## Dark Mode
+## Dark mode
 
 Control the color scheme with the `data-theme` attribute:
 
@@ -203,20 +196,20 @@ Control the color scheme with the `data-theme` attribute:
 <html data-theme="dark">
 ```
 
-Tosui automatically switches between light and dark values based on this attribute or system preference.
+Without an explicit value, Tosui follows the system color scheme. Set `data-theme` to force a mode.
 
 ## Fonts
 
 Tosui uses system fonts by default. To use custom fonts:
 
-### Option 1: Use Tosui's IBM Plex Fonts
+### Use Tosui's IBM Plex fonts
 
 ```tsx
 import "@tosui/react/styles.css";
 import "@tosui/react/fonts.css"; // Adds IBM Plex Sans and Mono
 ```
 
-### Option 2: Use Your Own Fonts
+### Use your own fonts
 
 ```css
 /* custom-fonts.css */
@@ -233,7 +226,7 @@ import "@tosui/react/styles.css";
 import "./custom-fonts.css";
 ```
 
-## Token Reference
+## Token reference
 
 For the complete list of tokens and their default values, see the source:
 [`packages/react/src/styles/styles.css`](https://github.com/dgca/tosui/blob/main/packages/react/src/styles/styles.css)

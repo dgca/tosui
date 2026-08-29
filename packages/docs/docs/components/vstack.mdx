@@ -24,7 +24,7 @@ VStack is a convenience wrapper around Stack with a fixed vertical (column) dire
 import { VStack } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -66,9 +66,9 @@ import { VStack } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Common Patterns
+## Common patterns
 
-### Form Layout
+### Form layout
 
 ```tsx
 <VStack gap={4} align="stretch">
@@ -79,13 +79,13 @@ import { VStack } from "@tosui/react";
 </VStack>
 ```
 
-### Card Content
+### Card content
 
 ```tsx
 <Card>
   <CardBody>
-    <VStack gap={3} align="flex-start">
-      <Heading fontSize="xl">Card Title</Heading>
+    <VStack gap={3} align="start">
+      <Heading size="xl">Card Title</Heading>
       <Text color="foreground-muted">Card description goes here.</Text>
       <Button size="sm">Learn More</Button>
     </VStack>
@@ -93,7 +93,7 @@ import { VStack } from "@tosui/react";
 </Card>
 ```
 
-## Props Reference
+## Props reference
 
 All convenience props (`align`, `justify`, `wrap`) accept responsive objects in addition to simple values.
 

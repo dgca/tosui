@@ -1,118 +1,85 @@
 # @tosui/react
 
-A themable, orderly, simple UI component library for React. 40 components with CSS Modules styling, responsive props, TypeScript-first types, and constraint-driven design.
+Tosui is a React component library with 40 components, semantic design tokens, responsive style props, and TypeScript types.
 
-## Installation
+## Install
 
 ```bash
 npm install @tosui/react
-# or
-pnpm add @tosui/react
 ```
 
-## Setup
+React 18 and React 19 are supported peer dependencies.
+
+## Set up the styles
+
+Import the required stylesheet once in your application entry point:
 
 ```tsx
-// Import base styles in your entry point (required)
 import "@tosui/react/styles.css";
+```
 
-// Optionally import IBM Plex fonts
+To use the bundled IBM Plex Sans and IBM Plex Mono fonts, import the optional font stylesheet after the base styles:
+
+```tsx
+import "@tosui/react/styles.css";
 import "@tosui/react/fonts.css";
 ```
 
-## Usage
+## Use components
 
 ```tsx
-import { Box, Text, Heading, Button } from "@tosui/react";
+import { Box, Button, Heading, Text } from "@tosui/react";
 
-function App() {
+export function Welcome() {
   return (
-    <Box p={6}>
+    <Box p={6} bg="surface" rounded="lg">
       <Heading size="3xl" weight="semibold">
         Welcome
       </Heading>
-      <Text color="foreground-muted">
-        A constraint-driven design system for React
+      <Text as="p" color="foreground-muted" mt={2} mb={4}>
+        Build with a small set of layout and design tokens.
       </Text>
-      <Button>Get Started</Button>
+      <Button>Continue</Button>
     </Box>
   );
 }
 ```
 
-## Components
+## Style components
 
-| Category | Components |
-|----------|------------|
-| **Primitives** | Box, Text, Heading |
-| **Layout** | Stack, HStack, VStack, Flex, Grid, Container, Divider, Spacer |
-| **Forms** | Button, IconButton, Input, Select, Textarea, Checkbox, Radio, Switch, FormField, Label |
-| **Navigation** | Link, Tabs, Breadcrumb, Menu, Pagination |
-| **Feedback** | Alert, Badge, Progress, Skeleton, Spinner |
-| **Data Display** | Avatar, Card, Image, List, Code |
-| **Overlays** | Modal, Tooltip, Popover, Accordion |
-
-## Key Concepts
-
-### Spacing
-
-4px base unit with multipliers 0–32:
+`Box` and the components built on it accept constrained style props. Numeric spacing values multiply the `4px` base unit.
 
 ```tsx
-<Box p={4} />        // 16px padding
-<Box m={8} />        // 32px margin
-<Box gap={2} />      // 8px gap
-```
-
-### Responsive Props
-
-Mobile-first breakpoints — `base` (0), `sm` (640px), `md` (768px), `lg` (1024px), `xl` (1280px), `2xl` (1536px):
-
-```tsx
+<Box p={4} />
 <Box p={{ base: 2, md: 4, lg: 6 }} />
-<Box display={{ base: "none", md: "block" }} />
-```
-
-### Color Tokens
-
-Semantic names that adapt to light/dark mode:
-
-```tsx
-<Box bg="surface" color="foreground" />
-<Box bg="primary-default" color="foreground-inverted" />
-<Text color="foreground-muted">Secondary text</Text>
-<Box bg="error-subtle" color="error-default">Error message</Box>
-```
-
-**Surface & Text**: `foreground`, `foreground-muted`, `foreground-subtle`, `foreground-inverted`, `background`, `surface`
-**Border**: `border`, `border-muted`
-**Brand**: `primary-default`, `primary-emphasis`, `primary-subtle`, `accent-default`, `accent-emphasis`, `accent-subtle`
-**Feedback**: `success-*`, `warning-*`, `error-*`, `info-*` (each with `-default`, `-emphasis`, `-subtle`)
-
-### Polymorphic Components
-
-```tsx
+<Box bg="error-subtle" color="error" />
 <Box as="section" />
-<Text as="label" />
-<Heading as="h1" />
-<Button as="a" href="/signup">Sign Up</Button>
 ```
 
-### Theming
+Use `size`, `weight`, and `align` for `Text` and `Heading` typography. Use `fontSize`, `fontWeight`, and `textAlign` on `Box`.
 
-Override CSS variables to customize:
+```tsx
+<Text size="sm" weight="medium" align="center" />
+<Heading level={2} size="2xl" />
+<Box fontSize="sm" fontWeight="medium" textAlign="center" />
+```
+
+## Customize the theme
+
+Override the light and dark primitive variables after you import `styles.css`:
 
 ```css
 :root {
-  --t-light-primary-default: #your-brand-color;
-  --t-dark-primary-default: #your-dark-brand-color;
-  --t-spacing-unit: 8px;
+  --t-light-primary-default: #0d9488;
+  --t-light-primary-emphasis: #0f766e;
+  --t-light-primary-subtle: #ccfbf1;
+  --t-dark-primary-default: #2dd4bf;
+  --t-dark-primary-emphasis: #5eead4;
+  --t-dark-primary-subtle: #134e4a;
 }
 ```
 
-## Documentation
-
-Full documentation with interactive examples: [https://dgca.github.io/tosui/](https://dgca.github.io/tosui/)
+See the [Tosui documentation](https://dgca.github.io/tosui/) for component props, design tokens, responsive styling, state styling, and theme overrides.
 
 ## License
 

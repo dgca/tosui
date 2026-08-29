@@ -1,41 +1,47 @@
-# Website
+# Tosui documentation site
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This package builds the [Tosui documentation](https://dgca.github.io/tosui/) with Docusaurus. Storybook runs as a separate process during local development and is copied into the production site.
 
-## Installation
+Run commands from the repository root.
 
-```bash
-yarn
-```
+## Start the documentation locally
 
-## Local Development
+Install the workspace dependencies:
 
 ```bash
-yarn start
+pnpm install
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-## Build
+Start both Docusaurus and Storybook:
 
 ```bash
-yarn build
+pnpm dev:docs
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+Docusaurus listens on `http://localhost:3000/tosui/`. Storybook listens on `http://localhost:6006/`.
 
-## Deployment
+## Build the documentation
 
-Using SSH:
+Build the library, Storybook, and the documentation site:
 
 ```bash
-USE_SSH=true yarn deploy
+pnpm build:site
 ```
 
-Not using SSH:
+The command writes the deployable site to `packages/docs/build` and copies Storybook to `packages/docs/build/storybook`.
+
+To run every CI check, use:
 
 ```bash
-GIT_USER=<Your GitHub username> yarn deploy
+pnpm verify
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+## Edit the documentation
+
+- `docs/` contains guides and component reference pages.
+- `sidebars.ts` defines the documentation navigation.
+- `src/` contains Docusaurus pages, components, and styles.
+- `static/` contains images and other static assets.
+- `docusaurus.config.ts` configures the site and the generated LLM reference files.
+
+Each component page links to its Storybook story. Keep the props table and the examples in sync with the exported types in `packages/react/src/index.tsx`.

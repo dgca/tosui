@@ -1,38 +1,40 @@
 ---
-title: Get Started
-description: "Install and set up Tosui in your React application with styles and optional fonts."
+title: Get started
+description: "Install Tosui, load its styles, and render a themed card in a React application."
 ---
 
-# Get Started
+# Get started
 
-## Installation
+In this tutorial, we build a small profile card and confirm that Tosui's styles load correctly.
 
-Install Tosui using your preferred package manager:
+## Install Tosui
+
+Add `@tosui/react` to your React application:
 
 ```bash
 npm install @tosui/react
-# or
-yarn add @tosui/react
-# or
-pnpm add @tosui/react
 ```
 
-## Setup
+Tosui supports React 18 and React 19.
 
-Import the base styles in your application entry point (e.g., `main.tsx` or `App.tsx`):
+## Load the base styles
+
+Import the required stylesheet once in your application entry point, such as `main.tsx`:
 
 ```tsx
 import "@tosui/react/styles.css";
 ```
 
-This stylesheet defines all of Tosui's design token CSS variables and sets two global styles on `:root`:
+The stylesheet defines the design tokens and sets these two styles on `:root`:
 
-- `color: var(--t-color-foreground)`
-- `background-color: var(--t-color-background)`
+```css
+:root {
+  color: var(--t-color-foreground);
+  background-color: var(--t-color-background);
+}
+```
 
-This ensures that plain text and non-Tosui elements inherit theme-aware colors (including dark mode) without any extra setup. **No other global styles are applied** — there are no CSS resets, no `*` selectors, and no element-level styles.
-
-If you need to opt out of this behavior, override the two variables on `:root`:
+Tosui does not apply a global CSS reset or element-level styles. To keep your application's existing page colors, override both declarations after the Tosui import.
 
 ```css
 :root {
@@ -41,69 +43,53 @@ If you need to opt out of this behavior, override the two variables on `:root`:
 }
 ```
 
-### Optional: Font Styles
+## Render a profile card
 
-Tosui includes optional IBM Plex font styles. To use them, import the fonts CSS:
-
-```tsx
-import "@tosui/react/fonts.css";
-```
-
-## Basic Usage
-
-Start using Tosui components in your React application:
+Add the following component to your application:
 
 ```tsx
-import { Box, Text, Heading } from "@tosui/react";
+import { Box, Button, Heading, Text } from "@tosui/react";
 
-function App() {
+export function ProfileCard() {
   return (
-    <Box p={6}>
-      <Heading fontSize="3xl" fontWeight="semibold">
-        Welcome to Tosui
+    <Box
+      as="article"
+      maxW="360px"
+      p={6}
+      bg="surface"
+      border="thin"
+      borderColor="border"
+      rounded="lg"
+    >
+      <Heading level={2} size="2xl">
+        Ada Lovelace
       </Heading>
-      <Text fontSize="md" color="foregroundMuted">
-        A constraint-driven design system for React
+      <Text as="p" size="sm" color="foreground-muted" mt={1} mb={4}>
+        Computing pioneer
       </Text>
+      <Button>View profile</Button>
     </Box>
   );
 }
 ```
 
-## Core Principles
+You should see a bordered card with theme-aware text, spacing, and a primary button. If the card appears unstyled, confirm that `styles.css` loads before the component renders.
 
-Tosui is built on these core principles:
+## Add the optional fonts
 
-### Fewer, Better Choices
+To use IBM Plex Sans and IBM Plex Mono, import `fonts.css` after the base stylesheet:
 
-Every design token earns its place in the system. Instead of dozens of color shades or spacing values, Tosui provides a focused set of options that cover real-world use cases.
+```tsx
+import "@tosui/react/styles.css";
+import "@tosui/react/fonts.css";
+```
 
-### Composition Over Configuration
+Without `fonts.css`, Tosui uses system font stacks.
 
-Build complex interfaces from simple primitives like Box, Text, and Heading. The system makes the right thing easy and the custom thing possible.
+## Continue from here
 
-### Semantic, Not Prescriptive
-
-Design values describe intent (`foreground`, `background`), not specific measurements. This means themes swap seamlessly and components adapt automatically to light/dark modes.
-
-## Next Steps
-
-**Primitives**
-- [Box](/docs/components/box) - Foundational layout primitive
-- [Text](/docs/components/text) - Text with typography props
-- [Heading](/docs/components/heading) - Semantic headings
-
-**Layout**
-- [Stack](/docs/components/stack) - Vertical/horizontal stacking
-- [Flex](/docs/components/flex) - Flexbox container
-- [Grid](/docs/components/grid) - CSS Grid container
-
-**Forms**
-- [Input](/docs/components/input) - Text input field
-- [Button](/docs/components/button) - Action buttons
-- [FormField](/docs/components/form-field) - Form field wrapper with labels
-
-**Overlays**
-- [Modal](/docs/components/modal) - Dialog windows
-- [Tooltip](/docs/components/tooltip) - Informational tooltips
-- [Popover](/docs/components/popover) - Rich content popovers
+- Use the [spacing guide](/docs/guide/spacing) to size gaps and padding.
+- Use the [colors guide](/docs/guide/colors) to choose text, background, and border tokens.
+- Use the [responsive styling guide](/docs/guide/responsive) to change props at breakpoints.
+- Use the [customization guide](/docs/guide/customization) to define a brand theme.
+- Open the component reference in the sidebar to find props and examples.

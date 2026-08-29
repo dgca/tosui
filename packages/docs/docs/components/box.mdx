@@ -1,6 +1,6 @@
 ---
 title: Box
-description: "Foundational layout primitive with comprehensive styling props for spacing, colors, borders, flexbox, grid, and more. Polymorphic via the as prop."
+description: "Reference for the polymorphic Box component and its constrained layout, spacing, color, border, typography, and state props."
 ---
 
 import Tabs from "@theme/Tabs";
@@ -12,7 +12,7 @@ import StorybookEmbed, {
 
 # Box
 
-The Box component is Tosui's foundational primitive for layout and styling. It's a polymorphic component that can render as any HTML element while providing a comprehensive set of styling props.
+`Box` is Tosui's layout and styling primitive. It accepts a constrained set of style props and renders a `div` by default.
 
 <StorybookLink storyId="components-box--basic">
   Open in Storybook
@@ -24,7 +24,7 @@ The Box component is Tosui's foundational primitive for layout and styling. It's
 import { Box } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -43,9 +43,9 @@ import { Box } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Polymorphic Rendering
+## Polymorphic rendering
 
-Box can render as any HTML element using the `as` prop:
+The `as` prop changes the rendered HTML element. TypeScript derives native attributes and the ref type from the selected element.
 
 ```tsx
 <Box as="section" p={6}>
@@ -137,7 +137,7 @@ Size props: `w`, `h`, `minW`, `maxW`, `minH`, `maxH`
 
 ## Flexbox
 
-Box provides comprehensive flexbox support:
+Box accepts these flexbox props:
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -184,14 +184,14 @@ Grid props: `gridTemplateColumns`, `gridTemplateRows`, `justifySelf`
 
 ## Colors
 
-Tosui uses semantic color tokens that adapt to light/dark themes:
+Tosui uses semantic color tokens that adapt to light and dark themes. The `color`, `bg`, and `borderColor` props accept different token sets.
 
 ```tsx
 <Box bg="surface" color="foreground">
   Default text on surface background
 </Box>
 
-<Box bg="primary-default" color="white">
+<Box bg="primary-default" color="foreground-inverted">
   Primary colored box
 </Box>
 
@@ -210,7 +210,7 @@ Color props: `color`, `bg`, `borderColor`
       All borders
     </Box>
 
-    <Box borderLeft="medium" borderColor="primary-default" p={4} mb={2}>
+    <Box borderLeft="medium" borderColor="primary" p={4} mb={2}>
       Left border accent
     </Box>
 
@@ -225,7 +225,7 @@ Color props: `color`, `bg`, `borderColor`
       All borders
     </Box>
 
-    <Box borderLeft="medium" borderColor="primary-default" p={4}>
+    <Box borderLeft="medium" borderColor="primary" p={4}>
       Left border accent
     </Box>
 
@@ -253,8 +253,8 @@ Border widths: `none`, `thin` (1px), `medium` (2px), `thick` (4px)
       Sharp top-left corner
     </Box>
 
-    <Box rounded="full" px={6} py={2} bg="primary-default" color="white" display="inline-block">
-      Fully rounded (pill shape)
+    <Box rounded="full" px={6} py={2} bg="primary-default" color="foreground-inverted" display="inline-block">
+      Pill shape
     </Box>
 
   </TabItem>
@@ -268,8 +268,8 @@ Border widths: `none`, `thin` (1px), `medium` (2px), `thick` (4px)
       Sharp top-left corner
     </Box>
 
-    <Box rounded="full" px={6} py={2} bg="primary-default" color="white">
-      Fully rounded (pill shape)
+    <Box rounded="full" px={6} py={2} bg="primary-default" color="foreground-inverted">
+      Pill shape
     </Box>
     ```
 
@@ -362,18 +362,20 @@ Overflow props: `overflow`, `overflowX`, `overflowY`
 ## Opacity
 
 ```tsx
-<Box opacity={0.5}>
-  Semi-transparent box
+<Box opacity="faint">
+  40% opacity
 </Box>
 
-<Box opacity={0.8}>
-  Slightly transparent
+<Box opacity="semi">
+  60% opacity
 </Box>
 ```
 
-## Advanced Example
+Opacity values are `invisible` (0), `faint` (0.4), `semi` (0.6), and `full` (1).
 
-Combining multiple props to create a card component:
+## Combined example
+
+The following example combines layout and style props:
 
 ```tsx
 <Box
@@ -391,18 +393,18 @@ Combining multiple props to create a card component:
   <Box as="h2" fontSize="2xl" fontWeight="semibold">
     Card Title
   </Box>
-  <Box color="foregroundMuted">Card content with muted text color</Box>
+  <Box color="foreground-muted">Card content with muted text</Box>
 </Box>
 ```
 
-## Props Reference
+## Props reference
 
 Box accepts all props from its constituent style parts:
 
 - **Spacing**: Margin and padding with multiplier values (0-32)
 - **Layout**: Display, position, overflow, z-index
 - **Size**: Width, height, and their min/max variants
-- **Flexbox**: All flexbox layout properties
+- **Flexbox**: Direction, alignment, wrapping, gaps, and flex sizing
 - **Grid**: Grid template and positioning
 - **Inset**: Positioning offsets (top, right, bottom, left)
 - **Typography**: Font properties and text styling
@@ -415,4 +417,8 @@ Box accepts all props from its constituent style parts:
 
 ## TypeScript
 
-Box is fully typed and provides autocomplete for all props. When using the `as` prop, TypeScript will correctly infer the allowed HTML attributes for that element type.
+```tsx
+import { Box, type BoxOwnProps, type BoxProps } from "@tosui/react";
+```
+
+`BoxProps<T>` includes the native attributes for element type `T`. `BoxOwnProps` contains only the props defined by Tosui.

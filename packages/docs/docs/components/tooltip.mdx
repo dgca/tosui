@@ -1,6 +1,6 @@
 ---
 title: Tooltip
-description: "Informative text overlay displayed on hover or focus, with configurable placement."
+description: "Reference for the Tooltip text overlay, including placement, delays, controlled state, and trigger accessibility."
 ---
 
 import Tabs from "@theme/Tabs";
@@ -12,7 +12,7 @@ import StorybookEmbed, {
 
 # Tooltip
 
-Tooltip displays informative text when hovering or focusing on an element.
+`Tooltip` displays short, non-interactive text when its trigger receives a hover or focus event.
 
 <StorybookLink storyId="components-tooltip--basic">
   Open in Storybook
@@ -24,7 +24,7 @@ Tooltip displays informative text when hovering or focusing on an element.
 import { Tooltip } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -82,9 +82,9 @@ import { Tooltip } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## With Delays
+## Delays
 
-Control when the tooltip appears and disappears.
+`openDelay` and `closeDelay` are durations in milliseconds.
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -111,7 +111,7 @@ Control when the tooltip appears and disappears.
   </TabItem>
 </Tabs>
 
-## Disabled State
+## Disabled state
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -128,9 +128,9 @@ Control when the tooltip appears and disappears.
   </TabItem>
 </Tabs>
 
-## Controlled Mode
+## Controlled state
 
-Use `isOpen`, `onOpen`, and `onClose` for full control.
+Pass `isOpen` when application state owns the open state. Update that state from `onOpen` and `onClose`.
 
 ```tsx
 function ControlledTooltip() {
@@ -149,9 +149,9 @@ function ControlledTooltip() {
 }
 ```
 
-## Common Patterns
+## Common patterns
 
-### Icon Button with Tooltip
+### IconButton with Tooltip
 
 ```tsx
 <Tooltip label="Settings">
@@ -161,22 +161,20 @@ function ControlledTooltip() {
 </Tooltip>
 ```
 
-### Truncated Text with Tooltip
+### Truncated text with a tooltip
 
 ```tsx
 <Tooltip label="This is the full text that doesn't fit in the container">
   <Text
+    truncate
     maxW="150px"
-    overflow="hidden"
-    whiteSpace="nowrap"
-    textOverflow="ellipsis"
   >
     This is the full text that doesn't fit in the container
   </Text>
 </Tooltip>
 ```
 
-### Disabled Button Explanation
+### Disabled button explanation
 
 ```tsx
 <Tooltip label="You need admin permissions to perform this action">
@@ -186,7 +184,7 @@ function ControlledTooltip() {
 </Tooltip>
 ```
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -198,13 +196,17 @@ function ControlledTooltip() {
 | isOpen | `boolean` | - | Controlled open state |
 | onOpen | `() => void` | - | Callback when tooltip opens |
 | onClose | `() => void` | - | Callback when tooltip closes |
+| className | `string` | - | Additional CSS class on the tooltip panel |
 | children | `ReactNode` | - | Trigger element (required) |
 
 ## Accessibility
 
-- Uses `role="tooltip"`
-- Shows on both hover and focus
-- Renders via portal to avoid clipping
+- The overlay uses `role="tooltip"` and has a generated ID.
+- While the tooltip is open, its focusable trigger receives the tooltip ID in `aria-describedby`.
+- Existing `aria-describedby` IDs remain on the trigger.
+- If the child has no focusable element, the trigger wrapper receives `tabIndex={0}` so keyboard users can open the tooltip.
+- A disabled tooltip does not add a tab stop or an accessible description.
+- The portal renders only in the browser, which keeps server rendering deterministic.
 
 ## TypeScript
 

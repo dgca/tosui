@@ -1,6 +1,6 @@
 ---
 title: Heading
-description: "Semantic heading component (h1-h6) with automatic font size defaults per level, built on top of Text."
+description: "Reference for semantic heading levels, default sizes, visual overrides, and polymorphic rendering."
 ---
 
 import Tabs from "@theme/Tabs";
@@ -12,7 +12,7 @@ import StorybookEmbed, {
 
 # Heading
 
-The Heading component is a semantic heading component built on top of Text, designed specifically for headings with sensible defaults for each heading level.
+`Heading` renders an `h1` through `h6` and assigns a default size for that level. It renders an `h1` by default.
 
 <StorybookLink storyId="components-heading--basic">
   Open in Storybook
@@ -24,7 +24,7 @@ The Heading component is a semantic heading component built on top of Text, desi
 import { Heading } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -41,18 +41,9 @@ import { Heading } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Key Features
+## Heading levels
 
-- **Default element**: `<h1>`
-- **Semantic levels**: Use `level` prop to control heading hierarchy (h1-h6)
-- **Smart sizing**: Each level has appropriate default font size
-- **Bold by default**: Headings use bold weight unless overridden
-- **Polymorphic**: Can render as any element via `as` prop
-- **Inherits from Text**: Access to all Text and Box capabilities
-
-## Heading Levels
-
-The `level` prop controls both the HTML element and default font size:
+The `level` prop controls both the HTML element and the default font size.
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -75,7 +66,7 @@ The `level` prop controls both the HTML element and default font size:
   </TabItem>
 </Tabs>
 
-### Default Size Mapping
+### Default size mapping
 
 | Level | Element | Default Size | Pixel Size |
 |-------|---------|--------------|------------|
@@ -86,9 +77,9 @@ The `level` prop controls both the HTML element and default font size:
 | 5     | `<h5>`  | `md`         | 16px       |
 | 6     | `<h6>`  | `sm`         | 14px       |
 
-## Overriding Size
+## Override the size
 
-You can override the default size for any heading level:
+Pass `size` to change the visual size without changing the heading level.
 
 ```tsx
 <Heading level={2} size="4xl">
@@ -102,7 +93,7 @@ You can override the default size for any heading level:
 
 ## Weight
 
-Headings default to `bold` weight, but can be customized:
+Headings use `bold` by default. Pass `weight` to override the default.
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -121,11 +112,11 @@ Headings default to `bold` weight, but can be customized:
   </TabItem>
 </Tabs>
 
-Available weights: `normal` | `medium` | `semibold` | `bold`
+Available weights are `normal`, `medium`, `semibold`, and `bold`.
 
 ## Color
 
-Use semantic color tokens:
+Use a text color token:
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -144,11 +135,11 @@ Use semantic color tokens:
   </TabItem>
 </Tabs>
 
-Available colors: `foreground` | `foreground-muted` | `foreground-subtle` | `primary` | `primary-emphasis` | `accent` | `accent-emphasis` | `success` | `warning` | `error`
+`Heading` accepts the same foreground, brand, and feedback text colors as [`Text`](/docs/components/text).
 
-## Polymorphic Rendering
+## Polymorphic rendering
 
-Separate semantic meaning from visual styling:
+The `as` prop overrides the element selected by `level`. The `level` still selects the default size.
 
 ```tsx
 {/* Visually h3, semantically h1 */}
@@ -156,15 +147,15 @@ Separate semantic meaning from visual styling:
   Page Title
 </Heading>
 
-{/* Render as div but styled as heading */}
+{/* Render a div with the default h2 size. */}
 <Heading as="div" level={2}>
   Non-semantic heading
 </Heading>
 ```
 
-## Common Patterns
+## Common patterns
 
-### Page Title
+### Page title
 
 ```tsx
 <Heading level={1} size="4xl" weight="bold">
@@ -172,7 +163,7 @@ Separate semantic meaning from visual styling:
 </Heading>
 ```
 
-### Section Heading
+### Section heading
 
 ```tsx
 <Heading level={2} size="2xl" weight="semibold">
@@ -180,7 +171,7 @@ Separate semantic meaning from visual styling:
 </Heading>
 ```
 
-### Subsection Heading
+### Subsection heading
 
 ```tsx
 <Heading level={3} size="xl" color="foreground-muted">
@@ -188,7 +179,7 @@ Separate semantic meaning from visual styling:
 </Heading>
 ```
 
-### Card Title
+### Card title
 
 ```tsx
 <Heading level={4} size="lg" weight="semibold">
@@ -196,7 +187,7 @@ Separate semantic meaning from visual styling:
 </Heading>
 ```
 
-### Small Heading
+### Small heading
 
 ```tsx
 <Heading level={6} size="sm" weight="medium" color="foreground-muted">
@@ -204,9 +195,9 @@ Separate semantic meaning from visual styling:
 </Heading>
 ```
 
-## Combining with Box Props
+## Style the surrounding box
 
-Since Heading is built on Text (which is built on Box), you can use any Box prop:
+`Heading` accepts the `Box` props that `Text` inherits. It replaces `fontSize`, `fontWeight`, `textAlign`, and `color` with `size`, `weight`, `align`, and its own `color` prop.
 
 ```tsx
 <Heading
@@ -220,7 +211,7 @@ Since Heading is built on Text (which is built on Box), you can use any Box prop
 </Heading>
 ```
 
-## Layout Example
+## Layout example
 
 ```tsx
 <Box display="flex" flexDirection="column" gap={6}>
@@ -251,15 +242,15 @@ Since Heading is built on Text (which is built on Box), you can use any Box prop
 
 ## Accessibility
 
-The `level` prop ensures proper heading hierarchy for screen readers:
+Keep heading levels in document order. Change the visual size with `size` instead of skipping a level.
 
 ```tsx
-{/* ✅ Good: Proper hierarchy */}
+{/* Keep levels in order. */}
 <Heading level={1}>Page Title</Heading>
 <Heading level={2}>Section</Heading>
 <Heading level={3}>Subsection</Heading>
 
-{/* ❌ Avoid: Skipping levels */}
+{/* Do not skip levels. */}
 <Heading level={1}>Page Title</Heading>
 <Heading level={3}>Section</Heading> {/* Skipped h2 */}
 ```
@@ -267,15 +258,15 @@ The `level` prop ensures proper heading hierarchy for screen readers:
 If you need different visual sizing without breaking hierarchy:
 
 ```tsx
-{/* ✅ Correct semantic hierarchy with custom sizing */}
+{/* Keep semantic levels while changing visual sizes. */}
 <Heading level={1} size="3xl">Main Title</Heading>
 <Heading level={2} size="4xl">Visually Larger Section</Heading>
 <Heading level={3} size="xl">Subsection</Heading>
 ```
 
-## Props Reference
+## Props reference
 
-### Heading-Specific Props
+### Heading props
 
 - `level`: Heading level (1-6), controls both HTML element and default size
   - Default: `1`
@@ -284,15 +275,19 @@ If you need different visual sizing without breaking hierarchy:
   - Default: `bold`
 - `color`: Semantic color token
 
-### Inherited from Text
+### Props inherited from Text
 
-Heading inherits all props from Text, which includes:
+Heading inherits the following groups from `Text`:
 
 - Text utilities (truncate, italic, align)
-- All Box props (spacing, layout, borders, etc.)
+- The `Box` props that `Text` does not replace, including spacing, layout, borders, and state props
 
-See the [Text component documentation](/docs/components/text) and [Box component documentation](/docs/components/box) for the full list.
+See the [Text reference](/docs/components/text) and the [Box reference](/docs/components/box) for the complete lists.
 
 ## TypeScript
 
-Heading is fully typed and provides autocomplete for all props. When using the `as` prop, TypeScript will correctly infer the allowed HTML attributes for that element type.
+```tsx
+import { Heading, type HeadingProps } from "@tosui/react";
+```
+
+`HeadingProps<T>` includes the native attributes for the element type `T`.

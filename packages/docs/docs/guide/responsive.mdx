@@ -1,189 +1,85 @@
 ---
-title: Responsive
-description: "Mobile-first responsive styling through breakpoint-aware props with base, sm, md, lg, xl, and 2xl breakpoints."
+title: Responsive styling
+description: "Reference for Tosui's mobile-first responsive objects, breakpoints, cascade behavior, supported props, and state styles."
 ---
 
-# Responsive
+# Responsive styling
 
-Tosui supports responsive styling through breakpoint-aware props. All Box style props accept either a single value or a responsive object.
-
-## Breakpoints
-
-Tosui uses a mobile-first breakpoint system:
-
-| Key | Min Width | Typical Device |
-|-----|-----------|----------------|
-| `base` | 0px | Mobile phones |
-| `sm` | 640px | Large phones |
-| `md` | 768px | Tablets |
-| `lg` | 1024px | Laptops |
-| `xl` | 1280px | Desktops |
-| `2xl` | 1536px | Large displays |
-
-## Simple vs Responsive Values
-
-All style props accept either a simple value or a responsive object:
+Most `Box` style props accept either one value or an object keyed by breakpoint. Responsive objects use a mobile-first cascade.
 
 ```tsx
-// Simple - applies to all screen sizes
 <Box p={4} />
-
-// Responsive - changes at breakpoints
 <Box p={{ base: 2, md: 4, lg: 6 }} />
 ```
 
-The responsive version produces:
-- **Mobile (base)**: 8px padding
-- **Tablet (md)**: 16px padding
-- **Desktop (lg)**: 24px padding
+## Breakpoints
 
-## Mobile-First Cascade
+| Key | Minimum width |
+|---|---:|
+| `base` | `0px` |
+| `sm` | `640px` |
+| `md` | `768px` |
+| `lg` | `1024px` |
+| `xl` | `1280px` |
+| `2xl` | `1536px` |
 
-You only need to specify breakpoints where values change. Smaller breakpoints cascade up:
+## Mobile-first cascade
+
+A value continues into larger breakpoints until another value replaces it.
 
 ```tsx
-// Only specify base and lg
 <Box p={{ base: 2, lg: 6 }} />
 ```
 
-This produces:
-- **base**: 8px (specified)
-- **sm**: 8px (inherits from base)
-- **md**: 8px (inherits from base)
-- **lg**: 24px (specified)
-- **xl**: 24px (inherits from lg)
-- **2xl**: 24px (inherits from lg)
+The example resolves to `8px` from `base` through `md`, then `24px` from `lg` through `2xl`.
 
-## Responsive Props
-All Box style props support responsive values:
-| Category | Props |
-|----------|-------|
-| Spacing | `p`, `px`, `py`, `pt`, `pr`, `pb`, `pl`, `m`, `mx`, `my`, `mt`, `mr`, `mb`, `ml`, `gap`, `gapRow`, `gapColumn` |
+You can omit `base`. Before the first declared breakpoint, that prop has no responsive value from the object.
+
+```tsx
+<Box display={{ md: "block" }} />
+```
+
+## Responsive Box props
+
+The following `Box` prop groups accept responsive objects:
+
+| Group | Props |
+|---|---|
+| Spacing | `p`, `px`, `py`, `pt`, `pr`, `pb`, `pl`, `m`, `mx`, `my`, `mt`, `mr`, `mb`, `ml` |
 | Sizing | `w`, `h`, `minW`, `maxW`, `minH`, `maxH` |
 | Layout | `display`, `position`, `overflow`, `overflowX`, `overflowY`, `zIndex` |
-| Flexbox | `flexDirection`, `justifyContent`, `alignItems`, `alignSelf`, `flexWrap`, `flex`, `flexGrow`, `flexShrink`, `flexBasis` |
+| Flexbox | `flexDirection`, `justifyContent`, `alignItems`, `alignContent`, `alignSelf`, `flexWrap`, `flex`, `gap`, `gapRow`, `gapColumn` |
 | Grid | `gridTemplateColumns`, `gridTemplateRows`, `justifySelf` |
 | Typography | `fontSize`, `fontFamily`, `fontWeight`, `lineHeight` |
-| Colors | `color`, `bg`, `borderColor` |
-| Borders | `border`, `borderTop`, `borderRight`, `borderBottom`, `borderLeft`, `borderX`, `borderY`, `borderStyle` |
+| Color | `color`, `bg`, `borderColor` |
+| Border | `border`, `borderTop`, `borderRight`, `borderBottom`, `borderLeft`, `borderX`, `borderY`, `borderStyle` |
 | Roundness | `rounded`, `roundedTop`, `roundedBottom`, `roundedLeft`, `roundedRight`, `roundedTopLeft`, `roundedTopRight`, `roundedBottomLeft`, `roundedBottomRight` |
 | Effects | `shadow`, `opacity` |
-| Interactions | `cursor`, `pointerEvents`, `userSelect` |
-| Text | `textAlign`, `whiteSpace` |
+| Interaction | `cursor`, `pointerEvents`, `userSelect` |
+| Text | `textAlign`, `whiteSpace`, `textDecoration` |
 | Inset | `top`, `right`, `bottom`, `left`, `inset`, `insetX`, `insetY` |
 
-## Common Patterns
+`flexGrow`, `flexShrink`, and `flexBasis` accept only one value. Their `Flex` aliases, `grow`, `shrink`, and `basis`, also accept only one value.
 
-### Responsive Padding
+## Responsive layout components
 
-```tsx
-<Box p={{ base: 4, md: 6, lg: 8 }}>
-  Content with increasing padding on larger screens
-</Box>
-```
+Layout convenience props accept responsive objects:
 
-### Show/Hide Elements
-
-```tsx
-// Hidden on mobile, visible on tablet+
-<Box display={{ base: "none", md: "block" }}>
-  Desktop navigation
-</Box>
-
-// Visible on mobile, hidden on tablet+
-<Box display={{ base: "block", md: "none" }}>
-  Mobile menu button
-</Box>
-```
-
-### Responsive Flex Direction
-
-```tsx
-// Stack vertically on mobile, horizontally on tablet+
-<Box
-  display="flex"
-  flexDirection={{ base: "column", md: "row" }}
-  gap={4}
->
-  <Box>First</Box>
-  <Box>Second</Box>
-</Box>
-```
-
-### Responsive Grid
-
-```tsx
-<Box
-  display="grid"
-  gridTemplateColumns={{
-    base: "1fr",
-    md: "1fr 1fr",
-    lg: "1fr 1fr 1fr"
-  }}
-  gap={4}
->
-  <Box>Card 1</Box>
-  <Box>Card 2</Box>
-  <Box>Card 3</Box>
-</Box>
-```
-
-### Responsive Typography
-
-```tsx
-<Heading size={{ base: "xl", md: "2xl", lg: "3xl" }}>
-  Scales with viewport
-</Heading>
-```
-
-### Responsive Width
-
-```tsx
-// Using spacing multipliers (recommended)
-<Box w={{ base: "100%", md: "50%", lg: "33%" }}>
-  Responsive width container
-</Box>
-
-// CSS values work for percentages and viewport units
-<Box w={{ base: "100%", md: "400px" }}>
-  Full width on mobile, fixed on tablet+
-</Box>
-```
-
-## Layout Components
-
-Layout components ([Stack](/docs/components/stack), [HStack](/docs/components/hstack), [VStack](/docs/components/vstack), [Flex](/docs/components/flex), [Grid](/docs/components/grid)) accept responsive values on their convenience props — not just on inherited Box props.
-
-### Responsive Stack Direction
+- `Stack`: `direction`, `align`, `justify`, `wrap`, and `gap`
+- `HStack` and `VStack`: `align`, `justify`, `wrap`, and `gap`
+- `Flex`: `direction`, `align`, `justify`, `wrap`, `alignSelf`, `gap`, `gapRow`, and `gapColumn`
+- `Grid`: `columns`, `rows`, `justify`, `align`, `justifyContent`, `alignContent`, `gap`, `gapRow`, and `gapColumn`
 
 ```tsx
 <Stack
   direction={{ base: "column", md: "row" }}
-  gap={{ base: 4, lg: 8 }}
   align={{ base: "stretch", md: "center" }}
+  gap={{ base: 4, lg: 8 }}
 >
   <Box>Sidebar</Box>
-  <Box>Main Content</Box>
+  <Box>Main content</Box>
 </Stack>
 ```
-
-This is equivalent to using `VStack` on mobile and `HStack` on desktop.
-
-### Responsive Flex
-
-```tsx
-<Flex
-  direction={{ base: "column", md: "row" }}
-  wrap={{ base: "nowrap", lg: "wrap" }}
-  justify={{ base: "center", md: "space-between" }}
-  gap={4}
->
-  <Box>Item 1</Box>
-  <Box>Item 2</Box>
-</Flex>
-```
-
-### Responsive Grid Alignment
 
 ```tsx
 <Grid
@@ -191,38 +87,83 @@ This is equivalent to using `VStack` on mobile and `HStack` on desktop.
   justify={{ base: "center", lg: "start" }}
   gap={4}
 >
-  <Box>Card 1</Box>
-  <Box>Card 2</Box>
-  <Box>Card 3</Box>
+  <Box>First card</Box>
+  <Box>Second card</Box>
+  <Box>Third card</Box>
 </Grid>
 ```
 
-- **Stack** — `direction`, `align`, `justify`, `wrap`, `gap`
-- **HStack / VStack** — `align`, `justify`, `wrap`, `gap`
-- **Flex** — `direction`, `align`, `justify`, `wrap`, `alignSelf`, `gap`
-- **Grid** — `columns`, `rows`, `justify`, `align`, `justifyContent`, `alignContent`, `gap`
+## Responsive typography
 
-## Responsive State Styling
+`Text` and `Heading` convenience props do not accept responsive objects. To make typography responsive, use a polymorphic `Box` with `fontSize`, `fontWeight`, or both.
 
-State props (`_hover`, `_focus`, `_active`, `_disabled`) also accept responsive values:
+```tsx
+<Box
+  as="h2"
+  fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
+  fontWeight="bold"
+>
+  Responsive heading
+</Box>
+```
+
+Use `Heading` when a fixed token size is sufficient and you want its level-to-size mapping.
+
+## Responsive state styles
+
+State props accept responsive values for the style props they contain.
 
 ```tsx
 <Box
   bg="surface"
   _hover={{
-    bg: { base: "primary-subtle", md: "primary-default" }
+    bg: { base: "primary-subtle", md: "primary-default" },
+    color: { base: "primary", md: "foreground-inverted" },
   }}
 >
-  Different hover effect by screen size
+  Hover target
 </Box>
 ```
 
-See the [State Styling guide](/docs/guide/state-styling) for more details.
+See [State styling](/docs/guide/state-styling) for state selectors and precedence.
 
-## Best Practices
+## Common layouts
 
-1. **Design mobile-first**: Start with base values, then add larger breakpoints
-2. **Minimize breakpoints**: Only add breakpoints where the layout actually needs to change
-3. **Use semantic breakpoints**: Think "tablet and up" (`md`), not "768px"
-4. **Test all sizes**: Verify layouts at each breakpoint you use
-5. **Prefer design tokens**: Use spacing multipliers (`p={4}`) over raw values (`p="16px"`) when possible
+Hide an element below `md`:
+
+```tsx
+<Box display={{ base: "none", md: "block" }}>
+  Desktop navigation
+</Box>
+```
+
+Change a grid's column count:
+
+```tsx
+<Box
+  display="grid"
+  gridTemplateColumns={{
+    base: "1fr",
+    md: "repeat(2, 1fr)",
+    lg: "repeat(3, 1fr)",
+  }}
+  gap={4}
+>
+  <Box>First card</Box>
+  <Box>Second card</Box>
+  <Box>Third card</Box>
+</Box>
+```
+
+Change a flex direction:
+
+```tsx
+<Box
+  display="flex"
+  flexDirection={{ base: "column", md: "row" }}
+  gap={4}
+>
+  <Box>First item</Box>
+  <Box>Second item</Box>
+</Box>
+```

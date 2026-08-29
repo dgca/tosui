@@ -24,7 +24,7 @@ Switch is a toggle switch component with size variants, sliding animation, and o
 import { Switch } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -41,7 +41,7 @@ import { Switch } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Without Label
+## Without a label
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -58,7 +58,7 @@ import { Switch } from "@tosui/react";
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <VStack gap={4} align="flex-start">
+    <VStack gap={4} align="start">
       <Switch size="sm" label="Small switch" />
       <Switch size="md" label="Medium switch (default)" />
       <Switch size="lg" label="Large switch" />
@@ -66,7 +66,7 @@ import { Switch } from "@tosui/react";
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
-    <VStack gap={4} align="flex-start">
+    <VStack gap={4} align="start">
       <Switch size="sm" label="Small switch" />
       <Switch size="md" label="Medium switch (default)" />
       <Switch size="lg" label="Large switch" />
@@ -79,7 +79,7 @@ import { Switch } from "@tosui/react";
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <VStack gap={4} align="flex-start">
+    <VStack gap={4} align="start">
       <Switch label="Off" />
       <Switch label="On" defaultChecked />
       <Switch label="Disabled off" disabled />
@@ -88,7 +88,7 @@ import { Switch } from "@tosui/react";
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
-    <VStack gap={4} align="flex-start">
+    <VStack gap={4} align="start">
       <Switch label="Off" />
       <Switch label="On" defaultChecked />
       <Switch label="Disabled off" disabled />
@@ -116,7 +116,7 @@ function ControlledSwitch() {
 }
 ```
 
-## Settings List
+## Settings list
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -173,7 +173,7 @@ function ControlledSwitch() {
   </TabItem>
 </Tabs>
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|

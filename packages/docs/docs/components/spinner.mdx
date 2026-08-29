@@ -24,7 +24,7 @@ Spinner is a loading indicator that inherits color from its parent element.
 import { Spinner } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -89,9 +89,9 @@ Spinner inherits color from its parent. Set the parent's `color` to change the s
   </TabItem>
 </Tabs>
 
-## Common Patterns
+## Common patterns
 
-### Button Loading State
+### Button loading state
 
 Button has built-in loading support:
 
@@ -112,7 +112,7 @@ Button has built-in loading support:
   </TabItem>
 </Tabs>
 
-### Centered Loading
+### Centered loading
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -135,7 +135,7 @@ Button has built-in loading support:
   </TabItem>
 </Tabs>
 
-### Inline Loading
+### Inline loading
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -154,7 +154,7 @@ Button has built-in loading support:
   </TabItem>
 </Tabs>
 
-### Full Page Loading
+### Full-page loading
 
 ```tsx
 function PageLoader() {
@@ -166,7 +166,7 @@ function PageLoader() {
       alignItems="center"
       justifyContent="center"
       bg="background"
-      zIndex="overlay"
+      zIndex="modal"
     >
       <VStack gap={4}>
         <Spinner size="lg" />
@@ -177,14 +177,16 @@ function PageLoader() {
 }
 ```
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | size | `"sm"` \| `"md"` \| `"lg"` | `"md"` | Spinner size |
 | as | `ElementType` | `"span"` | HTML element to render |
 
-### Size Dimensions
+`Spinner` also accepts `Box` style props.
+
+### Size dimensions
 
 | Size | Width/Height |
 |------|--------------|
@@ -194,11 +196,11 @@ function PageLoader() {
 
 ## Accessibility
 
-- Uses `role="status"` with `aria-label="Loading"`
-- Communicates loading state to screen readers
+- `Spinner` uses `role="status"` with `aria-label="Loading"`.
+- Pass `aria-hidden="true"` when nearby text already communicates the loading state.
 
 ## TypeScript
 
 ```tsx
-import { Spinner, type SpinnerSize, type SpinnerProps } from "@tosui/react";
+import { Spinner } from "@tosui/react";
 ```

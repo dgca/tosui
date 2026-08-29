@@ -24,7 +24,7 @@ IconButton is a compact, icon-only button component. It requires an `aria-label`
 import { IconButton } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -63,7 +63,7 @@ import { IconButton } from "@tosui/react";
 </HStack>
 ```
 
-## Color Schemes
+## Color schemes
 
 ```tsx
 <HStack gap={4}>
@@ -76,7 +76,7 @@ import { IconButton } from "@tosui/react";
 </HStack>
 ```
 
-## Variants with Color Schemes
+## Variants with color schemes
 
 ```tsx
 <VStack gap={4}>
@@ -98,9 +98,9 @@ import { IconButton } from "@tosui/react";
 </HStack>
 ```
 
-## Common Patterns
+## Common patterns
 
-### Toolbar Actions
+### Toolbar actions
 
 ```tsx
 <HStack gap={2} p={2} bg="surface" rounded="md">
@@ -113,14 +113,14 @@ import { IconButton } from "@tosui/react";
 </HStack>
 ```
 
-### Card Actions
+### Card actions
 
 ```tsx
 <Card>
   <CardBody>
     <HStack justify="space-between">
       <Box>
-        <Heading fontSize="lg">Item Title</Heading>
+        <Heading size="lg">Item Title</Heading>
         <Text color="foreground-muted">Item description</Text>
       </Box>
       <HStack gap={1}>
@@ -141,23 +141,26 @@ import { IconButton } from "@tosui/react";
 </Card>
 ```
 
-### Close Button
+### Close button
 
 ```tsx
 <Box position="relative" p={4} bg="surface" rounded="md">
-  <IconButton
-    variant="ghost"
-    icon={<CloseIcon />}
-    aria-label="Close"
+  <Box
     position="absolute"
     top={2}
     right={2}
-  />
+  >
+    <IconButton
+      variant="ghost"
+      icon={<CloseIcon />}
+      aria-label="Close"
+    />
+  </Box>
   <Text>Modal or alert content</Text>
 </Box>
 ```
 
-### Pagination Controls
+### Pagination controls
 
 ```tsx
 <HStack gap={2}>
@@ -167,7 +170,7 @@ import { IconButton } from "@tosui/react";
 </HStack>
 ```
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -179,8 +182,9 @@ import { IconButton } from "@tosui/react";
 | disabled | `boolean` | `false` | Disable the button |
 | loading | `boolean` | `false` | Show loading spinner |
 | onClick | `() => void` | - | Click handler |
+| className | `string` | - | Additional CSS class |
 
-### Size Dimensions
+### Size dimensions
 
 | Size | Dimensions |
 |------|------------|
@@ -190,9 +194,9 @@ import { IconButton } from "@tosui/react";
 
 ## Accessibility
 
-- **`aria-label` is required** - IconButton has no visible text, so `aria-label` provides the accessible name
-- The icon is marked with `aria-hidden="true"` since the `aria-label` provides the meaning
-- Supports keyboard navigation (Enter/Space to activate)
+- `aria-label` is required because `IconButton` has no visible text.
+- The icon wrapper uses `aria-hidden="true"` because `aria-label` supplies the accessible name.
+- Native button behavior supports Enter and Space.
 
 ## TypeScript
 

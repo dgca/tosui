@@ -24,7 +24,7 @@ Progress is a visual indicator showing completion percentage or loading state.
 import { Progress } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -87,7 +87,7 @@ import { Progress } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Color Schemes
+## Color schemes
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -129,7 +129,7 @@ Use `isIndeterminate` for loading states where progress is unknown.
   </TabItem>
 </Tabs>
 
-## Custom Max Value
+## Custom max value
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -145,27 +145,27 @@ Use `isIndeterminate` for loading states where progress is unknown.
   </TabItem>
 </Tabs>
 
-## Common Patterns
+## Common patterns
 
-### With Label
+### With a label
 
 ```tsx
 <VStack gap={1}>
   <HStack justify="space-between">
-    <Text fontSize="sm">Uploading...</Text>
-    <Text fontSize="sm">60%</Text>
+    <Text size="sm">Uploading...</Text>
+    <Text size="sm">60%</Text>
   </HStack>
   <Progress value={60} />
 </VStack>
 ```
 
-### Step Progress
+### Step progress
 
 ```tsx
 function StepProgress({ currentStep, totalSteps }) {
   return (
     <VStack gap={2}>
-      <Text fontSize="sm" color="foreground-muted">
+      <Text size="sm" color="foreground-muted">
         Step {currentStep} of {totalSteps}
       </Text>
       <Progress value={currentStep} max={totalSteps} />
@@ -174,7 +174,7 @@ function StepProgress({ currentStep, totalSteps }) {
 }
 ```
 
-### File Upload
+### File upload
 
 ```tsx
 function FileUpload() {
@@ -183,8 +183,8 @@ function FileUpload() {
   return (
     <VStack gap={2}>
       <HStack justify="space-between" w="100%">
-        <Text fontSize="sm">document.pdf</Text>
-        <Text fontSize="sm">{progress}%</Text>
+        <Text size="sm">document.pdf</Text>
+        <Text size="sm">{progress}%</Text>
       </HStack>
       <Progress value={progress} colorScheme="success" />
     </VStack>
@@ -192,7 +192,7 @@ function FileUpload() {
 }
 ```
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -201,10 +201,11 @@ function FileUpload() {
 | colorScheme | `"primary"` \| `"accent"` \| `"success"` \| `"warning"` \| `"error"` \| `"info"` | `"primary"` | Color scheme |
 | size | `"sm"` \| `"md"` \| `"lg"` | `"md"` | Progress bar height |
 | isIndeterminate | `boolean` | `false` | Show animated loading state |
+| className | `string` | - | Additional CSS class |
 
 ## Accessibility
 
-- Uses `role="progressbar"` with proper ARIA attributes
+- Uses `role="progressbar"`
 - `aria-valuenow`, `aria-valuemin`, `aria-valuemax` for determinate progress
 - Indeterminate mode omits `aria-valuenow`
 

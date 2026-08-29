@@ -24,7 +24,7 @@ Card is a flexible content container with optional header, body, and footer sect
 import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -45,13 +45,13 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## With Header
+## With header
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
     <Card>
       <CardHeader>
-        <Heading fontSize="lg">Card Title</Heading>
+        <Heading size="lg">Card Title</Heading>
       </CardHeader>
       <CardBody>
         Card content goes here.
@@ -62,7 +62,7 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
     ```tsx
     <Card>
       <CardHeader>
-        <Heading fontSize="lg">Card Title</Heading>
+        <Heading size="lg">Card Title</Heading>
       </CardHeader>
       <CardBody>
         Card content goes here.
@@ -72,19 +72,19 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## With Footer
+## With footer
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
     <Card>
       <CardHeader>
-        <Heading fontSize="lg">Confirm Action</Heading>
+        <Heading size="lg">Confirm Action</Heading>
       </CardHeader>
       <CardBody>
         Are you sure you want to proceed with this action?
       </CardBody>
       <CardFooter>
-        <HStack justify="flex-end" gap={2}>
+        <HStack justify="end" gap={2}>
           <Button variant="ghost">Cancel</Button>
           <Button>Confirm</Button>
         </HStack>
@@ -95,13 +95,13 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
     ```tsx
     <Card>
       <CardHeader>
-        <Heading fontSize="lg">Confirm Action</Heading>
+        <Heading size="lg">Confirm Action</Heading>
       </CardHeader>
       <CardBody>
         Are you sure you want to proceed with this action?
       </CardBody>
       <CardFooter>
-        <HStack justify="flex-end" gap={2}>
+        <HStack justify="end" gap={2}>
           <Button variant="ghost">Cancel</Button>
           <Button>Confirm</Button>
         </HStack>
@@ -111,7 +111,7 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Shadow Variants
+## Shadow variants
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -150,19 +150,19 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Common Patterns
+## Common patterns
 
-### Product Card
+### Product card
 
 ```tsx
 <Card w="300px">
   <Image src="/product.jpg" alt="Product" h="200px" />
   <CardBody>
-    <VStack gap={2} align="flex-start">
+    <VStack gap={2} align="start">
       <Badge colorScheme="success">In Stock</Badge>
-      <Heading fontSize="lg">Product Name</Heading>
+      <Heading size="lg">Product Name</Heading>
       <Text color="foreground-muted">Short product description</Text>
-      <Text fontWeight="bold" fontSize="lg">$99.99</Text>
+      <Text weight="bold" size="lg">$99.99</Text>
     </VStack>
   </CardBody>
   <CardFooter>
@@ -171,7 +171,7 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
 </Card>
 ```
 
-### Profile Card
+### Profile card
 
 ```tsx
 <Card>
@@ -179,17 +179,17 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
     <VStack gap={4}>
       <Avatar size="xl" name="John Doe" />
       <VStack gap={1}>
-        <Heading fontSize="lg">John Doe</Heading>
+        <Heading size="lg">John Doe</Heading>
         <Text color="foreground-muted">Software Engineer</Text>
       </VStack>
       <HStack gap={8}>
         <VStack gap={0}>
-          <Text fontWeight="bold">124</Text>
-          <Text fontSize="sm" color="foreground-muted">Posts</Text>
+          <Text weight="bold">124</Text>
+          <Text size="sm" color="foreground-muted">Posts</Text>
         </VStack>
         <VStack gap={0}>
-          <Text fontWeight="bold">5.2k</Text>
-          <Text fontSize="sm" color="foreground-muted">Followers</Text>
+          <Text weight="bold">5.2k</Text>
+          <Text size="sm" color="foreground-muted">Followers</Text>
         </VStack>
       </HStack>
     </VStack>
@@ -200,12 +200,12 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
 </Card>
 ```
 
-### Settings Card
+### Settings card
 
 ```tsx
 <Card>
   <CardHeader>
-    <Heading fontSize="md">Notification Settings</Heading>
+    <Heading size="md">Notification Settings</Heading>
   </CardHeader>
   <CardBody>
     <VStack gap={4} align="stretch">
@@ -222,13 +222,15 @@ import { Card, CardHeader, CardBody, CardFooter } from "@tosui/react";
 </Card>
 ```
 
-## Props Reference
+## Props reference
 
 ### Card
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | shadow | `"none"` \| `"sm"` \| `"md"` \| `"lg"` | `"sm"` | Shadow elevation |
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | Card sections or content |
 
 ### CardHeader, CardBody, CardFooter
 

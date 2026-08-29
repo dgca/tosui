@@ -24,7 +24,7 @@ Badge is a small status indicator for displaying counts, labels, and categories.
 import { Badge } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -41,7 +41,7 @@ import { Badge } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Color Schemes
+## Color schemes
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -124,9 +124,9 @@ import { Badge } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Common Patterns
+## Common patterns
 
-### Status Indicator
+### Status indicator
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -147,7 +147,7 @@ import { Badge } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-### Count Badge
+### Count badge
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -176,7 +176,7 @@ import { Badge } from "@tosui/react";
 </HStack>
 ```
 
-### With Text
+### With text
 
 ```tsx
 <HStack gap={2} align="center">
@@ -185,13 +185,15 @@ import { Badge } from "@tosui/react";
 </HStack>
 ```
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | colorScheme | `"gray"` \| `"primary"` \| `"accent"` \| `"success"` \| `"warning"` \| `"error"` \| `"info"` | `"gray"` | Color scheme |
 | variant | `"solid"` \| `"subtle"` | `"subtle"` | Visual variant |
 | size | `"sm"` \| `"md"` | `"md"` | Badge size |
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | Badge content |
 
 ## TypeScript
 
