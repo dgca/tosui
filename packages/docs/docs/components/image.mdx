@@ -207,7 +207,8 @@ If both the main image and fallback fail, a placeholder icon is shown.
 ## Accessibility
 
 - `alt` is required. Use meaningful text for an informative image and an empty string for a decorative image.
-- After the source and fallback source fail, the current error placeholder does not preserve the image's accessible text.
+- If both image sources fail, the error placeholder keeps a non-empty `alt` value as its accessible name.
+- If `alt` is empty, the error placeholder remains hidden from assistive technology.
 
 ## TypeScript
 
