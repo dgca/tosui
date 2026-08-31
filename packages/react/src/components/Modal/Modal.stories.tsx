@@ -23,9 +23,15 @@ export const Basic: Story = {
       return (
         <>
           <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
-          <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+          <Modal
+            isOpen={isOpen}
+            onClose={() => setIsOpen(false)}
+            aria-labelledby="storybook-modal-title"
+          >
             <ModalHeader>
-              <Heading size="lg">Modal Title</Heading>
+              <Heading id="storybook-modal-title" size="lg">
+                Modal Title
+              </Heading>
             </ModalHeader>
             <ModalBody>This is the modal content.</ModalBody>
             <ModalFooter>

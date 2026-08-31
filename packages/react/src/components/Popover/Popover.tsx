@@ -1,6 +1,19 @@
 "use client";
 
-import { type ReactNode, useState, useRef, useEffect, useCallback } from "react";
+import {
+  Fragment,
+  cloneElement,
+  isValidElement,
+  type AriaAttributes,
+  type KeyboardEvent,
+  type MouseEventHandler,
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react";
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { Box } from "@/components/Box/Box";
@@ -30,8 +43,19 @@ export type PopoverProps = {
   onClose?: () => void;
   /** Additional class name */
   className?: string;
+  /** Accessible name for the dialog */
+  "aria-label"?: string;
+  /** ID of the element that labels the dialog */
+  "aria-labelledby"?: string;
   /** Trigger element */
   children: ReactNode;
+};
+
+type TriggerProps = Pick<
+  AriaAttributes,
+  "aria-controls" | "aria-expanded" | "aria-haspopup"
+> & {
+  onClick?: MouseEventHandler;
 };
 
 export type PopoverHeaderProps = {
@@ -47,6 +71,12 @@ export type PopoverBodyProps = {
   /** Body content */
   children?: ReactNode;
 };
+
+function mergeIds(existingIds: string | undefined, addedId: string): string {
+  return Array.from(
+    new Set([...(existingIds?.split(/\s+/).filter(Boolean) ?? []), addedId])
+  ).join(" ");
+}
 
 // ============================================================================
 // Components
@@ -70,9 +100,13 @@ export function Popover({
   onOpen,
   onClose,
   className,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledby,
   children,
 }: PopoverProps) {
   const isClient = useIsClient();
+  const generatedId = useId();
+  const popoverId = `popover-${generatedId}`;
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const isControlled = controlledIsOpen !== undefined;
   const isOpen = isControlled ? controlledIsOpen : internalIsOpen;
@@ -121,9 +155,37 @@ export function Popover({
     return () => document.removeEventListener("click", handleClick);
   }, [isOpen, closeOnBlur, setOpen]);
 
-  const handleTriggerClick = () => {
-    setOpen(!isOpen);
+  const triggerElement =
+    isValidElement<TriggerProps>(children) && children.type !== Fragment
+      ? children
+      : null;
+  const triggerControls = mergeIds(
+    triggerElement?.props["aria-controls"],
+    popoverId
+  );
+
+  const handleTriggerClick: MouseEventHandler = (event) => {
+    triggerElement?.props.onClick?.(event);
+    if (!event.defaultPrevented) {
+      setOpen(!isOpen);
+    }
   };
+
+  const handleFallbackKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setOpen(!isOpen);
+    }
+  };
+
+  const trigger = triggerElement
+    ? cloneElement(triggerElement, {
+        onClick: handleTriggerClick,
+        "aria-controls": triggerControls,
+        "aria-expanded": isOpen,
+        "aria-haspopup": "dialog",
+      })
+    : children;
 
   return (
     <>
@@ -131,12 +193,16 @@ export function Popover({
         as="span"
         ref={triggerRef}
         display="inline-block"
-        onClick={handleTriggerClick}
-        aria-expanded={isOpen}
-        aria-haspopup="dialog"
+        onClick={triggerElement ? undefined : handleTriggerClick}
+        onKeyDown={triggerElement ? undefined : handleFallbackKeyDown}
+        role={triggerElement ? undefined : "button"}
+        tabIndex={triggerElement ? undefined : 0}
+        aria-controls={triggerElement ? undefined : triggerControls}
+        aria-expanded={triggerElement ? undefined : isOpen}
+        aria-haspopup={triggerElement ? undefined : "dialog"}
         cursor="pointer"
       >
-        {children}
+        {trigger}
       </Box>
       {isOpen &&
         isClient &&
@@ -154,7 +220,10 @@ export function Popover({
             minW="200px"
             className={clsx(styles.popover, className)}
             style={{ top: position.top, left: position.left }}
+            id={popoverId}
             role="dialog"
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
           >
             {content}
           </Box>,

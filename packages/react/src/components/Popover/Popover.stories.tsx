@@ -16,7 +16,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   render: () => (
-    <Popover content={<PopoverBody>This is the popover content.</PopoverBody>}>
+    <Popover
+      aria-label="Popover details"
+      content={<PopoverBody>This is the popover content.</PopoverBody>}
+    >
       <Button>Click me</Button>
     </Popover>
   ),

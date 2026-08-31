@@ -45,9 +45,13 @@ Modal is a controlled component that requires `isOpen` and `onClose` props.
       return (
         <>
           <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
-          <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+          <Modal
+            isOpen={isOpen}
+            onClose={() => setIsOpen(false)}
+            aria-labelledby="basic-modal-title"
+          >
             <ModalHeader>
-              <Heading size="lg">Modal Title</Heading>
+              <Heading id="basic-modal-title" size="lg">Modal Title</Heading>
             </ModalHeader>
             <ModalBody>
               This is the modal content.
@@ -75,7 +79,12 @@ Modal is a controlled component that requires `isOpen` and `onClose` props.
   <Button onClick={() => openModal("full")}>Full Screen</Button>
 </VStack>
 
-<Modal isOpen={isOpen} onClose={onClose} size={size}>
+<Modal
+  isOpen={isOpen}
+  onClose={onClose}
+  size={size}
+  aria-label={`${size} modal`}
+>
   <ModalBody>Content for {size} modal</ModalBody>
 </Modal>
 ```
@@ -100,6 +109,7 @@ Control how the modal can be closed.
   isOpen={isOpen}
   onClose={onClose}
   closeOnOverlayClick={false}
+  aria-label="Example modal"
 >
   ...
 </Modal>
@@ -109,6 +119,7 @@ Control how the modal can be closed.
   isOpen={isOpen}
   onClose={onClose}
   closeOnEsc={false}
+  aria-label="Example modal"
 >
   ...
 </Modal>
@@ -119,7 +130,7 @@ Control how the modal can be closed.
 ### Confirmation dialog
 
 ```tsx
-<Modal isOpen={isOpen} onClose={onClose} size="sm">
+<Modal isOpen={isOpen} onClose={onClose} size="sm" aria-label="Delete item">
   <ModalHeader>
     <Heading size="lg">Delete Item?</Heading>
   </ModalHeader>
@@ -136,7 +147,7 @@ Control how the modal can be closed.
 ### Form modal
 
 ```tsx
-<Modal isOpen={isOpen} onClose={onClose}>
+<Modal isOpen={isOpen} onClose={onClose} aria-label="Edit profile">
   <ModalHeader>
     <Heading size="lg">Edit Profile</Heading>
   </ModalHeader>
@@ -162,7 +173,7 @@ Control how the modal can be closed.
 Modal scrolls internally when content exceeds viewport height.
 
 ```tsx
-<Modal isOpen={isOpen} onClose={onClose}>
+<Modal isOpen={isOpen} onClose={onClose} aria-label="Terms of service">
   <ModalHeader>
     <Heading size="lg">Terms of Service</Heading>
   </ModalHeader>
@@ -188,6 +199,8 @@ Modal scrolls internally when content exceeds viewport height.
 | closeOnOverlayClick | `boolean` | `true` | Close when clicking backdrop |
 | closeOnEsc | `boolean` | `true` | Close on Escape key |
 | className | `string` | - | Additional CSS class on the overlay |
+| aria-label | `string` | - | Accessible name for the dialog |
+| aria-labelledby | `string` | - | ID of an element that labels the dialog |
 | children | `ReactNode` | - | Modal sections or content |
 
 ### ModalHeader, ModalBody, ModalFooter
@@ -200,10 +213,10 @@ Modal scrolls internally when content exceeds viewport height.
 ## Accessibility
 
 - The overlay uses `role="dialog"` and `aria-modal="true"`.
+- Give every modal an accessible name. Use `aria-labelledby` when a visible heading labels the dialog. Use `aria-label` when no visible heading is available.
 - Focus moves into the modal, stays inside it, and returns to the previously focused element when the modal closes.
 - Body scrolling stops while the modal is open.
 - Escape closes the modal by default.
-- `Modal` does not currently expose an accessible-name prop for the dialog.
 
 ## TypeScript
 
