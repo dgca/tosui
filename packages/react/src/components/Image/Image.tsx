@@ -81,6 +81,9 @@ export function Image({
   if (hasError) {
     return (
       <Box
+        role={alt ? "img" : undefined}
+        aria-label={alt || undefined}
+        aria-hidden={alt ? undefined : true}
         display="flex"
         alignItems="center"
         justifyContent="center"
@@ -91,6 +94,8 @@ export function Image({
         style={style}
       >
         <svg
+          aria-hidden="true"
+          focusable="false"
           viewBox="0 0 24 24"
           fill="currentColor"
           className={styles.placeholderIcon}
