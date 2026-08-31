@@ -24,7 +24,7 @@ Skeleton is a loading placeholder with a shimmer animation. Use it to show conte
 import { Skeleton } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -62,7 +62,7 @@ import { Skeleton } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Rounded Variants
+## Rounded variants
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -83,7 +83,7 @@ import { Skeleton } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Loaded State
+## Loaded state
 
 Use `isLoaded` to show content when loading is complete.
 
@@ -94,12 +94,12 @@ function UserCard({ isLoading, user }) {
       <Skeleton w="48px" h="48px" rounded="full" isLoaded={!isLoading}>
         <Avatar src={user.avatar} name={user.name} />
       </Skeleton>
-      <VStack align="flex-start" gap={2}>
+      <VStack align="start" gap={2}>
         <Skeleton w="120px" h="16px" isLoaded={!isLoading}>
-          <Text fontWeight="medium">{user.name}</Text>
+          <Text weight="medium">{user.name}</Text>
         </Skeleton>
         <Skeleton w="80px" h="12px" isLoaded={!isLoading}>
-          <Text fontSize="sm" color="foreground-muted">{user.role}</Text>
+          <Text size="sm" color="foreground-muted">{user.role}</Text>
         </Skeleton>
       </VStack>
     </HStack>
@@ -107,9 +107,9 @@ function UserCard({ isLoading, user }) {
 }
 ```
 
-## Common Patterns
+## Common patterns
 
-### Card Skeleton
+### Card skeleton
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -136,7 +136,7 @@ function UserCard({ isLoading, user }) {
   </TabItem>
 </Tabs>
 
-### List Skeleton
+### List skeleton
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -181,7 +181,7 @@ function UserCard({ isLoading, user }) {
   </TabItem>
 </Tabs>
 
-### Text Block
+### Text block
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -204,7 +204,7 @@ function UserCard({ isLoading, user }) {
   </TabItem>
 </Tabs>
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -213,6 +213,7 @@ function UserCard({ isLoading, user }) {
 | rounded | `"none"` \| `"sm"` \| `"md"` \| `"lg"` \| `"full"` | `"md"` | Border radius |
 | isLoaded | `boolean` | `false` | When true, renders children instead of skeleton |
 | children | `ReactNode` | - | Content to show when loaded |
+| className | `string` | - | Additional CSS class |
 
 ## Accessibility
 

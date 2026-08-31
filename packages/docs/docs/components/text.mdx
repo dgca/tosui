@@ -24,7 +24,7 @@ The Text component is a semantic text component built on top of Box, designed fo
 import { Text } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -41,13 +41,13 @@ import { Text } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Key Features
+## Key features
 
 - **Default element**: `<span>` (inline)
 - **Polymorphic**: Can render as any element via `as` prop
 - **Shorthand props**: Convenient aliases for common text styling
 - **Utility props**: Built-in support for truncation and italics
-- **Inherits from Box**: Access to all Box styling capabilities
+- **Built on Box**: Accepts Box props except the typography and color props that Text replaces
 
 ## Size
 
@@ -182,7 +182,7 @@ This applies:
 <Text italic>Italic text</Text>
 ```
 
-## Polymorphic Rendering
+## Polymorphic rendering
 
 Render as different elements while maintaining Text styling:
 
@@ -193,9 +193,9 @@ Render as different elements while maintaining Text styling:
 <Text as="div">Block-level div</Text>
 ```
 
-## Common Patterns
+## Common patterns
 
-### Label Text
+### Label text
 
 ```tsx
 <Text as="label" size="sm" weight="medium">
@@ -203,7 +203,7 @@ Render as different elements while maintaining Text styling:
 </Text>
 ```
 
-### Caption Text
+### Caption text
 
 ```tsx
 <Text size="sm" color="foreground-muted">
@@ -211,7 +211,7 @@ Render as different elements while maintaining Text styling:
 </Text>
 ```
 
-### Error Message
+### Error message
 
 ```tsx
 <Text size="sm" color="error">
@@ -219,7 +219,7 @@ Render as different elements while maintaining Text styling:
 </Text>
 ```
 
-### Muted Helper Text
+### Muted helper Text
 
 ```tsx
 <Text size="sm" color="foreground-subtle">
@@ -227,7 +227,7 @@ Render as different elements while maintaining Text styling:
 </Text>
 ```
 
-### Emphasized Text
+### Emphasized text
 
 ```tsx
 <Text weight="semibold" color="primary">
@@ -235,9 +235,9 @@ Render as different elements while maintaining Text styling:
 </Text>
 ```
 
-## Combining with Box Props
+## Combining with Box props
 
-Since Text is built on Box, you can use any Box prop:
+`Text` accepts the `Box` props that it does not replace:
 
 ```tsx
 <Text size="lg" weight="medium" p={4} bg="surface" rounded="md">
@@ -245,7 +245,7 @@ Since Text is built on Box, you can use any Box prop:
 </Text>
 ```
 
-## Layout Example
+## Layout example
 
 ```tsx
 <Box display="flex" flexDirection="column" gap={2}>
@@ -261,9 +261,9 @@ Since Text is built on Box, you can use any Box prop:
 </Box>
 ```
 
-## Props Reference
+## Props reference
 
-### Text-Specific Props
+### Text-Specific props
 
 - `size`: Font size (`xs` | `sm` | `md` | `lg` | `xl` | `2xl` | `3xl` | `4xl` | `5xl`)
 - `weight`: Font weight (`normal` | `medium` | `semibold` | `bold`)
@@ -279,12 +279,12 @@ Text inherits all props from Box except `fontSize`, `fontWeight`, `textAlign`, a
 - Spacing (margin, padding)
 - Layout (display, position)
 - Size (width, height)
-- Flexbox and Grid
+- Flexbox and grid
 - Borders, roundness, shadows
-- And more
+- Other Box style props
 
 See the [Box component documentation](/docs/components/box) for the full list.
 
 ## TypeScript
 
-Text is fully typed and provides autocomplete for all props. When using the `as` prop, TypeScript will correctly infer the allowed HTML attributes for that element type.
+`TextProps` infers the HTML attributes for the element selected by `as`.

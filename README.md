@@ -1,169 +1,87 @@
-# @tosui/react
+# Tosui
 
-Tosui is a themable, orderly, simple UI component library for React. It provides 40 components designed to help you build consistent, accessible user interfaces with minimal configuration.
+Tosui is a React component library with a small, semantic design-token system. Its 40 components cover layout, forms, navigation, feedback, data display, and overlays.
 
-## Links
+- [Documentation](https://dgca.github.io/tosui/)
+- [Component reference](https://dgca.github.io/tosui/docs/components/box)
+- [Storybook](https://dgca.github.io/tosui/storybook/)
+- [npm package](https://www.npmjs.com/package/@tosui/react)
 
-- [Docs](https://dgca.github.io/tosui/)
-
-## Installation
+## Install Tosui
 
 ```bash
 npm install @tosui/react
-# or
-yarn add @tosui/react
-# or
-pnpm add @tosui/react
 ```
 
-## Setup
-
-Import the base styles in your application entry point:
+Import the required stylesheet once in your application entry point:
 
 ```tsx
 import "@tosui/react/styles.css";
 ```
 
-Optionally, import IBM Plex font styles:
+Then import components from `@tosui/react`:
 
 ```tsx
-import "@tosui/react/fonts.css";
-```
+import { Box, Button, Heading, Text } from "@tosui/react";
 
-## Basic Usage
-
-```tsx
-import { Box, Text, Heading, Button } from "@tosui/react";
-
-function App() {
+export function Welcome() {
   return (
-    <Box p={6}>
-      <Heading fontSize="3xl" fontWeight="semibold">
+    <Box p={6} bg="surface" rounded="lg">
+      <Heading size="3xl" weight="semibold">
         Welcome to Tosui
       </Heading>
-      <Text color="foreground-muted">
-        A constraint-driven design system for React
+      <Text as="p" color="foreground-muted" mt={2} mb={4}>
+        A small design system for React.
       </Text>
-      <Button>Get Started</Button>
+      <Button>Get started</Button>
     </Box>
   );
 }
 ```
 
-## Philosophy
+See [Get started](https://dgca.github.io/tosui/docs/get-started) for font setup, global styles, and next steps.
 
-Tosui is built on **constraint-driven simplicity**. By intentionally limiting options, we reduce decision fatigue, improve consistency, and make design systems easier to learn, implement, and maintain.
+## Design constraints
 
-### Core Principles
+Tosui limits the styling choices available through component props. The constraints keep components consistent and make themes easier to change.
 
-1. **Fewer, Better Choices** - Every token earns its place. No 10 shades of every color or arbitrary size scales.
-
-2. **Composition Over Configuration** - Powerful primitives (Box, Text, Heading) compose naturally into complex components.
-
-3. **Semantic, Not Prescriptive** - Design values describe intent (`foreground`, `background`, `primary-default`), not measurements. Themes swap seamlessly.
-
-## Features
-
-- **40 components** covering primitives, layout, forms, navigation, feedback, data display, and overlays
-- **CSS Modules styling** with zero runtime CSS generation
-- **Responsive props** — all style props accept mobile-first breakpoint objects
-- **State styling** — `_hover`, `_focus`, `_active`, `_disabled` props on all style properties
-- **TypeScript-first** with full type safety and autocomplete
-- **Polymorphic components** that render as any HTML element
-- **Accessible** with proper ARIA attributes and keyboard navigation
-
-## Components
-
-### Primitives
-Box, Text, Heading
-
-### Layout
-Stack, HStack, VStack, Flex, Grid, Container, Spacer, Divider
-
-### Forms
-Button, IconButton, Input, Textarea, Select, Checkbox, Radio, Switch, FormField, Label
-
-### Navigation
-Link, Breadcrumb, Tabs, Menu, Pagination
-
-### Feedback
-Alert, Badge, Progress, Spinner, Skeleton
-
-### Data Display
-Avatar, Card, Code, Image, List
-
-### Overlays
-Modal, Tooltip, Popover, Accordion
-
-## Design Tokens
-
-Tosui uses CSS variables for all design tokens. Key token categories:
-
-### Colors
-
-**Surface & Text**: `foreground`, `foreground-muted`, `foreground-subtle`, `background`, `surface`, `border`
-
-**Brand**: `primary-default`, `primary-emphasis`, `primary-subtle`, `accent-default`, `accent-emphasis`, `accent-subtle`
-
-**Feedback**: `success-*`, `warning-*`, `error-*`, `info-*` (each with default, emphasis, subtle variants)
-
-### Spacing
-
-4px base unit with multipliers 0-32. Use numeric values: `p={4}` = 16px padding.
-
-### Typography
-
-- **Sizes**: `xs` (12px) through `5xl` (48px)
-- **Weights**: `normal`, `medium`, `semibold`, `bold`
-- **Line heights**: `tight`, `normal`, `relaxed`
-- **Families**: `sans`, `serif`, `mono` (system stacks)
-
-### Border Radius
-
-`none`, `sm`, `md`, `lg`, `full`
-
-### Shadows
-
-`none`, `sm`, `md`, `lg`
-
-## Responsive Props
-
-Tosui uses **mobile-first** breakpoints:
-
-| Key | Min Width |
-|-----|-----------|
-| `base` | 0px |
-| `sm` | 640px |
-| `md` | 768px |
-| `lg` | 1024px |
-| `xl` | 1280px |
-| `2xl` | 1536px |
-
-All style props accept responsive objects:
+- Spacing uses a `4px` base unit and multipliers from `0` through `32`.
+- Colors use semantic tokens that adapt to light and dark themes.
+- Responsive props use mobile-first breakpoint objects.
+- `_hover`, `_focus`, `_active`, and `_disabled` apply state styles.
+- Polymorphic components use `as` to change the rendered element while preserving element-specific TypeScript props.
 
 ```tsx
-<Box p={{ base: 2, md: 4, lg: 6 }}>
-  Padding scales with viewport
-</Box>
+<Box
+  as="section"
+  p={{ base: 4, md: 6 }}
+  bg="surface"
+  _hover={{ shadow: "md" }}
+/>
 ```
 
-## Dark Mode
+The [styling guides](https://dgca.github.io/tosui/docs/guide/spacing) describe the token and prop APIs.
 
-Colors automatically adapt to dark mode via:
-- System preference (`prefers-color-scheme: dark`)
-- Manual override (`data-theme="dark"` on `<html>`)
+## Develop Tosui
 
-## Theming
+Tosui uses pnpm 10 and Node.js 20 or later.
 
-Override CSS variables to customize:
-
-```css
-:root {
-  --t-color-primary-default: #your-brand-color;
-  --t-spacing-unit: 8px; /* Change base spacing */
-}
+```bash
+pnpm install
+pnpm dev:docs
 ```
+
+`pnpm dev:docs` starts both the documentation site and Storybook. Before you open a pull request, run the same verification command as CI:
+
+```bash
+pnpm verify
+```
+
+## Packages
+
+- `packages/react` contains the `@tosui/react` library and Storybook stories.
+- `packages/docs` contains the Docusaurus documentation site.
 
 ## License
 
-MIT
+Tosui is available under the MIT License.

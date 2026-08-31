@@ -1,6 +1,6 @@
 ---
 title: Grid
-description: "CSS Grid layout component with shorthand props for template columns, template rows, and gap."
+description: "Reference for responsive Grid columns, rows, gaps, track alignment, and inherited Box props."
 ---
 
 import Tabs from "@theme/Tabs";
@@ -12,7 +12,7 @@ import StorybookEmbed, {
 
 # Grid
 
-Grid is a CSS Grid layout component with shorthand props for common grid properties.
+`Grid` renders a polymorphic CSS Grid container. Its convenience props map to grid templates, gaps, item alignment, and track alignment.
 
 <StorybookLink storyId="components-grid--basic">
   Open in Storybook
@@ -24,7 +24,7 @@ Grid is a CSS Grid layout component with shorthand props for common grid propert
 import { Grid } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -48,7 +48,7 @@ import { Grid } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Column Patterns
+## Column patterns
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -116,9 +116,9 @@ import { Grid } from "@tosui/react";
 </Tabs>
 
 
-## Responsive Columns and Rows
+## Responsive columns and rows
 
-`columns` and `rows` accept responsive objects, making it easy to change grid layouts at different breakpoints:
+`columns` and `rows` accept responsive objects.
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -152,7 +152,7 @@ import { Grid } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Separate Row and Column Gaps
+## Separate row and column gaps
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -200,7 +200,7 @@ import { Grid } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Props Reference
+## Props reference
 
 All layout props (`columns`, `rows`, `gap`, `justify`, `align`, `justifyContent`, `alignContent`) accept responsive objects in addition to simple values.
 
@@ -211,7 +211,7 @@ All layout props (`columns`, `rows`, `gap`, `justify`, `align`, `justifyContent`
 | gap | `ResponsiveValue<0-32>` | - | Gap between grid items |
 | gapRow | `ResponsiveValue<0-32>` | - | Row gap |
 | gapColumn | `ResponsiveValue<0-32>` | - | Column gap |
-| justify | `ResponsiveValue<"start" \| "center" \| "end" \| "space-between" \| "space-around" \| "space-evenly">` | - | Justify items |
+| justify | `ResponsiveValue<"start" \| "center" \| "end" \| "space-between" \| "space-around" \| "space-evenly">` | - | Distribute tracks horizontally; takes precedence over `justifyContent` |
 | align | `ResponsiveValue<"start" \| "center" \| "end" \| "stretch" \| "baseline">` | - | Align items |
 | justifyContent | `ResponsiveValue<"start" \| "center" \| "end" \| "space-between" \| "space-around" \| "space-evenly">` | - | Distribute tracks horizontally |
 | alignContent | `ResponsiveValue<"start" \| "center" \| "end" \| "space-between" \| "space-around" \| "space-evenly">` | - | Distribute tracks vertically |

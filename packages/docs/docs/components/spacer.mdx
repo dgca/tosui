@@ -24,7 +24,7 @@ Spacer is a flexible space filler for flex layouts. It expands to fill available
 import { Spacer } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -45,7 +45,7 @@ import { Spacer } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Multiple Spacers
+## Multiple spacers
 
 Use multiple spacers to distribute items evenly.
 
@@ -72,7 +72,7 @@ Use multiple spacers to distribute items evenly.
   </TabItem>
 </Tabs>
 
-## Vertical Spacer
+## Vertical spacer
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -93,9 +93,9 @@ Use multiple spacers to distribute items evenly.
   </TabItem>
 </Tabs>
 
-## Common Patterns
+## Common patterns
 
-### Navigation Bar
+### Navigation bar
 
 ```tsx
 <HStack as="nav" p={4} bg="surface" border="thin" borderColor="border">
@@ -109,7 +109,7 @@ Use multiple spacers to distribute items evenly.
 </HStack>
 ```
 
-### Card Footer
+### Card footer
 
 ```tsx
 <Card>
@@ -118,7 +118,7 @@ Use multiple spacers to distribute items evenly.
   </CardBody>
   <CardFooter>
     <HStack>
-      <Text fontSize="sm" color="foreground-muted">Last updated: Today</Text>
+      <Text size="sm" color="foreground-muted">Last updated: Today</Text>
       <Spacer />
       <Button size="sm">View Details</Button>
     </HStack>
@@ -126,7 +126,7 @@ Use multiple spacers to distribute items evenly.
 </Card>
 ```
 
-### Modal Actions
+### Modal actions
 
 ```tsx
 <Modal isOpen={isOpen} onClose={onClose}>
@@ -142,7 +142,7 @@ Use multiple spacers to distribute items evenly.
 </Modal>
 ```
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -150,7 +150,7 @@ Use multiple spacers to distribute items evenly.
 
 Spacer accepts all [Box](/docs/components/box) props except `flex` (which is fixed at `1`).
 
-## When to Use
+## When to use
 
 - **Use Spacer** when you need flexible space that fills remaining room in a flex container
 - **Use gap** when you need fixed, consistent spacing between items

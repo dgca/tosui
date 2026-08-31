@@ -24,7 +24,7 @@ Tabs organize content into separate views. Use `Tabs`, `TabList`, `Tab`, and `Ta
 import { Tabs, TabList, Tab, TabPanel } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -56,7 +56,7 @@ import { Tabs, TabList, Tab, TabPanel } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Default Tab
+## Default tab
 
 Use `defaultIndex` to set the initial active tab.
 
@@ -73,7 +73,7 @@ Use `defaultIndex` to set the initial active tab.
 </Tabs>
 ```
 
-## Controlled Mode
+## Controlled mode
 
 Use `index` and `onChange` for controlled mode.
 
@@ -96,7 +96,7 @@ function ControlledTabs() {
 }
 ```
 
-## Disabled Tabs
+## Disabled tabs
 
 <TosuiTabs>
   <TabList>
@@ -146,7 +146,13 @@ The `variant` prop controls the tab style. Default is `"line"`.
 </Tabs>
 ```
 
-## Props Reference
+## Item indexes
+
+`Tab` and `TabPanel` each use index `0` by default. Assign matching indexes when the component has more than one tab.
+
+`Tabs` does not assign item indexes and does not export a `TabPanels` wrapper.
+
+## Props reference
 
 ### Tabs
 
@@ -156,26 +162,40 @@ The `variant` prop controls the tab style. Default is `"line"`.
 | index | `number` | - | Active tab index (controlled) |
 | onChange | `(index: number) => void` | - | Tab change callback |
 | variant | `"line"` \| `"enclosed"` | `"line"` | Visual variant |
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | Tab list and panels |
+
+### TabList
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | Tab buttons |
 
 ### Tab
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| index | `number` | - | Tab index (required) |
+| index | `number` | `0` | Tab index |
 | disabled | `boolean` | `false` | Disable the tab |
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | Tab label |
 
 ### TabPanel
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| index | `number` | - | Panel index (required) |
+| index | `number` | `0` | Panel index |
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | Panel content |
 
 ## Accessibility
 
-- Uses proper `role="tablist"`, `role="tab"`, and `role="tabpanel"` attributes
-- `aria-selected` indicates the active tab
-- `aria-disabled` indicates disabled tabs
-- Tab panels are only rendered when active
+- `TabList`, `Tab`, and `TabPanel` use the corresponding ARIA roles.
+- `aria-selected` identifies the active tab.
+- `aria-disabled` identifies a disabled tab.
+- Only the active panel renders.
+- `Tabs` does not currently add arrow-key navigation or associate tabs and panels with IDs.
 
 ## TypeScript
 

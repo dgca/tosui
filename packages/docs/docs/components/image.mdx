@@ -24,7 +24,7 @@ Image is an enhanced img element with loading states, error fallback, and object
 import { Image } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -46,7 +46,7 @@ import { Image } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Object Fit
+## Object fit
 
 Control how the image fits within its container.
 
@@ -87,7 +87,7 @@ Control how the image fits within its container.
   </TabItem>
 </Tabs>
 
-## Rounded Variants
+## Rounded variants
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -112,7 +112,7 @@ Control how the image fits within its container.
   </TabItem>
 </Tabs>
 
-## Loading State
+## Loading state
 
 Image shows a skeleton placeholder while loading.
 
@@ -125,7 +125,7 @@ Image shows a skeleton placeholder while loading.
 />
 ```
 
-## Fallback Image
+## Fallback image
 
 Provide a `fallbackSrc` to show if the main image fails to load.
 
@@ -139,7 +139,7 @@ Provide a `fallbackSrc` to show if the main image fails to load.
 />
 ```
 
-## Error State
+## Error state
 
 If both the main image and fallback fail, a placeholder icon is shown.
 
@@ -152,9 +152,9 @@ If both the main image and fallback fail, a placeholder icon is shown.
 />
 ```
 
-## Common Patterns
+## Common patterns
 
-### Gallery Item
+### Gallery item
 
 ```tsx
 <Box
@@ -173,7 +173,7 @@ If both the main image and fallback fail, a placeholder icon is shown.
 </Box>
 ```
 
-### Product Image
+### Product image
 
 ```tsx
 <Card>
@@ -185,13 +185,13 @@ If both the main image and fallback fail, a placeholder icon is shown.
     objectFit="contain"
   />
   <CardBody>
-    <Text fontWeight="medium">Product Name</Text>
+    <Text weight="medium">Product Name</Text>
     <Text color="foreground-muted">$99.99</Text>
   </CardBody>
 </Card>
 ```
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -202,11 +202,12 @@ If both the main image and fallback fail, a placeholder icon is shown.
 | objectFit | `"cover"` \| `"contain"` \| `"fill"` \| `"none"` | `"cover"` | Object fit behavior |
 | fallbackSrc | `string` | - | Fallback image URL |
 | rounded | `"none"` \| `"sm"` \| `"md"` \| `"lg"` \| `"full"` | `"none"` | Border radius |
+| className | `string` | - | Additional CSS class |
 
 ## Accessibility
 
-- `alt` prop is required for accessibility
-- Error placeholder has appropriate styling
+- `alt` is required. Use meaningful text for an informative image and an empty string for a decorative image.
+- After the source and fallback source fail, the current error placeholder does not preserve the image's accessible text.
 
 ## TypeScript
 

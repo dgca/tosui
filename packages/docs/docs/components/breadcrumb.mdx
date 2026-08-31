@@ -24,7 +24,7 @@ Breadcrumb is a navigation trail that shows the user's location in a hierarchica
 import { Breadcrumb, BreadcrumbItem } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -45,7 +45,7 @@ import { Breadcrumb, BreadcrumbItem } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Custom Separator
+## Custom separator
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -79,7 +79,7 @@ import { Breadcrumb, BreadcrumbItem } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Icon Separator
+## Icon separator
 
 ```tsx
 import { ChevronRightIcon } from "your-icon-library";
@@ -91,7 +91,7 @@ import { ChevronRightIcon } from "your-icon-library";
 </Breadcrumb>
 ```
 
-## Current Page
+## Current page
 
 The last item is automatically marked as the current page. It renders as text instead of a link.
 
@@ -116,7 +116,7 @@ The last item is automatically marked as the current page. It renders as text in
   </TabItem>
 </Tabs>
 
-## With Router
+## With router
 
 ```tsx
 import { Link as RouterLink } from "react-router-dom";
@@ -128,13 +128,15 @@ import { Link as RouterLink } from "react-router-dom";
 </Breadcrumb>
 ```
 
-## Props Reference
+## Props reference
 
 ### Breadcrumb
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | separator | `ReactNode` | `"/"` | Separator between items |
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | Breadcrumb items |
 
 ### BreadcrumbItem
 
@@ -142,6 +144,8 @@ import { Link as RouterLink } from "react-router-dom";
 |------|------|---------|-------------|
 | href | `string` | - | Link destination (omit for current page) |
 | isCurrentPage | `boolean` | auto | Whether this is the current page (auto-set for last item) |
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | Item content |
 
 ## Accessibility
 

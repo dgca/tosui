@@ -24,7 +24,7 @@ Code is an inline code styling component with monospace font and optional backgr
 import { Code } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -47,14 +47,14 @@ import { Code } from "@tosui/react";
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <VStack gap={4} align="flex-start">
+    <VStack gap={4} align="start">
       <Text>Plain variant: <Code variant="plain">code here</Code></Text>
       <Text>Subtle variant: <Code variant="subtle">code here</Code></Text>
     </VStack>
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
-    <VStack gap={4} align="flex-start">
+    <VStack gap={4} align="start">
       <Text>Plain variant: <Code variant="plain">code here</Code></Text>
       <Text>Subtle variant: <Code variant="subtle">code here</Code></Text>
     </VStack>
@@ -66,7 +66,7 @@ import { Code } from "@tosui/react";
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <VStack gap={2} align="flex-start">
+    <VStack gap={2} align="start">
       <Code variant="subtle">Default color</Code>
       <Code variant="subtle" color="primary">Primary color</Code>
       <Code variant="subtle" color="accent">Accent color</Code>
@@ -76,7 +76,7 @@ import { Code } from "@tosui/react";
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
-    <VStack gap={2} align="flex-start">
+    <VStack gap={2} align="start">
       <Code variant="subtle">Default color</Code>
       <Code variant="subtle" color="primary">Primary color</Code>
       <Code variant="subtle" color="accent">Accent color</Code>
@@ -91,7 +91,7 @@ import { Code } from "@tosui/react";
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <VStack gap={2} align="flex-start">
+    <VStack gap={2} align="start">
       <Code variant="subtle" size="xs">Extra small</Code>
       <Code variant="subtle" size="sm">Small</Code>
       <Code variant="subtle" size="md">Medium</Code>
@@ -100,7 +100,7 @@ import { Code } from "@tosui/react";
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
-    <VStack gap={2} align="flex-start">
+    <VStack gap={2} align="start">
       <Code variant="subtle" size="xs">Extra small</Code>
       <Code variant="subtle" size="sm">Small</Code>
       <Code variant="subtle" size="md">Medium</Code>
@@ -110,9 +110,9 @@ import { Code } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Common Patterns
+## Common patterns
 
-### Inline Code in Documentation
+### Inline code in documentation
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -131,7 +131,7 @@ import { Code } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-### Keyboard Shortcuts
+### Keyboard shortcuts
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -148,7 +148,7 @@ import { Code } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-### File Paths
+### File paths
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -165,7 +165,7 @@ import { Code } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-### As Pre for Code Blocks
+### Render a code block
 
 ```tsx
 <Code as="pre" variant="subtle" p={4} display="block" overflow="auto">
@@ -175,7 +175,7 @@ import { Code } from "@tosui/react";
 </Code>
 ```
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|

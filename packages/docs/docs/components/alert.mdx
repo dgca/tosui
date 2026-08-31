@@ -24,7 +24,7 @@ Alert is a status notification banner for displaying contextual feedback message
 import { Alert } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -41,7 +41,7 @@ import { Alert } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Status Variants
+## Status variants
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -64,7 +64,7 @@ import { Alert } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## With Title
+## With title
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -118,7 +118,7 @@ Pass `onClose` to show a close button.
   </TabItem>
 </Tabs>
 
-## Custom Icon
+## Custom icon
 
 ```tsx
 import { BellIcon } from "your-icon-library";
@@ -128,9 +128,9 @@ import { BellIcon } from "your-icon-library";
 </Alert>
 ```
 
-## Common Patterns
+## Common patterns
 
-### Form Validation Error
+### Form validation error
 
 ```tsx
 <Alert status="error" title="Form Errors">
@@ -141,7 +141,7 @@ import { BellIcon } from "your-icon-library";
 </Alert>
 ```
 
-### Success Feedback
+### Success feedback
 
 ```tsx
 function SaveButton() {
@@ -160,7 +160,7 @@ function SaveButton() {
 }
 ```
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -169,6 +169,7 @@ function SaveButton() {
 | children | `ReactNode` | - | Alert description content |
 | icon | `ReactNode` | status-based | Custom icon (overrides default) |
 | onClose | `() => void` | - | Close callback (shows close button when provided) |
+| className | `string` | - | Additional CSS class |
 
 ## Accessibility
 

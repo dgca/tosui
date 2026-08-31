@@ -24,7 +24,7 @@ Avatar displays a user or entity with an image, initials fallback, or placeholde
 import { Avatar } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -64,7 +64,7 @@ import { Avatar } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Initials Fallback
+## Initials fallback
 
 When no image is provided, Avatar shows initials from the name.
 
@@ -104,7 +104,7 @@ When no name or image is provided, a placeholder icon is shown.
   </TabItem>
 </Tabs>
 
-## Rounded Variants
+## Rounded variants
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -123,7 +123,7 @@ When no name or image is provided, a placeholder icon is shown.
   </TabItem>
 </Tabs>
 
-## Image Error Fallback
+## Image error fallback
 
 If the image fails to load, Avatar falls back to initials.
 
@@ -135,15 +135,15 @@ If the image fails to load, Avatar falls back to initials.
 // Falls back to "JD" initials
 ```
 
-## Common Patterns
+## Common patterns
 
-### Avatar with Name
+### Avatar with name
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
     <HStack gap={3} align="center">
       <Avatar size="md" name="John Doe" />
-      <VStack gap={0} align="flex-start">
+      <VStack gap={0} align="start">
         <Box fontWeight="medium">John Doe</Box>
         <Box fontSize="sm" color="foreground-muted">john@example.com</Box>
       </VStack>
@@ -153,7 +153,7 @@ If the image fails to load, Avatar falls back to initials.
     ```tsx
     <HStack gap={3} align="center">
       <Avatar size="md" name="John Doe" />
-      <VStack gap={0} align="flex-start">
+      <VStack gap={0} align="start">
         <Box fontWeight="medium">John Doe</Box>
         <Box fontSize="sm" color="foreground-muted">john@example.com</Box>
       </VStack>
@@ -162,7 +162,7 @@ If the image fails to load, Avatar falls back to initials.
   </TabItem>
 </Tabs>
 
-### Avatar Group
+### Avatar group
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -185,7 +185,7 @@ If the image fails to load, Avatar falls back to initials.
   </TabItem>
 </Tabs>
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -194,8 +194,9 @@ If the image fails to load, Avatar falls back to initials.
 | size | `"sm"` \| `"md"` \| `"lg"` \| `"xl"` | `"md"` | Avatar size |
 | rounded | `"full"` \| `"md"` | `"full"` | Border radius |
 | alt | `string` | name or "Avatar" | Alt text for image |
+| className | `string` | - | Additional CSS class |
 
-### Size Dimensions
+### Size dimensions
 
 | Size | Dimensions |
 |------|------------|

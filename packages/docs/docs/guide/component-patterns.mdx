@@ -1,275 +1,116 @@
 ---
-title: Component Patterns
-description: "How Tosui components work: simple components with Box props for flexible styling, and complex components with focused APIs."
+title: Component API patterns
+description: "How Tosui separates polymorphic styled components, focused components, and compound components."
 ---
 
-# Component Patterns
+# Component API patterns
 
-Tosui components fall into two categories: simple components that accept Box props for flexible styling, and complex components with their own focused APIs.
+Tosui uses three API patterns. The pattern tells you whether a component accepts `Box` style props, owns a focused set of props, or coordinates several subcomponents.
 
-## Simple Components
+## Polymorphic styled components
 
-These components accept most Box props, letting you customize spacing, colors, layout, and more:
+Polymorphic styled components build on `Box`. They accept `Box` style props, responsive values, state props, and an `as` prop unless their reference page lists an exception.
 
-### Layout
-
-| Component | Description |
-|-----------|-------------|
-| [Stack](/docs/components/stack) | Flex container with direction control |
-| [HStack](/docs/components/hstack) | Horizontal stack (row) |
-| [VStack](/docs/components/vstack) | Vertical stack (column) |
-| [Flex](/docs/components/flex) | Flexbox container |
-| [Grid](/docs/components/grid) | CSS Grid container |
-| [Container](/docs/components/container) | Centered max-width container |
-| [Spacer](/docs/components/spacer) | Flexible space filler |
-| [Divider](/docs/components/divider) | Visual separator |
-
-### Typography
-
-| Component | Description |
-|-----------|-------------|
-| [Text](/docs/components/text) | Body text with size/weight props |
-| [Heading](/docs/components/heading) | Semantic headings (h1-h6) |
-
-### Forms
-
-| Component | Description |
-|-----------|-------------|
-| [Input](/docs/components/input) | Text input field |
-| [Textarea](/docs/components/textarea) | Multi-line text input |
-| [Checkbox](/docs/components/checkbox) | Checkbox with label |
-| [Radio](/docs/components/radio) | Radio button group |
-| [Switch](/docs/components/switch) | Toggle switch |
-
-Form components accept layout props (margin, sizing) but have their own styling for the input itself.
-
-### Actions
-
-| Component | Description |
-|-----------|-------------|
-| [Button](/docs/components/button) | Action button |
-| [IconButton](/docs/components/icon-button) | Icon-only button |
-| [Link](/docs/components/link) | Styled anchor |
-
-### Using Box Props
-
-Simple components accept layout, spacing, and some visual props:
+| Category | Components |
+|---|---|
+| Primitives | `Box`, `Text`, `Heading`, `Code` |
+| Layout | `Stack`, `HStack`, `VStack`, `Flex`, `Grid`, `Container`, `Divider`, `Spacer` |
+| Forms | `Button`, `Input`, `Textarea`, `Select`, `Label` |
+| Other | `Link`, `Spinner` |
 
 ```tsx
-// Text with margin and custom color
-<Text mb={4} color="foreground-muted">
-  Description text
-</Text>
-
-// Button with custom margin
 <Button mt={6}>Submit</Button>
-
-// Input with full width
 <Input w="100%" />
-
-// Stack with responsive gap
 <VStack gap={{ base: 4, md: 8 }}>
-  <Text>Item 1</Text>
-  <Text>Item 2</Text>
+  <Text>First item</Text>
+  <Text>Second item</Text>
 </VStack>
 ```
 
-### Button and IconButton Props
-
-Button and IconButton accept these specific props:
-
-| Prop | Values | Default |
-|------|--------|---------|
-| `variant` | `"solid"`, `"outline"`, `"ghost"` | `"solid"` |
-| `size` | `"sm"`, `"md"`, `"lg"` | `"md"` |
-| `colorScheme` | `"primary"`, `"accent"`, `"success"`, `"warning"`, `"error"`, `"info"` | `"primary"` |
-| `disabled` | `boolean` | `false` |
-| `loading` | `boolean` | `false` |
-
-Button also accepts:
-- `fullWidth` - Makes button 100% width
-- `leftIcon` / `rightIcon` - Icon elements to display
-
-IconButton requires:
-- `icon` - The icon element to display
-- `aria-label` - Required accessibility label
+Some components replace a `Box` prop with a narrower convenience prop. `Text` and `Heading`, for example, use `size`, `weight`, and `align` instead of `fontSize`, `fontWeight`, and `textAlign`.
 
 ```tsx
-// Button variants
-<Button variant="solid">Solid</Button>
-<Button variant="outline">Outline</Button>
-<Button variant="ghost">Ghost</Button>
-
-// Button sizes
-<Button size="sm">Small</Button>
-<Button size="md">Medium</Button>
-<Button size="lg">Large</Button>
-
-// Color schemes
-<Button colorScheme="primary">Primary</Button>
-<Button colorScheme="error">Delete</Button>
-
-// With icons
-<Button leftIcon={<PlusIcon />}>Add Item</Button>
-
-// IconButton
-<IconButton icon={<SearchIcon />} aria-label="Search" />
+<Text size="sm" weight="medium" align="center" />
+<Heading level={2} size="2xl" />
 ```
 
-Button and IconButton have built-in state styling (hover, active, focus, disabled). See [State Styling](/docs/guide/state-styling) for details.
-
-## Complex Components
-
-These components have focused APIs designed for their specific use case. They don't expose Box props directly but may have subcomponents that do.
-
-### Overlays
-
-| Component | Description |
-|-----------|-------------|
-| [Modal](/docs/components/modal) | Dialog overlay |
-| [Popover](/docs/components/popover) | Click-triggered floating panel |
-| [Tooltip](/docs/components/tooltip) | Hover information overlay |
-
-### Containers
-
-| Component | Description |
-|-----------|-------------|
-| [Accordion](/docs/components/accordion) | Collapsible sections |
-| [Menu](/docs/components/menu) | Dropdown menu |
-| [Tabs](/docs/components/tabs) | Tabbed content |
-| [Card](/docs/components/card) | Content container |
-
-### Data Display
-
-| Component | Description |
-|-----------|-------------|
-| [Alert](/docs/components/alert) | Status messages |
-| [Avatar](/docs/components/avatar) | User/entity image |
-| [Badge](/docs/components/badge) | Status indicator |
-| [Skeleton](/docs/components/skeleton) | Loading placeholder |
-| [Progress](/docs/components/progress) | Progress indicator |
-
-### Working with Complex Components
-
-Complex components accept specific props for their behavior:
+The `as` prop changes the rendered element and its native TypeScript attributes:
 
 ```tsx
-// Modal - controlled open state
-<Modal isOpen={isOpen} onClose={onClose} size="lg">
-  <ModalHeader>Title</ModalHeader>
-  <ModalBody>Content</ModalBody>
-</Modal>
+<Box as="section">Section content</Box>
+<Text as="p">Paragraph content</Text>
+<Button as="a" href="/signup">Create an account</Button>
+```
 
-// Accordion - expansion control
-<Accordion allowMultiple defaultIndex={[0]}>
-  <AccordionItem index={0} title="Section 1">
-    Content
-  </AccordionItem>
-</Accordion>
+## Focused components
 
-// Tabs - index-based selection
-<Tabs defaultIndex={0} onChange={(index) => console.log(index)}>
+Focused components expose only the props needed for their visual or interaction contract. They do not accept the full `Box` API.
+
+| Category | Components |
+|---|---|
+| Form controls | `IconButton`, `Checkbox`, `Radio`, `Switch` |
+| Feedback | `Alert`, `Badge`, `Progress`, `Skeleton` |
+| Data display | `Avatar`, `Image` |
+| Navigation | `Pagination` |
+
+Wrap a focused component in `Box` when you need layout that its API does not expose:
+
+```tsx
+<Box mt={6} display="flex" justifyContent="end">
+  <Pagination totalPages={12} />
+</Box>
+```
+
+Use each component's `className` prop when you need CSS that cannot be expressed by its public props.
+
+## Compound components
+
+Compound components coordinate state or structure across named children.
+
+| Root | Subcomponents |
+|---|---|
+| `Accordion` | `AccordionItem` |
+| `Breadcrumb` | `BreadcrumbItem` |
+| `Card` | `CardHeader`, `CardBody`, `CardFooter` |
+| `List` | `ListItem`, `ListIcon` |
+| `Menu` | `MenuButton`, `MenuList`, `MenuItem` |
+| `Modal` | `ModalHeader`, `ModalBody`, `ModalFooter` |
+| `Popover` | `PopoverHeader`, `PopoverBody` |
+| `Tabs` | `TabList`, `Tab`, `TabPanel` |
+
+Pass the documented subcomponents directly to their root unless a component reference says otherwise.
+
+```tsx
+<Tabs defaultIndex={0}>
   <TabList>
-    <Tab index={0}>Tab 1</Tab>
-    <Tab index={1}>Tab 2</Tab>
+    <Tab index={0}>Profile</Tab>
+    <Tab index={1}>Security</Tab>
   </TabList>
-  <TabPanels>
-    <TabPanel index={0}>Content 1</TabPanel>
-    <TabPanel index={1}>Content 2</TabPanel>
-  </TabPanels>
+  <TabPanel index={0}>Profile settings</TabPanel>
+  <TabPanel index={1}>Security settings</TabPanel>
 </Tabs>
 ```
 
-### Subcomponents
+`Tabs` does not export a `TabPanels` wrapper. `TabPanel` elements are direct children of `Tabs`.
 
-Many complex components have subcomponents with built-in styling:
+## Composition through context
 
-**Modal:**
-- `ModalHeader` - Title with bottom border
-- `ModalBody` - Content area with padding
-- `ModalFooter` - Actions area with top border
-
-**Card:**
-- `CardHeader` - Title area
-- `CardBody` - Content with padding
-- `CardFooter` - Actions area
-
-**Accordion:**
-- `AccordionItem` - Individual collapsible section
-
-**Tabs:**
-- `TabList` - Container for tab buttons
-- `Tab` - Individual tab button
-- `TabPanels` - Container for tab content
-- `TabPanel` - Individual tab content
+`FormField` is a separate composition pattern. Tosui form controls read the field ID, description, required state, disabled state, and invalid state from context. The controls can remain inside layout components.
 
 ```tsx
-// Subcomponents have built-in padding and styling
-<Card>
-  <CardHeader>
-    <Heading fontSize="lg">Card Title</Heading>
-  </CardHeader>
-  <CardBody>
-    Content with padding
-  </CardBody>
-  <CardFooter>
-    <Button>Action</Button>
-  </CardFooter>
-</Card>
+<FormField label="Email" helperText="We use this for account notices">
+  <Box>
+    <Input type="email" />
+  </Box>
+</FormField>
 ```
 
-To add custom styles to subcomponents, use `className`:
+For a native or custom control, use the render-function adapter so that the accessible props reach the focusable element:
 
 ```tsx
-<ModalBody className="custom-body-class">
-  Custom styled body
-</ModalBody>
+<FormField label="Email" isRequired>
+  {(controlProps) => <input type="email" {...controlProps} />}
+</FormField>
 ```
 
-## Polymorphic Components
-
-Some simple components support the `as` prop to change the rendered HTML element:
-
-```tsx
-// Box as different elements
-<Box as="section">Section content</Box>
-<Box as="article">Article content</Box>
-<Box as="nav">Navigation</Box>
-
-// Text as different elements
-<Text as="label">Form label</Text>
-<Text as="span">Inline text</Text>
-
-// Heading levels
-<Heading as="h1">Page Title</Heading>
-<Heading as="h2">Section Title</Heading>
-```
-
-TypeScript will correctly infer the allowed attributes based on the element type.
-
-## When to Use Each Pattern
-
-**Use simple components when:**
-- You need custom spacing or layout
-- You're building custom UI patterns
-- You need responsive styling
-
-**Use complex components when:**
-- You need specific behavior (modals, accordions, menus)
-- The component handles interactions for you
-- You want consistent patterns across your app
-
-**Combine both:**
-
-```tsx
-<Card>
-  <CardBody>
-    {/* Simple components inside complex component */}
-    <VStack gap={4}>
-      <Heading fontSize="lg">Card Title</Heading>
-      <Text color="foreground-muted">Description</Text>
-      <Button>Action</Button>
-    </VStack>
-  </CardBody>
-</Card>
-```
+See the [FormField reference](/docs/components/form-field) for the complete adapter contract.

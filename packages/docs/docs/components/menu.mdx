@@ -24,7 +24,7 @@ Menu is a dropdown menu component with keyboard navigation and click-outside clo
 import { Menu, MenuButton, MenuList, MenuItem } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -48,7 +48,7 @@ import { Menu, MenuButton, MenuList, MenuItem } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Button Variants
+## Button variants
 
 MenuButton accepts all Button props.
 
@@ -92,7 +92,7 @@ MenuButton accepts all Button props.
   </TabItem>
 </Tabs>
 
-## Disabled Items
+## Disabled items
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -119,9 +119,9 @@ MenuButton accepts all Button props.
   </TabItem>
 </Tabs>
 
-## Controlled Mode
+## Controlled state
 
-Use `isOpen`, `onOpen`, and `onClose` for controlled mode.
+Pass `isOpen` when application state owns the open state. Update that state from `onOpen` and `onClose`.
 
 ```tsx
 function ControlledMenu() {
@@ -143,9 +143,9 @@ function ControlledMenu() {
 }
 ```
 
-## Common Patterns
+## Common patterns
 
-### User Account Menu
+### User account Menu
 
 ```tsx
 <Menu>
@@ -160,7 +160,7 @@ function ControlledMenu() {
 </Menu>
 ```
 
-### Actions Menu
+### Actions menu
 
 ```tsx
 <Menu>
@@ -183,7 +183,7 @@ function ControlledMenu() {
 - Clicking a **MenuItem** closes the menu
 - Menu opens **below** the button by default
 
-## Props Reference
+## Props reference
 
 ### Menu
 
@@ -192,10 +192,19 @@ function ControlledMenu() {
 | isOpen | `boolean` | - | Controlled open state |
 | onOpen | `() => void` | - | Called when menu opens |
 | onClose | `() => void` | - | Called when menu closes |
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | Menu subcomponents |
 
 ### MenuButton
 
 MenuButton accepts all [Button](/docs/components/button) props.
+
+### MenuList
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | Menu items |
 
 ### MenuItem
 
@@ -203,13 +212,17 @@ MenuButton accepts all [Button](/docs/components/button) props.
 |------|------|---------|-------------|
 | onClick | `() => void` | - | Click handler |
 | disabled | `boolean` | `false` | Disable the item |
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | Item content |
 
 ## Accessibility
 
-- MenuButton has `aria-haspopup="menu"` and `aria-expanded`
-- MenuList has `role="menu"`
-- MenuItem has `role="menuitem"`
-- Escape key closes the menu
+- `MenuButton` uses `aria-haspopup="menu"` and `aria-expanded`.
+- `MenuList` uses `role="menu"` and focuses its first enabled item when it opens.
+- `MenuItem` uses `role="menuitem"`.
+- Up Arrow and Down Arrow move focus between enabled items.
+- Escape closes the menu and returns focus to `MenuButton`.
+- Tab closes the menu and moves focus beyond the trigger.
 
 ## TypeScript
 

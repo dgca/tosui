@@ -1,13 +1,13 @@
 ---
 title: Spacing
-description: "Tosui uses a multiplier-based spacing system built on a 4px base unit for consistent, harmonious spacing."
+description: "Use Tosui's multiplier-based spacing props and 4px base unit."
 ---
 
 # Spacing
 
-Tosui uses a multiplier-based spacing system built on a 4px base unit. This creates consistent, harmonious spacing throughout your UI.
+Tosui calculates spacing from a 4px base unit.
 
-## The Base Unit
+## The base unit
 
 All spacing in Tosui is calculated from a single base unit:
 
@@ -41,7 +41,7 @@ To change the base unit globally, override the CSS variable:
 
 With `5px`, `p={4}` becomes `20px` instead of `16px`. See the [Customization guide](/docs/guide/customization) for more theming options.
 
-## Padding Props
+## Padding props
 
 Padding adds space inside an element's border.
 
@@ -68,7 +68,7 @@ import { Box } from "@tosui/react";
 | `pb` | Bottom only |
 | `pl` | Left only |
 
-## Margin Props
+## Margin props
 
 Margin adds space outside an element's border.
 
@@ -93,7 +93,7 @@ Margin adds space outside an element's border.
 | `mb` | Bottom only |
 | `ml` | Left only |
 
-### Negative Margins
+### Negative margins
 
 Negative margins are supported using negative multipliers:
 
@@ -105,7 +105,7 @@ Negative margins are supported using negative multipliers:
 <Box mt="-10px">Custom negative margin</Box>
 ```
 
-## Gap (Flexbox/Grid)
+## Flex and grid gaps
 
 Use `gap` for spacing between flex or grid children:
 
@@ -135,7 +135,7 @@ For different row and column gaps, use `gapRow` and `gapColumn`:
 | `gapRow` | Gap between rows (overrides `gap` for rows) |
 | `gapColumn` | Gap between columns (overrides `gap` for columns) |
 
-## Responsive Spacing
+## Responsive spacing
 
 All spacing props support responsive values. Specify different values for each breakpoint:
 
@@ -157,9 +157,9 @@ All spacing props support responsive values. Specify different values for each b
 </Box>
 ```
 
-Breakpoints use a mobile-first cascade—you only need to specify breakpoints where the value changes. See the [Responsive guide](/docs/guide/responsive) for more details.
+Breakpoints use a mobile-first cascade. Specify a breakpoint only when the value changes. See the [Responsive guide](/docs/guide/responsive) for more details.
 
-## Specificity Cascade
+## Specificity cascade
 
 When multiple spacing props apply to the same side, more specific props override less specific ones:
 
@@ -181,9 +181,9 @@ Order of specificity (most to least):
 
 The same applies to margin props (`m`, `mx`, `my`, `mt`, etc.).
 
-## Common Patterns
+## Common patterns
 
-### Card Padding
+### Card padding
 
 ```tsx
 <Box p={6} bg="surface" rounded="md">
@@ -191,7 +191,7 @@ The same applies to margin props (`m`, `mx`, `my`, `mt`, etc.).
 </Box>
 ```
 
-### Section Spacing
+### Section spacing
 
 ```tsx
 <Box py={12}>
@@ -200,7 +200,7 @@ The same applies to margin props (`m`, `mx`, `my`, `mt`, etc.).
 </Box>
 ```
 
-### Tight Lists
+### Tight lists
 
 [VStack](/docs/components/vstack) is a convenience component that renders a vertical flex container:
 
@@ -212,7 +212,7 @@ The same applies to margin props (`m`, `mx`, `my`, `mt`, etc.).
 </VStack>
 ```
 
-### Button Groups
+### Button groups
 
 [HStack](/docs/components/hstack) is a convenience component that renders a horizontal flex container:
 
@@ -223,7 +223,7 @@ The same applies to margin props (`m`, `mx`, `my`, `mt`, etc.).
 </HStack>
 ```
 
-## Custom Values
+## Custom values
 
 For values outside the multiplier system, use CSS strings:
 

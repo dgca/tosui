@@ -24,7 +24,7 @@ List is a semantic list component for displaying ordered or unordered items.
 import { List, ListItem, ListIcon } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -45,7 +45,7 @@ import { List, ListItem, ListIcon } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Ordered List
+## Ordered list
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -66,11 +66,11 @@ import { List, ListItem, ListIcon } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Style Types
+## Style types
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <VStack gap={6} align="flex-start">
+    <VStack gap={6} align="start">
       <Box>
         <Box fontWeight="medium" mb={2}>None (default for ul)</Box>
         <List styleType="none">
@@ -96,7 +96,7 @@ import { List, ListItem, ListIcon } from "@tosui/react";
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
-    <VStack gap={6} align="flex-start">
+    <VStack gap={6} align="start">
       <Box>
         <Box fontWeight="medium" mb={2}>None (default for ul)</Box>
         <List styleType="none">
@@ -173,7 +173,7 @@ import { List, ListItem, ListIcon } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## With Icons
+## With icons
 
 Use `ListIcon` to add custom icons to list items.
 
@@ -196,9 +196,9 @@ import { CheckIcon, StarIcon } from "your-icon-library";
 </List>
 ```
 
-## Common Patterns
+## Common patterns
 
-### Feature List
+### Feature list
 
 ```tsx
 <List spacing={3}>
@@ -228,7 +228,7 @@ import { CheckIcon, StarIcon } from "your-icon-library";
   <ListItem>
     <Box>
       <Box fontWeight="medium">Create an account</Box>
-      <Text fontSize="sm" color="foreground-muted">
+      <Text size="sm" color="foreground-muted">
         Sign up with your email address
       </Text>
     </Box>
@@ -236,7 +236,7 @@ import { CheckIcon, StarIcon } from "your-icon-library";
   <ListItem>
     <Box>
       <Box fontWeight="medium">Verify your email</Box>
-      <Text fontSize="sm" color="foreground-muted">
+      <Text size="sm" color="foreground-muted">
         Click the link in your inbox
       </Text>
     </Box>
@@ -244,7 +244,7 @@ import { CheckIcon, StarIcon } from "your-icon-library";
   <ListItem>
     <Box>
       <Box fontWeight="medium">Complete your profile</Box>
-      <Text fontSize="sm" color="foreground-muted">
+      <Text size="sm" color="foreground-muted">
         Add your details and preferences
       </Text>
     </Box>
@@ -252,7 +252,7 @@ import { CheckIcon, StarIcon } from "your-icon-library";
 </List>
 ```
 
-## Props Reference
+## Props reference
 
 ### List
 
@@ -261,18 +261,22 @@ import { CheckIcon, StarIcon } from "your-icon-library";
 | as | `"ul"` \| `"ol"` | `"ul"` | HTML list element |
 | styleType | `"none"` \| `"disc"` \| `"decimal"` | depends on `as` | List style type |
 | spacing | `number` | `0` | Gap between items (spacing multiplier) |
+| className | `string` | - | Additional CSS class |
+| children | `ReactNode` | - | List items |
 
 ### ListItem
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | children | `ReactNode` | - | Item content |
+| className | `string` | - | Additional CSS class |
 
 ### ListIcon
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | children | `ReactNode` | - | Icon content |
+| className | `string` | - | Additional CSS class |
 
 ## TypeScript
 

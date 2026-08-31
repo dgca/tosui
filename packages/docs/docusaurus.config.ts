@@ -102,29 +102,29 @@ const config: Config = {
         ],
         rootContent: `@tosui/react is a React component library with 40 components, CSS Modules styling, and responsive props.
 
-## Quick Reference
+## Quick reference
 
 - **Install**: \`npm install @tosui/react\`
 - **Setup**: \`import "@tosui/react/styles.css";\` in your entry point
 - **Import**: \`import { Box, Text, Button } from "@tosui/react";\`
 - **Spacing**: 4px base unit with multipliers 0-32 (e.g. \`p={4}\` = 16px)
-- **Colors**: Semantic tokens — \`foreground\`, \`foreground-muted\`, \`primary-default\`, \`error-default\`, etc.
+- **Colors**: Text uses tokens such as \`foreground-muted\` and \`error\`. Backgrounds use tokens such as \`primary-default\` and \`error-subtle\`.
 - **Responsive**: \`<Box p={{ base: 2, md: 4, lg: 6 }} />\`
 - **Polymorphic**: \`<Box as="section" />\`, \`<Text as="label" />\`
 
-## IMPORTANT: Box Props Are Shared
+## Components that accept Box props
 
-Box is the foundational primitive. Most non-compound components inherit Box's styling props. This means you can use spacing, color, layout, border, and responsive props directly on components like Button, Input, Text, Stack, etc.
+Box is the foundational primitive. Components built on Box accept its constrained style props unless their reference page lists a replacement or exception.
 
 For example: \`<Button mt={4} />\`, \`<Input w="100%" />\`, \`<Text color="foreground-muted" mb={2} />\`, \`<Stack p={{ base: 4, md: 8 }} />\`
 
 **Box props include**: \`p\`, \`pt\`, \`pr\`, \`pb\`, \`pl\`, \`px\`, \`py\`, \`m\`, \`mt\`, \`mr\`, \`mb\`, \`ml\`, \`mx\`, \`my\` (spacing 0-32), \`w\`, \`h\`, \`minW\`, \`maxW\`, \`minH\`, \`maxH\` (sizing), \`display\`, \`position\`, \`overflow\`, \`zIndex\` (layout), \`flexDirection\`, \`justifyContent\`, \`alignItems\`, \`alignSelf\`, \`flexWrap\`, \`gap\` (flexbox), \`gridTemplateColumns\`, \`gridTemplateRows\` (grid), \`color\`, \`bg\`, \`borderColor\` (colors), \`border\`, \`borderX\`, \`borderY\`, \`borderTop\`, \`borderRight\`, \`borderBottom\`, \`borderLeft\`, \`borderStyle\` (borders), \`rounded\`, \`roundedTop\`, \`roundedBottom\`, \`roundedLeft\`, \`roundedRight\` (roundness), \`shadow\`, \`opacity\`, \`cursor\`, \`pointerEvents\`, \`userSelect\`, \`textAlign\`, \`whiteSpace\`, \`fontSize\`, \`fontWeight\`, \`lineHeight\` (and more).
 
-**Components that accept Box props**: Box, Text, Heading, Stack, HStack, VStack, Flex, Grid, Container, Divider, Spacer, Button, IconButton, Input, Select, Textarea, Label, Link, Code, Spinner, Skeleton, Progress, Badge, Alert, Image, Avatar.
+**Components that accept Box props**: Box, Text, Heading, Code, Stack, HStack, VStack, Flex, Grid, Container, Divider, Spacer, Button, Input, Select, Textarea, Label, Link, and Spinner.
 
-**Compound components** (Modal, Popover, Tooltip, Accordion, Menu, Tabs, Card, Breadcrumb, Pagination, FormField, Checkbox, Radio, Switch) have their own focused APIs and do NOT accept Box props directly.
+**Components with focused APIs**: IconButton, Checkbox, Radio, Switch, FormField, Alert, Badge, Progress, Skeleton, Avatar, Image, Pagination, Modal, Popover, Tooltip, Accordion, Menu, Tabs, Card, Breadcrumb, and List. Wrap one of these components in Box when you need more layout props.
 
-## Component Categories
+## Component categories
 
 - **Primitives**: Box, Text, Heading
 - **Layout**: Stack, HStack, VStack, Flex, Grid, Container, Divider, Spacer
@@ -133,45 +133,45 @@ For example: \`<Button mt={4} />\`, \`<Input w="100%" />\`, \`<Text color="foreg
 - **Feedback**: Alert, Badge, Progress, Skeleton, Spinner
 - **Data Display**: Avatar, Card, Image, List, Code
 - **Overlays**: Modal, Tooltip, Popover, Accordion`,
-        fullRootContent: `Complete documentation for @tosui/react — a React component library with 40 components.
+        fullRootContent: `Complete documentation for @tosui/react, a React component library with 40 components.
 
-## Essential Setup
+## Essential setup
+
+\`\`\`bash
+npm install @tosui/react
+\`\`\`
 
 \`\`\`tsx
-// 1. Install
-npm install @tosui/react
-
-// 2. Import styles in your entry point
+// Import styles in your entry point.
 import "@tosui/react/styles.css";
 
-// 3. Optionally import IBM Plex fonts
+// Optionally import IBM Plex fonts.
 import "@tosui/react/fonts.css";
 
-// 4. Use components
+// Import components from the package root.
 import { Box, Text, Heading, Button } from "@tosui/react";
 \`\`\`
 
-## Key Concepts
+## Key concepts
 
 - **Spacing system**: 4px base unit × multiplier. \`p={4}\` = 16px, \`p={8}\` = 32px. Range: 0-32.
-- **Color tokens**: Semantic names that adapt to light/dark mode. Use \`foreground\`, \`foreground-muted\`, \`primary-default\`, \`surface\`, \`border\`, etc.
-- **Responsive props**: Mobile-first. \`<Box p={{ base: 2, md: 4 }} />\` — breakpoints: base (0), sm (640px), md (768px), lg (1024px), xl (1280px), 2xl (1536px).
-- **Polymorphic**: Most components accept \`as\` prop to change rendered element. \`<Box as="nav" />\`, \`<Text as="label" />\`.
+- **Color tokens**: Semantic names that adapt to light and dark modes. Text uses \`primary\`; backgrounds use \`primary-default\`.
+- **Responsive props**: Mobile-first. \`<Box p={{ base: 2, md: 4 }} />\`. Breakpoints are base (0), sm (640px), md (768px), lg (1024px), xl (1280px), and 2xl (1536px).
+- **Polymorphic components**: Box-based components accept \`as\` to change the rendered element. \`<Box as="nav" />\`, \`<Text as="label" />\`.
 - **State styling**: \`_hover\`, \`_focus\`, \`_active\`, \`_disabled\` props on Box for interactive states.
 - **Theming**: Override CSS variables to customize. \`--t-light-primary-default\`, \`--t-dark-primary-default\`, \`--t-spacing-unit\`, etc.
 
-## IMPORTANT: Box Props Are Shared Across Most Components
+## Components that accept Box props
 
-Box is the foundational primitive. Most non-compound components inherit ALL of Box's styling props. This means you can use spacing, sizing, color, layout, border, shadow, roundness, and responsive props directly on these components.
+Box is the foundational primitive. Components built on Box accept its constrained style props unless their reference page lists a replacement or exception.
 
 Examples:
-- \`<Button mt={4} px={6} />\` — spacing on Button
-- \`<Input w="100%" mb={4} />\` — sizing and margin on Input
-- \`<Text color="foreground-muted" mb={2} />\` — color and margin on Text
-- \`<Stack p={{ base: 4, md: 8 }} bg="surface" rounded="lg" />\` — responsive padding, background, and roundness on Stack
-- \`<Badge bg="error-subtle" color="error-default" />\` — colors on Badge
+- \`<Button mt={4} px={6} />\`: spacing on Button
+- \`<Input w="100%" mb={4} />\`: sizing and margin on Input
+- \`<Text color="foreground-muted" mb={2} />\`: color and margin on Text
+- \`<Stack p={{ base: 4, md: 8 }} bg="surface" rounded="lg" />\`: responsive padding, background, and roundness on Stack
 
-### Available Box Props
+### Available Box props
 
 **Spacing** (values 0-32, each = 4px): \`p\`, \`pt\`, \`pr\`, \`pb\`, \`pl\`, \`px\`, \`py\`, \`m\`, \`mt\`, \`mr\`, \`mb\`, \`ml\`, \`mx\`, \`my\`, \`gap\`, \`gapRow\`, \`gapColumn\`
 **Sizing**: \`w\`, \`h\`, \`minW\`, \`maxW\`, \`minH\`, \`maxH\`
@@ -184,17 +184,17 @@ Examples:
 **Effects**: \`shadow\`, \`opacity\`
 **Interactions**: \`cursor\`, \`pointerEvents\`, \`userSelect\`
 **Typography**: \`fontSize\`, \`fontFamily\`, \`fontWeight\`, \`lineHeight\`, \`textAlign\`, \`whiteSpace\`
-**State**: \`_hover\`, \`_focus\`, \`_active\`, \`_disabled\` (each accepts an object of the above props)
+**State**: \`_hover\`, \`_focus\`, \`_active\`, \`_disabled\` accept Box style objects. Grid properties currently apply in \`_hover\` only.
 
-### Which Components Accept Box Props
+### Components that accept Box props
 
-**Accept Box props** (use spacing, colors, layout, etc. directly): Box, Text, Heading, Stack, HStack, VStack, Flex, Grid, Container, Divider, Spacer, Button, IconButton, Input, Select, Textarea, Label, Link, Code, Spinner, Skeleton, Progress, Badge, Alert, Image, Avatar.
+**Accept Box props**: Box, Text, Heading, Code, Stack, HStack, VStack, Flex, Grid, Container, Divider, Spacer, Button, Input, Select, Textarea, Label, Link, and Spinner.
 
-**Do NOT accept Box props** (compound components with focused APIs): Modal, Popover, Tooltip, Accordion, Menu, Tabs, Card, Breadcrumb, Pagination, FormField, Checkbox, Radio, Switch. Wrap these in a Box if you need layout props.
+**Use focused APIs**: IconButton, Checkbox, Radio, Switch, FormField, Alert, Badge, Progress, Skeleton, Avatar, Image, Pagination, Modal, Popover, Tooltip, Accordion, Menu, Tabs, Card, Breadcrumb, and List. Wrap one of these components in Box when you need more layout props.
 
-## Component Categories
+## Component categories
 
-- **Primitives**: Box, Text, Heading — foundation for all layouts
+- **Primitives**: Box, Text, and Heading form the layout foundation
 - **Layout**: Stack, HStack, VStack, Flex, Grid, Container, Divider, Spacer
 - **Forms**: Button, IconButton, Input, Select, Textarea, Checkbox, Radio, Switch, FormField, Label
 - **Navigation**: Link, Tabs, Breadcrumb, Menu, Pagination

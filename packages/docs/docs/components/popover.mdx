@@ -25,7 +25,7 @@ Popover displays rich content in a floating panel triggered by a click.
 import { Popover, PopoverHeader, PopoverBody } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -50,7 +50,7 @@ import { Popover, PopoverHeader, PopoverBody } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## With Header
+## With header
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -124,7 +124,7 @@ import { Popover, PopoverHeader, PopoverBody } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Close on Blur
+## Close on blur
 
 By default, popover closes when clicking outside. Disable with `closeOnBlur={false}`.
 
@@ -141,7 +141,7 @@ By default, popover closes when clicking outside. Disable with `closeOnBlur={fal
 </Popover>
 ```
 
-## Controlled Mode
+## Controlled mode
 
 Use `isOpen`, `onOpen`, and `onClose` for full control.
 
@@ -168,9 +168,9 @@ function ControlledPopover() {
 }
 ```
 
-## Common Patterns
+## Common patterns
 
-### Confirmation Popover
+### Confirmation popover
 
 ```tsx
 <Popover
@@ -179,36 +179,36 @@ function ControlledPopover() {
       <PopoverHeader>Delete item?</PopoverHeader>
       <PopoverBody>
         <Text mb={3}>This action cannot be undone.</Text>
-        <HStack gap={2} justify="flex-end">
+        <HStack gap={2} justify="end">
           <Button size="sm" variant="ghost">Cancel</Button>
-          <Button size="sm" color="error">Delete</Button>
+          <Button size="sm" colorScheme="error">Delete</Button>
         </HStack>
       </PopoverBody>
     </>
   }
 >
-  <Button variant="ghost" color="error">Delete</Button>
+  <Button variant="ghost" colorScheme="error">Delete</Button>
 </Popover>
 ```
 
-### User Profile Popover
+### User profile Popover
 
 ```tsx
 <Popover
   content={
     <PopoverBody>
-      <VStack gap={2} align="flex-start">
+      <VStack gap={2} align="start">
         <HStack gap={3}>
           <Avatar name="John Doe" />
           <Box>
-            <Text fontWeight="medium">John Doe</Text>
-            <Text fontSize="sm" color="foreground-muted">john@example.com</Text>
+            <Text weight="medium">John Doe</Text>
+            <Text size="sm" color="foreground-muted">john@example.com</Text>
           </Box>
         </HStack>
         <Divider />
         <Button variant="ghost" size="sm" fullWidth>View Profile</Button>
         <Button variant="ghost" size="sm" fullWidth>Settings</Button>
-        <Button variant="ghost" size="sm" fullWidth color="error">Sign Out</Button>
+        <Button variant="ghost" size="sm" fullWidth colorScheme="error">Sign Out</Button>
       </VStack>
     </PopoverBody>
   }
@@ -217,7 +217,7 @@ function ControlledPopover() {
 </Popover>
 ```
 
-### Form Popover
+### Form popover
 
 ```tsx
 <Popover
@@ -228,7 +228,7 @@ function ControlledPopover() {
       <PopoverBody>
         <VStack gap={3}>
           <Input placeholder="Item name" />
-          <HStack gap={2} justify="flex-end">
+          <HStack gap={2} justify="end">
             <Button size="sm" variant="ghost">Cancel</Button>
             <Button size="sm">Add</Button>
           </HStack>
@@ -241,7 +241,7 @@ function ControlledPopover() {
 </Popover>
 ```
 
-## Props Reference
+## Props reference
 
 ### Popover
 
@@ -253,6 +253,7 @@ function ControlledPopover() {
 | isOpen | `boolean` | - | Controlled open state |
 | onOpen | `() => void` | - | Callback when popover opens |
 | onClose | `() => void` | - | Callback when popover closes |
+| className | `string` | - | Additional CSS class on the dialog panel |
 | children | `ReactNode` | - | Trigger element (required) |
 
 ### PopoverHeader, PopoverBody
@@ -264,10 +265,12 @@ function ControlledPopover() {
 
 ## Accessibility
 
-- Uses `role="dialog"` on popover
-- Trigger has `aria-expanded` and `aria-haspopup="dialog"`
-- Closes on Escape key
-- Renders via portal to avoid clipping
+- The panel uses `role="dialog"`.
+- The trigger wrapper uses `aria-expanded` and `aria-haspopup="dialog"`.
+- Focus moves into the panel, stays inside it, and returns to the previously focused element when the panel closes.
+- Escape closes the panel.
+- The portal renders only in the browser and updates its position during scroll and resize events.
+- `Popover` does not currently expose an accessible-name prop for the dialog.
 
 ## TypeScript
 

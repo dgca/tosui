@@ -1,6 +1,6 @@
 ---
 title: Pagination
-description: "Navigation for paginated content with page numbers, previous/next buttons, and ellipsis for large ranges."
+description: "Reference for controlled and uncontrolled Pagination state, page ranges, sibling counts, edge buttons, and accessibility."
 ---
 
 import Tabs from "@theme/Tabs";
@@ -12,7 +12,7 @@ import StorybookEmbed, {
 
 # Pagination
 
-Pagination provides navigation for paginated content with page numbers, previous/next buttons, and ellipsis for large page ranges.
+`Pagination` renders previous and next buttons, page-number buttons, and ellipses for large page ranges. Optional edge buttons move to the first or last page.
 
 <StorybookLink storyId="components-pagination--basic">
   Open in Storybook
@@ -24,7 +24,7 @@ Pagination provides navigation for paginated content with page numbers, previous
 import { Pagination } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -41,9 +41,9 @@ import { Pagination } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Controlled Usage
+## Controlled state
 
-Pass `page` when application state or data loading controls the current page.
+Pass `page` when application state or data loading owns the current page. Update that state from `onPageChange`.
 
 ```tsx
 function PaginatedContent() {
@@ -55,25 +55,25 @@ function PaginatedContent() {
 }
 ```
 
-## Page Ranges
+## Page ranges
 
 Pagination automatically shows ellipsis for large page ranges.
 
 ```tsx
 // Few pages - all shown
-<Pagination page={1} totalPages={5} onPageChange={setPage} />
+<Pagination page={1} totalPages={5} showEdges={false} onPageChange={setPage} />
 // Shows: « 1 2 3 4 5 »
 
 // Many pages - ellipsis shown
-<Pagination page={5} totalPages={20} onPageChange={setPage} />
+<Pagination page={5} totalPages={20} showEdges={false} onPageChange={setPage} />
 // Shows: « 1 … 4 5 6 … 20 »
 
 // Near start
-<Pagination page={2} totalPages={20} onPageChange={setPage} />
+<Pagination page={2} totalPages={20} showEdges={false} onPageChange={setPage} />
 // Shows: « 1 2 3 4 5 … 20 »
 
 // Near end
-<Pagination page={19} totalPages={20} onPageChange={setPage} />
+<Pagination page={19} totalPages={20} showEdges={false} onPageChange={setPage} />
 // Shows: « 1 … 16 17 18 19 20 »
 ```
 
@@ -83,29 +83,29 @@ Control how many page numbers appear on each side of the current page.
 
 ```tsx
 // 1 sibling (default)
-<Pagination page={10} totalPages={20} siblings={1} onPageChange={setPage} />
+<Pagination page={10} totalPages={20} siblings={1} showEdges={false} onPageChange={setPage} />
 // Shows: « 1 … 9 10 11 … 20 »
 
 // 2 siblings
-<Pagination page={10} totalPages={20} siblings={2} onPageChange={setPage} />
+<Pagination page={10} totalPages={20} siblings={2} showEdges={false} onPageChange={setPage} />
 // Shows: « 1 … 8 9 10 11 12 … 20 »
 ```
 
-## Show Edges
+## First-page and last-page buttons
 
-Toggle first/last page buttons with `showEdges`.
+Set `showEdges={false}` to hide the buttons that move directly to the first or last page. The numbered range still includes the first and last page.
 
 ```tsx
 // With edge buttons (default)
 <Pagination page={5} totalPages={20} showEdges onPageChange={setPage} />
-// Shows: «« « 4 5 6 » »»
+// Shows: «« « 1 … 4 5 6 … 20 » »»
 
 // Without edge buttons
 <Pagination page={5} totalPages={20} showEdges={false} onPageChange={setPage} />
-// Shows: « 4 5 6 »
+// Shows: « 1 … 4 5 6 … 20 »
 ```
 
-## Complete Example
+## Complete example
 
 ```tsx
 function ProductList() {
@@ -130,7 +130,7 @@ function ProductList() {
 }
 ```
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -140,22 +140,21 @@ function ProductList() {
 | onPageChange | `(page: number) => void` | - | Optional page change callback |
 | siblings | `number` | `1` | Number of page numbers on each side of current |
 | showEdges | `boolean` | `true` | Show first/last page buttons |
+| className | `string` | - | Additional CSS class |
 
-## Button States
+## Button states
 
-- Previous button is disabled when `page === 1`
-- Next button is disabled when `page === totalPages`
-- First page button is disabled when `page === 1`
-- Last page button is disabled when `page === totalPages`
-- Current page button uses `solid` variant
-- Other page buttons use `ghost` variant
+- The previous and first-page buttons are disabled on page 1.
+- The next and last-page buttons are disabled on the final page.
+- The current page button uses the `solid` variant.
+- Other page buttons use the `ghost` variant.
 
 ## Accessibility
 
-- Wrapped in `<nav aria-label="Pagination">`
-- Buttons have appropriate `aria-label` (e.g., "Page 5", "Previous page")
-- Current page has `aria-current="page"`
-- Disabled buttons have `disabled` attribute
+- A `nav` element wraps the controls and uses `aria-label="Pagination"`.
+- Each button has a page or action label, such as `Page 5` or `Previous page`.
+- The current page uses `aria-current="page"`.
+- Unavailable actions use the native `disabled` attribute.
 
 ## TypeScript
 

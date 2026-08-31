@@ -24,7 +24,7 @@ Radio is a radio button component with size variants, custom styling, and option
 import { Radio } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -36,7 +36,7 @@ import { Radio } from "@tosui/react";
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
-    <VStack gap={2} align="flex-start">
+    <VStack gap={2} align="start">
       <Radio name="fruit" label="Apple" value="apple" />
       <Radio name="fruit" label="Banana" value="banana" />
       <Radio name="fruit" label="Orange" value="orange" />
@@ -45,7 +45,7 @@ import { Radio } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Without Label
+## Without a label
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -62,7 +62,7 @@ import { Radio } from "@tosui/react";
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <VStack gap={4} align="flex-start">
+    <VStack gap={4} align="start">
       <Radio size="sm" name="size" label="Small radio" value="sm" />
       <Radio size="md" name="size" label="Medium radio (default)" value="md" />
       <Radio size="lg" name="size" label="Large radio" value="lg" />
@@ -70,7 +70,7 @@ import { Radio } from "@tosui/react";
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
-    <VStack gap={4} align="flex-start">
+    <VStack gap={4} align="start">
       <Radio size="sm" name="size" label="Small radio" value="sm" />
       <Radio size="md" name="size" label="Medium radio (default)" value="md" />
       <Radio size="lg" name="size" label="Large radio" value="lg" />
@@ -83,7 +83,7 @@ import { Radio } from "@tosui/react";
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <VStack gap={4} align="flex-start">
+    <VStack gap={4} align="start">
       <Radio name="state1" label="Unchecked" />
       <Radio name="state2" label="Checked" defaultChecked />
       <Radio name="state3" label="Disabled" disabled />
@@ -92,7 +92,7 @@ import { Radio } from "@tosui/react";
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
-    <VStack gap={4} align="flex-start">
+    <VStack gap={4} align="start">
       <Radio name="state1" label="Unchecked" />
       <Radio name="state2" label="Checked" defaultChecked />
       <Radio name="state3" label="Disabled" disabled />
@@ -111,7 +111,7 @@ function ControlledRadioGroup() {
   const [selected, setSelected] = useState("option1");
 
   return (
-    <VStack gap={2} align="flex-start">
+    <VStack gap={2} align="start">
       <Radio
         name="controlled"
         label="Option 1"
@@ -138,11 +138,11 @@ function ControlledRadioGroup() {
 }
 ```
 
-## Radio Group with Label
+## Radio group with Label
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
-    <VStack gap={2} align="flex-start">
+    <VStack gap={2} align="start">
       <Box fontWeight="medium">Select your plan:</Box>
       <Radio name="plan" label="Free - $0/month" value="free" defaultChecked />
       <Radio name="plan" label="Pro - $10/month" value="pro" />
@@ -151,7 +151,7 @@ function ControlledRadioGroup() {
   </TabItem>
   <TabItem value="code" label="Code">
     ```tsx
-    <VStack gap={2} align="flex-start">
+    <VStack gap={2} align="start">
       <Box fontWeight="medium">Select your plan:</Box>
       <Radio name="plan" label="Free - $0/month" value="free" defaultChecked />
       <Radio name="plan" label="Pro - $10/month" value="pro" />
@@ -161,7 +161,7 @@ function ControlledRadioGroup() {
   </TabItem>
 </Tabs>
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|

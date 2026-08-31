@@ -1,58 +1,36 @@
 ---
-title: Introduction
-description: "Tosui is a themable, orderly, simple UI component library for React with 40 components, CSS Modules styling, responsive props, and constraint-driven design."
+title: Why Tosui limits design choices
+description: "How Tosui uses a small component and token API to keep React interfaces consistent and themes manageable."
 ---
 
-# Introduction
+# Why Tosui limits design choices
 
-Tosui is a themable, orderly, simple UI component library for React. It provides 40 components designed to help you build consistent, accessible user interfaces with minimal configuration.
+Tosui is a React component library built around one constraint: a design system needs enough choices to express intent, but not enough to make every screen a new system.
 
-## Author's Note
+Many component libraries expose broad theme objects and long token scales. Those APIs can reproduce almost any design, but each added option also creates another decision for application code. Tosui chooses a smaller surface. Spacing uses one base unit, colors use semantic names, and component variants cover a bounded set of states.
 
-Hi, thanks for checking out Tosui. I'm Dan, the creator of this project.
+## Tokens describe intent
 
-Tosui is a UI framework and component library, similar to Chakra, MUI, or Ant Design. It provides a solid set of core components and a way to customize their look and feel.
+A token such as `primary` or `foreground-muted` says why a color appears. The token does not name a shade. Light and dark themes can therefore change the underlying values without changing component code.
 
-The difference is that Tosui deliberately keeps its customization surface small and simple. Learning how to theme Tosui should be grokkable. In my experience, customizing other systems often feels daunting and overly complex.
+Background tokens keep their state suffixes, such as `primary-default` and `error-subtle`. Text and border tokens use shorter names, such as `primary` and `error`. The distinction prevents a subtle background token from becoming a low-contrast text color by accident.
 
-Tosui accomplishes this through a limited number of style tokens and theming via CSS variables only. You don't have to define 10 different shades for every color or learn a complex theming API to create a custom theme.
+## Composition supplies the missing flexibility
 
-## Philosophy
+The smaller token API does not try to predict every interface. Instead, `Box`, `Text`, `Heading`, and the layout components combine into application-specific patterns. Components such as `Modal`, `Tabs`, and `FormField` own behavior that is difficult to compose correctly, including keyboard interaction and accessible relationships.
 
-Tosui is built on **constraint-driven simplicity**. Instead of overwhelming you with endless customization options, Tosui provides a focused set of design tokens and components that cover real-world use cases.
+This boundary keeps styling flexible while leaving interaction behavior consistent.
 
-### Fewer, Better Choices
+## CSS keeps themes visible
 
-Every design token earns its place in the system. Instead of dozens of color shades or spacing values, Tosui provides a curated set of options that make the right choice obvious.
+Tosui uses CSS Modules for component styles and CSS custom properties for design tokens. There is no runtime style generator. You can inspect the active values in browser developer tools and override the variables with ordinary CSS.
 
-### Composition Over Configuration
+The base stylesheet also supports system, light, and dark color modes. A theme defines both light and dark primitive values, while components refer to the active semantic values.
 
-Build complex interfaces from simple primitives. The `Box`, `Text`, and `Heading` components form the foundation, while higher-level components like `Card`, `Modal`, and `Tabs` handle common patterns.
+## TypeScript enforces the constraints
 
-### Semantic, Not Prescriptive
+Style props accept documented token values instead of arbitrary strings. Responsive objects use the same value types at every breakpoint. Polymorphic components also infer native props and refs from the element passed to `as`.
 
-Design values describe intent (`foreground`, `background`, `primary-default`) rather than specific measurements. This means themes swap seamlessly and components adapt automatically to light/dark modes.
+The type errors are part of the design: they catch token names, alignment values, and element attributes that Tosui cannot render as intended.
 
-## Features
-
-- **40 components** covering primitives, layout, forms, navigation, feedback, data display, and overlays
-- **CSS Modules styling** with zero runtime CSS generation
-- **Responsive props** with mobile-first breakpoints
-- **TypeScript-first** with full type safety and autocomplete
-- **Polymorphic components** that render as any HTML element
-- **Accessible** with proper ARIA attributes and keyboard navigation
-
-## Technology
-
-Tosui uses CSS Modules for component styling with CSS Variables for design tokens. This provides:
-
-- **Zero runtime CSS** - styles compile at build time
-- **Scoped class names** - no style collisions
-- **Easy theming** - override CSS variables to customize
-- **Small bundle size** - only ship the CSS you use
-
-## Goals
-
-The primary goal is to have a React UI framework that's lightweight, themable, and has enough components to build the majority of most UIs.
-
-Once that's done, I hope to port this to other frameworks, including React Native.
+To build your first screen, follow [Get started](/docs/get-started). For lookup information, use the [Box reference](/docs/components/box) or choose a component from the sidebar.

@@ -1,21 +1,21 @@
 ---
-title: State Styling
+title: State styling
 description: "Style hover, focus, active, and disabled states using Box state props like _hover, _focus, _active, and _disabled."
 ---
 
-# State Styling
+# State styling
 
 Tosui's Box component supports state props for styling hover, focus, active, and disabled states.
 
-## State Props
+## State props
 
 Box accepts four state props that override base styles:
 
 | Prop | Triggered By |
 |------|--------------|
 | `_hover` | Mouse hover |
-| `_focus` | Keyboard focus |
-| `_active` | Mouse press / active |
+| `_focus` | Element focus |
+| `_active` | Active state |
 | `_disabled` | Disabled state |
 
 ```tsx
@@ -31,7 +31,7 @@ import { Box } from "@tosui/react";
 </Box>
 ```
 
-## Combining States
+## Combining states
 
 Apply multiple state styles to a single element:
 
@@ -47,10 +47,12 @@ Apply multiple state styles to a single element:
 </Box>
 ```
 
-When multiple states apply simultaneously (e.g., hover + active), they combine with later states taking precedence for conflicting properties.
+When multiple states apply at the same time, later states take precedence for conflicting properties.
 
-## Supported Properties by State
-All style properties support all four states:
+## Supported properties by state
+
+Most style properties support all four states. Grid properties currently support `_hover` only.
+
 | Category | `_hover` | `_focus` | `_active` | `_disabled` |
 |----------|:--------:|:--------:|:---------:|:-----------:|
 | Colors (`color`, `bg`, `borderColor`) | Yes | Yes | Yes | Yes |
@@ -63,10 +65,11 @@ All style properties support all four states:
 | Interactions (`cursor`, `pointerEvents`, `userSelect`) | Yes | Yes | Yes | Yes |
 | Borders (`border`, `borderX`, `borderY`, etc.) | Yes | Yes | Yes | Yes |
 | Roundness (`rounded`, `roundedTop`, etc.) | Yes | Yes | Yes | Yes |
-| Flexbox/Grid | Yes | Yes | Yes | Yes |
+| Flexbox | Yes | Yes | Yes | Yes |
+| Grid | Yes | No | No | No |
 | Text (`textAlign`, `whiteSpace`) | Yes | Yes | Yes | Yes |
 
-## Disabled State
+## Disabled state
 
 Use `_disabled` to style elements when disabled:
 
@@ -91,7 +94,7 @@ Use `_disabled` to style elements when disabled:
 
 The `_disabled` styles apply when the element has the `disabled` attribute or `aria-disabled="true"`.
 
-## Responsive State Styling
+## Responsive state styling
 
 State props support responsive values:
 
@@ -110,9 +113,9 @@ State props support responsive values:
 
 See the [Responsive guide](/docs/guide/responsive) for more on breakpoints.
 
-## Built-in Component States
+## Built-in component states
 
-Interactive components like Button and Input have built-in state styling. You don't need to add state props—they're already styled:
+Interactive components such as Button and Input include state styles:
 
 ```tsx
 // Button handles hover, active, focus, and disabled automatically
@@ -124,7 +127,7 @@ Interactive components like Button and Input have built-in state styling. You do
 <Input disabled placeholder="Disabled" />
 ```
 
-### Button States
+### Button states
 
 Button applies these states automatically based on `variant` and `colorScheme`:
 - **Hover**: Slightly darker/lighter background
@@ -132,27 +135,27 @@ Button applies these states automatically based on `variant` and `colorScheme`:
 - **Focus**: Focus ring for accessibility
 - **Disabled**: Reduced opacity, `not-allowed` cursor
 
-### Input States
+### Input states
 
 Input applies these states automatically:
 - **Focus**: Border color change, focus ring
 - **Disabled**: Reduced opacity, different background
 
-## When to Use State Props
+## When to use state props
 
 **Use state props for:**
 - Custom interactive elements built with Box
 - Hover effects on cards or list items
 - Custom buttons not using the Button component
 
-**Don't use state props for:**
+**Do not use state props for:**
 - Standard Button, Input, Link (already styled)
 - Non-interactive content
 - Complex hover effects (use CSS modules instead)
 
 ## Examples
 
-### Hoverable Card
+### Hoverable card
 
 ```tsx
 <Box
@@ -164,12 +167,12 @@ Input applies these states automatically:
   cursor="pointer"
   _hover={{ shadow: "md", bg: "primary-subtle" }}
 >
-  <Heading fontSize="lg">Card Title</Heading>
+  <Heading size="lg">Card Title</Heading>
   <Text color="foreground-muted">Card description</Text>
 </Box>
 ```
 
-### Interactive List Item
+### Interactive list item
 
 ```tsx
 <Box
@@ -182,7 +185,7 @@ Input applies these states automatically:
 </Box>
 ```
 
-### Custom Button
+### Custom button
 
 ```tsx
 <Box
@@ -194,14 +197,14 @@ Input applies these states automatically:
   rounded="md"
   cursor="pointer"
   _hover={{ bg: "primary-emphasis" }}
-  _active={{ bg: "primary-emphasis", opacity: "high" }}
+  _active={{ bg: "primary-emphasis", opacity: "semi" }}
   _disabled={{ opacity: "faint", cursor: "not-allowed" }}
 >
   Custom Button
 </Box>
 ```
 
-### Focus Ring
+### Focus ring
 
 ```tsx
 <Box
@@ -210,7 +213,7 @@ Input applies these states automatically:
   bg="surface"
   rounded="md"
   cursor="pointer"
-  _focus={{ shadow: "md", borderColor: "primary-default" }}
+  _focus={{ shadow: "md", borderColor: "primary" }}
   border="thin"
   borderColor="border"
 >
@@ -218,7 +221,7 @@ Input applies these states automatically:
 </Box>
 ```
 
-## CSS Pseudo-Classes
+## CSS pseudo-classes
 
 For more complex state styling, use CSS modules with standard pseudo-classes:
 
@@ -251,7 +254,7 @@ import styles from "./custom.module.css";
 </Box>
 ```
 
-This approach is better for:
+Use CSS modules for:
 - Transitions and animations
 - Transform effects
 - Focus rings with outline

@@ -1,6 +1,6 @@
 ---
 title: Accordion
-description: "Collapsible content sections for organizing information, with single or multiple expansion modes."
+description: "Reference for uncontrolled and controlled Accordion state, single and multiple expansion, item indexing, and accessibility."
 ---
 
 import Tabs from "@theme/Tabs";
@@ -12,7 +12,7 @@ import StorybookEmbed, {
 
 # Accordion
 
-Accordion displays collapsible content sections for organizing information.
+`Accordion` coordinates collapsible `AccordionItem` sections. It owns its state by default and supports caller-owned state.
 
 <StorybookLink storyId="components-accordion--basic">
   Open in Storybook
@@ -24,7 +24,7 @@ Accordion displays collapsible content sections for organizing information.
 import { Accordion, AccordionItem } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -51,15 +51,15 @@ import { Accordion, AccordionItem } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Default Expanded
+## Default expanded item
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
     <Accordion defaultIndex={0}>
-      <AccordionItem index={0} title="Initially Open">
+      <AccordionItem title="Initially Open">
         This section is open by default.
       </AccordionItem>
-      <AccordionItem index={1} title="Closed">
+      <AccordionItem title="Closed">
         This section starts closed.
       </AccordionItem>
     </Accordion>
@@ -67,10 +67,10 @@ import { Accordion, AccordionItem } from "@tosui/react";
   <TabItem value="code" label="Code">
     ```tsx
     <Accordion defaultIndex={0}>
-      <AccordionItem index={0} title="Initially Open">
+      <AccordionItem title="Initially Open">
         This section is open by default.
       </AccordionItem>
-      <AccordionItem index={1} title="Closed">
+      <AccordionItem title="Closed">
         This section starts closed.
       </AccordionItem>
     </Accordion>
@@ -78,9 +78,9 @@ import { Accordion, AccordionItem } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Allow Multiple
+## Multiple expanded items
 
-Enable multiple sections to be open simultaneously.
+Pass `allowMultiple` to use array state and allow more than one expanded item.
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -113,10 +113,9 @@ Enable multiple sections to be open simultaneously.
   </TabItem>
 </Tabs>
 
-## Responding to Changes
+## Change events
 
-`onChange` receives the expanded item index in single mode, or all expanded
-indexes when `allowMultiple` is enabled.
+In single mode, `onChange` receives the expanded item index or `null`. With `allowMultiple`, `onChange` receives all expanded indexes.
 
 ```tsx
 <Accordion onChange={(index) => console.log(index)}>
@@ -125,11 +124,9 @@ indexes when `allowMultiple` is enabled.
 </Accordion>
 ```
 
-## Controlled State
+## Controlled state
 
-Use `index` with `onChange` when the expanded state belongs to your
-application. A controlled Accordion reports the requested change but does not
-update until you pass the new index back.
+Pass `index` when application state owns the expanded state. A controlled `Accordion` reports a requested change through `onChange`, but it does not update until you pass the new value back.
 
 ```tsx
 function ControlledAccordion() {
@@ -158,7 +155,7 @@ const [expandedIndexes, setExpandedIndexes] = useState<number[]>([0]);
 </Accordion>
 ```
 
-## Disabled Items
+## Disabled items
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -191,9 +188,20 @@ const [expandedIndexes, setExpandedIndexes] = useState<number[]>([0]);
   </TabItem>
 </Tabs>
 
-## Common Patterns
+## Item indexes
 
-### FAQ Section
+`Accordion` assigns an index from each direct child's position. Pass `index` to override that value. An `AccordionItem` that is not a direct child and does not have an explicit `index` throws an error.
+
+```tsx
+<Accordion>
+  <AccordionItem title="Automatic index 0">First</AccordionItem>
+  <AccordionItem index={10} title="Explicit index 10">Second</AccordionItem>
+</Accordion>
+```
+
+## Common patterns
+
+### FAQ section
 
 ```tsx
 <Accordion>
@@ -206,12 +214,13 @@ const [expandedIndexes, setExpandedIndexes] = useState<number[]>([0]);
     <Code variant="subtle" mt={2} display="block">npm install @tosui/react</Code>
   </AccordionItem>
   <AccordionItem index={2} title="Is it accessible?">
-    Yes! All components follow WAI-ARIA guidelines and support keyboard navigation.
+    Accordion headers are native buttons. They expose expanded state and control
+    their associated panels.
   </AccordionItem>
 </Accordion>
 ```
 
-### Settings Sections
+### Settings sections
 
 ```tsx
 <Accordion allowMultiple>
@@ -241,7 +250,7 @@ const [expandedIndexes, setExpandedIndexes] = useState<number[]>([0]);
 </Accordion>
 ```
 
-### Product Features
+### Product features
 
 ```tsx
 <Accordion>
@@ -263,18 +272,27 @@ const [expandedIndexes, setExpandedIndexes] = useState<number[]>([0]);
 </Accordion>
 ```
 
-## Props Reference
+## Props reference
 
 ### Accordion
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| index | `number` \| `number[]` \| `null` | - | Expanded index(es) for controlled usage |
-| defaultIndex | `number` \| `number[]` | - | Default expanded index(es) |
-| allowMultiple | `boolean` | `false` | Allow multiple items expanded |
-| onChange | `(index: number \| number[] \| null) => void` | - | Called with the requested expanded state after an item is toggled |
+| index | `number \| null` | - | Controlled expanded index in single mode |
+| defaultIndex | `number` | - | Initial expanded index in single mode |
+| allowMultiple | `false` | `false` | Select single mode |
+| onChange | `(index: number \| null) => void` | - | Receive the requested single-mode state |
 | className | `string` | - | Additional CSS class |
 | children | `ReactNode` | - | AccordionItem children |
+
+With `allowMultiple={true}`, the state props use arrays:
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| index | `number[]` | - | Controlled expanded indexes |
+| defaultIndex | `number[]` | `[]` | Initial expanded indexes |
+| allowMultiple | `true` | - | Select multiple mode |
+| onChange | `(index: number[]) => void` | - | Receive the requested multiple-mode state |
 
 ### AccordionItem
 
@@ -288,11 +306,12 @@ const [expandedIndexes, setExpandedIndexes] = useState<number[]>([0]);
 
 ## Accessibility
 
-- Uses `aria-expanded` on trigger buttons
-- Associates each trigger and panel with `aria-controls` and `aria-labelledby`
-- Removes collapsed panel content from interaction while preserving its transition
-- Uses `aria-disabled` for disabled items
-- Keyboard accessible via Tab and Enter/Space
+- Each trigger button uses `aria-expanded` and `aria-controls`.
+- Each panel uses `aria-labelledby` and `role="region"`.
+- A collapsed panel stays mounted to preserve its local state and transition.
+- A collapsed panel is both `aria-hidden` and inert, so its descendants cannot receive focus.
+- A disabled trigger uses `aria-disabled` and ignores activation.
+- Native button behavior supports Tab, Enter, and Space.
 
 ## TypeScript
 

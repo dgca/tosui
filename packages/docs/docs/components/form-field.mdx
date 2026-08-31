@@ -1,6 +1,6 @@
 ---
 title: FormField
-description: "Wrapper component providing labels, helper text, error messages, and accessibility features for form controls."
+description: "Reference for composing labels, messages, required state, disabled state, and invalid state with one form control."
 ---
 
 import Tabs from "@theme/Tabs";
@@ -12,7 +12,7 @@ import StorybookEmbed, {
 
 # FormField
 
-FormField is a wrapper component that provides labels, helper text, error messages, and accessibility features for form controls.
+`FormField` associates one form control with its label, helper text, error message, and field state.
 
 <StorybookLink storyId="components-form-field--basic">
   Open in Storybook
@@ -24,7 +24,7 @@ FormField is a wrapper component that provides labels, helper text, error messag
 import { FormField } from "@tosui/react";
 ```
 
-## Basic Usage
+## Basic usage
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -43,7 +43,7 @@ import { FormField } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Helper Text
+## Helper text
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -60,7 +60,7 @@ import { FormField } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Required Field
+## Required field
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -77,9 +77,9 @@ import { FormField } from "@tosui/react";
   </TabItem>
 </Tabs>
 
-## Invalid State
+## Invalid state
 
-When `isInvalid` is true, the error message replaces the helper text.
+When `isInvalid` is `true`, `errorMessage` replaces `helperText`.
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -106,7 +106,7 @@ When `isInvalid` is true, the error message replaces the helper text.
   </TabItem>
 </Tabs>
 
-## Disabled State
+## Disabled state
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -123,10 +123,9 @@ When `isInvalid` is true, the error message replaces the helper text.
   </TabItem>
 </Tabs>
 
-## With Different Controls
+## Tosui controls
 
-Tosui form controls consume FormField state automatically. Each FormField
-represents one semantic form control.
+Tosui controls consume `FormField` state from context. Each `FormField` represents one semantic form control.
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
@@ -179,11 +178,9 @@ represents one semantic form control.
   </TabItem>
 </Tabs>
 
-## Native and Custom Controls
+## Native and custom controls
 
-Use the render-function form to adapt FormField's accessible control props to
-a native element or custom control. Spread the props onto the element that
-receives focus:
+For a native or custom control, pass a function as `children`. Spread the received props onto the element that receives focus.
 
 ```tsx
 <FormField
@@ -201,11 +198,9 @@ receives focus:
 </FormField>
 ```
 
-The adapter receives `id`, `disabled`, `required`, `aria-describedby`, and
-`aria-invalid`. This keeps FormField from adding component-only props to
-arbitrary child elements.
+The function receives `id`, `disabled`, `required`, `aria-describedby`, and `aria-invalid`. The function prevents `FormField` from guessing how a custom component forwards props.
 
-## Complete Form Example
+## Complete form example
 
 ```tsx
 <VStack gap={4}>
@@ -238,41 +233,42 @@ arbitrary child elements.
 </VStack>
 ```
 
-## Props Reference
+## Props reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| label | `string` | - | Label text (required) |
+| label | `string` | - | Required label text |
 | helperText | `string` | - | Helper text below the control |
 | errorMessage | `string` | - | Error message (shown when `isInvalid`) |
 | isRequired | `boolean` | `false` | Show required asterisk |
 | isInvalid | `boolean` | `false` | Show invalid state |
 | disabled | `boolean` | `false` | Disable the control |
 | id | `string` | auto-generated | Custom ID for the field |
-| children | `ReactElement \| (controlProps => ReactElement)` | - | One Tosui control, or an adapter for a native/custom control |
+| children | `ReactElement \| (controlProps => ReactElement)` | - | One Tosui control or one control adapter |
 
 ## Accessibility
 
-FormField provides:
-- Proper `<label>` element linked to the control via `htmlFor`
-- `aria-describedby` linking the control to helper/error text
-- Existing `aria-describedby` IDs are preserved when helper/error text is added
-- `aria-invalid` attribute when in error state
-- Native `required` and `disabled` attributes when requested
-- Auto-generated unique IDs when not provided
+`FormField` provides these relationships:
 
-## State Propagation
+- A `<label>` points to the control ID through `htmlFor`.
+- `aria-describedby` points to the active helper text or error message.
+- Existing `aria-describedby` IDs remain on Tosui controls.
+- `aria-invalid` is `true` when `isInvalid` is `true`.
+- `required` and `disabled` reach the native control.
+- A generated ID links the label and the control when `id` is absent.
 
-Tosui controls automatically consume this field state through context:
-- `id` - for label association
-- invalid state - for visual and accessible error state
-- `disabled` - for disabled state
-- `required` - for native constraint validation
-- `aria-describedby` - for accessibility
-- `aria-invalid` - for accessibility
+## State propagation
 
-Because context travels through component and layout boundaries, wrapping a
-Tosui control in layout markup does not move these props onto the wrapper.
+Tosui controls consume these values through context:
+
+- `id`
+- `isInvalid`
+- `disabled`
+- `required`
+- `aria-describedby`
+- `aria-invalid`
+
+Context crosses component and layout boundaries. A layout wrapper does not receive control-only props.
 
 ## TypeScript
 
