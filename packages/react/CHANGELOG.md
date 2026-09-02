@@ -1,5 +1,12 @@
 # @tosui/react
 
+## 0.2.2
+
+### Patch Changes
+
+- 7ac59aa: Add accessible names to Modal and Popover, and connect each Popover trigger to its dialog panel.
+- 656f4d8: Preserve `Image` alt text when both the source and fallback source fail.
+
 ## 0.2.1
 
 ### Patch Changes
