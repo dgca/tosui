@@ -27,6 +27,10 @@ export type ModalProps = {
   closeOnEsc?: boolean;
   /** Additional class name */
   className?: string;
+  /** Accessible name for the dialog */
+  "aria-label"?: string;
+  /** ID of the element that labels the dialog */
+  "aria-labelledby"?: string;
   /** Modal content */
   children?: ReactNode;
 };
@@ -85,6 +89,8 @@ export function Modal({
   closeOnOverlayClick = true,
   closeOnEsc = true,
   className,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledby,
   children,
 }: ModalProps) {
   const isClient = useIsClient();
@@ -124,6 +130,8 @@ export function Modal({
       onClick={handleOverlayClick}
       role="dialog"
       aria-modal="true"
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledby}
     >
       <Box
         ref={modalRef}

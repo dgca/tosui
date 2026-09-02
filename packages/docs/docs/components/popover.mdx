@@ -38,6 +38,7 @@ import { Popover, PopoverHeader, PopoverBody } from "@tosui/react";
   <TabItem value="code" label="Code">
     ```tsx
     <Popover
+      aria-label="Popover details"
       content={
         <PopoverBody>
           This is the popover content.
@@ -55,9 +56,12 @@ import { Popover, PopoverHeader, PopoverBody } from "@tosui/react";
 <Tabs>
   <TabItem value="preview" label="Preview" default>
     <Popover
+      aria-labelledby="popover-title"
       content={
         <>
-          <PopoverHeader>Popover Title</PopoverHeader>
+          <PopoverHeader>
+            <span id="popover-title">Popover Title</span>
+          </PopoverHeader>
           <PopoverBody>
             This popover has a header and body.
           </PopoverBody>
@@ -70,9 +74,12 @@ import { Popover, PopoverHeader, PopoverBody } from "@tosui/react";
   <TabItem value="code" label="Code">
     ```tsx
     <Popover
+      aria-labelledby="popover-title"
       content={
         <>
-          <PopoverHeader>Popover Title</PopoverHeader>
+          <PopoverHeader>
+            <span id="popover-title">Popover Title</span>
+          </PopoverHeader>
           <PopoverBody>
             This popover has a header and body.
           </PopoverBody>
@@ -85,21 +92,43 @@ import { Popover, PopoverHeader, PopoverBody } from "@tosui/react";
   </TabItem>
 </Tabs>
 
+## Accessible name
+
+Give every popover an accessible name. Reference a visible heading with `aria-labelledby`, as shown above. If the panel has no visible heading, use `aria-label`.
+
+The child must accept event and ARIA props so Popover can connect it to the panel. Use a `Button`, `IconButton`, or another focusable component that forwards those props.
+
 ## Placement
 
 <Tabs>
   <TabItem value="preview" label="Preview" default>
     <HStack gap={4}>
-      <Popover placement="top" content={<PopoverBody>Top</PopoverBody>}>
+      <Popover
+        aria-label="Top popover"
+        placement="top"
+        content={<PopoverBody>Top</PopoverBody>}
+      >
         <Button>Top</Button>
       </Popover>
-      <Popover placement="bottom" content={<PopoverBody>Bottom</PopoverBody>}>
+      <Popover
+        aria-label="Bottom popover"
+        placement="bottom"
+        content={<PopoverBody>Bottom</PopoverBody>}
+      >
         <Button>Bottom</Button>
       </Popover>
-      <Popover placement="left" content={<PopoverBody>Left</PopoverBody>}>
+      <Popover
+        aria-label="Left popover"
+        placement="left"
+        content={<PopoverBody>Left</PopoverBody>}
+      >
         <Button>Left</Button>
       </Popover>
-      <Popover placement="right" content={<PopoverBody>Right</PopoverBody>}>
+      <Popover
+        aria-label="Right popover"
+        placement="right"
+        content={<PopoverBody>Right</PopoverBody>}
+      >
         <Button>Right</Button>
       </Popover>
     </HStack>
@@ -107,16 +136,32 @@ import { Popover, PopoverHeader, PopoverBody } from "@tosui/react";
   <TabItem value="code" label="Code">
     ```tsx
     <HStack gap={4}>
-      <Popover placement="top" content={<PopoverBody>Top</PopoverBody>}>
+      <Popover
+        aria-label="Top popover"
+        placement="top"
+        content={<PopoverBody>Top</PopoverBody>}
+      >
         <Button>Top</Button>
       </Popover>
-      <Popover placement="bottom" content={<PopoverBody>Bottom</PopoverBody>}>
+      <Popover
+        aria-label="Bottom popover"
+        placement="bottom"
+        content={<PopoverBody>Bottom</PopoverBody>}
+      >
         <Button>Bottom</Button>
       </Popover>
-      <Popover placement="left" content={<PopoverBody>Left</PopoverBody>}>
+      <Popover
+        aria-label="Left popover"
+        placement="left"
+        content={<PopoverBody>Left</PopoverBody>}
+      >
         <Button>Left</Button>
       </Popover>
-      <Popover placement="right" content={<PopoverBody>Right</PopoverBody>}>
+      <Popover
+        aria-label="Right popover"
+        placement="right"
+        content={<PopoverBody>Right</PopoverBody>}
+      >
         <Button>Right</Button>
       </Popover>
     </HStack>
@@ -130,6 +175,7 @@ By default, popover closes when clicking outside. Disable with `closeOnBlur={fal
 
 ```tsx
 <Popover
+  aria-label="Persistent popover"
   closeOnBlur={false}
   content={
     <PopoverBody>
@@ -151,6 +197,7 @@ function ControlledPopover() {
 
   return (
     <Popover
+      aria-label="Controlled popover"
       isOpen={isOpen}
       onOpen={() => setIsOpen(true)}
       onClose={() => setIsOpen(false)}
@@ -174,6 +221,7 @@ function ControlledPopover() {
 
 ```tsx
 <Popover
+  aria-label="Delete item"
   content={
     <>
       <PopoverHeader>Delete item?</PopoverHeader>
@@ -195,6 +243,7 @@ function ControlledPopover() {
 
 ```tsx
 <Popover
+  aria-label="John Doe profile"
   content={
     <PopoverBody>
       <VStack gap={2} align="start">
@@ -213,7 +262,9 @@ function ControlledPopover() {
     </PopoverBody>
   }
 >
-  <Avatar name="John Doe" />
+  <Button variant="ghost" aria-label="Open John Doe profile">
+    <Avatar name="John Doe" />
+  </Button>
 </Popover>
 ```
 
@@ -221,6 +272,7 @@ function ControlledPopover() {
 
 ```tsx
 <Popover
+  aria-label="Quick add"
   closeOnBlur={false}
   content={
     <>
@@ -254,7 +306,9 @@ function ControlledPopover() {
 | onOpen | `() => void` | - | Callback when popover opens |
 | onClose | `() => void` | - | Callback when popover closes |
 | className | `string` | - | Additional CSS class on the dialog panel |
-| children | `ReactNode` | - | Trigger element (required) |
+| aria-label | `string` | - | Accessible name for the dialog |
+| aria-labelledby | `string` | - | ID of an element that labels the dialog |
+| children | `ReactNode` | - | Focusable trigger element (required) |
 
 ### PopoverHeader, PopoverBody
 
@@ -266,11 +320,11 @@ function ControlledPopover() {
 ## Accessibility
 
 - The panel uses `role="dialog"`.
-- The trigger wrapper uses `aria-expanded` and `aria-haspopup="dialog"`.
+- Give every popover an accessible name with `aria-label` or `aria-labelledby`.
+- The focusable trigger receives `aria-expanded`, `aria-haspopup="dialog"`, and `aria-controls`. Popover preserves other trigger attributes and adds the panel ID to an existing `aria-controls` value.
 - Focus moves into the panel, stays inside it, and returns to the previously focused element when the panel closes.
 - Escape closes the panel.
 - The portal renders only in the browser and updates its position during scroll and resize events.
-- `Popover` does not currently expose an accessible-name prop for the dialog.
 
 ## TypeScript
 
